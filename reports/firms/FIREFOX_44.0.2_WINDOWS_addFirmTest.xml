@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="1">
+
+  <testsuite name="addFirmTest"
+    errors="0" failures="1" hostname="" id="" package="firms" skipped="0"
+    tests="1" time="0.000" timestamp="Wed, 24 Feb 2016 21:00:51 GMT">
+  
+    <testcase name="Add New Firm" time="0.000" assertions="0">
+    </testcase>
+      <system-err>
+         ERROR: Unable to locate element: &quot;input[name=username]&quot; using: css selector
+      </system-err>
+  
+  
+  </testsuite>
+</testsuites>
