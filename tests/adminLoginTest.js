@@ -1,5 +1,5 @@
 module.exports ={
-		'@disabled': true,
+		//'@disabled': true,
 		'Admin User Login Test': function(client){
 			var loginPage = client.page.loginPage();
 			console.log("\n",client.globals.baseUrl,'\n');

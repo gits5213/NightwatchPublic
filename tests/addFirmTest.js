@@ -1,5 +1,5 @@
 module.exports ={
-		'@disabled': true,
+		//'@disabled': true,
 		'Add New Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
