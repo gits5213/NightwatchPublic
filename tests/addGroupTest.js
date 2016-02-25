@@ -1,5 +1,5 @@
 module.exports ={
-		'Add a new Group': function(client){
+		'Add 2 new Groups to a new Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
 			loginPage.adminLogin(client);
@@ -15,6 +15,7 @@ module.exports ={
 			client.assert.urlContains('#/groups');
 			groupsPage.addGrpForFirm(dateString,client);
 			client.assert.urlContains('firmId=');
+			groupsPage.addAnotherGrpForFirm(dateString,client);
 			groupsPage.editFirstRecord();
 			
 			groupsPage

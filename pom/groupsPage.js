@@ -34,6 +34,35 @@ var groupsPageCommands = {
 			this.api.pause(1000);
 			
 		},
+		addAnotherGrpForFirm: function(dateString,client){
+			this.click('@addGroupBtn');
+			this.api.pause(1000);
+			this.assert.containsText('body','Add New Group');
+			this.click('@selectFirmBar');
+			this.api.pause(500);
+			this.setValue('@selectFirmBarSearch',dateString);
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			this.waitForElementPresent('@grpNameField',2000)
+			.setValue('@grpNameField', 'Firm '+dateString+' Grp 2')
+			.click('@communityBar');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);
+			this.setValue('@contactFname','Jonathan')
+			.setValue('@contactLname','Jengo')
+			.setValue('@contactEmail',client.globals.email1)
+			.setValue('@street1','123 Main Street')
+			.setValue('@street2', 'Suite 17')
+			.setValue('@city','Any City')
+			.setValue('@state','NY')
+			.setValue('@zip',12345)
+			.setValue('@country','USA')
+			.setValue('@website','http://c9tec.com')
+			.setValue('@description','Another new Group for Testing')
+			.click('@submitBtn');
+			this.api.pause(1000);
+			
+		},
 		editFirstRecord: function(){
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow')
