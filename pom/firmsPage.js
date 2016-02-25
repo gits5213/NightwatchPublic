@@ -7,7 +7,7 @@ var firmsPageCommands = {
 			this.api.pause(1000);
 			this.click('@addFirmBtn')
 			.assert.containsText('body','Add Firm')
-			.waitForElementVisible('@firmName',2000);
+			.waitForElementVisible('@firmNameForAdd',2000);
 			
 			var now = new Date();
 			var dateString=now.getFullYear().toString()+
@@ -19,7 +19,7 @@ var firmsPageCommands = {
 			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
 			//now.getMilliseconds().toString();
 			
-			this.setValue('@firmName','Test Firm '+dateString)
+			this.setValue('@firmNameForAdd','Test Firm '+dateString)
 			.setValue('@street1', '123 Main Street')
 			.setValue('@street2', '17th Flr')
 			.setValue('@city', 'Any City')
@@ -42,8 +42,16 @@ var firmsPageCommands = {
 		
 			return dateString.trim();
 		},
-		getFirmByName : function(firmname){
-			
+		getFirmByName : function(string){
+			this.click('@firmsLink')
+			.clearValue('@firmNameSearch');
+			this.api.pause(1000);
+			this.setValue('@firmNameSearch',string);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRowFirmsData',2000)
+			.click('@firstRowFirmsData')
+			.click('@editFirmBtn');
+			this.api.pause(1000);
 		}
 };
 
@@ -58,10 +66,18 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[1]/i',
 				locateStrategy: 'xpath'
 			},
+			editFirmBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/i',
+				locateStrategy: 'xpath'
+			},
+			firmNameSearch:{
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',
+				locateStrategy: 'xpath'
+			},
 			
-			firmName: {
-				selector: '#name',
-				//locateStrategy: 'xpath'
+			firmNameForAdd: {
+				selector: '//*[@id="name"]',
+				locateStrategy: 'xpath'
 			},
 			street1 : 'input[name=street1]',
 			street2 : 'input[name=street2]',
@@ -90,6 +106,11 @@ module.exports = {
 			
 			submitFrmBtn: {
 				selector: '//*[@id="firmData"]/div[2]/button[2]',
+				locateStrategy: 'xpath'
+			},
+			
+			firstRowFirmsData:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
 			},
 			
