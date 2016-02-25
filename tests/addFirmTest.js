@@ -1,4 +1,5 @@
 module.exports ={
+		'@disabled': true,
 		'Add New Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
@@ -28,7 +29,6 @@ module.exports ={
 			.verify.valueContains('@pwork', 123456789)
 			.verify.valueContains('@pmobile',234567890)
 			
-			
-			//client.end();
+			client.end();
 		}
 }
