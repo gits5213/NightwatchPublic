@@ -1,7 +1,7 @@
 var loginCommand = {
-		adminLogin: function(username,password){
-			return this.setValue('@usernameField',username)
-			.setValue('@passwordField', password)
+		adminLogin: function(client){
+			return this.setValue('@usernameField',client.globals.adminUsername)
+			.setValue('@passwordField', client.globals.adminPassword)
 			.click('@submitButton')
 			.waitForElementVisible('@alert',2000)
 			.assert.containsText('div.modal-header', '**WARNING**')
