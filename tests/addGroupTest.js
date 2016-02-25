@@ -34,6 +34,6 @@ module.exports ={
 			.verify.valueContains('@website','http://c9tec.com')
 			.verify.valueContains('@description','New Group for Testing')
 			
-			//client.end();
+			client.end();
 		}
 }
