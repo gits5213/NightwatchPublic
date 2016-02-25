@@ -6,7 +6,12 @@ var loginCommand = {
 			.waitForElementVisible('@alert',2000)
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
+			this.api.pause(1000);
 			
+		},
+		logout:function(){
+			this.click('//*[@id="navbar"]/ul[2]/li[3]/a/h4/i');
+			this.api.pause(1000);
 		}
 };
 
