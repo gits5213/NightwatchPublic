@@ -3,4 +3,6 @@ module.exports = {
 		adminPassword: 'Password1960',
 		email1: 'uche.onwudiwe@c9tec.com',
 		baseUrl: 'https://dev-c9portal.xhoot.com/c9portalMain',
+		
+		ip: '128.177.23.2'
 }
