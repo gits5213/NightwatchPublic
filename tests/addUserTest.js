@@ -1,5 +1,6 @@
 module.exports ={
-		'Add 2 new Groups to a new Firm': function(client){
+		'@tags':['user'],
+		'Add a New User to a new Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
 			loginPage.adminLogin(client);
@@ -15,7 +16,14 @@ module.exports ={
 			client.assert.urlContains('#/groups');
 			groupsPage.addGrpForFirm(dateString,client);
 			client.assert.urlContains('firmId=');
-			groupsPage.addAnotherGrpForFirm(dateString,client);
+			//groupsPage.addAnotherGrpForFirm(dateString,client);
+			
+			var usersPage = client.page.usersPage();
+			usersPage.go();
+			var user1=usersPage.addUserToFirm(dateString,client);
+			
+			
+			/*
 			groupsPage.editFirstRecord();
 			
 			groupsPage
@@ -33,7 +41,8 @@ module.exports ={
 			.verify.valueContains('@country','USA')
 			.verify.valueContains('@website','http://c9tec.com')
 			.verify.valueContains('@description','New Group for Testing')
+			*/
 			
-			client.end();
+			//client.end();
 		}
 }
