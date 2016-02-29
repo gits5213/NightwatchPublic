@@ -9,7 +9,7 @@ module.exports ={
 			firmsPage.go();
 			
 			var dateString = firmsPage.addNewFirm(client);
-			console.log('Successfully created: Test Firm '+dateString);
+			console.log('About to create: Test Firm '+dateString);
 			
 			var groupsPage = client.page.groupsPage();
 			groupsPage.go();
@@ -20,29 +20,27 @@ module.exports ={
 			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
-			var user1=usersPage.addUserToFirm(dateString,client);
+			var user1 = usersPage.addUserToFirm(dateString,client);
+			var userGroupsPage= client.page.editUserGroupsPage();
+			userGroupsPage
+			.verify.urlContains('#/editUserGroups')
+			.done();
+			client.assert.urlContains('firmId=')
+			usersPage.editFirstRecord();
 			
+			client.verify.urlContains('#/editUser');
 			
-			/*
-			groupsPage.editFirstRecord();
+			usersPage
+			.verify.valueContains('@firmName', 'Test Firm '+dateString)
+			.verify.valueContains('@username','johndoe'+user1)
+			.verify.valueContains('@fnameField','John')
+			.verify.valueContains('@lnameField','Doe'+user1)
+			.verify.valueContains('@emailField',client.globals.email1)
+			.verify.valueContains('@workField',123456789)
+			.verify.valueContains('@mobileField',234567890)
+			.verify.valueContains('@voiceYes',1)
+			.verify.urlContains('#/editUser?firmId=')
 			
-			groupsPage
-			.verify.valueContains('@grpNameField','Firm '+dateString+' Grp 1')
-			//community validation here
-			.verify.valueContains('@contactFname', 'Howard')
-			.verify.valueContains('@contactLname', 'Hughes')
-			.verify.valueContains('@contactEmail', client.globals.email1)
-			//default group validation here
-			.verify.valueContains('@street1', '456 Wall Street')
-			.verify.valueContains('@street2', 'Suite 100')
-			.verify.valueContains('@city', 'Any City')
-			.verify.valueContains('@state','NY')
-			.verify.valueContains('@zip', 67890)
-			.verify.valueContains('@country','USA')
-			.verify.valueContains('@website','http://c9tec.com')
-			.verify.valueContains('@description','New Group for Testing')
-			*/
-			
-			//client.end();
+			client.end();
 		}
 }

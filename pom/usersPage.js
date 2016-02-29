@@ -30,25 +30,25 @@ var userPageCommands = {
 			.setValue('@mobileField',234567890)
 			.click('@voiceYes');
 			this.api.pause(1000);
-			
+			/*
 			var username = this.getValue('@username');
 			var description =this.getValue('@descField').toString();
 			var password = description.substring((description.indexOf(' Password=')+10),8);
 			//console.log('username: '+username,' and password: '+password);
+			*/
 			this.click('@addUserSubmitBtn');
 			this.waitForElementVisible('@newUserModal',2000)
 			.click('@addUserConfirmBtn');
 			this.api.pause(1000);
 			
-			return [username, password];
+			return dateString;
 			
 		},
 		editFirstRecord: function(){
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow')
-			.click('@editGrpBtn');
+			.click('@editUserBtn');
 			this.api.pause(1000);
-			
 			
 		}
 };
@@ -58,6 +58,10 @@ module.exports = {
 		elements: {
 			usersLink: {
 				selector: '//*[@id="navbar"]/ul[1]/li[3]/a/h4/i',
+				locateStrategy: 'xpath'
+			},
+			editUserBtn: {
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[2]/i',
 				locateStrategy: 'xpath'
 			},
 			addUserBtn:{
@@ -88,6 +92,11 @@ module.exports = {
 				selector: '//*[@id="adduserConfirmedButton"]',
 				locateStrategy: 'xpath'
 			},
+			firstRow: {
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
+				locateStrategy: 'xpath'
+			},
+			firmName: '#firmName',
 			emailField: '#email',
 			username: '#username',
 			genPassBtn: '#genpassword',

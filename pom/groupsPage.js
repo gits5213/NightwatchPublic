@@ -87,7 +87,6 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/i',
 				locateStrategy: 'xpath'
 			},
-			
 			selectFirmBar: {
 				selector: '//*[@id="ng-view"]/div/div/div/div/a/span',
 				locateStrategy: 'xpath'
