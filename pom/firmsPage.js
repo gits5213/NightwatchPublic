@@ -12,7 +12,7 @@ var firmsPageCommands = {
 			var now = new Date();
 			var dateString=now.getFullYear().toString()+
 			(now.getMonth()+1<10 ? '0'+(now.getMonth()+1).toString() : (now.getMonth()+1).toString())+''+
-			(now.getDate()<10 ? '0'+now.getDate().toString : now.getDate().toString())+''+
+			(now.getDate()<10 ? '0'+now.getDate().toString() : now.getDate().toString())+''+
 			(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
 			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
 			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
