@@ -1,0 +1,24 @@
+{
+  "name": "c9portaluitests",
+  "version": "0.0.1",
+  "description": "Browser based tests for C9 Portal",
+  "main": "nightwatch.json",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "nightwatch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/leopapadopoulos/c9portualuitests.git"
+  },
+  "keywords": [
+    "ui",
+    "portal",
+    "c9portal"
+  ],
+  "author": "Uche Onwudiew",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/leopapadopoulos/c9portualuitests#readme"
+}
