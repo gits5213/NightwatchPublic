@@ -13,24 +13,19 @@ var connPageCommands = {
 			this.setValue('@selectFirmBarSearch',dateString);
 			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
-			this.waitForElementPresent('@grpNameField',2000)
-			.setValue('@grpNameField', 'Firm '+dateString+' Grp 1')
-			.click('@communityBar');
+			this.waitForElementPresent('@internalYes',1000)
+			.click('@internalYes');
+			this.api.pause(500);
+			this.waitForElementPresent('@fromFieldBar',1000)
+			.click('@fromFieldBar');
+			this.api.pause(500);
+			this.setValue('@fromFieldInput', 'Grp 1');
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
-			this.setValue('@contactFname','Howard')
-			.setValue('@contactLname','Hughes')
-			.setValue('@contactEmail',client.globals.email1)
-			.click('@defaultgrpYes')
-			.setValue('@street1','456 Wall Street')
-			.setValue('@street2', 'Suite 100')
-			.setValue('@city','Any City')
-			.setValue('@state','NY')
-			.setValue('@zip',67890)
-			.setValue('@country','USA')
-			.setValue('@website','http://c9tec.com')
-			.setValue('@description','New Group for Testing')
-			.click('@submitBtn');
+			this.verify.valueContains('@connType','sPK');
+			this.setValue('@myFirmBtnLabel',dateString+'IntraFirmShout');
+			this.api.pause(500);
+			this.click('@submitBtn');
 			this.api.pause(1000);
 			
 		},
@@ -40,7 +35,7 @@ var connPageCommands = {
 		editFirstRecord: function(){
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow')
-			.click('@editGrpBtn');
+			.click('@editConnBtn');
 			this.api.pause(1000);
 			
 		}
@@ -62,11 +57,11 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			selectFirmBar: {
-				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/a/span',
+				selector: '//*[@id="ng-view"]/div/h5/div/div/div/a/span',
 				locateStrategy: 'xpath'
 			},
 			selectFirmBarSearch: {
-				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/div/div/input',
+				selector: '//*[@id="ng-view"]/div/h5/div/div/div/div/div/input',
 				locateStrategy: 'xpath'
 			},
 			internalYes : {
@@ -77,12 +72,16 @@ module.exports = {
 				selector: '//*[@id="internalNo"]',
 				locateStrategy: 'xpath'
 			},
-			fromField : {
+			fromFieldBar : {
 				selector: '//*[@id="connFromDropdown_chosen"]/a/span',
 				locateStrategy: 'xpath'
 			},
 			toField : {
 				selector: '//*[@id="connToDropdown_chosen"]/a/span',
+				locateStrategy: 'xpath'
+			},
+			fromFieldInput :{
+				selector : '//*[@id="connFromDropdown_chosen"]/div/div/input',
 				locateStrategy: 'xpath'
 			},
 			connType :{
@@ -95,10 +94,29 @@ module.exports = {
 			},
 			remoteFirmBtnLabel :{
 				selector: '//*[@id="toButtonLabel"]',
+				locateStrategy: 'xpath'
 			},
 			submitBtn: {
 				selector: '//*[@id="connectionData"]/div[2]/button[2]',
 				locateStrategy: 'xpath'
-			}
+			},
+			
+			firstRow: {
+				selector : '//*[@id="scrollable-area"]/table/tbody/tr[2]/td[1]',
+				locateStrategy: 'xpath'
+			},
+			
+			firmNameField : '#firmName',
+			commNameField: '#communityName',
+			grpNameField: {
+				selector: '//*[@id="groupName"]',
+				locateStrategy: 'xpath'
+			},
+			btnLabelField: '#buttonLabel',
+			vcinstField: '#vcInstID',
+			connIdField: '#c9RefNum',
+			description: '#description',
+			createdByField: '#createdBy',
+			createdOnField: '#createdOn'
 		}
 }
