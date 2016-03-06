@@ -18,7 +18,12 @@
     "portal",
     "c9portal"
   ],
-  "author": "Uche Onwudiew",
+  "dependencies":{
+	  "grunt": "latest",
+	  "grunt-cli": "latest",
+	  "nightwatch": "latest"
+  },
+  "author": "Uche Onwudiwe",
   "license": "ISC",
   "homepage": "https://bitbucket.org/leopapadopoulos/c9portualuitests#readme"
 }
