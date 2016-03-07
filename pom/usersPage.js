@@ -50,6 +50,32 @@ var userPageCommands = {
 			.click('@editUserBtn');
 			this.api.pause(1000);
 			
+		},
+		updateFirstRecord: function(dateString){
+			this.go();
+			this.clearValue('@usernameSearch')
+			.setValue('@usernameSearch','johndoe'+dateString);
+			//this.api.pause(1000);
+			this.waitForElementVisible('@firstRow',2000);
+			this.click('@firstRow')
+			.click('@editUserBtn');
+			this.api.pause(1000);
+			this.waitForElementVisible('@fnameField',1000)
+			.waitForElementVisible('@lnameField',1000)
+			.clearValue('@fnameField')
+			.setValue('@fnameField', 'Jane')
+			.clearValue('@lnameField')
+			.setValue('@lnameField','Poe'+dateString)
+			.clearValue('@emailField')
+			.setValue('@emailField','updateduser@c9tec.com')
+			this.api.pause(1000);
+			this.clearValue('@workField')
+			.setValue('@workField','011-234-5294')
+			.clearValue('@mobileField')
+			.setValue('@mobileField','011-234-5555')
+			.click('@voiceNo');
+			this.api.pause(1000);
+			
 		}
 };
 
@@ -109,8 +135,16 @@ module.exports = {
 				selector: '//*[@id="voiceRecordingYes"]',
 				locateStrategy: 'xpath'
 			},
+			voiceNo: {
+				selector: '//*[@id="voiceRecordingNo"]',
+				locateStrategy: 'xpath'
+			},
 			newUserModal:{
 				selector: '//*[@id="userConfirmModal"]/div[2]/div',
+				locateStrategy: 'xpath'
+			},
+			usernameSearch :{
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[3]/div/input',
 				locateStrategy: 'xpath'
 			}
 			
