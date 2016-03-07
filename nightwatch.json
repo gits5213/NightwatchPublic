@@ -51,7 +51,7 @@
     		  "browserName" : "phantomjs",
     		  "javascriptEnabled" : true,
     		  "acceptSslCerts" : true,
-    		  "phantomjs.binary.path" : "/path/to/phantomjs"
+    		  "phantomjs.binary.path" : "/usr/bin/phantomjs"
     		}
       }
    }
