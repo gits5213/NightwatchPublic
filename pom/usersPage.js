@@ -54,6 +54,7 @@ var userPageCommands = {
 		updateFirstRecord: function(dateString){
 			this.go();
 			this.clearValue('@usernameSearch')
+			.waitForElementNotVisible('@spinner',3000)
 			.setValue('@usernameSearch','johndoe'+dateString);
 			//this.api.pause(1000);
 			this.waitForElementVisible('@firstRow',2000);
@@ -146,7 +147,30 @@ module.exports = {
 			usernameSearch :{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[3]/div/input',
 				locateStrategy: 'xpath'
+			},
+			
+			
+			deleteUserBtn :{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[9]/i',
+				locateStrategy: 'xpath'
+			},
+			confirmDeleteModal: {
+				selector: '//*[@id="confirmModal"]/div[2]/div',
+				locateStrategy: 'xpath'
+			},
+			deleteCancelBtn :{
+				selector: '//*[@id="confirmModal"]/div[2]/div/div[3]/button[1]',
+				locateStrategy: 'xpath'
+			},
+			deleteOkBtn :{
+				selector:'//*[@id="confirmModal"]/div[2]/div/div[3]/button[2]',
+				locateStrategy: 'xpath'
+			},
+			spinner :{
+				selector: '//*[@id="overlay-content"]/img',
+				locateStrategy: 'xpath'
 			}
+			
 			
 		}
 }
