@@ -3,6 +3,7 @@ var userPageCommands = {
 			this.api.pause(1000);
 			this.click('@usersLink');
 			this.api.pause(1000);
+			this.waitForElementNotVisible('@spinner',4000)
 		},
 		addUserToFirm : function(firm,client){
 			this.click('@addUserBtn');
@@ -51,6 +52,11 @@ var userPageCommands = {
 			this.api.pause(1000);
 			
 		},
+		editRecord: function(){
+			this.click('@editUserBtn');
+			this.api.pause(1000);
+			
+		},
 		updateFirstRecord: function(dateString){
 			this.go();
 			this.clearValue('@usernameSearch')
@@ -74,9 +80,58 @@ var userPageCommands = {
 			.setValue('@workField','011-234-5294')
 			.clearValue('@mobileField')
 			.setValue('@mobileField','011-234-5555')
-			.click('@voiceNo');
+			.click('@voiceNo');			
+			this.api.pause(1000);
+			this.click('@editUserConfirmBtn');
 			this.api.pause(1000);
 			
+		},
+		deleteUser: function(dateString,client){
+			this.go();
+			this.clearValue('@usernameSearch')
+			.waitForElementNotVisible('@spinner',5000)
+			.setValue('@usernameSearch','johndoe'+dateString);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRow',2000);
+			this.click('@firstRow')
+			this.api.pause(1000);
+			this.click('@deleteUserBtn')
+			.waitForElementVisible('@confirmDeleteModal',1000)
+			.click('@deleteCancelBtn')
+			.click('@deleteUserBtn')
+			.waitForElementVisible('@confirmDeleteModal',1000)
+			.click('@deleteOkBtn');
+			this.api.pause(1000);
+			this.assert.elementNotPresent('@firstRow')
+			
+			.waitForElementVisible('@selectFirmBar2',2000)
+			.click('@selectFirmBar2');
+			this.api.pause(1000);
+			this.setValue('@selectFirmBarSearch2','Select a Firm');
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			//this.waitForElementNotVisible('@spinner',5000)
+			this.setValue('@usernameSearch','johndoe'+dateString);
+			this.api.pause(1000)
+			/*
+			
+			this.api.pause(1000);
+			this.waitForElementVisible('@fnameField',1000)
+			.waitForElementVisible('@lnameField',1000)
+			.clearValue('@fnameField')
+			.setValue('@fnameField', 'Jane')
+			.clearValue('@lnameField')
+			.setValue('@lnameField','Poe'+dateString)
+			.clearValue('@emailField')
+			.setValue('@emailField','updateduser@c9tec.com')
+			this.api.pause(1000);
+			this.clearValue('@workField')
+			.setValue('@workField','011-234-5294')
+			.clearValue('@mobileField')
+			.setValue('@mobileField','011-234-5555')
+			.click('@voiceNo');
+			this.api.pause(1000);
+			*/
 		}
 };
 
@@ -99,8 +154,16 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div/div/div/div/a/span',
 				locateStrategy: 'xpath'
 			},
+			selectFirmBar2: {
+				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/a/span',
+				locateStrategy: 'xpath'
+			},
 			selectFirmBarSearch: {
 				selector: '//*[@id="ng-view"]/div/div/div/div/div/div/input',
+				locateStrategy: 'xpath'
+			},
+			selectFirmBarSearch2: {
+				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/div/div/input',
 				locateStrategy: 'xpath'
 			},
 			addUserSubmitBtn: {
@@ -138,6 +201,10 @@ module.exports = {
 			},
 			voiceNo: {
 				selector: '//*[@id="voiceRecordingNo"]',
+				locateStrategy: 'xpath'
+			},
+			editUserConfirmBtn:{
+				selector: '//*[@id="userdata"]/div[7]/button[2]',
 				locateStrategy: 'xpath'
 			},
 			newUserModal:{
