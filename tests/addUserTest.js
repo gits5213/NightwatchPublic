@@ -1,5 +1,5 @@
 module.exports ={
-		'@tags':['user'],/*
+		'@tags':['user'],
 		'Add a New User to a new Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
@@ -90,7 +90,7 @@ module.exports ={
 			
 			client.end();
 		},
-		*/
+		
 		'Delete a newly added user': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
@@ -118,19 +118,19 @@ module.exports ={
 			client.assert.urlContains('firmId=')
 			usersPage.deleteUser(user1,client);
 			
-			//usersPage.editRecord();
-			/*
+			usersPage.editRecord();
+			
 			usersPage
 			.verify.valueContains('@firmName', 'Limbo Accounts')
 			.verify.valueContains('@username','johndoe'+user1+'deleted2016')
-			.verify.valueContains('@fnameField','Jane')
-			.verify.valueContains('@lnameField','Poe'+user1)
-			.verify.valueContains('@emailField','updateduser@c9tec.com')
-			.verify.valueContains('@workField','011-234-5294')
-			.verify.valueContains('@mobileField','011-234-5555')
+			.verify.valueContains('@fnameField','John')
+			.verify.valueContains('@lnameField','Doe'+user1)
+			.verify.valueContains('@emailField',client.globals.email1)
+			.verify.valueContains('@workField',123456789)
+			.verify.valueContains('@mobileField',234567890)
 			.verify.valueContains('@voiceNo',0)
 			.verify.urlContains('#/editUser')
-			*/
-			//client.end();
+			
+			client.end();
 		}
 }

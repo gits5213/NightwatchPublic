@@ -103,14 +103,17 @@ var userPageCommands = {
 			.click('@deleteOkBtn');
 			this.api.pause(1000);
 			this.assert.elementNotPresent('@firstRow')
+			.clearValue('@usernameSearch')
 			
 			.waitForElementVisible('@selectFirmBar2',2000)
 			.click('@selectFirmBar2');
 			this.api.pause(1000);
-			this.setValue('@selectFirmBarSearch2','Select a Firm');
+			this.setValue('@selectFirmBarSearch2','Select a');
 			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
-			//this.waitForElementNotVisible('@spinner',5000)
+			this.api.pause(1000);
+			this.waitForElementVisible('@spinner',2000)
+			.waitForElementNotVisible('@spinner',30000)
 			this.setValue('@usernameSearch','johndoe'+dateString);
 			this.api.pause(1000)
 			/*
