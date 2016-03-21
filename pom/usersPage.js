@@ -2,8 +2,8 @@ var userPageCommands = {
 		go: function(){
 			this.api.pause(1000);
 			this.click('@usersLink');
-			this.api.pause(1000);
-			this.waitForElementNotVisible('@spinner',4000)
+			this.api.pause(5000);
+			//this.waitForElementNotVisible('@spinner',4000)
 		},
 		addUserToFirm : function(firm,client){
 			this.click('@addUserBtn');
