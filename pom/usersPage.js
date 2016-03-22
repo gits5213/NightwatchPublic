@@ -116,25 +116,12 @@ var userPageCommands = {
 			.waitForElementNotVisible('@spinner',30000)
 			this.setValue('@usernameSearch','johndoe'+dateString);
 			this.api.pause(1000)
-			/*
-			
+		},
+		editSalesInfo: function(){
 			this.api.pause(1000);
-			this.waitForElementVisible('@fnameField',1000)
-			.waitForElementVisible('@lnameField',1000)
-			.clearValue('@fnameField')
-			.setValue('@fnameField', 'Jane')
-			.clearValue('@lnameField')
-			.setValue('@lnameField','Poe'+dateString)
-			.clearValue('@emailField')
-			.setValue('@emailField','updateduser@c9tec.com')
+			this.click('@firstRow')
+			.click('@editSalesUserBtn');
 			this.api.pause(1000);
-			this.clearValue('@workField')
-			.setValue('@workField','011-234-5294')
-			.clearValue('@mobileField')
-			.setValue('@mobileField','011-234-5555')
-			.click('@voiceNo');
-			this.api.pause(1000);
-			*/
 		}
 };
 
@@ -219,7 +206,10 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			
-			
+			editSalesUserBtn :{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/i',
+				locateStrategy: 'xpath'
+			},
 			deleteUserBtn :{
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[9]/i',
 				locateStrategy: 'xpath'
