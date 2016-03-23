@@ -87,6 +87,26 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/i',
 				locateStrategy: 'xpath'
 			},
+			editGrpUsersBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[3]/i',
+				locateStrategy: 'xpath'
+			},
+			viewGrpConnBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[4]/i',
+				locateStrategy: 'xpath'
+			},
+			delGrpBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[5]/i',
+				locateStrategy: 'xpath'
+			},
+			detailsBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[6]/i',
+				locateStrategy: 'xpath'
+			},
+			exportBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[7]/i',
+				locateStrategy: 'xpath'
+			},
 			selectFirmBar: {
 				selector: '//*[@id="ng-view"]/div/div/div/div/a/span',
 				locateStrategy: 'xpath'

@@ -48,6 +48,7 @@ module.exports = {
 				selector: '//*[@id="navbar"]/ul[1]/li[4]/a/h4/i',
 				locateStrategy: 'xpath'
 			},
+			
 			addConnBtn:{
 				selector: '//*[@id="addConnection"]/i',
 				locateStrategy: 'xpath'
@@ -56,6 +57,19 @@ module.exports = {
 				selector: '//*[@id="editConnection"]/i',
 				locateStrategy: 'xpath'
 			},
+			delConnBtn:{
+				selector: '//*[@id="deleteConnection"]/i',
+				locateStrategy: 'xpath'
+			},
+			detailsBtn:{
+				selector: '//*[@id="editConnection"]/i',
+				locateStrategy: 'xpath'
+			},
+			exportBtn:{
+				selector: '//*[@id="editConnection"]/i',
+				locateStrategy: 'xpath'
+			},
+			
 			selectFirmBar: {
 				selector: '//*[@id="ng-view"]/div/h5/div/div/div/a/span',
 				locateStrategy: 'xpath'

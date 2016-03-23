@@ -70,6 +70,31 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/i',
 				locateStrategy: 'xpath'
 			},
+			manageGrpBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[3]/i',
+				locateStrategy: 'xpath'
+			},
+			manageConnBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[4]/i',
+				locateStrategy: 'xpath'
+			},
+			manageUsersBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[5]/i',
+				locateStrategy: 'xpath'
+			},
+			buttonsRptBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[6]/i',
+				locateStrategy: 'xpath'
+			},
+			detailsBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[7]/i',
+				locateStrategy: 'xpath'
+			},
+			exportBtn: {
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[8]/i',
+				locateStrategy: 'xpath'
+			},
+			
 			firmNameSearch:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',
 				locateStrategy: 'xpath'
@@ -114,9 +139,7 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			
-			
-			
-		
+
 			okButton:{
 				selector: "(//button[@type='button'])[4]",
 				locateStrategy: 'xpath'

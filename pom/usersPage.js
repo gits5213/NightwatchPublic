@@ -132,6 +132,7 @@ module.exports = {
 				selector: '//*[@id="navbar"]/ul[1]/li[3]/a/h4/i',
 				locateStrategy: 'xpath'
 			},
+			
 			editUserBtn: {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[2]/i',
 				locateStrategy: 'xpath'
@@ -140,6 +141,48 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[1]/i',
 				locateStrategy:'xpath'
 			},
+			editSalesUserBtn :{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/i',
+				locateStrategy: 'xpath'
+			},
+			editAdminBtn:{
+				selector: '//*[@id="editadminlevel"]/i',
+				locateStrategy:'xpath'
+			},
+			editBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[5]/i',
+				locateStrategy:'xpath'
+			},
+			editGrpsBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[7]/i',
+				locateStrategy:'xpath'
+			},
+			resetPassBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[8]/i',
+				locateStrategy:'xpath'
+			},
+			deleteUserBtn :{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[9]/i',
+				locateStrategy: 'xpath'
+			},
+			salesRptBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[10]/i',
+				locateStrategy:'xpath'
+			},
+			detailsBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[12]/i',
+				locateStrategy:'xpath'
+			},
+			exportBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[13]/i',
+				locateStrategy:'xpath'
+			},
+			editNeighBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[6]/i',
+				locateStrategy:'xpath'
+			},
+			
+			
 			selectFirmBar: {
 				selector: '//*[@id="ng-view"]/div/div/div/div/a/span',
 				locateStrategy: 'xpath'
@@ -206,14 +249,6 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			
-			editSalesUserBtn :{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/i',
-				locateStrategy: 'xpath'
-			},
-			deleteUserBtn :{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[9]/i',
-				locateStrategy: 'xpath'
-			},
 			confirmDeleteModal: {
 				selector: '//*[@id="confirmModal"]/div[2]/div',
 				locateStrategy: 'xpath'
