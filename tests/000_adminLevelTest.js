@@ -92,7 +92,7 @@ module.exports ={
 			navigation.click('@cog');
 			navigation.api.pause(1000);
 			navigation.getText('@privilege',function(result){
-				navigation.assert.equal(result.value, "Privilege : cloud9");
+				navigation.verify.equal(result.value, "Privilege : cloud9");
 			})
 			
 			client.end();

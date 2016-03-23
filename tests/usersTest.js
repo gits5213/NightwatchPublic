@@ -1,6 +1,6 @@
 module.exports ={
 		'@tags':['user'],
-		
+		/*
 		'Add a New User to a new Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
@@ -135,7 +135,7 @@ module.exports ={
 			client.end();
 		},
 		
-		
+		*/
 		'Edit Sales Info for a new user': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
@@ -171,21 +171,25 @@ module.exports ={
 			
 			.cancelSalesInfo();
 			salesPage.verify.urlContains('/#/editSalesInfo?firmId=');
-			/*
-			.getText('@salesPerson1Bar',function(result){
-				salesPage.verify.valueContains(result.value,'None')
-			})
-			.verify.valueContains(salesPage.getText('@salesPerson1Bar'),'None')
-			.verify.valueContains(salesPage.getText('@salesPerson2Bar'),'None')
-			.verify.valueContains(salesPage.getText('@billStartBar'),'Trial')
-			.verify.valueContains(salesP
-			age.getText('@billStopBar'),'None')
-			*/
-			//usersPage.editSalesInfo();
 			
+			salesPage.getValue('@salesPerson1Bar',function(result){
+				salesPage.verify.equal(result.value,'None')
+			});
+			salesPage.getValue('@salesPerson2Bar',function(result){
+				salesPage.verify.equal(result.value,'None')
+			});
+			/*
+			salesPage.getValue('@billStartBar',function(result){
+				salesPage.verify.equal(result.value,'Trial')
+			});
+			salesPage.getValue('@billStopBar',function(result){
+				salesPage.verify.equal(result.value,'None')
+			});
+			*/
 			salesPage
 			.saveSalesInfo();
-			client.verify.urlContains('#/editSalesInfo?firmId=')
-			.end()
+			client.verify.urlContains('#/editSalesInfo?firmId=');
+			
+			client.end();
 		}
 }
