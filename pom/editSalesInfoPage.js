@@ -53,7 +53,8 @@ module.exports = {
 				locateStrategy:'xpath'
 			},
 			error1:{
-				selector: '/div/div/div[1]'
+				selector: '//*[@id="toast-container"]',
+				locateStrategy: 'xpath'
 			}
 		}
 }

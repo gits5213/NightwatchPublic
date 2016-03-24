@@ -178,18 +178,24 @@ module.exports ={
 			salesPage.getValue('@salesPerson2Bar',function(result){
 				salesPage.verify.equal(result.value,'None')
 			});
-			/*
+			/**/
 			salesPage.getValue('@billStartBar',function(result){
-				salesPage.verify.equal(result.value,'Trial')
+				salesPage.verify.equal(result.value,'string:')
 			});
 			salesPage.getValue('@billStopBar',function(result){
-				salesPage.verify.equal(result.value,'None')
+				salesPage.verify.equal(result.value,'string:')
 			});
-			*/
+			
+			//should not save while "Bill Start Date" is "Trial"
 			salesPage
-			.saveSalesInfo();
+			.saveSalesInfo()
+			salesPage.waitForElementVisible('@error1',2000);
+			salesPage.getText('@error1',function(result){
+				salesPage.verify.equal(result.value,'Unable to change sales Info.\nsalesPerson is missing')
+			});
+			
 			client.verify.urlContains('#/editSalesInfo?firmId=');
 			
-			client.end();
+			//client.end();
 		}
 }

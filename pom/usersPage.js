@@ -122,6 +122,12 @@ var userPageCommands = {
 			this.click('@firstRow')
 			.click('@editSalesUserBtn');
 			this.api.pause(1000);
+		},
+		editAdminInfo: function(){
+			this.api.pause(1000);
+			this.click('@firstRow')
+			.click('@editAdminBtn');
+			this.api.pause(1000);
 		}
 };
 
