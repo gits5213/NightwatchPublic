@@ -5,7 +5,7 @@ var userPageCommands = {
 			this.api.pause(5000);
 			//this.waitForElementNotVisible('@spinner',4000)
 		},
-		addUserToFirm : function(firm,client){
+		addUserToFirm : function(firm,client, password){
 			this.click('@addUserBtn');
 			this.api.pause(1000);
 			this.click('@selectFirmBar')
@@ -26,17 +26,29 @@ var userPageCommands = {
 			.setValue('@lnameField','Doe'+dateString)
 			.setValue('@emailField',client.globals.email1)
 			.click('@genPassBtn');
+			
+			this.api.pause(1000);
+			var description='';
+			var username='';
+			var password='';
+			
+			this.getValue('@descField',function(result){
+				console.log(result.value)
+				description= result.value;
+				var usernameIndex=description.substring(description.indexOf('Username='));
+				var passwordIndex=description.substring(description.indexOf('Password='));
+				
+				username=usernameIndex.substring(9,usernameIndex.indexOf(' Password='));
+				password=passwordIndex.substring(9,18);
+				console.log('username:'+username,' and password: '+password);
+			});
+						
 			this.api.pause(1000);
 			this.setValue('@workField',123456789)
 			.setValue('@mobileField',234567890)
 			.click('@voiceYes');
 			this.api.pause(1000);
-			/*
-			var username = this.getValue('@username');
-			var description =this.getValue('@descField').toString();
-			var password = description.substring((description.indexOf(' Password=')+10),8);
-			//console.log('username: '+username,' and password: '+password);
-			*/
+			
 			this.click('@addUserSubmitBtn');
 			this.waitForElementVisible('@newUserModal',2000)
 			.click('@addUserConfirmBtn');

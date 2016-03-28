@@ -1,5 +1,6 @@
 module.exports ={
 		//'@disabled': true,
+		/*
 		'C9 Admin User Login Test': function(client){
 			var loginPage = client.page.loginPage();
 			console.log("\n",client.globals.baseUrl,'\n');
@@ -96,5 +97,90 @@ module.exports ={
 			})
 			
 			client.end();
+		},
+		*/
+		
+		'Admin Privileges for non Cloud 9 users': function(client){
+			var loginPage = client.page.loginPage();
+			client.url(client.globals.baseUrl);
+			loginPage.adminLogin(client);
+			
+			var firmsPage = client.page.firmsPage();
+			firmsPage.go();
+			
+			var dateString = firmsPage.addNewFirm(client);
+			console.log('About to create: Test Firm '+dateString);
+			
+			var groupsPage = client.page.groupsPage();
+			groupsPage.go();
+			client.assert.urlContains('#/groups');
+			groupsPage.addGrpForFirm(dateString,client);
+			client.verify.urlContains('firmId=');
+			
+			var usersPage = client.page.usersPage();
+			usersPage.go();
+			var user1 = usersPage.addUserToFirm(dateString,client);
+			var userGroupsPage= client.page.editUserGroupsPage();
+			userGroupsPage
+			.verify.urlContains('#/editUserGroups')
+			.done();
+			
+			
+			var adminPage = client.page.editAdminPage();
+			usersPage.editAdminInfo();
+			
+			adminPage
+			.verify.urlContains('#/editAdminLevel?firmId=')
+			//.verify.valueContains('body', 'Select Administraotr Privilege for johndoe'+user1)
+			adminPage
+			.verify.valueContains('@firmName', 'Test Firm '+dateString)
+			.verify.valueContains('@firstName', 'John')
+			.verify.valueContains('@lastName',"Doe"+user1)
+			.getValue('@adminPriv',function(result){
+				adminPage.verify.equal(result.value,"string:none")
+			})
+			.verify.valueContains('@mobile',234567890)
+			.getValue('@tfa_Yes',function(result){
+				adminPage.verify.equal(result.value,1)
+			})
+			.getValue('@tfa_No',function(result){
+				adminPage.verify.equal(result.value,0)
+			})
+			
+			/*
+			salesPage
+			.verify.containsText('body','Edit Sales Info for johndoe'+user1)
+			.verify.valueContains('@firmName','Test Firm '+dateString)
+			.verify.valueContains('@firstName','John')
+			.verify.valueContains('@lastName','Doe'+user1)
+			
+			.cancelSalesInfo();
+			salesPage.verify.urlContains('/#/editSalesInfo?firmId=');
+			
+			salesPage.getValue('@salesPerson1Bar',function(result){
+				salesPage.verify.equal(result.value,'None')
+			});
+			salesPage.getValue('@salesPerson2Bar',function(result){
+				salesPage.verify.equal(result.value,'None')
+			});
+			
+			salesPage.getValue('@billStartBar',function(result){
+				salesPage.verify.equal(result.value,'string:')
+			});
+			salesPage.getValue('@billStopBar',function(result){
+				salesPage.verify.equal(result.value,'string:')
+			});
+			
+			salesPage
+			.saveSalesInfo()
+			salesPage.waitForElementVisible('@error1',2000);
+			salesPage.getText('@error1',function(result){
+				salesPage.verify.equal(result.value,'Unable to change sales Info.\nsalesPerson is missing')
+			});
+			
+			client.verify.urlContains('#/editSalesInfo?firmId=');
+			
+			client.end();
+			*/
 		}
 }

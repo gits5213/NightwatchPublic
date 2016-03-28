@@ -1,6 +1,5 @@
-/*
-var loginCommand = {
-		adminLogin: function(client){
+var userAdminCommands = {
+		setPrivilege: function(client,clientId){
 			this.waitForElementVisible('@usernameField',2000)
 			.waitForElementVisible('@passwordField',2000)
 			.waitForElementVisible('@submitButton',2000)
@@ -18,9 +17,9 @@ var loginCommand = {
 			this.api.pause(1000);
 		}
 };
-*/
+
 module.exports = {
-		//commands :[loginCommand],
+		commands :[userAdminCommands],
 		elements: {
 			pageTitle:{
 				selector: '//*[@id="ng-view"]/div/h5',
@@ -34,7 +33,7 @@ module.exports = {
 				selector: '//*[@id="firstname"]',
 				locateStrategy: 'xpath'
 			},
-			lastname:{
+			lastName:{
 				selector: '//*[@id="lastname"]',
 				locateStrategy: 'xpath'
 			},
@@ -43,11 +42,11 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			allowedIp:{
-				selecotr: '//*[@id="allowedIP"]',
+				selector: '//*[@id="allowedIP"]',
 				locateStrategy: 'xpath'
 			},
 			mobile:{
-				selector: '//*[@id="allowedIP"]',
+				selector: '//*[@id="mobile"]',
 				locateStrategy: 'xpath'
 			},
 			tfa_Yes:{
@@ -58,7 +57,6 @@ module.exports = {
 				selector: '//*[@id="tfEnableNo"]',
 				locateStrategy: 'xpath'
 			}
-			
 			
 		}
 }
