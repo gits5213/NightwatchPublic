@@ -5,7 +5,7 @@ var userPageCommands = {
 			this.api.pause(5000);
 			//this.waitForElementNotVisible('@spinner',4000)
 		},
-		addUserToFirm : function(firm,client, password){
+		addUserToFirm : function(firm, client, password){
 			this.click('@addUserBtn');
 			this.api.pause(1000);
 			this.click('@selectFirmBar')
@@ -33,14 +33,14 @@ var userPageCommands = {
 			var password='';
 			
 			this.getValue('@descField',function(result){
-				console.log(result.value)
+				//console.log(result.value)
 				description= result.value;
 				var usernameIndex=description.substring(description.indexOf('Username='));
 				var passwordIndex=description.substring(description.indexOf('Password='));
 				
 				username=usernameIndex.substring(9,usernameIndex.indexOf(' Password='));
 				password=passwordIndex.substring(9,18);
-				console.log('username:'+username,' and password: '+password);
+				console.log("New user created.\nusername: " + username +' and password: '+password);
 			});
 						
 			this.api.pause(1000);
@@ -54,7 +54,7 @@ var userPageCommands = {
 			.click('@addUserConfirmBtn');
 			this.api.pause(1000);
 			
-			return dateString;
+			return [dateString,username,password];
 			
 		},
 		editFirstRecord: function(){
@@ -135,11 +135,25 @@ var userPageCommands = {
 			.click('@editSalesUserBtn');
 			this.api.pause(1000);
 		},
-		editAdminInfo: function(){
+		editAdminInfo: function(user,client){
 			this.api.pause(1000);
+			this.waitForElementPresent('@selectFirmBar2',3000)
+			this.click('@selectFirmBar2')
+			.setValue('@selectFirmBarSearch2','Select a');
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			
+			//this.waitForElementVisible('@spinner',2000)
+			//.waitForElementNotVisible('@spinner',30000);
+			this.waitForElementPresent('@usernameSearch',3000);
+			this.click('@usernameSearch')
+			this.setValue('@usernameSearch',user);
+			this.api.pause(1000);
+			
 			this.click('@firstRow')
 			.click('@editAdminBtn');
 			this.api.pause(1000);
+			
 		}
 };
 

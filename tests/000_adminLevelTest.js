@@ -127,15 +127,15 @@ module.exports ={
 			
 			
 			var adminPage = client.page.editAdminPage();
-			usersPage.editAdminInfo();
-			
+			usersPage.editAdminInfo(user1[1], client);
+			/*
 			adminPage
 			.verify.urlContains('#/editAdminLevel?firmId=')
 			//.verify.valueContains('body', 'Select Administraotr Privilege for johndoe'+user1)
 			adminPage
 			.verify.valueContains('@firmName', 'Test Firm '+dateString)
 			.verify.valueContains('@firstName', 'John')
-			.verify.valueContains('@lastName',"Doe"+user1)
+			.verify.valueContains('@lastName',"Doe"+user1[0])
 			.getValue('@adminPriv',function(result){
 				adminPage.verify.equal(result.value,"string:none")
 			})
@@ -146,6 +146,10 @@ module.exports ={
 			.getValue('@tfa_No',function(result){
 				adminPage.verify.equal(result.value,0)
 			})
+			
+			.click('@tfa_No')
+			
+			*/
 			
 			/*
 			salesPage

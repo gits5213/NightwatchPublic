@@ -33,9 +33,9 @@ module.exports ={
 			
 			usersPage
 			.verify.valueContains('@firmName', 'Test Firm '+dateString)
-			.verify.valueContains('@username','johndoe'+user1)
+			.verify.valueContains('@username','johndoe'+user1[0])
 			.verify.valueContains('@fnameField','John')
-			.verify.valueContains('@lnameField','Doe'+user1)
+			.verify.valueContains('@lnameField','Doe'+user1[0])
 			.verify.valueContains('@emailField',client.globals.email1)
 			.verify.valueContains('@workField',123456789)
 			.verify.valueContains('@mobileField',234567890)
@@ -72,7 +72,7 @@ module.exports ={
 			.done();
 			client.assert.urlContains('firmId=')
 			//usersPage.editFirstRecord();
-			usersPage.updateFirstRecord(user1);
+			usersPage.updateFirstRecord(user1[0]);
 			
 			//client.verify.urlContains('#/editUser');
 			
@@ -80,9 +80,9 @@ module.exports ={
 			
 			usersPage
 			.verify.valueContains('@firmName', 'Test Firm '+dateString)
-			.verify.valueContains('@username','johndoe'+user1)
+			.verify.valueContains('@username','johndoe'+user1[0])
 			.verify.valueContains('@fnameField','Jane')
-			.verify.valueContains('@lnameField','Poe'+user1)
+			.verify.valueContains('@lnameField','Poe'+user1[0])
 			.verify.valueContains('@emailField','updateduser@c9tec.com')
 			.verify.valueContains('@workField','011-234-5294')
 			.verify.valueContains('@mobileField','011-234-5555')
@@ -117,15 +117,15 @@ module.exports ={
 			.verify.urlContains('#/editUserGroups')
 			.done();
 			client.assert.urlContains('firmId=')
-			usersPage.deleteUser(user1,client);
+			usersPage.deleteUser(user1[0],client);
 			
 			usersPage.editRecord();
 			
 			usersPage
 			.verify.valueContains('@firmName', 'Limbo Accounts')
-			.verify.valueContains('@username','johndoe'+user1+'deleted2016')
+			.verify.valueContains('@username','johndoe'+user1[0]+'deleted2016')
 			.verify.valueContains('@fnameField','John')
-			.verify.valueContains('@lnameField','Doe'+user1)
+			.verify.valueContains('@lnameField','Doe'+user1[0])
 			.verify.valueContains('@emailField',client.globals.email1)
 			.verify.valueContains('@workField',123456789)
 			.verify.valueContains('@mobileField',234567890)
@@ -164,10 +164,10 @@ module.exports ={
 			usersPage.editSalesInfo();
 			
 			salesPage
-			.verify.containsText('body','Edit Sales Info for johndoe'+user1)
+			.verify.containsText('body','Edit Sales Info for johndoe'+user1[0])
 			.verify.valueContains('@firmName','Test Firm '+dateString)
 			.verify.valueContains('@firstName','John')
-			.verify.valueContains('@lastName','Doe'+user1)
+			.verify.valueContains('@lastName','Doe'+user1[0])
 			
 			.cancelSalesInfo();
 			salesPage.verify.urlContains('/#/editSalesInfo?firmId=');
