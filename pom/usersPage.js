@@ -6,6 +6,7 @@ var userPageCommands = {
 			//this.waitForElementNotVisible('@spinner',4000)
 		},
 		addUserToFirm : function(firm, client, password){
+			
 			this.click('@addUserBtn');
 			this.api.pause(1000);
 			this.click('@selectFirmBar')
@@ -31,6 +32,7 @@ var userPageCommands = {
 			var description='';
 			var username='';
 			var password='';
+			var creds=[];
 			
 			this.getValue('@descField',function(result){
 				//console.log(result.value)
@@ -38,8 +40,8 @@ var userPageCommands = {
 				var usernameIndex=description.substring(description.indexOf('Username='));
 				var passwordIndex=description.substring(description.indexOf('Password='));
 				
-				username=usernameIndex.substring(9,usernameIndex.indexOf(' Password='));
-				password=passwordIndex.substring(9,18);
+				username =usernameIndex.substring(9,usernameIndex.indexOf(' Password='));
+				password =passwordIndex.substring(9,18);
 				console.log("New user created.\nusername: " + username +' and password: '+password);
 			});
 						
@@ -53,8 +55,9 @@ var userPageCommands = {
 			this.waitForElementVisible('@newUserModal',2000)
 			.click('@addUserConfirmBtn');
 			this.api.pause(1000);
-			
-			return [dateString,username,password];
+
+			//username and password not returned.  No idea why
+			return [dateString, username, password];
 			
 		},
 		editFirstRecord: function(){
@@ -153,6 +156,62 @@ var userPageCommands = {
 			this.click('@firstRow')
 			.click('@editAdminBtn');
 			this.api.pause(1000);
+			
+		},
+		addUserWithPassToFirm : function(firm, client){
+			this.click('@addUserBtn');
+			this.api.pause(1000);
+			this.click('@selectFirmBar')
+			.setValue('@selectFirmBarSearch',firm);
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			this.waitForElementVisible('@addUserSubmitBtn',2000);
+			
+			var now = new Date();
+			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
+			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
+			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
+			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+			
+			this.waitForElementVisible('@fnameField',1000)
+			.waitForElementVisible('@lnameField',1000)
+			.setValue('@fnameField', 'John')
+			.setValue('@lnameField','Doe'+dateString)
+			.setValue('@emailField',client.globals.email1)
+			.click('@genPassBtn');
+			
+			this.api.pause(1000);
+			var description='';
+			var username='';
+			var password='';
+			var creds=[];
+			
+			this.getValue('@descField',function(result){
+				//console.log(result.value)
+				description= result.value;
+				var usernameIndex=description.substring(description.indexOf('Username='));
+				var passwordIndex=description.substring(description.indexOf('Password='));
+				
+				username =usernameIndex.substring(9,usernameIndex.indexOf(' Password='));
+				password =passwordIndex.substring(9,18);
+				console.log("New user created.\nusername: " + username +' and password: '+password);
+				//return [username, password];
+			});
+						
+			this.api.pause(1000);
+			this.setValue('@workField',123456789)
+			.setValue('@mobileField',234567890)
+			.click('@voiceYes');
+			this.api.pause(1000);
+			
+			this.click('@addUserSubmitBtn');
+			this.waitForElementVisible('@newUserModal',2000)
+			.click('@addUserConfirmBtn');
+			this.api.pause(1000,function(){
+				console.log("New user created.\nusername: " + username +' and password: '+password+' datestring: '+dateString);
+			});
+
+			return [dateString, username, password];
 			
 		}
 };
@@ -257,8 +316,14 @@ module.exports = {
 			genPassBtn: '#genpassword',
 			workField: '#work',
 			mobileField: '#mobile',
-			passField1: '#password',
-			passField2: '#verpassword',
+			passField1: {
+				selector: '//*[@id="password"]',
+				locateStrategy: 'xpath'
+			},
+			passField2: {
+				selector: '//*[@id="verpassword"]',
+				locateStrategy: 'xpath'
+			},
 			descField: '#description',
 			voiceYes: {
 				selector: '//*[@id="voiceRecordingYes"]',

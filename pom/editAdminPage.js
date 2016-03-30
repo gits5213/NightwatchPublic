@@ -12,9 +12,19 @@ var userAdminCommands = {
 			this.api.pause(1500);
 			
 		},
-		logout:function(){
-			this.click('//*[@id="navbar"]/ul[2]/li[3]/a/h4/i');
+		disable2fa:function(client){
 			this.api.pause(1000);
+			this.click('@tfa_No')
+			.setValue('@allowedIp',client.globals.ip)
+			.click('@saveBtn')
+		},
+		setToNone:function(client){
+			this.click('@adminPriv')
+			.click('@noneValue')
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(500)
+			this.click('@saveBtn')
+			this.api.pause(1000)
 		}
 };
 
@@ -55,6 +65,14 @@ module.exports = {
 			},
 			tfa_No:{
 				selector: '//*[@id="tfEnableNo"]',
+				locateStrategy: 'xpath'
+			},
+			saveBtn:{
+				selector: '//*[@id="useradmindata"]/div[6]/button[2]',
+				locateStrategy: 'xpath'
+			},
+			noneValue:{
+				selector: '//*[@id="privilege"]/option[1]',
 				locateStrategy: 'xpath'
 			}
 			
