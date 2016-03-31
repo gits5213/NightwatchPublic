@@ -25,6 +25,61 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@saveBtn')
 			this.api.pause(1000)
+		},
+		setToAdmin2:function(client){
+			this.click('@adminPriv')
+			.click('@admin2Value')
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(500)
+			this.click('@tfa_No')
+			.clearValue('@allowedIp')
+			.setValue('@allowedIp',client.globals.ip)
+			this.click('@saveBtn')
+			this.api.pause(1000)
+		},
+		setToAdmin1:function(client){
+			this.click('@adminPriv')
+			.click('@admin1Value')
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(500)
+			this.click('@tfa_No')
+			.clearValue('@allowedIp')
+			.setValue('@allowedIp',client.globals.ip)
+			this.click('@saveBtn')
+			this.api.pause(1000)
+		},
+		setToCompliance:function(client){
+			this.click('@adminPriv')
+			.click('@complianceValue')
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(500)
+			this.click('@tfa_No')
+			.clearValue('@allowedIp')
+			.setValue('@allowedIp',client.globals.ip)
+			this.click('@saveBtn')
+			this.api.pause(1000)
+		},
+		setToUser3:function(client){
+			this.click('@adminPriv')
+			.click('@user3Value')
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(500)
+			this.click('@tfa_No')
+			.clearValue('@allowedIp')
+			.setValue('@allowedIp',client.globals.ip)
+			this.click('@saveBtn')
+			this.api.pause(1000)
+		},
+		setToSales:function(client){
+			this.click('@adminPriv')
+			.click('@salesValue')
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(500)
+			this.click('@tfa_No')
+			.clearValue('@allowedIp')
+			.setValue('@allowedIp',client.globals.ip)
+			this.click('@saveBtn')
+			this.api.pause(1000)
 		}
 };
 
@@ -74,6 +129,27 @@ module.exports = {
 			noneValue:{
 				selector: '//*[@id="privilege"]/option[1]',
 				locateStrategy: 'xpath'
+			},
+			admin2Value:{
+				selector: '//*[@id="privilege"]/option[2]',
+				locateStrategy: 'xpath'
+			},
+			
+			admin1Value:{
+				selector: '//*[@id="privilege"]/option[3]',
+				locateStrategy: 'xpath'
+			},
+			complianceValue:{
+				selector:'//*[@id="privilege"]/option[4]',
+				locateStrategy:'xpath'
+			},
+			user3Value:{
+				selector:'//*[@id="privilege"]/option[5]',
+				locateStrategy:'xpath'
+			},
+			salesValue:{
+				selector:'//*[@id="privilege"]/option[6]',
+				locateStrategy:'xpath'
 			}
 			
 		}

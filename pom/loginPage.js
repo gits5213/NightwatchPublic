@@ -12,7 +12,7 @@ var loginCommand = {
 			this.api.pause(1500);
 			
 		},
-		nonAdminLogin: function(client){
+		userLogin: function(client){
 			this.waitForElementVisible('@usernameField',2000)
 			.waitForElementPresent('@passwordField',2000)
 			.waitForElementPresent('@submitButton',2000)
