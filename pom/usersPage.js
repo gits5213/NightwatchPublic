@@ -117,8 +117,8 @@ var userPageCommands = {
 			.waitForElementVisible('@confirmDeleteModal',1000)
 			.click('@deleteOkBtn');
 			this.api.pause(1000);
-			this.assert.elementNotPresent('@firstRow')
-			.clearValue('@usernameSearch')
+			//this.assert.elementNotPresent('@firstRow')
+			this.clearValue('@usernameSearch')
 			
 			.waitForElementVisible('@selectFirmBar2',2000)
 			.click('@selectFirmBar2');
