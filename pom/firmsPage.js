@@ -23,7 +23,6 @@ var firmsPageCommands = {
 			.setValue('@street1', '123 Main Street')
 			.setValue('@street2', '17th Flr')
 			.setValue('@city', 'Any City')
-			.setValue('@state','NY')
 			.setValue('@zip', 12345)
 			.setValue('@pfname','Erique')
 			.setValue('@plname','Martinez')
@@ -34,8 +33,28 @@ var firmsPageCommands = {
 			this.api.pause(1000);
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
+			
+			this.click('@countryDropdown');
+			this.click('@countrySearch');
+			this.api.pause(500);
+			this.setValue('@countrySearch','United States');
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			
+			this.api.pause(1000);
+			
+			this.click('@stateDropdown');
+			this.click('@stateSearch');
+			this.api.pause(500);
+			this.setValue('@stateSearch','New York');
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			
+			
 			this.click('@copyFrmBtn');
 			this.api.pause(1000);
+			
+			
 			
 			this.click('@submitFrmBtn');
 			this.api.pause(1000);
@@ -107,7 +126,6 @@ module.exports = {
 			street1 : 'input[name=street1]',
 			street2 : 'input[name=street2]',
 			city : 'input[name=city]',
-			state: 'input[name=state]',
 			zip: 'input[name=zip',
 			pfname: 'input[name=provisionerFirstName]',
 			plname: 'input[name=provisionerLastName]',
@@ -142,6 +160,39 @@ module.exports = {
 
 			okButton:{
 				selector: "(//button[@type='button'])[4]",
+				locateStrategy: 'xpath'
+			},
+			
+			countryDropdown:{
+				selector: '//*[@id="mailingCountry_chosen"]',
+				locateStrategy: 'xpath'
+			},
+			countrySearch: {
+				selector: '//*[@id="mailingCountry_chosen"]/div/div/input',
+				locateStrategy: 'xpath'
+			},
+			stateDropdown:{
+				selector: '//*[@id="mailingState_chosen"]',
+				locateStrategy: 'xpath'
+			},
+			stateSearch: {
+				selector: '//*[@id="mailingState_chosen"]/div/div/input',
+				locateStrategy: 'xpath'
+			},
+			country: {
+				selector: '//*[@id="mailingCountry"]',
+				locateStrategy: 'xpath'
+			},
+			state: {
+				selector: '//*[@id="mailingState"]',
+				locateStrategy: 'xpath'
+			},
+			billCountry: {
+				selector: '//*[@id="billCountry"]',
+				locateStrategy: 'xpath'
+			},
+			billState: {
+				selector: '//*[@id="billState"]',
 				locateStrategy: 'xpath'
 			}
 		}

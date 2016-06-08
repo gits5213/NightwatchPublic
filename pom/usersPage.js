@@ -26,9 +26,10 @@ var userPageCommands = {
 			.setValue('@fnameField', 'John')
 			.setValue('@lnameField','Doe'+dateString)
 			.setValue('@emailField',client.globals.email1)
-			.click('@genPassBtn');
+			//.click('@genPassBtn');
 			
 			this.api.pause(1000);
+			/*
 			var description='';
 			var username='';
 			var password='';
@@ -46,22 +47,42 @@ var userPageCommands = {
 			});
 						
 			this.api.pause(1000);
+			*/
+			this.click('@countryDropdown');
+			this.click('@countrySearch');
+			this.api.pause(500);
+			this.setValue('@countrySearch','United States');
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			
+			this.api.pause(1000);
+			
+			this.click('@stateDropdown');
+			this.click('@stateSearch');
+			this.api.pause(500);
+			this.setValue('@stateSearch','New York');
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			
 			this.setValue('@workField',123456789)
 			.setValue('@mobileField',234567890)
+			.setValue('@street1','1 So Amazing Ct')
+			.setValue('@street2','Penthouse')
+			.setValue('@city','Real Town')
+			.setValue('@zip', 77777)
 			.click('@voiceYes');
 			this.api.pause(1000);
 			
 			this.click('@addUserSubmitBtn');
 			this.waitForElementVisible('@newUserModal',2000)
-			.click('@addUserConfirmBtn');
-			this.api.pause(1000);
+			.click('@addUserConfirmBtn')
+			.waitForElementNotPresent('@newUserModal',15000);
 
-			//username and password not returned.  No idea why
-			return [dateString, username, password];
+			return dateString;
 			
 		},
 		editFirstRecord: function(){
-			this.waitForElementVisible('@firstRow',2000);
+			this.waitForElementVisible('@firstRow',5000);
 			this.click('@firstRow')
 			.click('@editUserBtn');
 			this.api.pause(1000);
@@ -104,7 +125,7 @@ var userPageCommands = {
 		deleteUser: function(dateString,client){
 			this.go();
 			this.clearValue('@usernameSearch')
-			.waitForElementNotVisible('@spinner',5000)
+			//.waitForElementNotVisible('@spinner',5000)
 			.setValue('@usernameSearch','johndoe'+dateString);
 			this.api.pause(1000);
 			this.waitForElementVisible('@firstRow',2000);
@@ -116,20 +137,18 @@ var userPageCommands = {
 			.click('@deleteUserBtn')
 			.waitForElementVisible('@confirmDeleteModal',1000)
 			.click('@deleteOkBtn');
-			this.api.pause(1000);
-			//this.assert.elementNotPresent('@firstRow')
-			this.clearValue('@usernameSearch')
+			this.waitForElementNotPresent('@confirmDeleteModal',10000);
+			this.waitForElementNotPresent('@firstRow',2000);
+			this.clearValue('@usernameSearch');
 			
-			.waitForElementVisible('@selectFirmBar2',2000)
-			.click('@selectFirmBar2');
+			this.click('@selectFirmBar2');
 			this.api.pause(1000);
 			this.setValue('@selectFirmBarSearch2','Select a');
-			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
+			
 			this.api.pause(1000);
-			this.waitForElementVisible('@spinner',2000)
-			.waitForElementNotVisible('@spinner',30000)
 			this.setValue('@usernameSearch','johndoe'+dateString);
+			
 			this.api.pause(1000)
 		},
 		editSalesInfo: function(){
@@ -279,7 +298,8 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			selectFirmBar2: {
-				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/a/span',
+				//selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/a/span',
+				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div',
 				locateStrategy: 'xpath'
 			},
 			selectFirmBarSearch: {
@@ -291,7 +311,7 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			addUserSubmitBtn: {
-				selector: '//*[@id="adduserdata"]/div[7]/button[2]',
+				selector: '//*[@id="adduserdata"]/div[2]/button[2]',
 				locateStrategy: 'xpath'
 			},
 			fnameField: {
@@ -334,11 +354,12 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			editUserConfirmBtn:{
-				selector: '//*[@id="userdata"]/div[7]/button[2]',
+				selector: '//*[@id="userdata"]/div[3]/button[2]',
 				locateStrategy: 'xpath'
 			},
 			newUserModal:{
-				selector: '//*[@id="userConfirmModal"]/div[2]/div',
+				//selector: '//*[@id="userConfirmModal"]/div[2]/div',
+				selector: '//*[@id="userConfirmModal"]/div[2]',
 				locateStrategy: 'xpath'
 			},
 			usernameSearch :{
@@ -360,6 +381,51 @@ module.exports = {
 			},
 			spinner :{
 				selector: '//*[@id="overlay-content"]/img',
+				locateStrategy: 'xpath'
+			},
+			addToUserEmail:{
+				selector: '//*[@id="appendToUserEmail"]',
+				locateStrategy: 'xpath'
+			},
+			
+			countryDropdown: {
+				selector:'//*[@id="country_chosen"]',
+				locateStrategy:'xpath'
+			},
+			countrySearch: {
+				selector:'//*[@id="country_chosen"]/div/div/input',
+				locateStrategy:'xpath'
+			},
+			stateDropdown: {
+				selector:'//*[@id="state_chosen"]',
+				locateStrategy:'xpath'
+			},
+			stateSearch: {
+				selector:'//*[@id="state_chosen"]/div/div/input',
+				locateStrategy:'xpath'
+			},
+			street1: {
+				selector: '//*[@id="street1"]',
+				locateStrategy: 'xpath'
+			},
+			street2: {
+				selector: '//*[@id="street2"]',
+				locateStrategy: 'xpath'
+			},
+			city: {
+				selector: '//*[@id="city"]',
+				locateStrategy: 'xpath'
+			},
+			zip: {
+				selector: '//*[@id="zip"]',
+				locateStrategy: 'xpath'
+			},
+			country: {
+				selector: '//*[@id="country"]',
+				locateStrategy: 'xpath'
+			},
+			state: {
+				selector: '//*[@id="state"]',
 				locateStrategy: 'xpath'
 			}
 			

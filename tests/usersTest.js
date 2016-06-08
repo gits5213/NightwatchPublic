@@ -1,6 +1,5 @@
 module.exports ={
 		'@tags':['user'],
-		
 		'Add a New User to a new Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
@@ -37,6 +36,12 @@ module.exports ={
 			.verify.valueContains('@fnameField','John')
 			.verify.valueContains('@lnameField','Doe'+user1[0])
 			.verify.valueContains('@emailField',client.globals.email1)
+			.verify.valueContains('@street1','1 So Amazing Ct')
+			.verify.valueContains('@street2','Penthouse')
+			.verify.value('@country','string:United States')
+			.verify.value('@state','string:New York')
+			.verify.valueContains('@city','Real Town')
+			.verify.valueContains('@zip',77777)
 			.verify.valueContains('@workField',123456789)
 			.verify.valueContains('@mobileField',234567890)
 			.verify.valueContains('@voiceYes',1)
@@ -84,6 +89,14 @@ module.exports ={
 			.verify.valueContains('@fnameField','Jane')
 			.verify.valueContains('@lnameField','Poe'+user1[0])
 			.verify.valueContains('@emailField','updateduser@c9tec.com')
+			
+			.verify.valueContains('@street1','1 So Amazing Ct')
+			.verify.valueContains('@street2','Penthouse')
+			.verify.value('@country','string:United States')
+			.verify.value('@state','string:New York')
+			.verify.valueContains('@city','Real Town')
+			.verify.valueContains('@zip',77777)
+			
 			.verify.valueContains('@workField','011-234-5294')
 			.verify.valueContains('@mobileField','011-234-5555')
 			.verify.valueContains('@voiceNo',0)
@@ -117,26 +130,27 @@ module.exports ={
 			.verify.urlContains('#/editUserGroups')
 			.done();
 			client.assert.urlContains('firmId=')
-			usersPage.deleteUser(user1[0],client);
+			usersPage.deleteUser(user1,client);
 			
-			usersPage.editRecord();
+			usersPage.editFirstRecord();
 			
 			usersPage
 			.verify.valueContains('@firmName', 'Limbo Accounts')
-			.verify.valueContains('@username','johndoe'+user1[0]+'deleted2016')
+			.verify.valueContains('@username','johndoe'+user1+'deleted2016')
 			.verify.valueContains('@fnameField','John')
-			.verify.valueContains('@lnameField','Doe'+user1[0])
+			.verify.valueContains('@lnameField','Doe'+user1)
 			.verify.valueContains('@emailField',client.globals.email1)
 			.verify.valueContains('@workField',123456789)
 			.verify.valueContains('@mobileField',234567890)
 			.verify.valueContains('@voiceNo',0)
 			.verify.urlContains('#/editUser')
 			
+			
 			client.end();
 		},
 		
 		
-		'Edit Sales Info for a new user': function(client){
+		'Edit Sales Info for a new user':function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
 			loginPage.adminLogin(client);
