@@ -76,7 +76,7 @@ var userPageCommands = {
 			this.click('@addUserSubmitBtn');
 			this.waitForElementVisible('@newUserModal',2000)
 			.click('@addUserConfirmBtn')
-			.waitForElementNotPresent('@newUserModal',15000);
+			.waitForElementNotPresent('@newUserModal',30000);
 
 			return dateString;
 			
