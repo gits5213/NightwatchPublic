@@ -9,14 +9,13 @@
    "page_objects_path":"pom",
    "globals_path":"./data/globals.js",
    "selenium":{  
-      "start_process":false,
+      "start_process":true,
       "server_path":"",
       "log_path":"",
-      "host":"127.0.0.1",
+      "host":"localhost",
       "port":4444,
       "cli_args":{  
-         "webdriver.chrome.driver":"",
-         "webdriver.ie.driver":""
+         "webdriver.chrome.driver":"lib/chromedriver.exe*"
       }
    },
    
@@ -68,7 +67,7 @@
     		  "browserName" : "phantomjs",
     		  "javascriptEnabled" : true,
     		  "acceptSslCerts" : true,
-    		  "phantomjs.binary.path" : "/usr/bin/phantomjs"
+    		  "phantomjs.binary.path" : "~/bin/phantomjs"
     		}
       }
    }
