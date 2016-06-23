@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="1"
+            tests="4">
+
+  <testsuite name="usersTest"
+    errors="0" failures="1" hostname="" id="" package="usersTest" skipped="3"
+    tests="4" time="10.26" timestamp="Thu, 16 Jun 2016 20:44:12 GMT">
+  
+    <testcase name="Add a New User to a new Firm" time="10.26" assertions="6">
+
+    
+
+    
+
+    
+
+    
+
+      <failure message="Testing if element &lt;body&gt; contains text: &quot;Add Firm&quot;.">    at Object.firmsPageCommands.addNewFirm (U:\git\c9portaluitests\pom\firmsPage.js:9:12)
+    at Object.module.exports.Add a New User to a new Firm (U:\git\c9portaluitests\tests\usersTest.js:11:31)</failure>
+
+    
+    </testcase>
+  
+  
+    
+    <testcase
+      name="Edit a newly added user">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Delete a newly added user">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="Edit Sales Info for a new user">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>
