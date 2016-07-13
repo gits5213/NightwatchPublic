@@ -4,7 +4,7 @@ var navigationCommands = {
 			this.api.pause(1000, function(){
 				console.log('... logging off')
 			});
-			this.assert.urlContains('login.html')
+			this.assert.urlContains('#/login')
 		}
 };
 

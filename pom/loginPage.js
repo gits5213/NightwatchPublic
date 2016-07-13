@@ -47,13 +47,16 @@ module.exports = {
 		commands :[loginCommand],
 		elements: {
 			usernameField:{
-				selector: 'input[name=username]'
+				selector: '//*[@id="username"]',
+				locateStrategy: 'xpath'
 			},
 			passwordField:{
-				selector: 'input[name=password]'
+				selector: '//*[@id="password"]',
+				locateStrategy: 'xpath'
 			},
 			submitButton: {
-				selector: 'button[type=submit]'
+				selector: '//*[@id="signin"]',
+				locateStrategy: 'xpath'
 			},
 			alert:{
 				selector: 'div.modal-dialog'
