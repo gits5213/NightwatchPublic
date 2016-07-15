@@ -119,7 +119,10 @@ module.exports = {
 				selector: '//*[@id="groupName"]',
 				locateStrategy: 'xpath'
 			},
-			communityBar: 'select[name=communityID',
+			communityBar: {
+				selector: '//*[@id="communityId"]',
+				locateStrategy: 'xpath'
+			},
 			contactFname: {
 				selector: '//*[@id="firstName"]',
 				locateStrategy: 'xpath'

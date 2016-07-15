@@ -25,7 +25,7 @@ module.exports ={
 			connectionsPage.go();
 			connectionsPage.addIntConnForFirm(dateString,client);
 			
-			client.assert.urlContains('#/connections');
+			client.assert.urlContains('#/addConnection');
 			
 			connectionsPage.editFirstRecord();
 			client.assert.urlContains('#/editConnection');
