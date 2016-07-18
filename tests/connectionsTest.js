@@ -15,7 +15,7 @@ module.exports ={
 			groupsPage.go();
 			client.assert.urlContains('#/groups');
 			groupsPage.addGrpForFirm(dateString,client);
-			client.assert.urlContains('firmId=');
+			client.assert.urlContains('groups?firmId=');
 			//groupsPage.addAnotherGrpForFirm(dateString,client);
 			
 			var usersPage = client.page.usersPage();
@@ -25,7 +25,7 @@ module.exports ={
 			connectionsPage.go();
 			connectionsPage.addIntConnForFirm(dateString,client);
 			
-			client.assert.urlContains('#/addConnection');
+			client.assert.urlContains('#/connections');
 			
 			connectionsPage.editFirstRecord();
 			client.assert.urlContains('#/editConnection');
