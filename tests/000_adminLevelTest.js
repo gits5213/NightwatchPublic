@@ -5,6 +5,10 @@ module.exports ={
 			var loginPage = client.page.loginPage();
 			console.log("\n",client.globals.baseUrl,'\n');
 			client.resizeWindow(1700,800);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
 			client.url(client.globals.baseUrl);
 			loginPage.adminLogin(client);
 			client.assert.containsText('body', 'Welcome to the Cloud9 Portal')
@@ -105,7 +109,10 @@ module.exports ={
 			
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
-			client.resizeWindow(1700,800);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
 			client.url(client.globals.baseUrl);
 			loginPage.adminLogin(client);
 			
@@ -135,7 +142,10 @@ module.exports ={
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
-			client.resizeWindow(1700,800);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
 			client.url(client.globals.baseUrl);
 			
 			loginPage.adminLogin(client);
@@ -250,7 +260,10 @@ module.exports ={
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
-			client.resizeWindow(1700,800);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
 			client.url(client.globals.baseUrl);
 			
 			loginPage.adminLogin(client);
@@ -363,7 +376,10 @@ module.exports ={
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
-			client.resizeWindow(1700,800);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
 			client.url(client.globals.baseUrl);
 			
 			loginPage.adminLogin(client);
@@ -423,7 +439,10 @@ module.exports ={
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
-			client.resizeWindow(1700,800);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});;
 			client.url(client.globals.baseUrl);
 			
 			loginPage.adminLogin(client);
@@ -499,7 +518,10 @@ module.exports ={
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
-			client.resizeWindow(1700,800);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
 			client.url(client.globals.baseUrl);
 			
 			loginPage.adminLogin(client);
