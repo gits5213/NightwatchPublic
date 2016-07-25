@@ -3,7 +3,7 @@ module.exports = {
 		adminPassword: 'Password1234',
 		email1: 'uche.onwudiwe@c9tec.com',
 		//baseUrl: 'https://dev-c9portal.xhoot.com/c9portal',
-		baseUrl: 'https://qa1-c9portal.xhoot.com/c9portal',
+		baseUrl: 'https://qa2-c9portal.xhoot.com/c9portal',
 		
 		nonAdminUser: 'johnakpan',
 		nonAdminPass:'Password123',

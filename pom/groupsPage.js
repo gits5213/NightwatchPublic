@@ -115,6 +115,10 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div/div/div/div/div/div/input',
 				locateStrategy: 'xpath'
 			},
+			selectFirmBarsearch2:{
+				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div',
+				locateStrategy: 'xpath'
+			},
 			grpNameField : {
 				selector: '//*[@id="groupName"]',
 				locateStrategy: 'xpath'
