@@ -18,12 +18,15 @@
     "portal",
     "c9portal"
   ],
-  "dependencies":{
-	  "grunt": "latest",
-	  "grunt-cli": "latest",
-	  "nightwatch": "latest"
+  "dependencies": {
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "nightwatch": "latest"
   },
   "author": "Uche Onwudiwe",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/leopapadopoulos/c9portaluitests#readme"
+  "homepage": "https://bitbucket.org/leopapadopoulos/c9portaluitests#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  }
 }
