@@ -18,10 +18,13 @@
     "portal",
     "c9portal"
   ],
-  "dependencies":{
-	  "grunt": "latest",
-	  "grunt-cli": "latest",
-	  "nightwatch": "latest"
+  "dependencies": {
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "jstransformer": "^1.0.0",
+    "nightwatch": "latest",
+    "nightwatch-html-reporter": "^1.0.6",
+    "pug": "^0.1.0"
   },
   "author": "Uche Onwudiwe",
   "license": "ISC",
