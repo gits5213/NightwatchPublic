@@ -5,7 +5,6 @@
    "custom_assertions_path":"",
    "page_objects_path":"pom_pages",
    "globals_path":"./data/globals.js",
- 
    
    "selenium":{  
       "start_process":true,

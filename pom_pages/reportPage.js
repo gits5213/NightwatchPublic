@@ -1,10 +1,26 @@
-var connPageCommands = {
-		go: function(){
+var reportPageCommands = {
+		go: function(client){
 			this.api.pause(1000);
-			this.click('@connLink');
-			this.api.pause(1000);
+			this.click('@reportTab');
+			this.api.pause(3000);
+			
+			this.click('@selectFirm');		
+			this.click('@SelectFirmSearch');		
+			this.clearValue('@SelectFirmSearch');
+			this.api.pause(500);
+			this.setValue('@SelectFirmSearch','000 Firm B');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);
+			
+			
+			
+			
+			
+			
+			
+			
 		},
-		addIntConnForFirm: function(dateString,client){
+	/*	addIntConnForFirm: function(dateString,client){
 			this.click('@addConnBtn');
 			this.api.pause(1000);
 			this.assert.containsText('body','Add Connection');
@@ -38,25 +54,25 @@ var connPageCommands = {
 			.click('@editConnBtn');
 			this.api.pause(1000);
 			
-		}
+		}*/
 };
 
 module.exports = {
-		commands :[connPageCommands],
+		commands :[reportPageCommands],
 		elements: {
-			connLink:{
-				selector: '//*[@id="navbar"]/ul[1]/li[4]/a/h4/i',
+			reportTab:{
+				selector: '//span[contains(.,"Reports")]',	
+				locateStrategy: 'xpath'
+			},			
+			selectFirm:{
+				selector: '//span[contains(.,"Select a Firm")]',    
+				locateStrategy: 'xpath'
+			},			
+			SelectFirmSearch:{
+				selector: '//input[contains(@autocomplete,"off")]',
 				locateStrategy: 'xpath'
 			},
-			
-			addConnBtn:{
-				selector: '//*[@id="addConnection"]/i',
-				locateStrategy: 'xpath'
-			},
-			editConnBtn:{
-				selector: '//*[@id="editConnection"]/i',
-				locateStrategy: 'xpath'
-			},
+			/*
 			delConnBtn:{
 				selector: '//*[@id="deleteConnection"]/i',
 				locateStrategy: 'xpath'
@@ -132,5 +148,6 @@ module.exports = {
 			description: '#description',
 			createdByField: '#createdBy',
 			createdOnField: '#createdOn'
+		}*/
 		}
 }

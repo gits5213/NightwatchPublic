@@ -1,10 +1,18 @@
 module.exports ={
-		'Add 2 new Groups to a new Firm': function(client){
+		'Customer Reporting': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
 			loginPage.adminLogin(client);
 			
-			var firmsPage = client.page.firmsPage();
+			var reportPage = client.page.reportPage();
+			reportPage.go(client);
+			console.log('Test cases passed')
+			
+			
+			
+			client.closeWindow();
+			
+			/*var firmsPage = client.page.firmsPage();
 			firmsPage.go();
 			
 			var dateString = firmsPage.addNewFirm(client);
@@ -34,6 +42,6 @@ module.exports ={
 			.verify.valueContains('@website','http://c9tec.com')
 			.verify.valueContains('@description','New Group for Testing')
 			
-			client.end();
+			client.end();*/
 		}
 }
