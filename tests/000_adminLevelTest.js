@@ -4,7 +4,6 @@ module.exports ={
 		'C9 Admin User  Privileges': function(client){
 			var loginPage = client.page.loginPage();
 			console.log("\n",client.globals.baseUrl,'\n');
-			client.resizeWindow(1700,800);
 			client.windowHandle(function(hand){
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
