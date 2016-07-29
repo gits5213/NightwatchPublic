@@ -7,7 +7,7 @@ module.exports ={
 			
 			var reportPage = client.page.reportPage();
 			reportPage.c9reports(client);
-			reportPage.selectFirm(client);
+			//reportPage.selectFirm(client);
 			reportPage.cloud9Usage(client);
 			reportPage.userButtonRport(client);
 			reportPage.firmButtonReport(client);
