@@ -1,47 +1,65 @@
 module.exports ={
-		'Customer Reporting': function(client){
-			var loginPage = client.page.loginPage();
+		'User_FirmAdmin2': function(client){
+			var report_LoginPage = client.page.report_LoginPage();
 			client.url(client.globals.baseUrl);
-			loginPage.adminLogin(client);
+			client.maximizeWindow();
+			report_LoginPage.reportFirmAdmin2Login(client);
 			
 			var reportPage = client.page.reportPage();
-			reportPage.go(client);
-			console.log('Test cases passed')
+			reportPage.c9reports(client);
+			reportPage.selectFirm(client);
+			reportPage.cloud9Usage(client);
+			reportPage.userButtonRport(client);
+			reportPage.firmButtonReport(client);
+			reportPage.weekButton();
+			reportPage.monthButton();
 			
-			
-			
+			console.log('Test cases Countinuing')
 			client.closeWindow();
+			client.end();
 			
-			/*var firmsPage = client.page.firmsPage();
-			firmsPage.go();
+		},
+
+
+		'User_Cloud9Admin': function(client){
+		var report_LoginPage = client.page.report_LoginPage();
+			client.url(client.globals.baseUrl);
+			client.maximizeWindow();
+			report_LoginPage.reportCloud9AdminLogin(client);
 			
-			var dateString = firmsPage.addNewFirm(client);
-			console.log('Successfully created: Test Firm '+dateString);
+			var reportPage = client.page.reportPage();
+			reportPage.c9reports(client);
+			reportPage.selectFirm(client);
+			reportPage.cloud9Usage(client);
+			reportPage.userButtonRport(client);
+			reportPage.firmButtonReport(client);
+			reportPage.weekButton();
+			reportPage.monthButton();
+					
+			console.log('Test cases Countinuing')
+			client.closeWindow();
+			client.end();
+		},
+
+
+		'User_Cloud9Sales': function(client){
+			var report_LoginPage = client.page.report_LoginPage();
+			client.url(client.globals.baseUrl);
+			client.maximizeWindow();
+			report_LoginPage.reportCloud9SalesLogin(client);
 			
-			var groupsPage = client.page.groupsPage();
-			groupsPage.go();
-			client.assert.urlContains('#/groups');
-			groupsPage.addGrpForFirm(dateString,client);
-			client.assert.urlContains('firmId=');
-			groupsPage.addAnotherGrpForFirm(dateString,client);
-			groupsPage.editFirstRecord();
-			
-			groupsPage
-			.verify.valueContains('@grpNameField','Firm '+dateString+' Grp 1')
-			//community validation here
-			.verify.valueContains('@contactFname', 'Howard')
-			.verify.valueContains('@contactLname', 'Hughes')
-			.verify.valueContains('@contactEmail', client.globals.email1)
-			//default group validation here
-			.verify.valueContains('@street1', '456 Wall Street')
-			.verify.valueContains('@street2', 'Suite 100')
-			.verify.valueContains('@city', 'Any City')
-			.verify.valueContains('@state','NY')
-			.verify.valueContains('@zip', 67890)
-			.verify.valueContains('@country','USA')
-			.verify.valueContains('@website','http://c9tec.com')
-			.verify.valueContains('@description','New Group for Testing')
-			
-			client.end();*/
-		}
+			var reportPage = client.page.reportPage();
+			reportPage.c9reports(client);
+			reportPage.selectFirm(client);
+			reportPage.cloud9Usage(client);
+			reportPage.userButtonRport(client);
+			reportPage.firmButtonReport(client);
+			reportPage.weekButton();
+			reportPage.monthButton();
+						
+			console.log('Test cases Countinuing')
+			client.closeWindow();
+			client.end();
+		},
+	
 }
