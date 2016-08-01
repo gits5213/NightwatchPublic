@@ -1,7 +1,7 @@
 module.exports ={
-		'User_FirmAdmin2': function(client){
+		'User FirmAdmin2 - ability to view customer reporting': function(client){
 			var report_LoginPage = client.page.report_LoginPage();
-			client.url(client.globals.baseUrl);
+			client.url(client.globals.qa2_baseUrl);
 			client.maximizeWindow();
 			report_LoginPage.reportFirmAdmin2Login(client);
 			
@@ -21,9 +21,9 @@ module.exports ={
 		},
 
 
-		'User_Cloud9Admin': function(client){
+		'User Cloud9Admin - ability to view customer reporting': function(client){
 		var report_LoginPage = client.page.report_LoginPage();
-			client.url(client.globals.baseUrl);
+			client.url(client.globals.qa2_baseUrl);
 			client.maximizeWindow();
 			report_LoginPage.reportCloud9AdminLogin(client);
 			
@@ -42,9 +42,9 @@ module.exports ={
 		},
 
 
-		'User_Cloud9Sales': function(client){
+		'User Cloud9Sales - ability to view customer reporting': function(client){
 			var report_LoginPage = client.page.report_LoginPage();
-			client.url(client.globals.baseUrl);
+			client.url(client.globals.qa2_baseUrl);
 			client.maximizeWindow();
 			report_LoginPage.reportCloud9SalesLogin(client);
 			

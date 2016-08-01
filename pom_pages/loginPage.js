@@ -1,14 +1,14 @@
 var loginCommand = {
 		adminLogin: function(client){
-			this.waitForElementVisible('@usernameField',2000)
-			.waitForElementVisible('@passwordField',2000)
-			.waitForElementVisible('@submitButton',2000)
-			.setValue('@usernameField',client.globals.adminUsername)
-			.setValue('@passwordField', client.globals.adminPassword)
-			.click('@submitButton')
-			.waitForElementVisible('@alert',2000)
-			.assert.containsText('div.modal-header', '**WARNING**')
-			.click('@okButton');
+			this.waitForElementVisible('@usernameField',2000);
+			this.waitForElementVisible('@passwordField',2000);
+			this.waitForElementVisible('@submitButton',2000);
+			this.setValue('@usernameField',client.globals.adminUsername);
+			this.setValue('@passwordField', client.globals.adminPassword);
+			this.click('@submitButton');
+			this.waitForElementVisible('@alert',2000);
+			this.assert.containsText('div.modal-header', '**WARNING**');
+			this.click('@okButton');
 			this.api.pause(1500);
 			
 		},
