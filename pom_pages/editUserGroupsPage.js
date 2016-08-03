@@ -28,15 +28,7 @@ module.exports = {
 			rmvGrpFromUserBtn: {
 				selector: '//*[@id="remuser"]/span',
 				locateStrategy: 'xpath'
-			},/*
-			titleFname: {
-				selector: '//*[@id="ng-view"]/div/h5/span[1]',
-				locateStrategy: 'xpath'
 			},
-			titleLname: {
-				selector: '//*[@id="ng-view"]/div/h5/span[1]',
-				locateStrategy: 'xpath'
-			},*/
 			firstRowFirmGroups: {
 				selector: '//*[@id="firmGroups"]/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
