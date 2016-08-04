@@ -101,16 +101,12 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[5]/i',
 				locateStrategy: 'xpath'
 			},
-			buttonsRptBtn:{
+			detailsBtn:{
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[6]/i',
 				locateStrategy: 'xpath'
 			},
-			detailsBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[7]/i',
-				locateStrategy: 'xpath'
-			},
 			exportBtn: {
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[8]/i',
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[7]/i',
 				locateStrategy: 'xpath'
 			},
 			

@@ -26,14 +26,13 @@ module.exports ={
 			
 			var firmsPage= client.page.firmsPage();
 			firmsPage
-			.verify.visible('@addFirmBtn')
-			.verify.visible('@editFirmBtn')
-			.verify.visible('@manageGrpBtn')
-			.verify.visible('@manageConnBtn')
-			.verify.visible('@manageUsersBtn')
-			.verify.visible('@buttonsRptBtn')
-			.verify.visible('@detailsBtn')
-			.verify.visible('@exportBtn')
+			.verify.visible('@addFirmBtn','Add Firm button visible')
+			.verify.visible('@editFirmBtn','Edit Firm button visible')
+			.verify.visible('@manageGrpBtn','Manage Groups button visible')
+			.verify.visible('@manageConnBtn','Manage Connections button visible')
+			.verify.visible('@manageUsersBtn', 'Manage Users button visible')
+			.verify.visible('@detailsBtn','Details button visible')
+			.verify.visible('@exportBtn','Export button visible')
 			
 			navigation.click('@groups')
 			navigation.api.pause(1000);
@@ -134,7 +133,7 @@ module.exports ={
 			loginPage.userLoginFail(client.globals.nonAdminUser,client.globals.nonAdminPass)
 			
 			loginPage.getText('@loginFail1',function(result){
-				loginPage.verify.equal(result.value,'Login failed. Check Username or Password.')
+				loginPage.verify.equal(result.value,'Login failed, check your username and password and try again.')
 			})
 			
 			
@@ -187,7 +186,6 @@ module.exports ={
 			.verify.visible('@manageUsersBtn')
 			.verify.visible('@detailsBtn')
 			.verify.visible('@exportBtn')
-			firmsPage.expect.element('@buttonsRptBtn').to.not.be.visible
 			firmsPage.expect.element('@addFirmBtn').to.not.be.visible
 			
 			navigation.click('@groups')
@@ -224,7 +222,6 @@ module.exports ={
 			.verify.visible('@editNeighBtn')
 			usersPage.expect.element('@editAdminBtn').to.not.be.visible
 			usersPage.expect.element('@editSalesUserBtn').to.not.be.visible
-			usersPage.expect.element('@salesRptBtn').to.not.be.visible
 			
 			navigation.click('@connections');
 			navigation.api.pause(1000);
@@ -377,7 +374,6 @@ module.exports ={
 			usersPage.expect.element('@editNeighBtn').to.not.be.visible;
 			usersPage.expect.element('@editAdminBtn').to.not.be.visible
 			usersPage.expect.element('@editSalesUserBtn').to.not.be.visible
-			usersPage.expect.element('@salesRptBtn').to.not.be.visible
 			
 			navigation.click('@recordings');
 			navigation.api.pause(1000);
@@ -453,7 +449,6 @@ module.exports ={
 			.verify.visible('@manageUsersBtn')
 			.verify.visible('@detailsBtn')
 			.verify.visible('@exportBtn')
-			.verify.visible('@buttonsRptBtn')
 			firmsPage.expect.element('@addFirmBtn').to.not.be.visible
 			
 			navigation.click('@groups')
@@ -485,7 +480,6 @@ module.exports ={
 			.verify.visible('@exportBtn')
 			.verify.visible('@editNeighBtn')
 			.verify.visible('@editSalesUserBtn')
-			.verify.visible('@salesRptBtn')
 			
 			navigation.click('@connections');
 			navigation.api.pause(1000);
@@ -571,7 +565,6 @@ module.exports ={
 			.verify.visible('@manageUsersBtn')
 			.verify.visible('@detailsBtn')
 			.verify.visible('@exportBtn')
-			firmsPage.expect.element('@buttonsRptBtn').to.not.be.visible
 			firmsPage.expect.element('@addFirmBtn').to.not.be.visible
 			
 			navigation.click('@groups')
@@ -609,7 +602,6 @@ module.exports ={
 			.verify.visible('@exportBtn')
 			.verify.visible('@editNeighBtn')
 			usersPage.expect.element('@editSalesUserBtn').to.not.be.visible
-			usersPage.expect.element('@salesRptBtn').to.not.be.visible
 			
 			navigation.click('@connections');
 			navigation.api.pause(1000);
