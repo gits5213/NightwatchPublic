@@ -1,67 +1,61 @@
 {  
-   "src_folders":["tests"],
+   "src_folders":[  
+      "tests"
+   ],
    "output_folder":"reports",
    "custom_commands_path":"",
    "custom_assertions_path":"",
    "page_objects_path":"pom_pages",
    "globals_path":"./data/globals.js",
-   
    "selenium":{  
       "start_process":true,
       "server_path":"driverServer/selenium-server-standalone-2.53.1.jar",
-      "log_path":"false", 
+      "log_path":"false",
       "host":"localhost",
       "port":4444,
-      "cli_args":{"webdriver.chrome.driver":"driverServer/chromedriver.exe*"   
+      "cli_args":{  
+         "webdriver.chrome.driver":"driverServer/chromedriver.exe*"
       }
-   	 },
-   
+   },
    "test_settings":{  
       "default":{  
          "launch_url":"http://localhost",
          "selenium_port":4444,
          "selenium_host":"localhost",
          "silent":true,
-         
-         
-   "screenshots":{  
-        "enabled":true,
-        "on_failure" : true,
- 	    "on_error" : false,
-       	"path":"./screenshots"
+         "screenshots":{  
+            "enabled":true,
+            "on_failure":true,
+            "on_error":false,
+            "path":"./screenshots"
+         },
+         "desiredCapabilities":{  
+            "browserName":"firefox",
+            "javascriptEnabled":true,
+            "acceptSslCerts":true
+         }
       },
-             
-         
-   "desiredCapabilities":{  
-      "browserName":"firefox",
-        "javascriptEnabled":true,
-        "acceptSslCerts":true
-        }
+      "qa2":{  
+         "launch_url":"https://qa2-c9portal.xhoot.com/c9portal",
+         "globals":{  
+            "adminUsername":"mdzaman",
+            "adminPassword":"Shahnewaz1@",
+            "email1":"md.zaman@c9tec.com",
+            "nonAdminUser":"johnakpan",
+            "nonAdminPass":"Password123"
+         }
       },
-      
-      "qa2":{
-      	"launch_url": "https://qa2-c9portal.xhoot.com/c9portal",
-      	"globals" : {
-      		"adminUsername": "mdzaman",
-			"adminPassword": "Shahnewaz1@",
-			"email1": "md.zaman@c9tec.com",
-			"nonAdminUser": "johnakpan",
-			"nonAdminPass": "Password123"
-      	}
+      "qa1":{  
+         "launch_url":"https://qa1-c9portal.xhoot.com/c9portal",
+         "globals":{  
+            "adminUsername":"ucheonwudiwe",
+            "adminPassword":"Password1234",
+            "email1":"uche.onwudiwe@c9tec.com",
+            "nonAdminUser":"johnakpan",
+            "nonAdminPass":"Password123"
+         }
       },
-      
-      "qa1":{
-      	"launch_url": "https://qa1-c9portal.xhoot.com/c9portal",
-      	"globals" : {
-      		"adminUsername": "ucheonwudiwe",
-			"adminPassword": "Password1234",
-			"email1": "uche.onwudiwe@c9tec.com",
-			"nonAdminUser": "johnakpan",
-			"nonAdminPass": "Password123"
-      	}
-      },
-      
-   "jenkins":{  
+      "jenkins":{  
          "launch_url":"http://localhost",
          "selenium_port":8888,
          "selenium_host":"dev1-wselenium1.xhoot.local",
@@ -70,30 +64,26 @@
             "enabled":false,
             "path":""
          },
-         
-   "desiredCapabilities":{  
+         "desiredCapabilities":{  
             "browserName":"firefox",
             "javascriptEnabled":true,
             "acceptSslCerts":true
          }
       },
-      
-   "chrome":{  
+      "chrome":{  
          "desiredCapabilities":{  
             "browserName":"chrome",
             "javascriptEnabled":true,
             "acceptSslCerts":true
          }
       },
-      
-   "phantom":{
-    	  "desiredCapabilities" : {
-    		  "browserName" : "phantomjs",
-    		  "javascriptEnabled" : true,
-    		  "acceptSslCerts" : true,
-    		  "phantomjs.binary.path" : "~/bin/phantomjs"
-    		}
+      "phantom":{  
+         "desiredCapabilities":{  
+            "browserName":"phantomjs",
+            "javascriptEnabled":true,
+            "acceptSslCerts":true,
+            "phantomjs.binary.path":"~/bin/phantomjs"
+         }
       }
-     
    }
 }
