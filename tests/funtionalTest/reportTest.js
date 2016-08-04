@@ -1,7 +1,7 @@
 module.exports ={
 		'Customer Reporting': function(client){
 			var loginPage = client.page.loginPage();
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			loginPage.adminLogin(client);
 			
 			var reportPage = client.page.reportPage();

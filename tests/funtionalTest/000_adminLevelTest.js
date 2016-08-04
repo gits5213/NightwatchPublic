@@ -3,12 +3,12 @@ module.exports ={
 		
 		'C9 Admin User  Privileges': function(client){
 			var loginPage = client.page.loginPage();
-			console.log("\n",client.globals.baseUrl,'\n');
+			console.log("\n",client.launch_url,'\n');
 			client.windowHandle(function(hand){
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			loginPage.adminLogin(client);
 			client.assert.containsText('body', 'Welcome to the Cloud9 Portal')
 			
@@ -118,7 +118,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			loginPage.adminLogin(client);
 			
 			var usersPage = client.page.usersPage();
@@ -152,7 +152,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -273,7 +273,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -336,7 +336,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});;
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -415,7 +415,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -534,7 +534,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			

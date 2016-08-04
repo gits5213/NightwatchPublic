@@ -39,6 +39,28 @@
         }
       },
       
+      "qa2":{
+      	"launch_url": "https://qa2-c9portal.xhoot.com/c9portal",
+      	"globals" : {
+      		"adminUsername": "mdzaman",
+			"adminPassword": "Shahnewaz1@",
+			"email1": "md.zaman@c9tec.com",
+			"nonAdminUser": "johnakpan",
+			"nonAdminPass": "Password123"
+      	}
+      },
+      
+      "qa1":{
+      	"launch_url": "https://qa1-c9portal.xhoot.com/c9portal",
+      	"globals" : {
+      		"adminUsername": "ucheonwudiwe",
+			"adminPassword": "Password1234",
+			"email1": "uche.onwudiwe@c9tec.com",
+			"nonAdminUser": "johnakpan",
+			"nonAdminPass": "Password123"
+      	}
+      },
+      
    "jenkins":{  
          "launch_url":"http://localhost",
          "selenium_port":8888,
