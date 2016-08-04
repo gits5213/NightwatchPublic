@@ -38,9 +38,50 @@ var loginCommand = {
 			})
 			.waitForElementNotVisible('@alert',2000)
 			this.api.pause(1500);
-		}
+		},
 			
+		reportFirmAdmin2Login: function(client){
+					this.waitForElementVisible('@usernameField',2000, true)
+					this.waitForElementVisible('@passwordField',2000);
+					this.waitForElementVisible('@submitButton',2000);
+					this.setValue('@usernameField',client.globals.firmAdmin2Username);
+					this.setValue('@passwordField', client.globals.firmAdmin2Password);
+					this.click('@submitButton');
+					this.waitForElementVisible('@alert',2000);
+					this.assert.containsText('div.modal-header', '**WARNING**');
+					this.click('@okButton');
+					this.api.pause(1500);
+					
+		},
+		reportCloud9AdminLogin: function(client){
+			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enable');
+			this.waitForElementVisible('@passwordField',2000, 'Verified PassWord Field is enable');
+			this.waitForElementVisible('@signInButton',2000, 'Verified Sign in button is enable and clikable');
+			this.setValue('@usernameField',client.globals.cloud9AdminUsername);
+			this.setValue('@passwordField', client.globals.cloud9AdminPassword);
+			this.click('@signInButton');
+			this.waitForElementVisible('@alert',5000, 'Verified Modal dialog popup is appear with WARNING header');
+			this.assert.containsText('div.modal-header', '**WARNING**');
+			this.click('@okButton');
+			this.api.pause(1500);
+			
+			//Portal Home Page Verified
+			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
+			this.api.pause(2000);
 		
+		},
+		reportCloud9SalesLogin: function(client){
+					this.waitForElementVisible('@usernameField',2000, true);
+					this.waitForElementPresent('@passwordField',2000);
+					this.waitForElementPresent('@submitButton',2000);
+					this.setValue('@usernameField',client.globals.cloud9SalesUsername);
+					this.setValue('@passwordField',client.globals.cloud9SalesPassword);
+					this.click('@submitButton');
+					this.waitForElementVisible('@alert',2000);
+					this.assert.containsText('div.modal-header', '**WARNING**');
+					this.click('@okButton');
+					this.api.pause(1500);
+		}	
 };
 
 module.exports = {
@@ -68,6 +109,10 @@ module.exports = {
 			loginFail1:{
 				selector: '//*[@id="changefailed"]',
 				locateStrategy:'xpath'
+			},
+			portalHomePage:{
+				selector: '//*[@id="ng-view"]/div/div[1]/div/div/div/div/h1',
+				locateStrategy: 'xpath'
 			}
 		}
 }

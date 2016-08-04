@@ -70,6 +70,55 @@ var groupsPageCommands = {
 			this.api.pause(1000);
 			
 		}
+		//
+		portalGroupsTab: function(client){
+			this.verify.visible('@groupsTab', 'Verified Groups tab button is visible and clikable');
+			this.click('@groupsTab');
+			this.api.pause(2000);
+		},
+			
+		getGroupByName: function(client){
+			this.waitForElementVisible('@groupNameSearch',5000, 'Verified Firms name search field enable');
+			this.api.pause(1000);
+			this.clearValue('@groupNameSearch');
+			this.click('@groupNameSearch');
+			this.setValue('@groupNameSearch',' ');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
+			this.click('@firstRowGroupsData');
+			this.api.pause(2000);		
+		},	
+		getEditGroup: function(){
+			this.verify.visible('@editGroupBtn', 'Verified Edit Group button is visible and clikable');
+			this.click('@editGroupBtn');
+			this.waitForElementVisible('@editGroupHomePage',1000, 'Verified Edit Group home page - Edit Group');
+			this.expect.element('@editGroupHomePage').text.to.contain('Edit Group');
+			this.waitForElementVisible('@editGroupSave',1000, 'Verified Edit Group Save button enable and clickable');
+			this.click('@editGroupSave');
+			this.api.pause(2000);				
+		},
+		getEditGroupUsers: function(){
+			this.verify.visible('@editGroupUserBtn', 'Verified Edit Group User button is visible and clikable');
+			this.click('@editGroupUserBtn');
+			this.waitForElementVisible('@editGroupUserHomePage',1000, 'Verified selected group name on the group home page header');
+			//this.expect.element('@editGroupHomePage').text.to.contain('Firm A Group X');
+			this.waitForElementVisible('@doneBtn',1000, 'Verified Done button enable and clickable');
+			this.click('@doneBtn');
+			this.api.pause(2000);				
+		},
+		groupDetailsBtn: function(){
+			this.clearValue('@groupNameSearch');
+			this.waitForElementVisible('@detailsBtn',1000,'Verified Details button is visible and clikable');
+			this.click('@detailsBtn');
+			this.waitForElementVisible('@groupDescription',5000, 'Verified Details expand with all information - Description');
+			this.verify.visible('@detailsBtn','Verified Details button is visible and clikable');
+			this.click('@detailsBtn');
+			this.waitForElementVisible('@detailsFirmName',2000, 'Verified Details collapse and go back to the normal page - Group Name');
+			this.api.pause(1500);
+		}
+		//
 };
 
 module.exports = {
@@ -183,5 +232,37 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
 			}
+			//
+			groupsTab:{
+				selector: '//*[@id="navbar"]/ul[1]/li[2]/a/h4/i',locateStrategy: 'xpath'
+			},
+			groupNameSearch:{
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',locateStrategy: 'xpath'
+			},
+			firstRowGroupsData:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',locateStrategy: 'xpath'
+			},
+			editGroupBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/span',locateStrategy: 'xpath'				      
+			},
+			editGroupHomePage:{
+				selector: '//*[@id="ng-view"]/div/h5',locateStrategy: 'xpath'				      
+			},
+			editGroupSave:{
+				selector: '//*[@id="firmData"]/div[2]/button[2]',locateStrategy: 'xpath'				      
+			},
+			editGroupUserBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[3]/span',locateStrategy: 'xpath'				      
+			},
+			editGroupUserHomePage:{
+				selector: '//*[@id="ng-view"]/div/h5/span',locateStrategy: 'xpath'				      
+			},
+			doneBtn:{
+				selector: '//*[@id="ng-view"]/div/form/button',locateStrategy: 'xpath'				      
+			},		
+			groupDescription:{
+				selector: '//span[contains(.,"Description")]',locateStrategy: 'xpath'				      
+			}
+			//
 		}
 }

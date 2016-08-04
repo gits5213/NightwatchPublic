@@ -116,7 +116,15 @@ var reportTabPageCommands = {
 			});
 			this.api.pause(3000);
 		}
-		
+		//
+		portalReportsTab: function(client){
+			this.verify.visible('@reportsTab', 'Verified Reports tab button is visible and clikable');
+			this.click('@reportsTab');
+			//Recordings Home Page Verified
+			this.verify.visible('@reportsHomePage', 'Verified Connections Home Page - Cloud9 Usage');	
+			this.api.pause(2000);	
+		}
+			
 	};
 
 module.exports = {
@@ -247,6 +255,16 @@ module.exports = {
 				selector : '//*[@id="graphExport"]/span',
 				locateStrategy: 'xpath'
 			}
+			//
+			reportsTab:{
+				selector: '//*[@id="reportsNav"]/h4/span',
+				locateStrategy: 'xpath'
+			},
+			reportsHomePage:{
+				selector: '//*[@id="defaultUsage"]',
+				locateStrategy: 'xpath'
+			}
+			//
 			
 		}
 }

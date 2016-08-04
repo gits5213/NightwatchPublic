@@ -39,6 +39,15 @@ var connPageCommands = {
 			this.api.pause(1000);
 			
 		}
+		//
+		portalConnectionsTab: function(client){
+			this.verify.visible('@connectionsTab', 'Verified Connection tab button is visible and clikable');
+			this.click('@connectionsTab');
+			//Connections Home Page Verified
+			this.verify.visible('@connectionsHomePage', 'Verified Connections Home Page - Manage your Cloud9 Connections');	
+			this.api.pause(2000);		
+		}
+		//
 };
 
 module.exports = {
@@ -132,5 +141,17 @@ module.exports = {
 			description: '#description',
 			createdByField: '#createdBy',
 			createdOnField: '#createdOn'
+			//		
+			connectionsTab:{
+				selector: '//*[@id="navbar"]/ul[1]/li[4]/a/h4/i',
+				locateStrategy: 'xpath'
+			},
+			connectionsHomePage:{
+				selector: '//*[@id="ng-view"]/div[1]/div/h2',
+				locateStrategy: 'xpath'
+			}
+			//
 		}
+
+
 }

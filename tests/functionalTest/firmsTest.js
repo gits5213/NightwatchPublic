@@ -3,7 +3,7 @@ module.exports ={
 		'Add New Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.baseUrl);
-			loginPage.adminLogin(client);
+			loginPage.reportCloud9AdminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
 			firmsPage.go();

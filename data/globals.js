@@ -16,8 +16,11 @@ module.exports = {
 		 * Internal ip = 10.0.0.40*/
 		 
 	
-		//Report Tab on Navigate bar
+		//QA Environment
 		qa2_baseUrl: 'https://qa2-c9portal.xhoot.com/c9portal',
+		
+		//Production Environment
+		//qa2_baseUrl: 'https://use-portal1.xhoot.com/c9portal', 
 		
 		firmAdmin2Username: 'lucasdavid',
 		firmAdmin2Password: 'Shahnewaz1@',

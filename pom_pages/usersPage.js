@@ -233,6 +233,121 @@ var userPageCommands = {
 			return [dateString, username, password];
 			
 		}
+		//
+		portalUsersTab: function(client){
+			this.verify.visible('@usersTab', 'Verified User tab button is visible and clikable');
+			this.click('@usersTab');
+			this.api.pause(2000);	
+		 },
+		 userTabResultVerify: function(){
+			this.waitForElementVisible('@userTabShowingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
+			this.assert.containsText('@userTabShowingResult', 'Showing (1 to 25) of');
+			},
+		 
+		getUsersByDefault: function(client){
+			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
+			this.api.pause(1000);
+			this.clearValue('@UserNameSearch');
+			this.click('@UserNameSearch');
+			this.setValue('@UserNameSearch',' ');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
+			this.click('@firstRowGroupsData');
+			this.api.pause(2000);		
+			},
+			
+		getEditUser: function(){
+			this.verify.visible('@editUser', 'Verified Edit User button is visible and clikable');
+			this.click('@editUser');
+			this.waitForElementVisible('@editUserHomePage',1000, 'Verified Edit Group home page - Edit User');
+			this.expect.element('@editUserHomePage').text.to.contain('Edit User');
+			this.waitForElementVisible('@editUserSave',1000, 'Verified Edit User Save button enable and clickable');
+			this.click('@editUserSave');
+			this.api.pause(2000);				
+			},			
+		getUsersByName: function(client){
+			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
+			this.api.pause(1000);
+			this.clearValue('@UserNameSearch');
+			//this.click('@UserNameSearch');
+			this.setValue('@UserNameSearch','md');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
+			this.click('@firstRowGroupsData');
+			this.api.pause(2000);		
+			},
+			
+		getEditSalesInfoUser: function(client){
+			this.verify.visible('@editSalesInfo', 'Verified Edit User Sales Info button is visible and clikable');
+			this.click('@editSalesInfo');
+			},
+			
+		selectSalesPerson: function(client){
+			this.verify.visible('@selectSalesPerson', 'Verified Sales person is selected');
+			this.api.pause(1000);
+			this.click('@selectSalesPerson');
+			this.api.pause(3000);
+			this.setValue('@selectSalesPerson','danastarr');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(3000);
+		},
+		
+		editSalesInfoNotes: function(client){
+			this.verify.visible('@notesInputText','Verified text is being typed into Note input filed');
+			this.click('@notesInputText');
+			this.setValue('@notesInputText','How are you!');
+			this.api.pause(3000);
+		},
+		
+		editSalesInfoSaveChanges: function(client){
+			this.waitForElementVisible('@saveChanges',5000, 'Verified Save changes button visible and clikable!');
+			this.verify.visible('@saveChanges',true);
+			this.click('@saveChanges');
+			this.api.pause(5000);
+		},	
+		
+		//------Remove-------
+		getUsersByNameClear: function(client){
+			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
+			this.api.pause(1000);
+			this.clearValue('@UserNameSearch');
+			//this.click('@UserNameSearch');
+			this.setValue('@UserNameSearch','md');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
+			this.click('@firstRowGroupsData');
+			this.api.pause(3000);		
+			},
+		selectSalesPersonRemove: function(client){
+			this.waitForElementVisible('@selectSalesPerson',5000, 'Verified Sales person is selected!');
+			this.verify.visible('@selectSalesPerson', false);
+			this.setValue('@selectSalesPerson','erictonder');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(5000);
+		},
+		
+		editSalesInfoNotesRemove: function(client){
+			this.waitForElementVisible('@notesInputText',5000, 'Verified  Note input filed enable!');
+			this.verify.visible('@notesInputText', false);
+			//this.click('@notesInputText');
+			this.getText('@notesInputText', function(testResult){
+				console.log("This contains: "+testResult.value);
+			});
+			this.api.pause(1000);
+			this.clearValue('@notesInputText');
+			this.api.pause(2000);
+		}
+		//
 };
 
 module.exports = {
@@ -428,7 +543,40 @@ module.exports = {
 				selector: '//*[@id="state"]',
 				locateStrategy: 'xpath'
 			}
+			//
+			usersTab:{
+				selector: '//*[@id="navbar"]/ul[1]/li[3]/a/h4/i',locateStrategy: 'xpath'
+			},
+			UserNameSearch:{
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',locateStrategy: 'xpath'
+			},
 			
+			userTabShowingResult:{
+				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',locateStrategy: 'xpath'
+			},
+			editUser:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[2]/span',locateStrategy: 'xpath'
+			},	
+			editUserHomePage:{
+				selector: '//*[@id="ng-view"]/div/h5',locateStrategy: 'xpath'
+			},
+			editUserSave:{
+				selector: '//*[@id="userdata"]/div[3]/button[2]',locateStrategy: 'xpath'
+			},
+			//
+			editSalesInfo:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/span',locateStrategy: 'xpath'
+			},
+			selectSalesPerson:{
+				selector: '//*[@id="ng-view"]/div/div/form/div[2]/div[1]/select',locateStrategy: 'xpath'
+			},
+			notesInputText:{
+				selector: '//*[@id="userNotes"]',locateStrategy: 'xpath'
+			},
+			saveChanges:{
+				selector: '//*[@id="ng-view"]/div/div/form/div[8]/button[2]',locateStrategy: 'xpath'
+			}
+			//
 			
 		}
 }

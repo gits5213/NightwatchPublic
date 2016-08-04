@@ -1,6 +1,6 @@
-/*
-var loginCommand = {
-		adminLogin: function(client){
+
+var recordingsPageCommand = {
+	/*	adminLogin: function(client){
 			this.waitForElementVisible('@usernameField',2000)
 			.waitForElementVisible('@passwordField',2000)
 			.waitForElementVisible('@submitButton',2000)
@@ -16,11 +16,20 @@ var loginCommand = {
 		logout:function(){
 			this.click('//*[@id="navbar"]/ul[2]/li[3]/a/h4/i');
 			this.api.pause(1000);
+		}*/
+		//
+		portalRecordingsTab: function(client){
+			this.verify.visible('@recordingsTab', 'Verified Recordings tab button is visible and clikable');
+			this.click('@recordingsTab');
+			//Recordings Home Page Verified
+			this.verify.visible('@recordingsHomePage', 'Verified Connections Home Page - Manage your Cloud9 Recordings');	
+			this.api.pause(2000);			
 		}
+//
 };
-*/
+
 module.exports = {
-		//commands :[loginCommand],
+		commands :[recordingsPageCommand],
 		elements: {
 			backBtn:{
 				selector: '//*[@id="demo"]/div[4]/ul/li[1]/i',
@@ -64,6 +73,15 @@ module.exports = {
 			},
 			show:{
 				selector: '//*[@id="ng-view"]/div[2]/div[3]/div[2]/button',
+				locateStrategy: 'xpath'
+			},
+			//
+			recordingsTab:{
+				selector: '//*[@id="recordingsNav"]/h4/span',
+				locateStrategy: 'xpath'
+			},
+			recordingsHomePage:{
+				selector: '//*[@id="ng-view"]/div[1]/div/h2',
 				locateStrategy: 'xpath'
 			}
 		}
