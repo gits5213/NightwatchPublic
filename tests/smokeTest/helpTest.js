@@ -5,8 +5,9 @@ module.exports ={
 			client.maximizeWindow();
 			
 			//Log In 
-			loginPage.c9AdminLogin(client);
-			//Help Tab		
+			loginPage.reportCloud9AdminLogin(client);
+			//Help Tab	
+			var helpPage = client.page.helpPage();
 			helpPage.portalHelpTab(client);
 			console.log('Test cases Countinuing')
 			client.closeWindow();

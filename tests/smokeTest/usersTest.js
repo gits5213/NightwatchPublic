@@ -4,13 +4,11 @@ module.exports ={
 			client.url(client.globals.qa2_baseUrl);
 			client.maximizeWindow();
 			
-			
-			
-			
 			//Log In 
 			loginPage.reportCloud9AdminLogin(client);
 			
 			//User Tab 
+			var usersPage = client.page.usersPage();
 			usersPage.portalUsersTab(client);	
 			usersPage.userTabResultVerify();
 			

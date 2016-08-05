@@ -7,7 +7,8 @@ module.exports ={
 			//Log In 
 			loginPage.reportCloud9AdminLogin(client);
 					
-			//Groups Tab ............................			
+			//Groups Tab ............................
+			var groupsPage = client.page.groupsPage();
 			groupsPage.portalGroupsTab(client);
 			
 			//Edit Group

@@ -38,7 +38,7 @@ var connPageCommands = {
 			.click('@editConnBtn');
 			this.api.pause(1000);
 			
-		}
+		},
 		//
 		portalConnectionsTab: function(client){
 			this.verify.visible('@connectionsTab', 'Verified Connection tab button is visible and clikable');
@@ -135,12 +135,6 @@ module.exports = {
 				selector: '//*[@id="groupName"]',
 				locateStrategy: 'xpath'
 			},
-			btnLabelField: '#buttonLabel',
-			vcinstField: '#vcInstID',
-			connIdField: '#c9RefNum',
-			description: '#description',
-			createdByField: '#createdBy',
-			createdOnField: '#createdOn'
 			//		
 			connectionsTab:{
 				selector: '//*[@id="navbar"]/ul[1]/li[4]/a/h4/i',
@@ -149,8 +143,14 @@ module.exports = {
 			connectionsHomePage:{
 				selector: '//*[@id="ng-view"]/div[1]/div/h2',
 				locateStrategy: 'xpath'
-			}
+			},
 			//
+			btnLabelField: '#buttonLabel',
+			vcinstField: '#vcInstID',
+			connIdField: '#c9RefNum',
+			description: '#description',
+			createdByField: '#createdBy',
+			createdOnField: '#createdOn'
 		}
 
 

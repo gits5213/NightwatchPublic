@@ -69,7 +69,7 @@ var groupsPageCommands = {
 			.click('@editGrpBtn');
 			this.api.pause(1000);
 			
-		}
+		},
 		//
 		portalGroupsTab: function(client){
 			this.verify.visible('@groupsTab', 'Verified Groups tab button is visible and clikable');
@@ -231,7 +231,7 @@ module.exports = {
 			firstRow:{
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
-			}
+			},
 			//
 			groupsTab:{
 				selector: '//*[@id="navbar"]/ul[1]/li[2]/a/h4/i',locateStrategy: 'xpath'
@@ -262,6 +262,9 @@ module.exports = {
 			},		
 			groupDescription:{
 				selector: '//span[contains(.,"Description")]',locateStrategy: 'xpath'				      
+			},
+			detailsFirmName:{
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
 			}
 			//
 		}

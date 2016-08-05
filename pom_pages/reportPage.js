@@ -2,10 +2,7 @@ var reportTabPageCommands = {
 		c9reports: function(client){
 			this.waitForElementVisible('@reportTab',2000, false);
 			this.click('@reportTab');
-		},
-			//this.expect.element('@pTT_GraphHeader_Validation').text.to.contain('Firm Button Report').before(5000);
-			//this.waitForElementVisible('@pTT_GraphHeader_Validation',2000, false);
-			
+		},			
 		selectFirm: function(client){
 			this.waitForElementVisible('@selectFirm',2000, false);
 			this.api.pause(2000);
@@ -115,7 +112,7 @@ var reportTabPageCommands = {
 				console.log("Text cointains: " + getText.value);	
 			});
 			this.api.pause(3000);
-		}
+		},
 		//
 		portalReportsTab: function(client){
 			this.verify.visible('@reportsTab', 'Verified Reports tab button is visible and clikable');
@@ -254,7 +251,7 @@ module.exports = {
 			Week_Month_ExportGraphData :{
 				selector : '//*[@id="graphExport"]/span',
 				locateStrategy: 'xpath'
-			}
+			},
 			//
 			reportsTab:{
 				selector: '//*[@id="reportsNav"]/h4/span',

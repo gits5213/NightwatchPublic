@@ -29,25 +29,6 @@ var userPageCommands = {
 			//.click('@genPassBtn');
 			
 			this.api.pause(1000);
-			/*
-			var description='';
-			var username='';
-			var password='';
-			var creds=[];
-			
-			this.getValue('@descField',function(result){
-				//console.log(result.value)
-				description= result.value;
-				var usernameIndex=description.substring(description.indexOf('Username='));
-				var passwordIndex=description.substring(description.indexOf('Password='));
-				
-				username =usernameIndex.substring(9,usernameIndex.indexOf(' Password='));
-				password =passwordIndex.substring(9,18);
-				console.log("New user created.\nusername: " + username +' and password: '+password);
-			});
-						
-			this.api.pause(1000);
-			*/
 			this.click('@countryDropdown');
 			this.click('@countrySearch');
 			this.api.pause(500);
@@ -232,7 +213,7 @@ var userPageCommands = {
 
 			return [dateString, username, password];
 			
-		}
+		},
 		//
 		portalUsersTab: function(client){
 			this.verify.visible('@usersTab', 'Verified User tab button is visible and clikable');
@@ -298,7 +279,9 @@ var userPageCommands = {
 		},
 		
 		editSalesInfoNotes: function(client){
-			this.verify.visible('@notesInputText','Verified text is being typed into Note input filed');
+			this.waitForElementVisible('@notesInputText',5000, 'Verified text is being typed into Note input filed');
+			this.verify.visible('@notesInputText',false);
+			this.clearValue('@notesInputText');
 			this.click('@notesInputText');
 			this.setValue('@notesInputText','How are you!');
 			this.api.pause(3000);
@@ -405,15 +388,12 @@ module.exports = {
 			editNeighBtn:{
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[6]/i',
 				locateStrategy:'xpath'
-			},
-			
-			
+			},	
 			selectFirmBar: {
 				selector: '//*[@id="ng-view"]/div/div/div/div/a/span',
 				locateStrategy: 'xpath'
 			},
 			selectFirmBar2: {
-				//selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/a/span',
 				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div',
 				locateStrategy: 'xpath'
 			},
@@ -473,7 +453,6 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			newUserModal:{
-				//selector: '//*[@id="userConfirmModal"]/div[2]/div',
 				selector: '//*[@id="userConfirmModal"]/div[2]',
 				locateStrategy: 'xpath'
 			},
@@ -542,7 +521,7 @@ module.exports = {
 			state: {
 				selector: '//*[@id="state"]',
 				locateStrategy: 'xpath'
-			}
+			},
 			//
 			usersTab:{
 				selector: '//*[@id="navbar"]/ul[1]/li[3]/a/h4/i',locateStrategy: 'xpath'
@@ -575,6 +554,13 @@ module.exports = {
 			},
 			saveChanges:{
 				selector: '//*[@id="ng-view"]/div/div/form/div[8]/button[2]',locateStrategy: 'xpath'
+			},
+			firstRowFirmGroups: {
+				selector: '//*[@id="firmGroups"]/tbody/tr/td[1]',
+				locateStrategy: 'xpath'
+			},
+			firstRowGroupsData:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',locateStrategy: 'xpath'
 			}
 			//
 			

@@ -8,6 +8,7 @@ module.exports ={
 			loginPage.reportCloud9AdminLogin(client);
 
 			//Firm Tab.................................
+			var firmsPage = client.page.firmsPage();
 			firmsPage.portalFirmsTab();
 			firmsPage.firmTabResultVerify();
 			

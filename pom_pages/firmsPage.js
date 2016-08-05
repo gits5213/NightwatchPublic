@@ -71,7 +71,7 @@ var firmsPageCommands = {
 			.click('@firstRowFirmsData')
 			.click('@editFirmBtn');
 			this.api.pause(1000);
-		}
+		},
 		//
 		portalFirmsTab: function(){
 			this.verify.visible('@firmsTab', 'Verified Firms tab button is visible and clikable');
@@ -264,7 +264,7 @@ module.exports = {
 			billState: {
 				selector: '//*[@id="billState"]',
 				locateStrategy: 'xpath'
-			}
+			},
 			
 			//--
 			firmsTab:{

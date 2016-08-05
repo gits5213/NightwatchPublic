@@ -5,8 +5,9 @@ module.exports ={
 			client.maximizeWindow();
 			
 			//Log In 
-			loginPage.c9AdminLogin(client);
-			//Recordings Tab		
+			loginPage.reportCloud9AdminLogin(client);
+			//Recordings Tab
+			var recordingsPage = client.page.recordingsPage();
 			recordingsPage.portalRecordingsTab(client);
 			//Print log into console window
 			console.log('Test cases Countinuing')
