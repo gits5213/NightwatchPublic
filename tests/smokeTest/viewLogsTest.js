@@ -5,10 +5,16 @@ module.exports ={
 			client.maximizeWindow();
 			
 			//Log In 
-			loginPage.reportCloud9AdminLogin(client);
+			loginPage.adminLogin(client);
 			//ViewLogs Tab	
 			var viewLogsPage = client.page.viewLogsPage();
 			viewLogsPage.portalViewLogsTab(client);
+				viewLogsPage.click('@viewLogTab');
+				viewLogsPage.verify.visible('@viewLogsHomePage', 'Verified Connections Home Page -   View Audit Logs');	
+				viewLogsPage.api.pause(2000);
+			
+			
+			
 			console.log('Test cases Countinuing')
 			client.closeWindow();
 			client.end();

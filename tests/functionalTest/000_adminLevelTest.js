@@ -415,7 +415,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.globals.baseUrl); //Challenges baseURL-QA2
 			
 			loginPage.adminLogin(client);
 			
@@ -431,7 +431,7 @@ module.exports ={
 			
 			loginPage.userLogin(client)
 			
-			client.verify.containsText('body', 'Welcome to the Cloud9 Portal')
+			//client.verify.containsText('body', 'Welcome to the Cloud9 Portal')
 			
 			var navigation = client.page.navBar();
 			

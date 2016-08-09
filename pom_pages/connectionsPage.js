@@ -41,13 +41,9 @@ var connPageCommands = {
 		},
 		//
 		portalConnectionsTab: function(client){
-			this.verify.visible('@connectionsTab', 'Verified Connection tab button is visible and clikable');
-			this.click('@connectionsTab');
-			//Connections Home Page Verified
-			this.verify.visible('@connectionsHomePage', 'Verified Connections Home Page - Manage your Cloud9 Connections');	
-			this.api.pause(2000);		
+			this.verify.visible('@connectionsTab', 'Verified Connection tab button is visible and clikable');	
 		}
-		//
+		
 };
 
 module.exports = {

@@ -1,10 +1,22 @@
 module.exports ={
 		'User FirmAdmin2 - ability to view customer reporting': function(client){
+			
+			var navigation = client.page.navBar();
+			var usersPage = client.page.usersPage()
 			var loginPage = client.page.loginPage();
+			
 			client.url(client.globals.qa2_baseUrl);
 			client.maximizeWindow();
-			loginPage.reportFirmAdmin2Login(client);
 			
+			loginPage.adminLogin(client);
+			usersPage.go();
+			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
+			var adminPage=client.page.editAdminPage();
+			adminPage.setToAdmin2(client)
+			navigation.logout();
+			
+			loginPage.userLogin(client);
+						
 			var reportPage = client.page.reportPage();
 			reportPage.c9reports(client);
 			//reportPage.selectFirm(client);
@@ -22,10 +34,13 @@ module.exports ={
 
 
 		'User Cloud9Admin - ability to view customer reporting': function(client){
-		var loginPage = client.page.loginPage();
+			
+			var loginPage = client.page.loginPage();
+		
 			client.url(client.globals.qa2_baseUrl);
 			client.maximizeWindow();
-			loginPage.reportCloud9AdminLogin(client);
+			
+			loginPage.adminLogin(client);
 			
 			var reportPage = client.page.reportPage();
 			reportPage.c9reports(client);
@@ -43,10 +58,25 @@ module.exports ={
 
 
 		'User Cloud9Sales - ability to view customer reporting': function(client){
+			
+			var navigation = client.page.navBar();
+			var usersPage = client.page.usersPage();
 			var loginPage = client.page.loginPage();
 			client.url(client.globals.qa2_baseUrl);
 			client.maximizeWindow();
-			loginPage.reportCloud9SalesLogin(client);
+			
+			loginPage.adminLogin(client);
+			usersPage.go();
+			
+			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
+			
+			var adminPage=client.page.editAdminPage();
+			adminPage.setToSales(client)
+			navigation.logout();
+			
+			loginPage.userLogin(client);
+			
+			//loginPage.reportCloud9SalesLogin(client);
 			
 			var reportPage = client.page.reportPage();
 			reportPage.c9reports(client);

@@ -142,7 +142,7 @@ var userPageCommands = {
 			this.api.pause(1000);
 			this.waitForElementPresent('@selectFirmBar2',3000)
 			this.click('@selectFirmBar2')
-			.setValue('@selectFirmBarSearch2','Select a');
+			this.setValue('@selectFirmBarSearch2','Select a');
 			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
 			
@@ -216,121 +216,70 @@ var userPageCommands = {
 		},
 		//
 		portalUsersTab: function(client){
-			this.verify.visible('@usersTab', 'Verified User tab button is visible and clikable');
-			this.click('@usersTab');
+			this.verify.visible('@usersTab', 'Verified User tab button is visible and clikable')
+				.click('@usersTab');
 			this.api.pause(2000);	
 		 },
+		 
 		 userTabResultVerify: function(){
 			this.waitForElementVisible('@userTabShowingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
 			this.assert.containsText('@userTabShowingResult', 'Showing (1 to 25) of');
-			},
+		},
 		 
 		getUsersByDefault: function(client){
 			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
-			this.api.pause(1000);
-			this.clearValue('@UserNameSearch');
-			this.click('@UserNameSearch');
-			this.setValue('@UserNameSearch',' ');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
-			this.api.pause(1000);
-			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
-			this.click('@firstRowGroupsData');
-			this.api.pause(2000);		
-			},
+			this.api.pause(1000);		
+		},
 			
 		getEditUser: function(){
-			this.verify.visible('@editUser', 'Verified Edit User button is visible and clikable');
-			this.click('@editUser');
-			this.waitForElementVisible('@editUserHomePage',1000, 'Verified Edit Group home page - Edit User');
-			this.expect.element('@editUserHomePage').text.to.contain('Edit User');
-			this.waitForElementVisible('@editUserSave',1000, 'Verified Edit User Save button enable and clickable');
-			this.click('@editUserSave');
-			this.api.pause(2000);				
-			},			
+			this.verify.visible('@editUser', 'Verified Edit User button is visible and clikable');				
+		},			
 		getUsersByName: function(client){
 			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
-			this.api.pause(1000);
-			this.clearValue('@UserNameSearch');
-			//this.click('@UserNameSearch');
-			this.setValue('@UserNameSearch','md');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
-			this.api.pause(1000);
-			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
-			this.click('@firstRowGroupsData');
-			this.api.pause(2000);		
-			},
+			this.api.pause(1000);		
+		},
 			
 		getEditSalesInfoUser: function(client){
 			this.verify.visible('@editSalesInfo', 'Verified Edit User Sales Info button is visible and clikable');
 			this.click('@editSalesInfo');
-			},
+		},
 			
 		selectSalesPerson: function(client){
 			this.verify.visible('@selectSalesPerson', 'Verified Sales person is selected');
 			this.api.pause(1000);
-			this.click('@selectSalesPerson');
-			this.api.pause(3000);
-			this.setValue('@selectSalesPerson','danastarr');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
-			this.api.pause(3000);
 		},
 		
 		editSalesInfoNotes: function(client){
-			this.waitForElementVisible('@notesInputText',5000, 'Verified text is being typed into Note input filed');
-			this.verify.visible('@notesInputText',false);
-			this.clearValue('@notesInputText');
-			this.click('@notesInputText');
-			this.setValue('@notesInputText','How are you!');
+			this.waitForElementVisible('@notesInputText',5000, 'Verified text is being typed into Note input filed')
+				.verify.visible('@notesInputText',false)
+				.clearValue('@notesInputText')
+				.click('@notesInputText')
+				.setValue('@notesInputText','How are you!')
 			this.api.pause(3000);
 		},
 		
 		editSalesInfoSaveChanges: function(client){
-			this.waitForElementVisible('@saveChanges',5000, 'Verified Save changes button visible and clikable!');
-			this.verify.visible('@saveChanges',true);
-			this.click('@saveChanges');
+			this.waitForElementVisible('@saveChanges',5000, 'Verified Save changes button visible and clikable!')
+				.verify.visible('@saveChanges',true)
+				.click('@saveChanges')
 			this.api.pause(5000);
 		},	
 		
 		//------Remove-------
 		getUsersByNameClear: function(client){
 			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
-			this.api.pause(1000);
-			this.clearValue('@UserNameSearch');
-			//this.click('@UserNameSearch');
-			this.setValue('@UserNameSearch','md');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.pause(1000);
-			this.api.keys(client.Keys.ENTER);
-			this.api.pause(1000);
-			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
-			this.click('@firstRowGroupsData');
-			this.api.pause(3000);		
+			this.api.pause(1000);		
 			},
+			
 		selectSalesPersonRemove: function(client){
-			this.waitForElementVisible('@selectSalesPerson',5000, 'Verified Sales person is selected!');
-			this.verify.visible('@selectSalesPerson', false);
-			this.setValue('@selectSalesPerson','erictonder');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.pause(1000);
-			this.api.keys(client.Keys.ENTER);
-			this.api.pause(5000);
+			this.waitForElementVisible('@selectSalesPerson',5000, 'Verified Sales person is selected!')
+				.verify.visible('@selectSalesPerson', false);
 		},
 		
 		editSalesInfoNotesRemove: function(client){
 			this.waitForElementVisible('@notesInputText',5000, 'Verified  Note input filed enable!');
-			this.verify.visible('@notesInputText', false);
-			//this.click('@notesInputText');
-			this.getText('@notesInputText', function(testResult){
-				console.log("This contains: "+testResult.value);
-			});
-			this.api.pause(1000);
-			this.clearValue('@notesInputText');
-			this.api.pause(2000);
 		}
-		//
+		
 };
 
 module.exports = {

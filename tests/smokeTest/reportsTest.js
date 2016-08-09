@@ -5,10 +5,16 @@ module.exports ={
 			client.maximizeWindow();
 			
 			//Log In 
-			loginPage.reportCloud9AdminLogin(client);
+			loginPage.adminLogin(client);
 			//Reporters Tab	
 			var reportPage = client.page.reportPage();
 			reportPage.portalReportsTab(client);
+			reportPage
+				.click('@reportsTab')
+				.verify.visible('@reportsHomePage', 'Verified Connections Home Page - Cloud9 Usage')	
+			reportPage.api.pause(2000);
+			
+		
 			console.log('Test cases Countinuing')
 			client.closeWindow();
 			client.end();

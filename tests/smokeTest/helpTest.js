@@ -5,7 +5,7 @@ module.exports ={
 			client.maximizeWindow();
 			
 			//Log In 
-			loginPage.reportCloud9AdminLogin(client);
+			loginPage.adminLogin(client);
 			//Help Tab	
 			var helpPage = client.page.helpPage();
 			helpPage.portalHelpTab(client);

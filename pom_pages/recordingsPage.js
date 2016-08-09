@@ -1,13 +1,9 @@
 
 var recordingsPageCommand = {
 		portalRecordingsTab: function(client){
-			this.verify.visible('@recordingsTab', 'Verified Recordings tab button is visible and clikable');
-			this.click('@recordingsTab');
-			//Recordings Home Page Verified
-			this.verify.visible('@recordingsHomePage', 'Verified Connections Home Page - Manage your Cloud9 Recordings');	
-			this.api.pause(2000);			
+			this.verify.visible('@recordingsTab', 'Verified Recordings tab button is visible and clikable');					
 		}
-//
+
 };
 
 module.exports = {

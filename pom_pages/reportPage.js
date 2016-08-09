@@ -11,7 +11,7 @@ var reportTabPageCommands = {
 			this.click('@SelectFirmSearch');		
 			this.clearValue('@SelectFirmSearch');
 			this.api.pause(1000);
-			this.setValue('@SelectFirmSearch','000 Firm B');
+			this.setValue('@SelectFirmSearch',' ');  
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500);				
@@ -115,11 +115,7 @@ var reportTabPageCommands = {
 		},
 		//
 		portalReportsTab: function(client){
-			this.verify.visible('@reportsTab', 'Verified Reports tab button is visible and clikable');
-			this.click('@reportsTab');
-			//Recordings Home Page Verified
-			this.verify.visible('@reportsHomePage', 'Verified Connections Home Page - Cloud9 Usage');	
-			this.api.pause(2000);	
+			this.verify.visible('@reportsTab', 'Verified Reports tab button is visible and clikable');	
 		}
 			
 	};

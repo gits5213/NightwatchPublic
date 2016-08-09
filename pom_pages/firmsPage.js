@@ -82,6 +82,7 @@ var firmsPageCommands = {
 		firmTabResultVerify: function(){
 			this.waitForElementVisible('@showingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
 			this.assert.containsText('@showingResult', 'Showing (1 to 25)');
+			this.api.pause(2000);
 		},		
 		getFirmByName: function(client){
 			this.waitForElementVisible('@firmNameSearch',5000, 'Verified Firms name search field enable');

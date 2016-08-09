@@ -5,7 +5,7 @@ module.exports ={
 			client.maximizeWindow();
 			
 			//Log In 
-			loginPage.reportCloud9AdminLogin(client);
+			loginPage.adminLogin(client);
 
 			//Firm Tab.................................
 			var firmsPage = client.page.firmsPage();

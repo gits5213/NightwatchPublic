@@ -91,34 +91,16 @@ var groupsPageCommands = {
 			this.api.pause(2000);		
 		},	
 		getEditGroup: function(){
-			this.verify.visible('@editGroupBtn', 'Verified Edit Group button is visible and clikable');
-			this.click('@editGroupBtn');
-			this.waitForElementVisible('@editGroupHomePage',1000, 'Verified Edit Group home page - Edit Group');
-			this.expect.element('@editGroupHomePage').text.to.contain('Edit Group');
-			this.waitForElementVisible('@editGroupSave',1000, 'Verified Edit Group Save button enable and clickable');
-			this.click('@editGroupSave');
-			this.api.pause(2000);				
+			this.verify.visible('@editGroupBtn', 'Verified Edit Group button is visible and clikable');				
 		},
 		getEditGroupUsers: function(){
-			this.verify.visible('@editGroupUserBtn', 'Verified Edit Group User button is visible and clikable');
-			this.click('@editGroupUserBtn');
-			this.waitForElementVisible('@editGroupUserHomePage',1000, 'Verified selected group name on the group home page header');
-			//this.expect.element('@editGroupHomePage').text.to.contain('Firm A Group X');
-			this.waitForElementVisible('@doneBtn',1000, 'Verified Done button enable and clickable');
-			this.click('@doneBtn');
-			this.api.pause(2000);				
+			this.verify.visible('@editGroupUserBtn', 'Verified Edit Group User button is visible and clikable');				
 		},
 		groupDetailsBtn: function(){
 			this.clearValue('@groupNameSearch');
 			this.waitForElementVisible('@detailsBtn',1000,'Verified Details button is visible and clikable');
-			this.click('@detailsBtn');
-			this.waitForElementVisible('@groupDescription',5000, 'Verified Details expand with all information - Description');
-			this.verify.visible('@detailsBtn','Verified Details button is visible and clikable');
-			this.click('@detailsBtn');
-			this.waitForElementVisible('@detailsFirmName',2000, 'Verified Details collapse and go back to the normal page - Group Name');
-			this.api.pause(1500);
 		}
-		//
+		
 };
 
 module.exports = {

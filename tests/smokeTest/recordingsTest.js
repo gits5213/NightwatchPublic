@@ -5,15 +5,19 @@ module.exports ={
 			client.maximizeWindow();
 			
 			//Log In 
-			loginPage.reportCloud9AdminLogin(client);
+			loginPage.adminLogin(client);
+			
 			//Recordings Tab
 			var recordingsPage = client.page.recordingsPage();
 			recordingsPage.portalRecordingsTab(client);
-			//Print log into console window
+			recordingsPage
+				.click('@recordingsTab')
+				.verify.visible('@recordingsHomePage', 'Verified Connections Home Page - Manage your Cloud9 Recordings')
+			recordingsPage.api.pause(2000);
+
+			
 			console.log('Test cases Countinuing')
-			//current window close
 			client.closeWindow();
-			//All the window close
 			client.end();
 			
 		},
