@@ -3,12 +3,12 @@ module.exports ={
 		
 		'C9 Admin User  Privileges': function(client){
 			var loginPage = client.page.loginPage();
-			console.log("\n",client.globals.baseUrl,'\n');
+			console.log("\n",client.launch_url,'\n');
 			client.windowHandle(function(hand){
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			loginPage.adminLogin(client);
 			client.assert.containsText('body', 'Welcome to the Cloud9 Portal')
 			
@@ -26,14 +26,13 @@ module.exports ={
 			
 			var firmsPage= client.page.firmsPage();
 			firmsPage
-			.verify.visible('@addFirmBtn')
-			.verify.visible('@editFirmBtn')
-			.verify.visible('@manageGrpBtn')
-			.verify.visible('@manageConnBtn')
-			.verify.visible('@manageUsersBtn')
-			.verify.visible('@buttonsRptBtn')
-			.verify.visible('@detailsBtn')
-			.verify.visible('@exportBtn',2000)
+			.verify.visible('@addFirmBtn','Add Firm button visible')
+			.verify.visible('@editFirmBtn','Edit Firm button visible')
+			.verify.visible('@manageGrpBtn','Manage Groups button visible')
+			.verify.visible('@manageConnBtn','Manage Connections button visible')
+			.verify.visible('@manageUsersBtn', 'Manage Users button visible')
+			.verify.visible('@detailsBtn','Details button visible')
+			.verify.visible('@exportBtn','Export button visible')
 			
 			navigation.click('@groups')
 			navigation.api.pause(1000);
@@ -118,7 +117,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			loginPage.adminLogin(client);
 			
 			var usersPage = client.page.usersPage();
@@ -128,14 +127,14 @@ module.exports ={
 			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
 			
 			var adminPage=client.page.editAdminPage();
-			adminPage.setToNone(client);
+			adminPage.setToNone(client)
 			navigation.logout();
 			
-			loginPage.userLoginFail(client.globals.nonAdminUser,client.globals.nonAdminPass);
+			loginPage.userLoginFail(client.globals.nonAdminUser,client.globals.nonAdminPass)
 			
 			loginPage.getText('@loginFail1',function(result){
 				loginPage.verify.equal(result.value,'Login failed, check your username and password and try again.')
-			});
+			})
 			
 			
 			client.end();
@@ -152,7 +151,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -187,7 +186,6 @@ module.exports ={
 			.verify.visible('@manageUsersBtn')
 			.verify.visible('@detailsBtn')
 			.verify.visible('@exportBtn')
-			firmsPage.expect.element('@buttonsRptBtn').to.not.be.visible
 			firmsPage.expect.element('@addFirmBtn').to.not.be.visible
 			
 			navigation.click('@groups')
@@ -224,7 +222,6 @@ module.exports ={
 			.verify.visible('@editNeighBtn')
 			usersPage.expect.element('@editAdminBtn').to.not.be.visible
 			usersPage.expect.element('@editSalesUserBtn').to.not.be.visible
-			usersPage.expect.element('@salesRptBtn').to.not.be.visible
 			
 			navigation.click('@connections');
 			navigation.api.pause(1000);
@@ -273,7 +270,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -336,7 +333,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});;
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -377,7 +374,6 @@ module.exports ={
 			usersPage.expect.element('@editNeighBtn').to.not.be.visible;
 			usersPage.expect.element('@editAdminBtn').to.not.be.visible
 			usersPage.expect.element('@editSalesUserBtn').to.not.be.visible
-			usersPage.expect.element('@salesRptBtn').to.not.be.visible
 			
 			navigation.click('@recordings');
 			navigation.api.pause(1000);
@@ -415,7 +411,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl); //Challenges baseURL-QA2
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -431,7 +427,7 @@ module.exports ={
 			
 			loginPage.userLogin(client)
 			
-			//client.verify.containsText('body', 'Welcome to the Cloud9 Portal')
+			client.verify.containsText('body', 'Welcome to the Cloud9 Portal')
 			
 			var navigation = client.page.navBar();
 			
@@ -453,7 +449,6 @@ module.exports ={
 			.verify.visible('@manageUsersBtn')
 			.verify.visible('@detailsBtn')
 			.verify.visible('@exportBtn')
-			.verify.visible('@buttonsRptBtn')
 			firmsPage.expect.element('@addFirmBtn').to.not.be.visible
 			
 			navigation.click('@groups')
@@ -485,7 +480,6 @@ module.exports ={
 			.verify.visible('@exportBtn')
 			.verify.visible('@editNeighBtn')
 			.verify.visible('@editSalesUserBtn')
-			.verify.visible('@salesRptBtn')
 			
 			navigation.click('@connections');
 			navigation.api.pause(1000);
@@ -534,7 +528,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
 			
@@ -571,7 +565,6 @@ module.exports ={
 			.verify.visible('@manageUsersBtn')
 			.verify.visible('@detailsBtn')
 			.verify.visible('@exportBtn')
-			firmsPage.expect.element('@buttonsRptBtn').to.not.be.visible
 			firmsPage.expect.element('@addFirmBtn').to.not.be.visible
 			
 			navigation.click('@groups')
@@ -609,7 +602,6 @@ module.exports ={
 			.verify.visible('@exportBtn')
 			.verify.visible('@editNeighBtn')
 			usersPage.expect.element('@editSalesUserBtn').to.not.be.visible
-			usersPage.expect.element('@salesRptBtn').to.not.be.visible
 			
 			navigation.click('@connections');
 			navigation.api.pause(1000);

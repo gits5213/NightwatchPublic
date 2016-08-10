@@ -2,8 +2,8 @@ module.exports ={
 		//'@disabled': true,
 		'Add New Firm': function(client){
 			var loginPage = client.page.loginPage();
-			client.url(client.globals.baseUrl);
-			loginPage.reportCloud9AdminLogin(client);
+			client.url(client.launch_url);
+			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
 			firmsPage.go();

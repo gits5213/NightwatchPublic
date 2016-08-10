@@ -2,7 +2,7 @@ module.exports ={
 		'@tags':['connections'],
 		'Add a new Internal Connection to a new Firm': function(client){
 			var loginPage = client.page.loginPage();
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
