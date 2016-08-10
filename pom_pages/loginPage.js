@@ -1,8 +1,8 @@
 var loginCommand = {
 		adminLogin: function(client){
-			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enable')
-			.waitForElementVisible('@passwordField',2000, 'Verified PassWord Field is enable')
-			.waitForElementVisible('@submitButton',2000, 'Verified Sign in button is enable and clikable')
+			this.waitForElementVisible('@usernameField',3000, 'Verified UserName Field is enable')
+			.waitForElementVisible('@passwordField',3000, 'Verified PassWord Field is enable')
+			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable and clikable')
 			.setValue('@usernameField',client.globals.adminUsername)
 			.setValue('@passwordField', client.globals.adminPassword)
 			.click('@submitButton')

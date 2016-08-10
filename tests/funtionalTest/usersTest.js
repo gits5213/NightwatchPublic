@@ -3,6 +3,12 @@ module.exports ={
 		'Add a New User to a new Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
+			
+			
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
@@ -52,7 +58,13 @@ module.exports ={
 		
 		'Edit a newly added user': function(client){
 			var loginPage = client.page.loginPage();
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
+			
+			
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
@@ -107,7 +119,12 @@ module.exports ={
 		
 		'Delete a newly added user': function(client){
 			var loginPage = client.page.loginPage();
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
+			
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
@@ -152,7 +169,12 @@ module.exports ={
 		
 		'Edit Sales Info for a new user':function(client){
 			var loginPage = client.page.loginPage();
-			client.url(client.globals.baseUrl);
+			client.url(client.launch_url);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
+			
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
