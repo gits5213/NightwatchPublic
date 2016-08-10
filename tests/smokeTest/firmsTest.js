@@ -16,21 +16,21 @@ module.exports ={
 			firmsPage.firmTabResultVerify();
 			
 			//Edit Firm Button
-			firmsPage.getFirmByName(client);
+			firmsPage.getFirm_ByName(client);
 			firmsPage.getEditFirmByChangingAddress();
 
 			//Manage Group Button
-			firmsPage.getFirmByName(client);
+			firmsPage.getFirm_ByName(client);
 			firmsPage.manageGroupBtn(client);
 			
 			//Manage Connections Button
 			firmsPage.portalFirmsTab();
-			firmsPage.getFirmByName(client);
+			firmsPage.getFirm_ByName(client);
 			firmsPage.manageConnectionsBtn(client);
 			
 			//Manage Users
 			firmsPage.portalFirmsTab();
-			firmsPage.getFirmByName(client);
+			firmsPage.getFirm_ByName(client);
 			firmsPage.manageUsersBtn(client);
 			
 			//Details

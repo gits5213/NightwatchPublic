@@ -84,7 +84,7 @@ var firmsPageCommands = {
 			this.assert.containsText('@showingResult', 'Showing (1 to 25)');
 			this.api.pause(2000);
 		},		
-		getFirmByName: function(client){
+		getFirm_ByName: function(client){
 			this.waitForElementVisible('@firmNameSearch',5000, 'Verified Firms name search field enable');
 			this.api.pause(1000);
 			this.clearValue('@firmNameSearch');

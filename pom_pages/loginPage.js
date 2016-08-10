@@ -1,8 +1,8 @@
 var loginCommand = {
 		adminLogin: function(client){
-			this.waitForElementVisible('@usernameField',3000, 'Verified UserName Field is enable')
-			.waitForElementVisible('@passwordField',3000, 'Verified PassWord Field is enable')
-			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable and clikable')
+			this.waitForElementVisible('@usernameField',3000, 'Verified UserName Field is enabled')
+			.waitForElementVisible('@passwordField',3000, 'Verified PassWord Field is enabled')
+			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable and clickable')
 			.setValue('@usernameField',client.globals.adminUsername)
 			.setValue('@passwordField', client.globals.adminPassword)
 			.click('@submitButton')
@@ -15,9 +15,9 @@ var loginCommand = {
 			
 		},
 		userLogin: function(client){
-			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enable')
-			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enable')
-			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clikable')
+			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enabled')
+			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
+			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clickable')
 			.setValue('@usernameField',client.globals.nonAdminUser)
 			.setValue('@passwordField',client.globals.nonAdminPass)
 			.click('@submitButton')
@@ -34,9 +34,9 @@ var loginCommand = {
 			this.api.pause(1000,function(){
 				console.log('Logging in - username:'+username+' password:'+password)
 			})
-			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enable')
-			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enable')
-			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clikable')
+			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enabled')
+			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
+			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clickable')
 			.setValue('@usernameField',username)
 			.setValue('@passwordField', password)
 			.click('@submitButton',function(){

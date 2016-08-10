@@ -14,9 +14,12 @@ module.exports ={
 			loginPage.adminLogin(client);
 			usersPage.go();
 			usersPage.editAdminInfo(client.nonAdminUser,client);
+			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
 			navigation.logout();
+			
+			
 			
 			loginPage.userLogin(client);
 						
@@ -33,10 +36,10 @@ module.exports ={
 			client.closeWindow();
 			client.end();
 			
-		},
+		}
 
 
-		'User Cloud9Admin - ability to view customer reporting': function(client){
+/*		'User Cloud9Admin - ability to view customer reporting': function(client){
 			
 			var loginPage = client.page.loginPage();
 		
@@ -99,6 +102,6 @@ module.exports ={
 			console.log('Test cases Countinuing')
 			client.closeWindow();
 			client.end();
-		},
+		},*/
 	
 }

@@ -145,9 +145,6 @@ var userPageCommands = {
 			this.setValue('@selectFirmBarSearch2','Select a');
 			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
-			
-			//this.waitForElementVisible('@spinner',2000)
-			//.waitForElementNotVisible('@spinner',30000);
 			this.waitForElementPresent('@usernameSearch',3000);
 			this.click('@usernameSearch')
 			this.setValue('@usernameSearch',user);
