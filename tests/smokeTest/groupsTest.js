@@ -12,7 +12,7 @@ module.exports ={
 					
 			//Groups Tab ............................
 			var groupsPage = client.page.groupsPage();
-			groupsPage.portalGroupsTab(client);
+			groupsPage.go(client);
 			
 			//Edit Group
 			groupsPage.getGroupByName(client);

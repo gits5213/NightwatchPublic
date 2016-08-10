@@ -1,12 +1,12 @@
 var loginCommand = {
 		adminLogin: function(client){
-			this.waitForElementVisible('@usernameField',3000, 'Verified UserName Field is enabled')
+			this.waitForElementVisible('@usernameField',3000, 'Verified Username Field is visible')
 			.waitForElementVisible('@passwordField',3000, 'Verified PassWord Field is enabled')
 			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable and clickable')
 			.setValue('@usernameField',client.globals.adminUsername)
 			.setValue('@passwordField', client.globals.adminPassword)
 			.click('@submitButton')
-			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup is appear with WARNING header')
+			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
 			this.api.pause(1500);
@@ -15,13 +15,13 @@ var loginCommand = {
 			
 		},
 		userLogin: function(client){
-			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enabled')
+			this.waitForElementVisible('@usernameField',2000, 'Verified Username Field is visible')
 			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
 			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clickable')
 			.setValue('@usernameField',client.globals.nonAdminUser)
 			.setValue('@passwordField',client.globals.nonAdminPass)
 			.click('@submitButton')
-			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup is appear with WARNING header')
+			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
 			this.api.pause(1500);
@@ -34,7 +34,7 @@ var loginCommand = {
 			this.api.pause(1000,function(){
 				console.log('Logging in - username:'+username+' password:'+password)
 			})
-			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enabled')
+			this.waitForElementVisible('@usernameField',2000, 'Verified Username Field is visible')
 			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
 			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clickable')
 			.setValue('@usernameField',username)
@@ -42,7 +42,7 @@ var loginCommand = {
 			.click('@submitButton',function(){
 				console.log('username:'+username+' password:'+password)
 			})
-			.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup is appear with WARNING header')
+			.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			this.api.pause(1500);
 			
 		}			

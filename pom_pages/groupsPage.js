@@ -1,6 +1,7 @@
 var groupsPageCommands = {
-		go: function(){
+		go: function(client){
 			this.api.pause(1000);
+			this.verify.visible('@groupsTab', 'Verified Groups tab button is visible');
 			this.click('@groupsLink');
 			this.api.pause(1000);
 		},
@@ -70,12 +71,12 @@ var groupsPageCommands = {
 			this.api.pause(1000);
 			
 		},
-		//
+		/*//
 		portalGroupsTab: function(client){
-			this.verify.visible('@groupsTab', 'Verified Groups tab button is visible and clikable');
+			this.verify.visible('@groupsTab', 'Verified Groups tab button is visible');
 			this.click('@groupsTab');
 			this.api.pause(2000);
-		},
+		},*/
 			
 		getGroupByName: function(client){
 			this.waitForElementVisible('@groupNameSearch',5000, 'Verified Firms name search field enable');

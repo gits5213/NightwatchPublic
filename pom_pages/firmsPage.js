@@ -1,6 +1,7 @@
 var firmsPageCommands = {
 		go: function(){
 			this.api.pause(1000);
+			this.verify.visible('@firmsTab', 'Verified Firms tab button is visible');
 			this.click('@firmsLink')
 		},
 		addNewFirm: function(client){
@@ -73,11 +74,11 @@ var firmsPageCommands = {
 			this.api.pause(1000);
 		},
 		//
-		portalFirmsTab: function(){
-			this.verify.visible('@firmsTab', 'Verified Firms tab button is visible and clikable');
+	/*	portalFirmsTab: function(){
+			this.verify.visible('@firmsTab', 'Verified Firms tab button is visible');
 			this.click('@firmsTab');
 			this.api.pause(2000);
-		},	
+		},*/	
 		
 		firmTabResultVerify: function(){
 			this.waitForElementVisible('@showingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
@@ -87,17 +88,6 @@ var firmsPageCommands = {
 		getFirm_ByName: function(client){
 			this.waitForElementVisible('@firmNameSearch',5000, 'Verified Firms name search field enable');
 			this.api.pause(1000);
-			this.clearValue('@firmNameSearch');
-			//this.api.pause(1000);
-			this.click('@firmNameSearch');
-			//this.api.pause(2000);
-			this.setValue('@firmNameSearch',' ');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
-			this.api.pause(1000);
-			this.waitForElementVisible('@firstRowFirmsData',5000, 'Verifed the searching result narrowing!');
-			this.click('@firstRowFirmsData');
-			this.api.pause(2000);
 		},	
 		getEditFirmByChangingAddress: function(){
 			this.verify.visible('@editFirmBtn', 'Verified Edit Firm button is visible and clikable');
@@ -114,7 +104,7 @@ var firmsPageCommands = {
 			this.api.pause(1500);		
 		},	
 		manageGroupBtn: function(client){		
-			this.verify.visible('@manageGroupsBtn','Verified Manage Group button is visible and clikable');
+			this.verify.visible('@manageGroupsBtn','Verified Manage Group button is visible');
 			this.click('@manageGroupsBtn');
 			this.waitForElementVisible('@manageGroupHomePage',2000, 'Verified Manage Group home page - Manage your Cloud9 Groups');
 			this.api.pause(1500);	

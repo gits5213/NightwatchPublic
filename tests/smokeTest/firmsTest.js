@@ -12,11 +12,38 @@ module.exports ={
 
 			//Firm Tab.................................
 			var firmsPage = client.page.firmsPage();
-			firmsPage.portalFirmsTab();
+			firmsPage.go();
 			firmsPage.firmTabResultVerify();
 			
 			//Edit Firm Button
 			firmsPage.getFirm_ByName(client);
+			firmsPage.clearValue('@firmNameSearch');
+			//this.api.pause(1000);
+			firmsPage.click('@firmNameSearch');
+			//this.api.pause(2000);
+			firmsPage.setValue('@firmNameSearch',' ');
+			firmsPage.api.keys(client.Keys.DOWN_ARROW);
+			firmsPage.api.keys(client.Keys.ENTER);
+			firmsPage.api.pause(1000);
+			firmsPage.waitForElementVisible('@firstRowFirmsData',5000, 'Verifed the searching result narrowing!');
+			firmsPage.click('@firstRowFirmsData');
+			firmsPage.api.pause(2000);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			firmsPage.getEditFirmByChangingAddress();
 
 			//Manage Group Button
