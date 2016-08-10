@@ -33,7 +33,7 @@ module.exports ={
 			.verify.visible('@manageUsersBtn')
 			.verify.visible('@buttonsRptBtn')
 			.verify.visible('@detailsBtn')
-			.verify.visible('@exportBtn')
+			.verify.visible('@exportBtn',2000)
 			
 			navigation.click('@groups')
 			navigation.api.pause(1000);
@@ -128,14 +128,14 @@ module.exports ={
 			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
 			
 			var adminPage=client.page.editAdminPage();
-			adminPage.setToNone(client)
+			adminPage.setToNone(client);
 			navigation.logout();
 			
-			loginPage.userLoginFail(client.globals.nonAdminUser,client.globals.nonAdminPass)
+			loginPage.userLoginFail(client.globals.nonAdminUser,client.globals.nonAdminPass);
 			
 			loginPage.getText('@loginFail1',function(result){
-				loginPage.verify.equal(result.value,'Login failed. Check Username or Password.')
-			})
+				loginPage.verify.equal(result.value,'Login failed, check your username and password and try again.')
+			});
 			
 			
 			client.end();

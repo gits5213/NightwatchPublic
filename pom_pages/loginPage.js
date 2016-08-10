@@ -34,16 +34,17 @@ var loginCommand = {
 			this.api.pause(1000,function(){
 				console.log('Logging in - username:'+username+' password:'+password)
 			})
-			this.waitForElementVisible('@usernameField',2000)
-			.waitForElementPresent('@passwordField',2000)
-			.waitForElementPresent('@submitButton',2000)
+			this.waitForElementVisible('@usernameField',2000, 'Verified UserName Field is enable')
+			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enable')
+			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clikable')
 			.setValue('@usernameField',username)
 			.setValue('@passwordField', password)
 			.click('@submitButton',function(){
 				console.log('username:'+username+' password:'+password)
 			})
-			.waitForElementNotVisible('@alert',2000)
+			.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup is appear with WARNING header')
 			this.api.pause(1500);
+			
 		}			
 };
 
