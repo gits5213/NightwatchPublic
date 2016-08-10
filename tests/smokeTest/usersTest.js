@@ -1,8 +1,11 @@
 module.exports ={
 		'Cloud9 Portal Smoke Test - Users': function(client){
 			var loginPage = client.page.loginPage();
-			client.url(client.globals.qa2_baseUrl);
-			client.maximizeWindow();
+			client.url(client.launch_url);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
 			
 		//Log In 
 		loginPage.adminLogin(client);
