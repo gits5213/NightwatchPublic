@@ -29,21 +29,7 @@ module.exports ={
 			firmsPage.click('@firstRowFirmsData');
 			firmsPage.api.pause(2000);
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			firmsPage.getEditFirmByChangingAddress();
 
 			//Manage Group Button
@@ -51,17 +37,17 @@ module.exports ={
 			firmsPage.manageGroupBtn(client);
 			
 			//Manage Connections Button
-			firmsPage.portalFirmsTab();
+			firmsPage.go();
 			firmsPage.getFirm_ByName(client);
 			firmsPage.manageConnectionsBtn(client);
 			
 			//Manage Users
-			firmsPage.portalFirmsTab();
+			firmsPage.go();
 			firmsPage.getFirm_ByName(client);
 			firmsPage.manageUsersBtn(client);
 			
 			//Details
-			firmsPage.portalFirmsTab();
+			firmsPage.go();
 			firmsPage.getDetailsBtn(client);
 			
 			
