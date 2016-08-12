@@ -10,6 +10,7 @@ module.exports = {
 			  tokenPath: '/oauth2/v2.0/token'
 			},
 			
+		oauth2 : [],
 		scopes: ['openid','https://outlook.office.com/mail.read'],
 		msft_email: 'test.user@c9tec.com',
 		msft_email_pass: 'Welcome2C9',
@@ -18,13 +19,9 @@ module.exports = {
 			var url = require('url');
 			var outlook = require('node-outlook');
 			var msftPage = client.page.microsoftonline();
-			var new_url = msftPage.go(client);
+			var token = msftPage.go(client);
 			//console.log("currnt url contains: "+new_url);
-			msftPage.setValue('@userEmail', client.globals.msft_email)
-			.setValue("@emailPass", client.globals.msft_email_pass);
-			client.pause(2000);
-			msftPage.click('@signInBtn');
-			client.pause(5000);
+			
 			
 			client.url(function(res){
 				console.log(res);
