@@ -24,7 +24,7 @@ var loginCommand = {
 			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
-			this.api.pause(1500);
+			this.api.pause(2000);
 			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
 			this.api.pause(2000);
 			

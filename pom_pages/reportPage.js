@@ -31,7 +31,9 @@ var reportTabPageCommands = {
 		
 		userButtonRport: function(client){
 			//User Button Report Validation
-			this.expect.element('@userButtonReport_Button_Validation').to.be.visible;
+			
+			//this.expect.element('@userButtonReport_Button_Validation').to.be.visible;
+			this.waitForElementVisible('@userButtonReport_Button_Validation',2000, 'Verified user button Report visible ')
 			this.expect.element('@userButtonReport_Button_Validation').text.to.contain('Button #').before(500);
 			this.expect.element('@userButtonReport_Counterparty_Validation').to.be.visible;
 			this.expect.element('@userButtonReport_Counterparty_Validation').text.to.contain('Counterparty').before(500);
