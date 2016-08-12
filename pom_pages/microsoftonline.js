@@ -12,14 +12,15 @@ var microsoftonline = {
 		client.url(returnVal);
 		client.pause(2000)
 		
-		.setValue('@userEmail', client.globals.msft_email)
+		this.setValue('@userEmail', client.globals.msft_email)
 		.setValue("@emailPass", client.globals.msft_email_pass);
-		client.pause(2000)
-		.click('@signInBtn')
+		client.pause(2000);
+		this.click('@signInBtn')
 		client.pause(5000);
 		
-		var url_parts = url.parse(client.url, true);
+		var url_parts = url.parse(client.url().toString(), true);
 		var code = url_parts.query.code;
+		console.log("Code: ", code);
 		
 		oauth2.authCode.getToken({
 			code: code,
@@ -34,7 +35,7 @@ var microsoftonline = {
 				console.log('Token created: ', token.token);
 			}
 		})
-		return token.token;
+		return token;
 	}
 };
 
