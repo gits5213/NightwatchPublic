@@ -11,16 +11,20 @@ module.exports = {
 			},
 			
 		oauth2 : [],
+		code : '',
+		token : '',
 		scopes: ['openid','https://outlook.office.com/mail.read'],
 		msft_email: 'test.user@c9tec.com',
 		msft_email_pass: 'Welcome2C9',
+		queryParams : {
+		        '$select': 'Subject,ReceivedDateTime,From,Body',
+		        '$orderby': 'ReceivedDateTime desc',
+		        '$top': 1
+		      },
 		
 		checkEmail: function(client){
 			var url = require('url');
 			var outlook = require('node-outlook');
-			var msftPage = client.page.microsoftonline();
-			var token = msftPage.go(client);
-			//console.log("currnt url contains: "+new_url);
 			
 			
 			client.url(function(res){
@@ -30,11 +34,7 @@ module.exports = {
 				console.log("Code: "+ code);
 				//return code;
 				
-				var queryParams = {
-				        '$select': 'Subject,ReceivedDateTime,From',
-				        '$orderby': 'ReceivedDateTime desc',
-				        '$top': 1
-				      };
+				
 				var queryParams2 = {
 					    '$select': 'DisplayName, EmailAddress',
 					  };

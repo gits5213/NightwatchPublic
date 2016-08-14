@@ -8,13 +8,13 @@
    "page_objects_path":"pom_pages",
    "globals_path":"./data/globals.js",
    "selenium":{  
-      "start_process":true,
+      "start_process":false,
       "server_path":"driverServer/selenium-server-standalone-2.53.1.jar",
       "log_path":"selenium_logs",
       "host":"localhost",
       "port":4444,
       "cli_args":{  
-         "webdriver.chrome.driver":"driverServer/chromedriver.exe*"
+         "webdriver.chrome.driver":"driverServer/chromedriver*"
       }
    },
    "test_settings":{  
@@ -30,7 +30,7 @@
             "path":"./screenshots"
          },
          "desiredCapabilities":{  
-            "browserName":"firefox",
+            "browserName":"chrome",
             "javascriptEnabled":true,
             "acceptSslCerts":true
          }
