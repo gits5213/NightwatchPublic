@@ -1,5 +1,5 @@
 var microsoftonline = {
-	go : function(client) {
+	getPassFromEmail : function(client) {
 		var url = require('url');
 		var outlook = require('node-outlook');
 		// Set the API endpoint to use the v2.0 endpoint
@@ -26,7 +26,7 @@ var microsoftonline = {
 		var url_parts;
 		var token;
 		client.url(function(res) {
-					console.log("url is :", res.value);
+					//console.log("url is :", res.value);
 					newUrl = res.value;
 					url_parts = url.parse(newUrl, true);
 					code = url_parts.query.code;
@@ -57,10 +57,17 @@ var microsoftonline = {
 																} else if (result) {
 																	console.log('getMessages returned '+ result.value.length+ ' messages.');
 																	result.value.forEach(function(message) {
-																				//console.log('  Subject: '+ message.Subject);
-																				console.log( message.Body.Content);
-																				//var from = message.From ? message.From.EmailAddress.Name: 'NONE';
-																			})
+																		var passRegex = /Password/;
+																		
+																		console.log('Subject: '+ message.Subject);
+																		//console.log( message.Body.Content);
+																		message.Body.Content = message.Body.Content.replace(/(<([^>]+)>)/ig,"");
+																		var passRes = passRegex.exec(message.Body.Content);
+																		//console.log("Line is : ",passRes);
+																		var newPassword = message.Body.Content.slice(passRes.index+10,passRes.index+18);
+																		console.log('New user password is: ',newPassword);
+																		client.globals.newPassword = newPassword;
+																	})
 																}
 															})
 										}
@@ -68,24 +75,6 @@ var microsoftonline = {
 
 				});
 
-	},
-	getToken : function(code) {
-
-		console.log("code is: ", code);
-		return;
-		oauth2.authCode.getToken({
-			code : code,
-			redirect_uri : client.launch_url,
-			scope : client.globals.scopes.join(' ')
-		}, function(error, result) {
-			if (error) {
-				console.log('Access token error: ', error.message);
-			} else {
-				token = oauth2.accessToken.create(result);
-				console.log('Token created: ', token.token);
-			}
-		})
-		// return token;
 	}
 };
 
