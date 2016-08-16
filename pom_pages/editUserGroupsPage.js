@@ -4,7 +4,7 @@ var userGroupsPageCommands = {
 			this.click('@groupsLink');
 			this.api.pause(1000);
 		},
-		done: function(){
+		addGrp2User: function(){
 			this.waitForElementVisible('@doneBtn',2000)
 			.click('@firstRowFirmGroups');
 			this.api.pause(500);

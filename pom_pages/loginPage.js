@@ -24,6 +24,22 @@ var loginCommand = {
 			.click('@okButton');
 			this.api.pause(1500);
 		},
+		newUserLogin: function(username, password,client){
+			this.waitForElementVisible('@usernameField',2000)
+			.waitForElementPresent('@passwordField',2000)
+			.waitForElementPresent('@submitButton',2000)
+			.api.pause(3000)
+			this.setValue('@usernameField',username)
+			this.setValue('@passwordField',password, function(){
+				console.log('Password is : ',password);
+			})
+			//this.api.pause(1000)
+			this.click('@submitButton')
+			//.waitForElementVisible('@alert',2000)
+			//.assert.containsText('div.modal-header', '**WARNING**')
+			//.click('@okButton');
+			this.api.pause(1500);
+		},
 		userLoginFail: function(username,password){
 			this.api.pause(1000,function(){
 				console.log('Logging in - username:'+username+' password:'+password)
@@ -55,8 +71,7 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			submitButton: {
-				selector: '//*[@id="signin"]',
-				locateStrategy: 'xpath'
+				selector: '#signin'
 			},
 			alert:{
 				selector: 'div.modal-dialog'
@@ -68,6 +83,14 @@ module.exports = {
 			loginFail1:{
 				selector: '//*[@id="changefailed"]',
 				locateStrategy:'xpath'
+			},
+			newPassword1:{
+				selector: '//*[@id="newPassword1"]',
+				locateStrategy: 'xpath'
+			},
+			newPassword2:{
+				selector: '//*[@id="newPassword2"]',
+				locateStrategy: 'xpath'
 			}
 		}
 }

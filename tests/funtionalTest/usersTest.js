@@ -24,7 +24,7 @@ module.exports ={
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 			client.assert.urlContains('firmId=')
 			usersPage.editFirstRecord();
 			
@@ -74,7 +74,7 @@ module.exports ={
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 			client.assert.urlContains('firmId=')
 			//usersPage.editFirstRecord();
 			usersPage.updateFirstRecord(user1[0]);
@@ -128,7 +128,7 @@ module.exports ={
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 			client.assert.urlContains('firmId=')
 			usersPage.deleteUser(user1,client);
 			
@@ -173,7 +173,7 @@ module.exports ={
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 			var salesPage =client.page.editSalesInfoPage();
 			usersPage.editSalesInfo();
 			

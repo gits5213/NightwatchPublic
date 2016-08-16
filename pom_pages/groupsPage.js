@@ -15,9 +15,10 @@ var groupsPageCommands = {
 			this.api.keys(client.Keys.ENTER);
 			this.waitForElementPresent('@grpNameField',2000)
 			.setValue('@grpNameField', 'Firm '+dateString+' Grp 1')
-			.click('@communityBar');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
+			.click('@communityBar')
+			.click('@energyOption');
+			//this.api.keys(client.Keys.DOWN_ARROW);
+			//this.api.keys(client.Keys.ENTER);
 			this.setValue('@contactFname','Howard')
 			.setValue('@contactLname','Hughes')
 			.setValue('@contactEmail',client.globals.email1)
@@ -181,6 +182,10 @@ module.exports = {
 			},
 			firstRow:{
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
+				locateStrategy: 'xpath'
+			},
+			energyOption: {
+				selector: '//*[@id="communityId"]/option[4]',
 				locateStrategy: 'xpath'
 			}
 		}

@@ -1,4 +1,5 @@
 var userAdminCommands = {
+		/*
 		setPrivilege: function(client,clientId){
 			this.waitForElementVisible('@usernameField',2000)
 			.waitForElementVisible('@passwordField',2000)
@@ -12,10 +13,13 @@ var userAdminCommands = {
 			this.api.pause(1500);
 			
 		},
+		*/
 		disable2fa:function(client){
 			this.api.pause(1000);
 			this.click('@tfa_No')
 			.setValue('@allowedIp',client.globals.ip)
+			this.click('@adminPriv')
+			.click('@user3Value')
 			.click('@saveBtn')
 		},
 		setToNone:function(client){

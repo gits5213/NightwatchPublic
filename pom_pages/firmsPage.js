@@ -29,10 +29,11 @@ var firmsPageCommands = {
 			.setValue('@pemail',client.globals.email1)
 			.setValue('@pwork', 123456789)
 			.setValue('@pmobile',234567890)
-			.click('@firmType');
-			this.api.pause(1000);
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
+			.click('@firmType')
+			.click('@firmVisible')
+			//this.api.pause(500);
+			//this.api.keys(client.Keys.DOWN_ARROW);
+			//this.api.keys(client.Keys.ENTER);
 			
 			this.click('@countryDropdown');
 			this.click('@countrySearch');
@@ -190,6 +191,10 @@ module.exports = {
 			billState: {
 				selector: '//*[@id="billState"]',
 				locateStrategy: 'xpath'
+			},
+			firmVisible: {
+				selector: '//*[@id="firmType"]/option[2]',
+				locateStrategy:'xpath'
 			}
 		}
 }
