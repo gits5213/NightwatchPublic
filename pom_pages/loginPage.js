@@ -43,9 +43,25 @@ var loginCommand = {
 				console.log('username:'+username+' password:'+password)
 			})
 			.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
+			this.api.pause(1500);		
+		},
+		
+		prodAdmin2Login: function(client){
+			this.waitForElementVisible('@usernameField',3000, 'Verified Username Field is visible')
+			.waitForElementVisible('@passwordField',3000, 'Verified PassWord Field is enabled')
+			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable and clickable')
+			.setValue('@usernameField',client.globals.prodAdmin2Username)
+			.setValue('@passwordField', client.globals.prodAdmin2Password)
+			.click('@submitButton')
+			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
+			.assert.containsText('div.modal-header', '**WARNING**')
+			.click('@okButton');
 			this.api.pause(1500);
+			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
+			this.api.pause(2000);
 			
-		}			
+		},
+		
 };
 
 module.exports = {

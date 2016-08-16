@@ -8,7 +8,7 @@ module.exports ={
 			});
 			
 			//Log In 
-			loginPage.adminLogin(client);
+			loginPage.prodAdmin2Login(client);
 			//ViewLogs Tab	
 			var viewLogsPage = client.page.viewLogsPage();
 			viewLogsPage.portalViewLogsTab(client);

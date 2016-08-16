@@ -1,9 +1,8 @@
 var userPageCommands = {
 		go: function(){
-			this.api.pause(1000);
+			this.verify.visible('@usersLink', 'Verified User tab button is visible and clikable')
 			this.click('@usersLink');
-			this.api.pause(5000);
-			//this.waitForElementNotVisible('@spinner',4000)
+			this.api.pause(2000);
 		},
 		addUserToFirm : function(firm, client, password){
 			
@@ -26,8 +25,6 @@ var userPageCommands = {
 			.setValue('@fnameField', 'John')
 			.setValue('@lnameField','Doe'+dateString)
 			.setValue('@emailField',client.globals.email1)
-			//.click('@genPassBtn');
-			
 			this.api.pause(1000);
 			this.click('@countryDropdown');
 			this.click('@countrySearch');
@@ -79,7 +76,6 @@ var userPageCommands = {
 			this.clearValue('@usernameSearch')
 			.waitForElementNotVisible('@spinner',3000)
 			.setValue('@usernameSearch','johndoe'+dateString);
-			//this.api.pause(1000);
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow')
 			.click('@editUserBtn');
@@ -106,7 +102,6 @@ var userPageCommands = {
 		deleteUser: function(dateString,client){
 			this.go();
 			this.clearValue('@usernameSearch')
-			//.waitForElementNotVisible('@spinner',5000)
 			.setValue('@usernameSearch','johndoe'+dateString);
 			this.api.pause(1000);
 			this.waitForElementVisible('@firstRow',2000);
@@ -152,8 +147,7 @@ var userPageCommands = {
 			
 			this.click('@firstRow')
 			.click('@editAdminBtn');
-			this.api.pause(1000);
-			
+			this.api.pause(1000);		
 		},
 		addUserWithPassToFirm : function(firm, client){
 			this.click('@addUserBtn');
@@ -184,7 +178,6 @@ var userPageCommands = {
 			var creds=[];
 			
 			this.getValue('@descField',function(result){
-				//console.log(result.value)
 				description= result.value;
 				var usernameIndex=description.substring(description.indexOf('Username='));
 				var passwordIndex=description.substring(description.indexOf('Password='));
@@ -192,7 +185,6 @@ var userPageCommands = {
 				username =usernameIndex.substring(9,usernameIndex.indexOf(' Password='));
 				password =passwordIndex.substring(9,18);
 				console.log("New user created.\nusername: " + username +' and password: '+password);
-				//return [username, password];
 			});
 						
 			this.api.pause(1000);
@@ -210,73 +202,24 @@ var userPageCommands = {
 
 			return [dateString, username, password];
 			
-		},
-		//
-		portalUsersTab: function(client){
-			this.verify.visible('@usersTab', 'Verified User tab button is visible and clikable')
-				.click('@usersTab');
-			this.api.pause(2000);	
-		 },
-		 
+		}, 
 		 userTabResultVerify: function(){
 			this.waitForElementVisible('@userTabShowingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
 			this.assert.containsText('@userTabShowingResult', 'Showing (1 to 25) of');
 		},
 		 
 		getUsersByDefault: function(client){
-			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
+			this.waitForElementVisible('@usernameSearch',5000, 'Verified Firms name search field enable');
 			this.api.pause(1000);		
 		},
 			
 		getEditUser: function(){
-			this.verify.visible('@editUser', 'Verified Edit User button is visible and clikable');				
+			this.verify.visible('@editUserBtn', 'Verified Edit User button is visible and clikable');				
 		},			
-		getUsersByName: function(client){
-			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
+		getUsersName: function(client){
+			this.waitForElementVisible('@usernameSearch',5000, 'Verified Firms name search field visible');
 			this.api.pause(1000);		
-		},
-			
-		getEditSalesInfoUser: function(client){
-			this.verify.visible('@editSalesInfo', 'Verified Edit User Sales Info button is visible and clikable');
-			this.click('@editSalesInfo');
-		},
-			
-		selectSalesPerson: function(client){
-			this.verify.visible('@selectSalesPerson', 'Verified Sales person is selected');
-			this.api.pause(1000);
-		},
-		
-		editSalesInfoNotes: function(client){
-			this.waitForElementVisible('@notesInputText',5000, 'Verified text is being typed into Note input filed')
-				.verify.visible('@notesInputText',false)
-				.clearValue('@notesInputText')
-				.click('@notesInputText')
-				.setValue('@notesInputText','How are you!')
-			this.api.pause(3000);
-		},
-		
-		editSalesInfoSaveChanges: function(client){
-			this.waitForElementVisible('@saveChanges',5000, 'Verified Save changes button visible and clikable!')
-				.verify.visible('@saveChanges',true)
-				.click('@saveChanges')
-			this.api.pause(5000);
-		},	
-		
-		//------Remove-------
-		getUsersByNameClear: function(client){
-			this.waitForElementVisible('@UserNameSearch',5000, 'Verified Firms name search field enable');
-			this.api.pause(1000);		
-			},
-			
-		selectSalesPersonRemove: function(client){
-			this.waitForElementVisible('@selectSalesPerson',5000, 'Verified Sales person is selected!')
-				.verify.visible('@selectSalesPerson', false);
-		},
-		
-		editSalesInfoNotesRemove: function(client){
-			this.waitForElementVisible('@notesInputText',5000, 'Verified  Note input filed enable!');
 		}
-		
 };
 
 module.exports = {
@@ -286,7 +229,10 @@ module.exports = {
 				selector: '//*[@id="navbar"]/ul[1]/li[3]/a/h4/i',
 				locateStrategy: 'xpath'
 			},
-			
+			editSalesUserBtn: {
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/i',
+				locateStrategy: 'xpath'
+			},
 			editUserBtn: {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[2]/i',
 				locateStrategy: 'xpath'
@@ -294,10 +240,6 @@ module.exports = {
 			addUserBtn:{
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[1]/i',
 				locateStrategy:'xpath'
-			},
-			editSalesUserBtn :{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/i',
-				locateStrategy: 'xpath'
 			},
 			editAdminBtn:{
 				selector: '//*[@id="editadminlevel"]/i',
@@ -468,19 +410,8 @@ module.exports = {
 				selector: '//*[@id="state"]',
 				locateStrategy: 'xpath'
 			},
-			//
-			usersTab:{
-				selector: '//*[@id="navbar"]/ul[1]/li[3]/a/h4/i',locateStrategy: 'xpath'
-			},
-			UserNameSearch:{
-				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',locateStrategy: 'xpath'
-			},
-			
 			userTabShowingResult:{
 				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',locateStrategy: 'xpath'
-			},
-			editUser:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[2]/span',locateStrategy: 'xpath'
 			},	
 			editUserHomePage:{
 				selector: '//*[@id="ng-view"]/div/h5',locateStrategy: 'xpath'
@@ -488,27 +419,8 @@ module.exports = {
 			editUserSave:{
 				selector: '//*[@id="userdata"]/div[3]/button[2]',locateStrategy: 'xpath'
 			},
-			//
-			editSalesInfo:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/span',locateStrategy: 'xpath'
-			},
-			selectSalesPerson:{
-				selector: '//*[@id="ng-view"]/div/div/form/div[2]/div[1]/select',locateStrategy: 'xpath'
-			},
-			notesInputText:{
-				selector: '//*[@id="userNotes"]',locateStrategy: 'xpath'
-			},
-			saveChanges:{
-				selector: '//*[@id="ng-view"]/div/div/form/div[8]/button[2]',locateStrategy: 'xpath'
-			},
-			firstRowFirmGroups: {
-				selector: '//*[@id="firmGroups"]/tbody/tr/td[1]',
-				locateStrategy: 'xpath'
-			},
-			firstRowGroupsData:{
-				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',locateStrategy: 'xpath'
+			street2:{
+				selector: '//*[@id="street2"]',locateStrategy: 'xpath'
 			}
-			//
-			
 		}
 }

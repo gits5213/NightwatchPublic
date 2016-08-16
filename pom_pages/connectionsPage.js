@@ -39,7 +39,7 @@ var connPageCommands = {
 			this.api.pause(1000);
 			
 		},
-		//
+		
 		portalConnectionsTab: function(client){
 			this.verify.visible('@connectionsTab', 'Verified Connection tab button is visible and clikable');	
 		}

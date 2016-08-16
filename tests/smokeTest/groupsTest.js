@@ -8,7 +8,7 @@ module.exports ={
 			});
 			
 			//Log In 
-			loginPage.reportCloud9AdminLogin(client);
+			loginPage.prodAdmin2Login(client);
 					
 			//Groups Tab ............................
 			var groupsPage = client.page.groupsPage();

@@ -59,8 +59,8 @@
       "prod":{  
           "launch_url":"https://qa2-c9portal.xhoot.com/c9portal",
           "globals":{  
-             "admin2Username":"ptestuser",
-             "admin2Password":"Shahnewaz1@",
+             "prodAdmin2Username":"ptestuser",
+             "prodAdmin2Password":"Shahnewaz1@",
              "email1":"md.zaman@c9tec.com",
              "nonAdminUser":"",
              "nonAdminPass":""

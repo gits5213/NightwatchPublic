@@ -71,12 +71,6 @@ var groupsPageCommands = {
 			this.api.pause(1000);
 			
 		},
-		/*//
-		portalGroupsTab: function(client){
-			this.verify.visible('@groupsTab', 'Verified Groups tab button is visible');
-			this.click('@groupsTab');
-			this.api.pause(2000);
-		},*/
 			
 		getGroupByName: function(client){
 			this.waitForElementVisible('@groupNameSearch',5000, 'Verified Firms name search field enable');
@@ -215,7 +209,7 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
 			},
-			//
+			
 			groupsTab:{
 				selector: '//*[@id="navbar"]/ul[1]/li[2]/a/h4/i',locateStrategy: 'xpath'
 			},
@@ -249,6 +243,6 @@ module.exports = {
 			detailsFirmName:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
 			}
-			//
+			
 		}
 }

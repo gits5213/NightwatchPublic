@@ -72,37 +72,34 @@ var firmsPageCommands = {
 			.click('@firstRowFirmsData')
 			.click('@editFirmBtn');
 			this.api.pause(1000);
-		},
-		//
-	/*	portalFirmsTab: function(){
-			this.verify.visible('@firmsTab', 'Verified Firms tab button is visible');
-			this.click('@firmsTab');
-			this.api.pause(2000);
-		},*/	
+		},	
 		
 		firmTabResultVerify: function(){
 			this.waitForElementVisible('@showingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
-			this.assert.containsText('@showingResult', 'Showing (1 to 25)');
+			this.assert.containsText('@showingResult', 'Showing');
 			this.api.pause(2000);
 		},		
 		getFirm_ByName: function(client){
 			this.waitForElementVisible('@firmNameSearch',5000, 'Verified Firms name search field enable');
 			this.api.pause(1000);
-		},	
+			this.clearValue('@firmNameSearch');
+			this.click('@firmNameSearch');
+			this.setValue('@firmNameSearch','c9 Technologies');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRowFirmsData',5000, 'Verifed the searching result narrowing!');
+			this.click('@firstRowFirmsData');
+			this.api.pause(2000);	
+		},
+		
 		getEditFirmByChangingAddress: function(){
-			this.verify.visible('@editFirmBtn', 'Verified Edit Firm button is visible and clikable');
-			this.click('@editFirmBtn');
-			this.waitForElementVisible('@street2Field',1000, 'Verified Street2 search field enable and enput random floor number');
-			this.clearValue('@street2Field').click('@street2Field');
-			
-			var randomNumber = Math.floor((Math.random() * 20) + 4);
-			console.log(randomNumber)
-			this.setValue('@street2Field', randomNumber + 'th floor');
-			this.waitForElementVisible('@saveChangesBtn',1000, 'Verified save changes button enable and clickable');
-			this.click('@saveChangesBtn');
-			this.verify.visible('@saveChangesBtn', 'Verified changed being saved and functions are working properly');
-			this.api.pause(1500);		
-		},	
+			this.verify.visible('@editFirmBtn', 'Verified Edit Firm button is visible');			
+			this.api.pause(1000);
+		},
+		
+		//Verification input
+		
 		manageGroupBtn: function(client){		
 			this.verify.visible('@manageGroupsBtn','Verified Manage Group button is visible');
 			this.click('@manageGroupsBtn');

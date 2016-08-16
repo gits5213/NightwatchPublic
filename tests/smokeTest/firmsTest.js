@@ -8,47 +8,65 @@ module.exports ={
 			});
 			
 			//Log In 
-			loginPage.adminLogin(client);
+			loginPage.prodAdmin2Login(client);
 
 			//Firm Tab.................................
-			var firmsPage = client.page.firmsPage();
-			firmsPage.go();
-			firmsPage.firmTabResultVerify();
+		var firmsTab = client.page.firmsPage();
+			firmsTab.go();
+			firmsTab.firmTabResultVerify();
 			
 			//Edit Firm Button
-			firmsPage.getFirm_ByName(client);
-			firmsPage.clearValue('@firmNameSearch');
-			//this.api.pause(1000);
-			firmsPage.click('@firmNameSearch');
-			//this.api.pause(2000);
-			firmsPage.setValue('@firmNameSearch',' ');
-			firmsPage.api.keys(client.Keys.DOWN_ARROW);
-			firmsPage.api.keys(client.Keys.ENTER);
-			firmsPage.api.pause(1000);
-			firmsPage.waitForElementVisible('@firstRowFirmsData',5000, 'Verifed the searching result narrowing!');
-			firmsPage.click('@firstRowFirmsData');
-			firmsPage.api.pause(2000);
+		firmsTab.getFirm_ByName(client);
+		firmsTab.getEditFirmByChangingAddress();
+			firmsTab.click('@editFirmBtn');
+			firmsTab.waitForElementVisible('@street2Field',1000, 'Verified Stree 2 input field visible ');
+			firmsTab.clearValue('@street2Field').click('@street2Field');
+			firmsTab.api.pause(1000);
+			firmsTab.setValue('@street2Field','17th floor');
+			firmsTab.api.pause(1000);
 			
-
-			firmsPage.getEditFirmByChangingAddress();
-
+			/*var randomNumber = Math.floor((Math.random() * 20) + 4);
+			console.log(randomNumber)
+			this.setValue('@street2Field', randomNumber + 'th floor');*/
+			
+			firmsTab.waitForElementVisible('@saveChangesBtn',1000, 'Verified save changes button visible');
+			firmsTab.click('@saveChangesBtn');
+			firmsTab.api.pause(1500);
+			
+			//Edit Firm Button Verification
+			firmsTab.getFirm_ByName(client);
+			firmsTab.getEditFirmByChangingAddress();
+				firmsTab.click('@editFirmBtn');
+				firmsTab.clearValue('@street2Field')
+				firmsTab.api.pause(2000);
+					firmsTab.getText('@street2',function(result){
+						console.log("Text contain :"+ result.value);
+						firmsTab.api.pause(2000);
+						firmsTab.verify.equal("Text Contain : " + result.value, '17th floor');
+					});
+			firmsTab.waitForElementVisible('@saveChangesBtn',1000, 'Verified save changes button visible');
+			firmsTab.click('@saveChangesBtn');
+			firmsTab.api.pause(1500);	
+			
+			
+			//-----------------------------------------------
 			//Manage Group Button
-			firmsPage.getFirm_ByName(client);
-			firmsPage.manageGroupBtn(client);
+		firmsTab.getFirm_ByName(client);
+		firmsTab.manageGroupBtn(client);
 			
 			//Manage Connections Button
-			firmsPage.go();
-			firmsPage.getFirm_ByName(client);
-			firmsPage.manageConnectionsBtn(client);
+		firmsTab.go();
+		firmsTab.getFirm_ByName(client);
+		firmsTab.manageConnectionsBtn(client);
 			
 			//Manage Users
-			firmsPage.go();
-			firmsPage.getFirm_ByName(client);
-			firmsPage.manageUsersBtn(client);
+		firmsTab.go();
+		firmsTab.getFirm_ByName(client);
+		firmsTab.manageUsersBtn(client);
 			
 			//Details
-			firmsPage.go();
-			firmsPage.getDetailsBtn(client);
+		firmsTab.go();
+		firmsTab.getDetailsBtn(client);
 			
 			
 			console.log('Test cases Countinuing')
