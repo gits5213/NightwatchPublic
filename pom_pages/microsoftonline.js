@@ -43,7 +43,7 @@ var microsoftonline = {
 						} else {
 							token = oauth2.accessToken.create(result);
 							client.globals.token = token.token;
-							//console.log('token.token.access_token contains : ', token.token.access_token,'\n');
+							console.log('password inside getPassword: ',client.globals.newPassword);
 
 							//outlook call yanked
 						}
