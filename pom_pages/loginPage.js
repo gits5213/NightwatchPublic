@@ -24,7 +24,7 @@ var loginCommand = {
 			.click('@okButton');
 			this.api.pause(1500);
 		},
-		newUserLogin: function(username, password,client){
+		newUserLogin: function(username, password){
 			this.waitForElementVisible('@usernameField',2000)
 			.waitForElementPresent('@passwordField',2000)
 			.waitForElementPresent('@submitButton',2000)
@@ -54,6 +54,18 @@ var loginCommand = {
 			})
 			.waitForElementNotVisible('@alert',2000)
 			this.api.pause(1500);
+		},
+		
+		changePassword : function(client){
+			this.api.pause(1000);
+			this.setValue('@newPassword1',client.globals.nonAdminPass)
+			.setValue('@newPassword2', client.globals.nonAdminPass)
+			this.api.pause(500);
+			this.click('@changePassBtn')
+			.waitForElementVisible('@alert',2000)
+			.assert.containsText('div.modal-header', '**WARNING**')
+			.click('@okButton2');
+			this.api.pause(1500);
 		}
 			
 		
@@ -80,6 +92,10 @@ module.exports = {
 				selector: "(//button[@type='button'])[4]",
 				locateStrategy: 'xpath'
 			},
+			okButton2:{
+				selector: '//*[@id="AgreeToTerms"]/div[2]/div/div[3]/button[2]',
+				locateStrategy: 'xpath'
+			},
 			loginFail1:{
 				selector: '//*[@id="changefailed"]',
 				locateStrategy:'xpath'
@@ -90,6 +106,14 @@ module.exports = {
 			},
 			newPassword2:{
 				selector: '//*[@id="newPassword2"]',
+				locateStrategy: 'xpath'
+			},
+			changePassText: {
+				selector: '//*[@id="changeForm"]/h2',
+				locateStrategy: 'xpath'
+			},
+			changePassBtn: {
+				selector: '//*[@id="changePassword"]',
 				locateStrategy: 'xpath'
 			}
 		}

@@ -1,7 +1,11 @@
 var microsoftonline = {
-	getEmailToken : function(client) {
+		getPassFromEmail : function(client) {
 		var url = require('url');
-		
+		var outlook = require('node-outlook');
+		// Set the API endpoint to use the v2.0 endpoint
+		outlook.base.setApiEndpoint('https://outlook.office.com/api/v2.0');
+		// Set the anchor mailbox to the user's SMTP address
+		outlook.base.setAnchorMailbox(client.globals.msft_email);
 		
 		var oauth2 = require('simple-oauth2')(client.globals.msft_credentials);
 		var returnVal = oauth2.authCode.authorizeURL({
@@ -22,7 +26,7 @@ var microsoftonline = {
 		var code;
 		var url_parts;
 		var token;
-		//var newPassword;
+		
 		client.url(function(res) {
 			
 			//console.log("url is :", res.value);
@@ -43,53 +47,43 @@ var microsoftonline = {
 						} else {
 							token = oauth2.accessToken.create(result);
 							client.globals.token = token.token;
-							console.log('password inside getPassword: ',client.globals.newPassword);
+							//console.log('client.globals.token = ',client.globals.token);
+							
+							outlook.mail.getMessages(
+									
+									{
+										token : client.globals.token.access_token,
+										odataParams : client.globals.queryParams
+									},function(error,result) {
+										if (error) {
+											console.log('getMessages returned an error: '+ error);
+										} else if (result) {
+											console.log(result.value.length+ ' email message retrieved.');
+											result.value.forEach(function(message) {
+												var passRegex = /Password/;
+												
+												//console.log('Subject: '+ message.Subject);
+												//console.log( message.Body.Content);
+												message.Body.Content = message.Body.Content.replace(/(<([^>]+)>)/ig,"");
+												var passRes = passRegex.exec(message.Body.Content);
+												var newPassword = message.Body.Content.slice(passRes.index+10,passRes.index+18);
+												//console.log('New user password is: ',newPassword);
+												client.globals.newPassword = newPassword;
+												//console.log('client.globals.newPassword contains :',client.globals.newPassword);
+												return newPassword;
+												
+											})
+										}
+									});
 
-							//outlook call yanked
 						}
 					});
-
+			
+			
+			
+				//callback(client);
 		});
-		
 
-	},
-	getPassFromEmail : function(client){
-		var outlook = require('node-outlook');
-		// Set the API endpoint to use the v2.0 endpoint
-		outlook.base.setApiEndpoint('https://outlook.office.com/api/v2.0');
-		// Set the anchor mailbox to the user's SMTP address
-		outlook.base.setAnchorMailbox(client.globals.msft_email);
-		outlook.mail.getMessages(
-				
-				{
-					token : client.globals.token.access_token,
-					odataParams : client.globals.queryParams
-				},function(error,result) {
-					if (error) {
-						console.log('getMessages returned an error: '+ error);
-					} else if (result) {
-						console.log(result.value.length+ ' message retrieved.');
-						result.value.forEach(function(message) {
-							var passRegex = /Password/;
-							
-							//console.log('Subject: '+ message.Subject);
-							//console.log( message.Body.Content);
-							message.Body.Content = message.Body.Content.replace(/(<([^>]+)>)/ig,"");
-							var passRes = passRegex.exec(message.Body.Content);
-							//console.log("Line is : ",passRes);
-							var newPassword = message.Body.Content.slice(passRes.index+10,passRes.index+18);
-							console.log('New user password is: ',newPassword);
-							client.globals.newPassword = newPassword;
-							console.log('client.globals.newPassword contains :',client.globals.newPassword);
-							callback(client);
-						})
-					}
-				})
-	},
-	getPassword : function(client){
-		this.getEmailToken(client);
-		this.getPassFromEmail(client);
-		//callback(client);
 	}
 };
 

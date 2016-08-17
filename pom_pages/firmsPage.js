@@ -31,13 +31,14 @@ var firmsPageCommands = {
 			.setValue('@pmobile',234567890)
 			.click('@firmType')
 			.click('@firmVisible')
-			//this.api.pause(500);
+			this.api.pause(1000);
 			//this.api.keys(client.Keys.DOWN_ARROW);
 			//this.api.keys(client.Keys.ENTER);
 			
-			this.click('@countryDropdown');
-			this.click('@countrySearch');
-			this.api.pause(500);
+			this.click('@countryDropdown')
+			//.click('@countryUSA')
+			//this.click('@countrySearch');
+			this.api.pause(1000);
 			this.setValue('@countrySearch','United States');
 			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
@@ -194,6 +195,10 @@ module.exports = {
 			},
 			firmVisible: {
 				selector: '//*[@id="firmType"]/option[2]',
+				locateStrategy:'xpath'
+			},
+			countryUSA: {
+				selector: '//*[@id="mailingCountry_chosen"]/div/ul/li[231]',
 				locateStrategy:'xpath'
 			}
 		}

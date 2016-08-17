@@ -24,9 +24,7 @@ var userPageCommands = {
 			this.waitForElementVisible('@fnameField',1000)
 			.waitForElementVisible('@lnameField',1000)
 			.setValue('@fnameField', 'John')
-			.setValue('@lnameField','Doe'+dateString, function(){
-				console.log('Creating user ','johndoe',dateString.trim());
-			})
+			.setValue('@lnameField','Doe'+dateString)
 			.setValue('@emailField',client.globals.email1)
 			//.click('@genPassBtn');
 			
@@ -141,12 +139,12 @@ var userPageCommands = {
 			.click('@editSalesUserBtn');
 			this.api.pause(1000);
 		},
-		editAdminInfo: function(user,client){
+		editAdminInfo: function(user,client,callback){
 			this.api.pause(1000);
 			this.waitForElementPresent('@selectFirmBar2',3000)
 			this.click('@selectFirmBar2')
 			.setValue('@selectFirmBarSearch2','Select a');
-			this.api.pause(1000);
+			this.api.pause(3000);
 			this.api.keys(client.Keys.ENTER);
 			
 			//this.waitForElementVisible('@spinner',2000)
@@ -159,6 +157,9 @@ var userPageCommands = {
 			this.click('@firstRow')
 			.click('@editAdminBtn');
 			this.api.pause(1000);
+			if(callback){
+				callback();
+			}
 			
 		}
 };
