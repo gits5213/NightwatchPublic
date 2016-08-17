@@ -54,7 +54,7 @@ module.exports ={
 			.verify.urlContains('#/editUser?firmId=')
 			
 			client.end();
-		},
+		}
 		
 		'Edit a newly added user': function(client){
 			var loginPage = client.page.loginPage();
@@ -214,7 +214,7 @@ module.exports ={
 			salesPage.getValue('@salesPerson2Bar',function(result){
 				salesPage.verify.equal(result.value,'None')
 			});
-			/**/
+			
 			salesPage.getValue('@billStartBar',function(result){
 				salesPage.verify.equal(result.value,'string:')
 			});
@@ -234,4 +234,5 @@ module.exports ={
 			
 			client.end();
 		}
+		
 }

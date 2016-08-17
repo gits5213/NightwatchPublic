@@ -11,7 +11,21 @@ var userGroupsPageCommands = {
 			this.click('@addGrp2UserBtn')
 			.click('@doneBtn');
 			this.api.pause(1000);
+		},
+		done_1: function(client){
+			this.waitForElementVisible('@secondRowFirmGroups',2000);
+			this.click('@secondRowFirmGroups');
+			this.waitForElementVisible('@addGrp2UserBtn',2000);
+			this.click('@addGrp2UserBtn')
+			this.api.pause(5000);
+			this.click('@secondRowFirmGroups');
+			this.waitForElementVisible('@addGrp2UserBtn',5000);
+			this.click('@addGrp2UserBtn')
+			this.waitForElementVisible('@doneBtn',5000);
+			this.click('@doneBtn');
+			this.api.pause(5000);
 		}
+		
 };
 
 module.exports = {
@@ -32,6 +46,12 @@ module.exports = {
 			firstRowFirmGroups: {
 				selector: '//*[@id="firmGroups"]/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
+			},
+			secondRowFirmGroups: {
+				selector: '//*[@id="firmGroups"]/tbody/tr/td[1]',
+				locateStrategy: 'xpath'
 			}
+			
+			
 		}
 }

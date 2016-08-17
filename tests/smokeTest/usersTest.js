@@ -58,8 +58,9 @@ module.exports ={
 				usersTab.api.pause(2000);
 				usersTab.getText('@street2',function(result){
 					console.log("Text contain :"+ result.value);
-					usersTab.api.pause(2000);
-					usersTab.verify.equal(result.value, '17th floor');
+					usersTab.api.pause(1000);
+					usersTab.verify.valueContains('@mobileField',17th floor)
+					//usersTab.verify.equal(result.value, '17th floor');
 				});
 				usersTab.clearValue('@street2');
 				usersTab.waitForElementVisible('@editUserSave',1000, 'Verified Edit User Save button visible');

@@ -4,7 +4,7 @@ var userPageCommands = {
 			this.click('@usersLink');
 			this.api.pause(2000);
 		},
-		addUserToFirm : function(firm, client, password){
+		addUserToFirm : function(firm, client, dateString){    
 			
 			this.click('@addUserBtn');
 			this.api.pause(1000);
@@ -52,10 +52,12 @@ var userPageCommands = {
 			this.api.pause(1000);
 			
 			this.click('@addUserSubmitBtn');
-			this.waitForElementVisible('@newUserModal',2000)
-			.click('@addUserConfirmBtn')
-			.waitForElementNotPresent('@newUserModal',30000);
-
+			this.api.pause(2000);
+			this.waitForElementVisible('@newUserModal',5000);
+			this.click('@addUserConfirmBtn');
+			this.api.pause(15000);
+			this.waitForElementNotPresent('@newUserModal',30000);
+			
 			return dateString;
 			
 		},
@@ -66,6 +68,16 @@ var userPageCommands = {
 			this.api.pause(1000);
 			
 		},
+		firstRecordEditButtons: function(){
+			this.waitForElementVisible('@firstRow',5000);
+			this.click('@firstRow');
+			this.api.pause(500);
+			this.click('@editBtn');
+			this.verify.urlContains('#/buttons?');
+			this.api.pause(1000);
+		
+		},
+				
 		editRecord: function(){
 			this.click('@editUserBtn');
 			this.api.pause(1000);
@@ -218,7 +230,16 @@ var userPageCommands = {
 		},			
 		getUsersName: function(client){
 			this.waitForElementVisible('@usernameSearch',5000, 'Verified Firms name search field visible');
-			this.api.pause(1000);		
+			this.api.pause(1000);	
+		},
+		getFirstRow: function(dateString){
+			this.Click('@usernameSearch')
+			this.setValue('@usernameSearch',dateString);		
+			this.waitForElementVisible('@firstRow',5000);
+			this.click('@firstRow')
+			.click('@editAdminBtn');
+			this.api.pause(1000);
+			
 		}
 };
 
@@ -309,10 +330,12 @@ module.exports = {
 				selector: '//*[@id="adduserConfirmedButton"]',
 				locateStrategy: 'xpath'
 			},
+			
 			firstRow: {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
 			},
+			
 			firmName: '#firmName',
 			emailField: '#email',
 			username: '#username',
@@ -422,5 +445,6 @@ module.exports = {
 			street2:{
 				selector: '//*[@id="street2"]',locateStrategy: 'xpath'
 			}
+			
 		}
 }
