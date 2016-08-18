@@ -29,8 +29,8 @@ module.exports ={
 			var recordingsPage = client.page.recordingsPage();
 			recordingsPage.portalRecordingsTab(client);
 			recordingsPage
-				.click('@recordingsTab')
-				.verify.visible('@recordingsHomePage', 'Verified Connections Home Page - Manage your Cloud9 Recordings')
+				.click('@recordingsTab');
+			client.assert.urlContains('#/recordings');
 			recordingsPage.api.pause(2000);
 
 			

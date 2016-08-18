@@ -57,10 +57,6 @@ module.exports = {
 			recordingsTab:{
 				selector: '//*[@id="recordingsNav"]/h4/span',
 				locateStrategy: 'xpath'
-			},
-			recordingsHomePage:{
-				selector: '//*[@id="ng-view"]/div[1]/div/h2',
-				locateStrategy: 'xpath'
 			}
 		}
 }

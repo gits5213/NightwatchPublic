@@ -28,7 +28,7 @@ module.exports ={
 			var viewLogsPage = client.page.viewLogsPage();
 			viewLogsPage.portalViewLogsTab(client);
 				viewLogsPage.click('@viewLogTab');
-				viewLogsPage.verify.visible('@viewLogsHomePage', 'Verified Connections Home Page -   View Audit Logs');	
+				client.assert.urlContains('#/auditlogs');	
 				viewLogsPage.api.pause(2000);
 			
 			

@@ -1,7 +1,7 @@
 var firmsPageCommands = {
 		go: function(){
 			this.api.pause(1000);
-			this.verify.visible('@firmsTab', 'Verified Firms tab button is visible');
+			this.verify.visible('@firmsLink', 'Verified Firms tab button is visible');
 			this.click('@firmsLink')
 		},
 		addNewFirm: function(client){

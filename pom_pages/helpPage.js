@@ -2,9 +2,7 @@
 var helpPageCommand = {
 		portalHelpTab: function(client){
 			this.verify.visible('@helpTab', 'Verified Help tab button is visible and clikable');
-			this.click('@helpTab');
-			this.verify.visible('@helpHomePage', 'Verified Connections Home Page - How Can We Help You?');	
-			this.api.pause(2000);		
+			this.click('@helpTab');		
 		}
 //
 };

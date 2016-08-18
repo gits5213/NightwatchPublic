@@ -29,7 +29,7 @@ module.exports ={
 			reportPage.portalReportsTab(client);
 			reportPage
 				.click('@reportsTab')
-				.verify.visible('@reportsHomePage', 'Verified Connections Home Page - Cloud9 Usage')	
+				client.assert.urlContains('#/reports');
 			reportPage.api.pause(2000);
 			
 		
