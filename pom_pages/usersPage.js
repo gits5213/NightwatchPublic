@@ -217,7 +217,7 @@ var userPageCommands = {
 		}, 
 		 userTabResultVerify: function(){
 			this.waitForElementVisible('@userTabShowingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
-			this.assert.containsText('@userTabShowingResult', 'Showing (1 to 25) of');
+			this.assert.containsText('@userTabShowingResult', 'Showing');
 		},
 		 
 		getUsersByDefault: function(client){

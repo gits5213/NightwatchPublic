@@ -1,14 +1,23 @@
 module.exports ={
 		'Cloud9 Portal Smoke Test - Users': function(client){
+			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
-			client.url(client.launch_url);
+			var usersPage = client.page.usersPage();
 			client.windowHandle(function(hand){
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
+			client.url(client.launch_url);
+			loginPage.adminLogin(client);
+					
+			usersPage.go();
+			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
 			
-		//Log In 
-		loginPage.prodAdmin2Login(client);
+			var adminPage=client.page.editAdminPage();
+			adminPage.setToAdmin2(client)
+			navigation.logout();
+					
+			loginPage.userLogin(client);
 			
 		//User Tab 
 		var usersTab = client.page.usersPage();
@@ -18,7 +27,7 @@ module.exports ={
 		usersTab.getUsersByDefault(client);
 			usersTab.clearValue('@usernameSearch');
 			usersTab.click('@usernameSearch');
-			usersTab.setValue('@usernameSearch','ptestuser');
+			usersTab.setValue('@usernameSearch','johnakpan');
 			usersTab.api.keys(client.Keys.DOWN_ARROW);
 			usersTab.api.keys(client.Keys.ENTER);
 			usersTab.api.pause(1000);
@@ -45,7 +54,7 @@ module.exports ={
 			usersTab.getUsersByDefault(client);
 				usersTab.clearValue('@usernameSearch');
 				usersTab.click('@usernameSearch');
-				usersTab.setValue('@usernameSearch','ptestuser');
+				usersTab.setValue('@usernameSearch','johnakpan');
 				usersTab.api.keys(client.Keys.DOWN_ARROW);
 				usersTab.api.keys(client.Keys.ENTER);
 				usersTab.api.pause(1000);
@@ -56,12 +65,12 @@ module.exports ={
 			usersTab.getEditUser();
 				usersTab.click('@editUserBtn');		
 				usersTab.api.pause(2000);
-				usersTab.getText('@street2',function(result){
+				usersTab.verify.valueContains('@street2','17th floor');
+				/*usersTab.getText('@street2',function(result){
 					console.log("Text contain :"+ result.value);
-					usersTab.api.pause(1000);
-					usersTab.verify.valueContains('@mobileField',17th floor)
-					//usersTab.verify.equal(result.value, '17th floor');
-				});
+					
+				});*/
+				usersTab.api.pause(1000);
 				usersTab.clearValue('@street2');
 				usersTab.waitForElementVisible('@editUserSave',1000, 'Verified Edit User Save button visible');
 				usersTab.click('@editUserSave');

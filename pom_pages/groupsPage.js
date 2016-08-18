@@ -1,7 +1,7 @@
 var groupsPageCommands = {
 		go: function(client){
 			this.api.pause(1000);
-			this.verify.visible('@groupsTab', 'Verified Groups tab button is visible');
+			this.verify.visible('@groupsLink', 'Verified Groups tab button is visible');
 			this.click('@groupsLink');
 			this.api.pause(1000);
 		},

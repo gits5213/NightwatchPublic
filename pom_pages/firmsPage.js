@@ -80,7 +80,7 @@ var firmsPageCommands = {
 			this.api.pause(2000);
 		},		
 		getFirm_ByName: function(client){
-			this.waitForElementVisible('@firmNameSearch',5000, 'Verified Firms name search field enable');
+			this.waitForElementVisible('@firmNameSearch',5000, 'Verified Firms name search field visible');
 			this.api.pause(1000);
 			this.clearValue('@firmNameSearch');
 			this.click('@firmNameSearch');
@@ -88,7 +88,7 @@ var firmsPageCommands = {
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(1000);
-			this.waitForElementVisible('@firstRowFirmsData',5000, 'Verifed the searching result narrowing!');
+			this.waitForElementVisible('@firstRowFirmsData',5000, 'Verifed searching result visible!');
 			this.click('@firstRowFirmsData');
 			this.api.pause(2000);	
 		},
@@ -97,8 +97,6 @@ var firmsPageCommands = {
 			this.verify.visible('@editFirmBtn', 'Verified Edit Firm button is visible');			
 			this.api.pause(1000);
 		},
-		
-		//Verification input
 		
 		manageGroupBtn: function(client){		
 			this.verify.visible('@manageGroupsBtn','Verified Manage Group button is visible');
