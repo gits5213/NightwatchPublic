@@ -22,6 +22,7 @@ module.exports = {
 		        '$top': 1
 		      },
 		
-		      newPassword:''
+		newUser:'',
+		newPassword:''
 		
 }
