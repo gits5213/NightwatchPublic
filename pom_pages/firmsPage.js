@@ -248,12 +248,6 @@ module.exports = {
 			billState: {
 				selector: '//*[@id="billState"]',
 				locateStrategy: 'xpath'
-			},
-<<<<<<< HEAD
-			
-			//--
-			firmsTab:{
-				selector: '//*[@id="navbar"]/ul[1]/li[1]/a/h4/i',locateStrategy: 'xpath'
 			},		
 			showingResult:{
 				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',locateStrategy: 'xpath'
@@ -299,7 +293,7 @@ module.exports = {
 			},
 			detailsFirmName:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
-=======
+			},
 			firmVisible: {
 				selector: '//*[@id="firmType"]/option[2]',
 				locateStrategy:'xpath'
@@ -307,7 +301,6 @@ module.exports = {
 			countryUSA: {
 				selector: '//*[@id="mailingCountry_chosen"]/div/ul/li[231]',
 				locateStrategy:'xpath'
->>>>>>> refs/remotes/origin/master
 			}
 		//	
 		

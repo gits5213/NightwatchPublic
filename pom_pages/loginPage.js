@@ -29,9 +29,6 @@ var loginCommand = {
 			this.api.pause(2000);
 			
 		},
-<<<<<<< HEAD
-		
-=======
 		newUserLogin: function(username, password){
 			this.waitForElementVisible('@usernameField',2000)
 			.waitForElementPresent('@passwordField',2000)
@@ -48,7 +45,7 @@ var loginCommand = {
 			//.click('@okButton');
 			this.api.pause(1500);
 		},
->>>>>>> refs/remotes/origin/master
+
 		userLoginFail: function(username,password){
 			this.api.pause(1000,function(){
 				console.log('Logging in - username:'+username+' password:'+password)
@@ -61,8 +58,7 @@ var loginCommand = {
 			.click('@submitButton',function(){
 				console.log('username:'+username+' password:'+password)
 			})
-<<<<<<< HEAD
-			.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
+			this.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			this.api.pause(1500);		
 		},
 		
@@ -76,8 +72,7 @@ var loginCommand = {
 			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
-=======
-			.waitForElementNotVisible('@alert',2000)
+			this.waitForElementNotVisible('@alert',2000);
 			this.api.pause(1500);
 		},
 		
@@ -90,7 +85,6 @@ var loginCommand = {
 			.waitForElementVisible('@alert',2000)
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton2');
->>>>>>> refs/remotes/origin/master
 			this.api.pause(1500);
 			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
 			this.api.pause(2000);
@@ -128,7 +122,6 @@ module.exports = {
 				selector: '//*[@id="changefailed"]',
 				locateStrategy:'xpath'
 			},
-<<<<<<< HEAD
 			portalHomePage:{
 				selector: '//*[@id="ng-view"]/div/div[1]/div/div/div/div/h1',
 				locateStrategy: 'xpath'
@@ -137,7 +130,6 @@ module.exports = {
 				selector: '//*[@id="signin"]',
 				locateStrategy: 'xpath'
 			},
-=======
 			newPassword1:{
 				selector: '//*[@id="newPassword1"]',
 				locateStrategy: 'xpath'
@@ -154,6 +146,5 @@ module.exports = {
 				selector: '//*[@id="changePassword"]',
 				locateStrategy: 'xpath'
 			}
->>>>>>> refs/remotes/origin/master
 		}
 }

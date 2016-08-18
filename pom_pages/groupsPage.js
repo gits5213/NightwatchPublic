@@ -109,17 +109,7 @@ var groupsPageCommands = {
 			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
 			this.click('@firstRowGroupsData');
 			this.api.pause(2000);		
-		},
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}
 		
 };
 
@@ -234,11 +224,7 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
 			},
-<<<<<<< HEAD
 			
-			groupsTab:{
-				selector: '//*[@id="navbar"]/ul[1]/li[2]/a/h4/i',locateStrategy: 'xpath'
-			},
 			groupNameSearch:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',locateStrategy: 'xpath'
 			},
@@ -268,11 +254,10 @@ module.exports = {
 			},
 			detailsFirmName:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
-=======
+			},
 			energyOption: {
 				selector: '//*[@id="communityId"]/option[4]',
 				locateStrategy: 'xpath'
->>>>>>> refs/remotes/origin/master
 			}
 			
 		}

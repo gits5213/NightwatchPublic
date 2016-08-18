@@ -4,12 +4,7 @@ var userPageCommands = {
 			this.click('@usersLink');
 			this.api.pause(2000);
 		},
-<<<<<<< HEAD
-		addUserToFirm : function(firm, client, dateString){    
-=======
-		addUserToFirm : function(firm, client){
->>>>>>> refs/remotes/origin/master
-			
+		addUserToFirm : function(firm, client, dateString){    			
 			this.click('@addUserBtn');
 			this.api.pause(1000);
 			this.click('@selectFirmBar')
@@ -30,10 +25,6 @@ var userPageCommands = {
 			.setValue('@lnameField','Doe'+dateString)
 			.setValue('@emailField',client.globals.email1)
 			this.api.pause(1000);
-<<<<<<< HEAD
-=======
-			
->>>>>>> refs/remotes/origin/master
 			this.click('@countryDropdown');
 			this.click('@countrySearch');
 			this.api.pause(500);
@@ -60,7 +51,6 @@ var userPageCommands = {
 			this.api.pause(1000);
 			
 			this.click('@addUserSubmitBtn');
-<<<<<<< HEAD
 			this.api.pause(2000);
 			this.waitForElementVisible('@newUserModal',5000);
 			this.click('@addUserConfirmBtn');
@@ -68,13 +58,10 @@ var userPageCommands = {
 			this.waitForElementNotPresent('@newUserModal',30000);
 			
 			return dateString;
-=======
 			this.waitForElementVisible('@newUserModal',2000)
 			.click('@addUserConfirmBtn')
 			.waitForElementNotPresent('@newUserModal',30000);
-
 			return dateString.trim();
->>>>>>> refs/remotes/origin/master
 			
 		},
 		editFirstRecord: function(){
@@ -165,22 +152,15 @@ var userPageCommands = {
 			this.api.pause(1000);
 			this.waitForElementPresent('@selectFirmBar2',3000)
 			this.click('@selectFirmBar2')
-<<<<<<< HEAD
 			this.setValue('@selectFirmBarSearch2','Select a');
 			this.api.pause(1000);
-=======
-			.setValue('@selectFirmBarSearch2','Select a');
-			this.api.pause(3000);
->>>>>>> refs/remotes/origin/master
 			this.api.keys(client.Keys.ENTER);
 			this.waitForElementPresent('@usernameSearch',3000);
-			this.click('@usernameSearch')
+			this.click('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 			this.api.pause(1000);
-			
 			this.click('@firstRow')
 			.click('@editAdminBtn');
-<<<<<<< HEAD
 			this.api.pause(1000);		
 		},
 		addUserWithPassToFirm : function(firm, client){
@@ -235,12 +215,10 @@ var userPageCommands = {
 			});
 
 			return [dateString, username, password];
-=======
 			this.api.pause(1000);
 			if(callback){
 				callback();
 			}
->>>>>>> refs/remotes/origin/master
 			
 		}, 
 		 userTabResultVerify: function(){
