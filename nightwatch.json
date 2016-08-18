@@ -31,11 +31,11 @@
             "path":"./screenshots"
          },
          "desiredCapabilities":{  
-            "browserName":"chrome",
-            "javascriptEnabled":true,
-            "acceptSslCerts":true,
-            "marionette":false
-         }
+             "browserName":"chrome",
+             "javascriptEnabled":true,
+             "acceptSslCerts":true,
+             "marionette":false
+          }
       },
       "qa2":{  
          "launch_url":"https://qa2-c9portal.xhoot.com/c9portal",

@@ -2,9 +2,9 @@ var firmsPageCommands = {
 		go: function(){
 			this.api.pause(1000);
 			this.verify.visible('@firmsLink', 'Verified Firms tab button is visible');
-			this.click('@firmsLink')
+			this.click('@firmsLink');
 		},
-		addNewFirm: function(client){
+		addNewFirm : function(client){
 			this.api.pause(1000);
 			this.click('@addFirmBtn')
 			.assert.containsText('body','Add Firm')
@@ -31,17 +31,17 @@ var firmsPageCommands = {
 			.setValue('@pwork', 123456789)
 			.setValue('@pmobile',234567890)
 			.click('@firmType')
-			.click('@firmVisible')
+			.click('@firmVisible');
 			this.api.pause(1000);
 			//this.api.keys(client.Keys.DOWN_ARROW);
 			//this.api.keys(client.Keys.ENTER);
 			
-			this.click('@countryDropdown')
+			this.click('@countryDropdown');
 			//.click('@countryUSA')
 			//this.click('@countrySearch');
 			this.api.pause(1000);
 			this.setValue('@countrySearch','United States');
-			this.api.pause(500);
+			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
 			
 			this.api.pause(1000);
@@ -52,18 +52,16 @@ var firmsPageCommands = {
 			this.setValue('@stateSearch','New York');
 			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
-			
-			
+					
 			this.click('@copyFrmBtn');
 			this.api.pause(1000);
-			
-			
-			
+					
 			this.click('@submitFrmBtn');
 			this.api.pause(1000);
 		
 			return dateString.trim();
 		},
+		
 		getFirmByName : function(string){
 			this.click('@firmsLink')
 			.clearValue('@firmNameSearch');
@@ -129,7 +127,7 @@ var firmsPageCommands = {
 			this.waitForElementVisible('@detailsFirmName',2000, 'Verified Details collapse and go back to the normal page - Firm Name');
 			this.api.pause(1500);
 		}
-		//
+		
 };
 
 module.exports = {
@@ -250,9 +248,14 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},		
 			showingResult:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',locateStrategy: 'xpath'
+				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',
+				locateStrategy: 'xpath'
 			},
-			firmNameSearch:{
+			
+			
+			//
+			
+		/*	firmNameSearch:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',locateStrategy: 'xpath'
 			},
 			firstRowFirmsData:{
@@ -287,12 +290,17 @@ module.exports = {
 			},
 			detailsBtn:{
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[6]/span',locateStrategy: 'xpath'
-			},		
+			},*/
+			
+			//
+			
 			detailsFirmID:{
-				selector: '//span[contains(.,"Firm ID")]',locateStrategy: 'xpath'
+				selector: '//span[contains(.,"Firm ID")]',
+				locateStrategy: 'xpath'
 			},
 			detailsFirmName:{
-				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',
+				locateStrategy: 'xpath'
 			},
 			firmVisible: {
 				selector: '//*[@id="firmType"]/option[2]',
@@ -302,7 +310,7 @@ module.exports = {
 				selector: '//*[@id="mailingCountry_chosen"]/div/ul/li[231]',
 				locateStrategy:'xpath'
 			}
-		//	
+		
 		
 		}
 }

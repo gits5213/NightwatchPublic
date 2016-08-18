@@ -12,7 +12,7 @@ var userGroupsPageCommands = {
 			.click('@doneBtn');
 			this.api.pause(1000);
 		},
-		done_1: function(client){
+		done: function(client){
 			this.waitForElementVisible('@secondRowFirmGroups',2000);
 			this.click('@secondRowFirmGroups');
 			this.waitForElementVisible('@addGrp2UserBtn',2000);

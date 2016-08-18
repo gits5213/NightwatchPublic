@@ -31,7 +31,7 @@ module.exports ={
 	var userGroupsPage= client.page.editUserGroupsPage();
 		userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 		client.assert.urlContains('firmId=')
 		usersPage.editFirstRecord();
 		
@@ -66,7 +66,7 @@ module.exports ={
 	var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 				.verify.urlContains('#/editUserGroups')
-				.done_1(client);
+				.done(client);
 			
 			client.assert.urlContains('firmId=');
 			usersPage.editFirstRecord();

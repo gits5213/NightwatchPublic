@@ -12,6 +12,7 @@ module.exports ={
 			var firmsPage = client.page.firmsPage();
 			firmsPage.go();
 			
+			client.pause(2000);
 			client.assert.containsText('body','Manage your Cloud9 Firms');
 			var dateString = firmsPage.addNewFirm(client);
 			client.assert.urlContains('#/addGroup');

@@ -27,9 +27,7 @@ module.exports ={
 			//Help Tab	
 			var helpPage = client.page.helpPage();
 			helpPage.portalHelpTab(client);
-			client.assert.urlContains('#/help');	
-			this.api.pause(1000);
-			
+			client.assert.urlContains('#/help');				
 			console.log('Test cases Countinuing')
 			client.closeWindow();
 			client.end();	
