@@ -332,7 +332,7 @@ module.exports ={
 			client.windowHandle(function(hand){
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
-			});;
+			});
 			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);

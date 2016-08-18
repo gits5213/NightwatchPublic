@@ -29,7 +29,26 @@ var loginCommand = {
 			this.api.pause(2000);
 			
 		},
+<<<<<<< HEAD
 		
+=======
+		newUserLogin: function(username, password){
+			this.waitForElementVisible('@usernameField',2000)
+			.waitForElementPresent('@passwordField',2000)
+			.waitForElementPresent('@submitButton',2000)
+			.api.pause(3000)
+			this.setValue('@usernameField',username)
+			this.setValue('@passwordField',password, function(){
+				console.log('Password is : ',password);
+			})
+			//this.api.pause(1000)
+			this.click('@submitButton')
+			//.waitForElementVisible('@alert',2000)
+			//.assert.containsText('div.modal-header', '**WARNING**')
+			//.click('@okButton');
+			this.api.pause(1500);
+		},
+>>>>>>> refs/remotes/origin/master
 		userLoginFail: function(username,password){
 			this.api.pause(1000,function(){
 				console.log('Logging in - username:'+username+' password:'+password)
@@ -42,6 +61,7 @@ var loginCommand = {
 			.click('@submitButton',function(){
 				console.log('username:'+username+' password:'+password)
 			})
+<<<<<<< HEAD
 			.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			this.api.pause(1500);		
 		},
@@ -56,6 +76,21 @@ var loginCommand = {
 			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
+=======
+			.waitForElementNotVisible('@alert',2000)
+			this.api.pause(1500);
+		},
+		
+		changePassword : function(client){
+			this.api.pause(1000);
+			this.setValue('@newPassword1',client.globals.nonAdminPass)
+			.setValue('@newPassword2', client.globals.nonAdminPass)
+			this.api.pause(500);
+			this.click('@changePassBtn')
+			.waitForElementVisible('@alert',2000)
+			.assert.containsText('div.modal-header', '**WARNING**')
+			.click('@okButton2');
+>>>>>>> refs/remotes/origin/master
 			this.api.pause(1500);
 			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
 			this.api.pause(2000);
@@ -76,8 +111,7 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			submitButton: {
-				selector: '//*[@id="signin"]',
-				locateStrategy: 'xpath'
+				selector: '#signin'
 			},
 			alert:{
 				selector: 'div.modal-dialog'
@@ -86,10 +120,15 @@ module.exports = {
 				selector: "(//button[@type='button'])[4]",
 				locateStrategy: 'xpath'
 			},
+			okButton2:{
+				selector: '//*[@id="AgreeToTerms"]/div[2]/div/div[3]/button[2]',
+				locateStrategy: 'xpath'
+			},
 			loginFail1:{
 				selector: '//*[@id="changefailed"]',
 				locateStrategy:'xpath'
 			},
+<<<<<<< HEAD
 			portalHomePage:{
 				selector: '//*[@id="ng-view"]/div/div[1]/div/div/div/div/h1',
 				locateStrategy: 'xpath'
@@ -98,5 +137,23 @@ module.exports = {
 				selector: '//*[@id="signin"]',
 				locateStrategy: 'xpath'
 			},
+=======
+			newPassword1:{
+				selector: '//*[@id="newPassword1"]',
+				locateStrategy: 'xpath'
+			},
+			newPassword2:{
+				selector: '//*[@id="newPassword2"]',
+				locateStrategy: 'xpath'
+			},
+			changePassText: {
+				selector: '//*[@id="changeForm"]/h2',
+				locateStrategy: 'xpath'
+			},
+			changePassBtn: {
+				selector: '//*[@id="changePassword"]',
+				locateStrategy: 'xpath'
+			}
+>>>>>>> refs/remotes/origin/master
 		}
 }

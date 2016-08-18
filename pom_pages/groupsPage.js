@@ -16,9 +16,10 @@ var groupsPageCommands = {
 			this.api.keys(client.Keys.ENTER);
 			this.waitForElementPresent('@grpNameField',2000)
 			.setValue('@grpNameField', 'Firm '+dateString+' Grp 1')
-			.click('@communityBar');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
+			.click('@communityBar')
+			.click('@energyOption');
+			//this.api.keys(client.Keys.DOWN_ARROW);
+			//this.api.keys(client.Keys.ENTER);
 			this.setValue('@contactFname','Howard')
 			.setValue('@contactLname','Hughes')
 			.setValue('@contactEmail',client.globals.email1)
@@ -233,6 +234,7 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
 			},
+<<<<<<< HEAD
 			
 			groupsTab:{
 				selector: '//*[@id="navbar"]/ul[1]/li[2]/a/h4/i',locateStrategy: 'xpath'
@@ -266,6 +268,11 @@ module.exports = {
 			},
 			detailsFirmName:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
+=======
+			energyOption: {
+				selector: '//*[@id="communityId"]/option[4]',
+				locateStrategy: 'xpath'
+>>>>>>> refs/remotes/origin/master
 			}
 			
 		}

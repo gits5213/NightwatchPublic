@@ -30,14 +30,16 @@ var firmsPageCommands = {
 			.setValue('@pemail',client.globals.email1)
 			.setValue('@pwork', 123456789)
 			.setValue('@pmobile',234567890)
-			.click('@firmType');
+			.click('@firmType')
+			.click('@firmVisible')
 			this.api.pause(1000);
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
+			//this.api.keys(client.Keys.DOWN_ARROW);
+			//this.api.keys(client.Keys.ENTER);
 			
-			this.click('@countryDropdown');
-			this.click('@countrySearch');
-			this.api.pause(500);
+			this.click('@countryDropdown')
+			//.click('@countryUSA')
+			//this.click('@countrySearch');
+			this.api.pause(1000);
 			this.setValue('@countrySearch','United States');
 			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
@@ -247,6 +249,7 @@ module.exports = {
 				selector: '//*[@id="billState"]',
 				locateStrategy: 'xpath'
 			},
+<<<<<<< HEAD
 			
 			//--
 			firmsTab:{
@@ -296,6 +299,15 @@ module.exports = {
 			},
 			detailsFirmName:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
+=======
+			firmVisible: {
+				selector: '//*[@id="firmType"]/option[2]',
+				locateStrategy:'xpath'
+			},
+			countryUSA: {
+				selector: '//*[@id="mailingCountry_chosen"]/div/ul/li[231]',
+				locateStrategy:'xpath'
+>>>>>>> refs/remotes/origin/master
 			}
 		//	
 		

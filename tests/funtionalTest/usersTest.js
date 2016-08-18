@@ -7,8 +7,11 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
+<<<<<<< HEAD
 			
 			
+=======
+>>>>>>> refs/remotes/origin/master
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
@@ -30,7 +33,7 @@ module.exports ={
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 			client.assert.urlContains('firmId=')
 			usersPage.editFirstRecord();
 			
@@ -86,7 +89,7 @@ module.exports ={
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 			client.assert.urlContains('firmId=')
 			//usersPage.editFirstRecord();
 			usersPage.updateFirstRecord(user1[0]);
@@ -145,7 +148,7 @@ module.exports ={
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 			client.assert.urlContains('firmId=')
 			usersPage.deleteUser(user1,client);
 			
@@ -195,7 +198,7 @@ module.exports ={
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage
 			.verify.urlContains('#/editUserGroups')
-			.done();
+			.addGrp2User();
 			var salesPage =client.page.editSalesInfoPage();
 			usersPage.editSalesInfo();
 			

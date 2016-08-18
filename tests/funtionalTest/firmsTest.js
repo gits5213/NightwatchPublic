@@ -3,6 +3,10 @@ module.exports ={
 		'Add New Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
+			client.windowHandle(function(hand){
+				var handle = hand.value;
+				client.windowSize(handle,1700,800);
+			});
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
