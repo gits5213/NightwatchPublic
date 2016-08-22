@@ -1,93 +1,100 @@
 module.exports ={
-		'Cloud9 Portal Smoke Test - Firms': function(client){
-			var navigation = client.page.navBar();
-			var loginPage = client.page.loginPage();
-			var usersPage = client.page.usersPage();
-			client.windowHandle(function(hand){
-				var handle = hand.value;
-				client.windowSize(handle,1700,800);
-			});
-			client.url(client.launch_url);
+	'Cloud9 Portal Smoke Test - Firms': function(client){
+		var navigation = client.page.navBar();
+		var loginPage = client.page.loginPage();
+		var usersPage = client.page.usersPage();
+		client.maximizeWindow();
+		/*client.windowHandle(function(hand){
+			var handle = hand.value;
+			client.windowSize(handle,1700,800);
+		});*/
+		client.url(client.launch_url);
 			
-			loginPage.adminLogin(client);
+		loginPage.adminLogin(client);
+		usersPage.go();
+		usersPage.editAdminInfo(client.globals.nonAdminUser,client);
 			
-			
-			usersPage.go();
-			
-			
-			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-			
-			var adminPage=client.page.editAdminPage();
-			adminPage.setToAdmin2(client)
-			navigation.logout();
-			
-			
-			
-			loginPage.userLogin(client);
+		var adminPage=client.page.editAdminPage();
+		adminPage.setToAdmin2(client)
+		navigation.logout();
+		loginPage.userLogin(client);
 
-			//Firm Tab.................................
-		var firmsTab = client.page.firmsPage();
-			firmsTab.go();
-			firmsTab.firmTabResultVerify();
+		//Firm Tab.................................
+	var firmsPage = client.page.firmsPage();
+		firmsPage.go();
+		firmsPage.getFirm_ByName(client);
+		client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
+			client.verify.notEqual(result.value.length, 25, 'There should be less than 25 groups on this page');
+		});
+		firmsPage.api.pause(1000);
+		firmsPage
+			.verify.visible('@firmNameSearch', 'firm name search field is visible')
+			.verify.visible('@firstRowFirmsData', 'Firm name search field is visible');
+		
+		firmsPage
+			.verify.visible('@editFirmBtn', 'edit firm button is visible')
+			.click('@editFirmBtn')
+			 client.pause(1000);
+			 firmsPage.verify.visible('@street2', 'stree 2 search field is visible')
+		     firmsPage.clearValue('@street2')
+			 .click('@street2')
+			.setValue('@street2','17th floor')
+			client.pause(2000);
+			 firmsPage.click('@submitFrmBtn', 'save changes button field is visible');
+			firmsPage.api.pause(2000);
 			
-			//Edit Firm Button
-		firmsTab.getFirm_ByName(client);
-		firmsTab.getEditFirmByChangingAddress();
-			firmsTab.click('@editFirmBtn');
-			firmsTab.waitForElementVisible('@street2Field',1000, 'Verified Stree 2 input field visible ');
-			firmsTab.clearValue('@street2Field').click('@street2Field');
-			firmsTab.api.pause(1000);
-			firmsTab.setValue('@street2Field','17th floor');
-			firmsTab.api.pause(1000);
+		//Edit Firm Button Verification
+		firmsPage.go();	
+		firmsPage.getFirm_ByName(client);
+		firmsPage
+			.verify.valueContains('@street2','17th floor')
+			firmsPage.api.pause(1000);
+			firmsPage.click('@submitFrmBtn');
+			firmsPage.api.pause(2000);	
 			
-			/*var randomNumber = Math.floor((Math.random() * 20) + 4);
-			console.log(randomNumber)
-			this.setValue('@street2Field', randomNumber + 'th floor');*/
+		//Manage Group Button
+		firmsPage.go();
+		firmsPage.getFirm_ByName(client);
+		firmsPage
+			.verify.visible('@manageGrpBtn','Verified Manage Group button is visible')
+			firmsPage.api.pause(2000);
+			firmsPage.click('@manageGrpBtn')
+			client.pause(2000);
 			
-			firmsTab.waitForElementVisible('@saveChangesBtn',1000, 'Verified save changes button visible');
-			firmsTab.click('@saveChangesBtn');
-			firmsTab.api.pause(1500);
+		//Manage Connections Button
+		firmsPage.go();
+		firmsPage.getFirm_ByName(client);
+		firmsPage 
+			.verify.visible('@manageConnBtn','Verified Manage Connections button is visible')
+			.click('@manageConnBtn')
+			client.pause(2000);
+				
+		//Manage Users
+		firmsPage.go();
+		firmsPage.getFirm_ByName(client);
+		firmsPage
+			.verify.visible('@manageUsersBtn','Verified Manage Users button is visible')
+			.click('@manageUsersBtn');
+		    client.pause(1000);
 			
-			//Edit Firm Button Verification
-			firmsTab.getFirm_ByName(client);
-			firmsTab.getEditFirmByChangingAddress();
-				firmsTab.click('@editFirmBtn');
-				firmsTab.clearValue('@street2Field')
-				firmsTab.api.pause(2000);
-					firmsTab.getText('@street2',function(result){
-						console.log("Text contain :"+ result.value);
-						firmsTab.api.pause(2000);
-						firmsTab.verify.equal("Text Contain : " + result.value, '17th floor');
-					});
-			firmsTab.waitForElementVisible('@saveChangesBtn',1000, 'Verified save changes button visible');
-			firmsTab.click('@saveChangesBtn');
-			firmsTab.api.pause(1500);	
-			
-			
-			//-----------------------------------------------
-			//Manage Group Button
-		firmsTab.getFirm_ByName(client);
-		firmsTab.manageGroupBtn(client);
-			
-			//Manage Connections Button
-		firmsTab.go();
-		firmsTab.getFirm_ByName(client);
-		firmsTab.manageConnectionsBtn(client);
-			
-			//Manage Users
-		firmsTab.go();
-		firmsTab.getFirm_ByName(client);
-		firmsTab.manageUsersBtn(client);
-			
-			//Details
-		firmsTab.go();
-		firmsTab.getDetailsBtn(client);
-			
-			
+		//Details
+		   firmsPage.go();
+		   firmsPage
+			.clearValue('@firmNameSearch')
+			.verify.visible('@detailsBtn','Verified Details button is visible')
+			.click('@detailsBtn');
+		    client.pause(2000);
+		
 			console.log('Test cases Countinuing')
 			client.closeWindow();
 			client.end();
 			
-		},
+	},
 		
 }
+
+
+
+/*var randomNumber = Math.floor((Math.random() * 20) + 4);
+console.log(randomNumber)
+this.setValue('@street2Field', randomNumber + 'th floor');*/

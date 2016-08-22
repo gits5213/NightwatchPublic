@@ -18,9 +18,8 @@ var reportTabPageCommands = {
 		},
 			
 		cloud9Usage: function(client){
-			this.expect.element('@cloud9Usage').to.be.visible;
-			this.expect.element('@cloud9Usage').text.to.contain('Cloud9 Usage').before(500);
-						
+			this.waitForElementVisible('@cloud9Usage',2000, 'Verified cloud9Usage button is visible ');
+			this.expect.element('@cloud9Usage').text.to.contain('Cloud9 Usage').before(500);			
 			this.api.pause(1000);
 			this.expect.element('@cloud9Usage_dropDown').to.be.visible;
 			this.setValue('@cloud9Usage_dropDown','');
@@ -30,10 +29,7 @@ var reportTabPageCommands = {
 		},	
 		
 		userButtonRport: function(client){
-			//User Button Report Validation
-			
-			//this.expect.element('@userButtonReport_Button_Validation').to.be.visible;
-			this.waitForElementVisible('@userButtonReport_Button_Validation',2000, 'Verified user button Report visible ')
+			this.waitForElementVisible('@userButtonReport_Button_Validation',2000, 'Verified user button Report visible ');
 			this.expect.element('@userButtonReport_Button_Validation').text.to.contain('Button #').before(500);
 			this.expect.element('@userButtonReport_Counterparty_Validation').to.be.visible;
 			this.expect.element('@userButtonReport_Counterparty_Validation').text.to.contain('Counterparty').before(500);

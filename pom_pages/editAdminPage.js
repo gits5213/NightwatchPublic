@@ -1,19 +1,5 @@
 var userAdminCommands = {
-		/*
-		setPrivilege: function(client,clientId){
-			this.waitForElementVisible('@usernameField',2000)
-			.waitForElementVisible('@passwordField',2000)
-			.waitForElementVisible('@submitButton',2000)
-			.setValue('@usernameField',client.globals.adminUsername)
-			.setValue('@passwordField', client.globals.adminPassword)
-			.click('@submitButton')
-			.waitForElementVisible('@alert',2000)
-			.assert.containsText('div.modal-header', '**WARNING**')
-			.click('@okButton');
-			this.api.pause(1500);
-			
-		},
-		*/
+
 		disable2fa:function(client){
 			this.api.pause(1000);
 			this.click('@tfa_No')
@@ -32,7 +18,9 @@ var userAdminCommands = {
 		},
 		setToAdmin:function(client){
 			this.click('@adminPriv')
-			.click('@admin2Value')
+			this.api.pause(500)
+			this.setValue('@adminPriv','Firm Administrator 2');
+			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500)
 			this.click('@tfa_No')
@@ -43,7 +31,9 @@ var userAdminCommands = {
 		},
 		setToAdmin2:function(client){
 			this.click('@adminPriv')
-			.click('@admin2Value')
+			this.api.pause(500)
+			this.setValue('@adminPriv','Firm Administrator 2');
+			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500)
 			this.click('@tfa_No')
@@ -54,7 +44,9 @@ var userAdminCommands = {
 		},
 		setToAdmin1:function(client){
 			this.click('@adminPriv')
-			.click('@admin1Value')
+			this.api.pause(500);
+			this.setValue('@adminPriv','Firm Administrator 1');
+			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500)
 			this.click('@tfa_No')
@@ -65,7 +57,9 @@ var userAdminCommands = {
 		},
 		setToCompliance:function(client){
 			this.click('@adminPriv')
-			.click('@complianceValue')
+			this.api.pause(500);
+			this.setValue('@adminPriv','Compliance recording access only');
+			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500)
 			this.click('@tfa_No')
@@ -76,7 +70,9 @@ var userAdminCommands = {
 		},
 		setToUser3:function(client){
 			this.click('@adminPriv')
-			.click('@user3Value')
+			this.api.pause(500)
+			this.setValue('@adminPriv','User Level 3');
+			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500)
 			this.click('@tfa_No')
@@ -87,7 +83,9 @@ var userAdminCommands = {
 		},
 		setToSales:function(client){
 			this.click('@adminPriv')
-			.click('@salesValue')
+			this.api.pause(500)
+			this.setValue('@adminPriv','Cloud9 Sales');
+			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500)
 			this.click('@tfa_No')

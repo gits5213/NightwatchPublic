@@ -18,7 +18,7 @@ var firmsPageCommands = {
 			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
 			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
 			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
-			//now.getMilliseconds().toString();
+	
 			
 			this.setValue('@firmNameForAdd','Test Firm '+dateString)
 			.setValue('@street1', '123 Main Street')
@@ -32,18 +32,13 @@ var firmsPageCommands = {
 			.setValue('@pmobile',234567890)
 			.click('@firmType')
 			.click('@firmVisible');
-			this.api.pause(1000);
-			//this.api.keys(client.Keys.DOWN_ARROW);
-			//this.api.keys(client.Keys.ENTER);
 			
+			this.api.pause(1000);
 			this.click('@countryDropdown');
-			//.click('@countryUSA')
-			//this.click('@countrySearch');
 			this.api.pause(1000);
 			this.setValue('@countrySearch','United States');
 			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
-			
 			this.api.pause(1000);
 			
 			this.click('@stateDropdown');
@@ -51,15 +46,13 @@ var firmsPageCommands = {
 			this.api.pause(500);
 			this.setValue('@stateSearch','New York');
 			this.api.pause(500);
-			this.api.keys(client.Keys.ENTER);
-					
+			this.api.keys(client.Keys.ENTER);	
 			this.click('@copyFrmBtn');
-			this.api.pause(1000);
-					
+			this.api.pause(1000);	
 			this.click('@submitFrmBtn');
 			this.api.pause(1000);
-		
 			return dateString.trim();
+			
 		},
 		
 		getFirmByName : function(string){
@@ -70,64 +63,21 @@ var firmsPageCommands = {
 			this.api.pause(1000);
 			this.waitForElementVisible('@firstRowFirmsData',2000)
 			.click('@firstRowFirmsData')
-			.click('@editFirmBtn');
 			this.api.pause(1000);
 		},	
-		
-		firmTabResultVerify: function(){
-			this.waitForElementVisible('@showingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
-			this.assert.containsText('@showingResult', 'Showing');
-			this.api.pause(2000);
-		},		
+				
 		getFirm_ByName: function(client){
-			this.waitForElementVisible('@firmNameSearch',5000, 'Verified Firms name search field visible');
 			this.api.pause(1000);
 			this.clearValue('@firmNameSearch');
 			this.click('@firmNameSearch');
 			this.setValue('@firmNameSearch','c9 Technologies');
+			this.api.pause(1000);
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(1000);
-			this.waitForElementVisible('@firstRowFirmsData',5000, 'Verifed searching result visible!');
+			this.api.pause(100);
 			this.click('@firstRowFirmsData');
 			this.api.pause(2000);	
-		},
-		
-		getEditFirmByChangingAddress: function(){
-			this.verify.visible('@editFirmBtn', 'Verified Edit Firm button is visible');			
-			this.api.pause(1000);
-		},
-		
-		manageGroupBtn: function(client){		
-			this.verify.visible('@manageGroupsBtn','Verified Manage Group button is visible');
-			this.click('@manageGroupsBtn');
-			this.waitForElementVisible('@manageGroupHomePage',2000, 'Verified Manage Group home page - Manage your Cloud9 Groups');
-			this.api.pause(1500);	
 		},		
-		manageConnectionsBtn: function(client){			
-			this.verify.visible('@manageConBtn','Verified Manage Connections button is visible and clikable');
-			this.click('@manageConBtn');
-			this.waitForElementVisible('@manageConHomePage',2000, 'Verified Manage Collections home page - Manage your Cloud9 Connections');
-			this.api.pause(1500);
-		},
-		manageUsersBtn: function(client){			
-			this.verify.visible('@manageUsersBtn','Verified Manage Users button is visible and clikable');
-			this.click('@manageUsersBtn');
-			this.waitForElementVisible('@manageUsersHomePage',2000, 'Verified Manage Users home page - Manage your Cloud9 Users');
-			this.api.pause(1500);
-		},
-		getDetailsBtn: function(client){
-			this.clearValue('@firmNameSearch');
-			this.waitForElementVisible('@detailsBtn',5000,'Verified Details button is visible and clikable');
-			this.click('@detailsBtn');
-			this.waitForElementVisible('@detailsFirmID',5000, 'Verified Details expand with all information - Firm ID');
-			
-			this.verify.visible('@detailsBtn','Verified Details button is visible and clikable');
-			this.click('@detailsBtn');
-			this.waitForElementVisible('@detailsFirmName',2000, 'Verified Details collapse and go back to the normal page - Firm Name');
-			this.api.pause(1500);
-		}
-		
 };
 
 module.exports = {
@@ -209,7 +159,6 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			
-
 			okButton:{
 				selector: "(//button[@type='button'])[4]",
 				locateStrategy: 'xpath'
@@ -251,49 +200,6 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',
 				locateStrategy: 'xpath'
 			},
-			
-			
-			//
-			
-		/*	firmNameSearch:{
-				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',locateStrategy: 'xpath'
-			},
-			firstRowFirmsData:{
-				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',locateStrategy: 'xpath'
-			},
-			editFirmBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/i',locateStrategy: 'xpath'
-			},		
-			street2Field:{
-				selector: '//*[@id="street2"]',locateStrategy: 'xpath'
-			},
-			saveChangesBtn:{
-				selector: '//*[@id="firmData"]/div[2]/button[2]',locateStrategy: 'xpath'
-			},
-			manageGroupsBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[3]/span',locateStrategy: 'xpath'
-			},
-			manageGroupHomePage:{
-				selector: '//*[@id="ng-view"]/div[1]/div/h2',locateStrategy: 'xpath'
-			},			
-			manageConBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[4]/span',locateStrategy: 'xpath'
-			},			
-			manageConHomePage:{
-				selector: '//*[@id="ng-view"]/div[1]/div/h2',locateStrategy: 'xpath'
-			},
-			manageUsersBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[5]/span',locateStrategy: 'xpath'
-			},
-			manageUsersHomePage:{
-				selector: '//*[@id="ng-view"]/div[1]/div/h2',locateStrategy: 'xpath'
-			},
-			detailsBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[6]/span',locateStrategy: 'xpath'
-			},*/
-			
-			//
-			
 			detailsFirmID:{
 				selector: '//span[contains(.,"Firm ID")]',
 				locateStrategy: 'xpath'

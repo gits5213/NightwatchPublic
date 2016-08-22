@@ -1,5 +1,8 @@
 module.exports ={
-		'Cloud9 Portal Smoke Test - Help': function(client){
+		
+		
+		'User Cloud9Sales - ability to view customer reporting': function(client){
+			
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
@@ -18,19 +21,29 @@ module.exports ={
 			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
 			
 			var adminPage=client.page.editAdminPage();
-			adminPage.setToAdmin2(client)
+			adminPage.setToSales(client)
 			navigation.logout();
 			
 			
 			
+			
+			
 			loginPage.userLogin(client);
-			//Help Tab	
-			var helpPage = client.page.helpPage();
-			helpPage.portalHelpTab(client);
-			client.assert.urlContains('#/help');				
+			
+			//loginPage.reportCloud9SalesLogin(client);
+			
+			var reportPage = client.page.reportPage();
+			reportPage.c9reports(client);
+			reportPage.selectFirm(client);
+			reportPage.cloud9Usage(client);
+			reportPage.userButtonRport(client);
+			reportPage.firmButtonReport(client);
+			reportPage.weekButton();
+			reportPage.monthButton();
+						
 			console.log('Test cases Countinuing')
 			client.closeWindow();
-			client.end();	
+			client.end();
 		},
-		
+	
 }
