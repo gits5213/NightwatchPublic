@@ -44,7 +44,7 @@ var microsoftonline = {
 					function(error, result) {
 						if (error) {
 							console.log('Access token error: ',error.message);
-						} else {
+						} else{
 							token = oauth2.accessToken.create(result);
 							client.globals.token = token.token;
 							//console.log('client.globals.token = ',client.globals.token);
@@ -60,13 +60,22 @@ var microsoftonline = {
 										} else if (result) {
 											console.log(result.value.length+ ' email message retrieved.');
 											result.value.forEach(function(message) {
-												var passRegex = /Password/;
+												var passRegex1 = /Password/;
+												var passRegex2 = /password is/
 												
 												//console.log('Subject: '+ message.Subject);
 												//console.log( message.Body.Content);
 												message.Body.Content = message.Body.Content.replace(/(<([^>]+)>)/ig,"");
-												var passRes = passRegex.exec(message.Body.Content);
-												var newPassword = message.Body.Content.slice(passRes.index+10,passRes.index+18);
+												var passRes1 = passRegex1.exec(message.Body.Content);
+												var passRes2 = passRegex2.exec(message.Body.Content);
+												//console.log('passRes1 contains: ',passRes1);
+												//console.log('passRes2 contains: ',passRes2);
+												var newPassword;
+												if(passRes1 != null){
+													newPassword = message.Body.Content.slice(passRes1.index+10,passRes1.index+18);
+												}else{
+													newPassword = message.Body.Content.slice(passRes2.index+13,passRes2.index+23);
+												}
 												//console.log('New user password is: ',newPassword);
 												client.globals.newPassword = newPassword;
 												//console.log('client.globals.newPassword contains :',client.globals.newPassword);
@@ -98,6 +107,10 @@ module.exports = {
 		},
 		signInBtn : {
 			selector : '#submit-button'
+		},
+		signedInAccout: {
+			selector: '//*[@id="test_user_c9tec_com"]/table/tbody/tr/td[2]/div[2]',
+			locateStrategy: 'xpath'
 		}
 	}
 

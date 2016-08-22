@@ -14,6 +14,19 @@ var loginCommand = {
 			this.api.pause(2000);
 			
 		},
+		loginWithCreds: function(username,password){
+			this.waitForElementVisible('@usernameField',2000)
+			.waitForElementPresent('@passwordField',2000)
+			.waitForElementPresent('@submitButton',2000)
+			.setValue('@usernameField',username)
+			.setValue('@passwordField',password)
+			.click('@submitButton')
+			.waitForElementVisible('@alert',2000)
+			.assert.containsText('div.modal-header', '**WARNING**')
+			.click('@okButton');
+			this.api.pause(1500);
+		},
+		
 		userLogin: function(client){
 			this.waitForElementVisible('@usernameField',2000, 'Verified Username Field is visible')
 			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
@@ -70,13 +83,17 @@ var loginCommand = {
 			.click('@okButton');
 			this.waitForElementNotVisible('@alert',2000);
 			this.api.pause(1500);
+			this.click('@resetPassword','Click "Forgot Password?" link')
+			this.getText('@changePassText', function(result){
+				this.verify.equal(result.value, "Your password has been reset.\nPlease enter a new password.")
+			})
 		},
 		
 		changePassword : function(client){
 			this.api.pause(1000);
 			this.setValue('@newPassword1',client.globals.nonAdminPass)
 			.setValue('@newPassword2', client.globals.nonAdminPass)
-			this.api.pause(500);
+			this.api.pause(500)
 			this.click('@changePassBtn')
 			.waitForElementVisible('@alert',2000)
 			.assert.containsText('div.modal-header', '**WARNING**')
@@ -84,8 +101,22 @@ var loginCommand = {
 			this.api.pause(1500);
 			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
 			this.api.pause(2000);
-			
 		},
+		
+		resetPassword : function(client, username){
+			this.api.pause(1000)
+			this.click('@forgotPassLink', function(){
+				console.log('Clicking Forgot Password Link')
+			})
+			this
+			.setValue('@userName',username)
+			.setValue('@email',client.globals.msft_email)
+			.click('@forgotPassBtn');
+			this.api.pause(1000)
+
+			},
+
+		}
 		
 };
 
@@ -141,6 +172,31 @@ module.exports = {
 			changePassBtn: {
 				selector: '//*[@id="changePassword"]',
 				locateStrategy: 'xpath'
+			},
+			forgotPassLink:{
+				selector: '//*[@id="resetPassword"]',
+				locateStrategy: 'xpath'
+			},
+			resetPassText: {
+				selector: '//*[@id="resetForm"]/h2',
+				locateStrategy: 'xpath'
+			},
+			userName: {
+				selector: '//*[@id="username"]',
+				locateStrategy: 'xpath'
+			},
+			email: {
+				selector: '//*[@id="resetEmail"]',
+				locateStrategy: 'xpath'
+			},
+			forgotPassBtn: {
+				selector: '//*[@id="resetForm"]/button',
+				locateStrategy: 'xpath'
+			},
+			passResetSuccess:{
+				selector: '//*[@id="success"]',
+				locateStrategy: 'xpath'
 			}
+			
 		}
 }

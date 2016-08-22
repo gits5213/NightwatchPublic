@@ -22,6 +22,8 @@ module.exports = {
 		        '$top': 1
 		      },
 		
+		newUser:'',
 		newPassword:''
 		
+
 }
