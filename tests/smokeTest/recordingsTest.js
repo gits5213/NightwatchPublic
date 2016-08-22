@@ -16,6 +16,7 @@ module.exports ={
 			
 			
 			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
+			usersPage.click('@editAdminBtn');
 			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
@@ -28,8 +29,10 @@ module.exports ={
 			//Recordings Tab
 			var recordingsPage = client.page.recordingsPage();
 			recordingsPage.portalRecordingsTab(client);
-			recordingsPage
-				.click('@recordingsTab');
+			recordingsPage.click('@recordingsTab');
+			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
+				client.verify.notEqual(result.value.length, 25, 'There should be less than 25 groups on this page');
+			});
 			client.assert.urlContains('#/recordings');
 			recordingsPage.api.pause(2000);
 

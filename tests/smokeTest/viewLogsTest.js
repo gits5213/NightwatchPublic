@@ -16,6 +16,7 @@ module.exports ={
 			
 			
 			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
+			usersPage.click('@editAdminBtn');
 			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
@@ -28,6 +29,9 @@ module.exports ={
 			var viewLogsPage = client.page.viewLogsPage();
 			viewLogsPage.portalViewLogsTab(client);
 				viewLogsPage.click('@viewLogTab');
+				client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
+					client.verify.notEqual(result.value.length, 25, 'There should be more than 25 audit logs on this page');
+				});
 				client.assert.urlContains('#/auditlogs');	
 				viewLogsPage.api.pause(2000);
 			

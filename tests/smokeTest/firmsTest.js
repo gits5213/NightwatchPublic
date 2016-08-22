@@ -3,16 +3,16 @@ module.exports ={
 		var navigation = client.page.navBar();
 		var loginPage = client.page.loginPage();
 		var usersPage = client.page.usersPage();
-		client.maximizeWindow();
-		/*client.windowHandle(function(hand){
+		client.windowHandle(function(hand){
 			var handle = hand.value;
 			client.windowSize(handle,1700,800);
-		});*/
+		});
 		client.url(client.launch_url);
 			
 		loginPage.adminLogin(client);
 		usersPage.go();
 		usersPage.editAdminInfo(client.globals.nonAdminUser,client);
+		usersPage.click('@editAdminBtn');
 			
 		var adminPage=client.page.editAdminPage();
 		adminPage.setToAdmin2(client)
@@ -35,18 +35,19 @@ module.exports ={
 			.verify.visible('@editFirmBtn', 'edit firm button is visible')
 			.click('@editFirmBtn')
 			 client.pause(1000);
-			 firmsPage.verify.visible('@street2', 'stree 2 search field is visible')
+			 firmsPage.verify.visible('@street2', 'stree2 address input field is visible')
 		     firmsPage.clearValue('@street2')
 			 .click('@street2')
-			.setValue('@street2','17th floor')
-			client.pause(2000);
-			 firmsPage.click('@submitFrmBtn', 'save changes button field is visible');
-			firmsPage.api.pause(2000);
+			 .setValue('@street2','17th floor')
+			 client.pause(2000);
+			 firmsPage.click('@submitFrmBtn');
+			 firmsPage.api.pause(2000);
 			
 		//Edit Firm Button Verification
 		firmsPage.go();	
 		firmsPage.getFirm_ByName(client);
 		firmsPage
+			.click('@editFirmBtn')
 			.verify.valueContains('@street2','17th floor')
 			firmsPage.api.pause(1000);
 			firmsPage.click('@submitFrmBtn');

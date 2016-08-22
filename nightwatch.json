@@ -44,8 +44,8 @@
             "adminPassword":"Shahnewaz1@",
             "email1":"md.zaman@c9tec.com",
             "nonAdminUser":"johnakpan",
-            "nonAdminPass":"Password123",
-            "smokeTestUser":"ptestuser"
+            "nonAdminPass":"Password123"
+             	
          }
       },
       "qa1":{  

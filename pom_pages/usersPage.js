@@ -64,28 +64,6 @@ var userPageCommands = {
 			return dateString.trim();
 			
 		},
-		editFirstRecord: function(){
-			this.waitForElementVisible('@firstRow',5000);
-			this.click('@firstRow')
-			.click('@editUserBtn');
-			this.api.pause(1000);
-			
-		},
-		firstRecordEditButtons: function(){
-			this.waitForElementVisible('@firstRow',5000);
-			this.click('@firstRow');
-			this.api.pause(500);
-			this.click('@editBtn');
-			this.verify.urlContains('#/buttons?');
-			this.api.pause(1000);
-		
-		},
-				
-		editRecord: function(){
-			this.click('@editUserBtn');
-			this.api.pause(1000);
-			
-		},
 		updateFirstRecord: function(dateString){
 			this.go();
 			this.clearValue('@usernameSearch')
@@ -142,12 +120,6 @@ var userPageCommands = {
 			
 			this.api.pause(1000)
 		},
-		editSalesInfo: function(){
-			this.api.pause(1000);
-			this.click('@firstRow')
-			.click('@editSalesUserBtn');
-			this.api.pause(1000);
-		},
 		editAdminInfo: function(user,client,callback){
 			this.api.pause(1000);
 			this.waitForElementPresent('@selectFirmBar2',3000)
@@ -159,8 +131,8 @@ var userPageCommands = {
 			this.click('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 			this.api.pause(1000);
-			this.click('@firstRow')
-			.click('@editAdminBtn');
+			this.click('@firstRow');
+			//.click('@editAdminBtn');
 			this.api.pause(1000);		
 		},
 		addUserWithPassToFirm : function(firm, client){
@@ -220,33 +192,7 @@ var userPageCommands = {
 				callback();
 			}
 			
-		}, 
-		 userTabResultVerify: function(){
-			this.waitForElementVisible('@userTabShowingResult',5000, 'Verified returning firm information result 1 to 25 on the current page');
-			this.assert.containsText('@userTabShowingResult', 'Showing');
-		},
-		 
-		getUsersByDefault: function(client){
-			this.waitForElementVisible('@usernameSearch',5000, 'Verified Firms name search field enable');
-			this.api.pause(1000);		
-		},
-			
-		getEditUser: function(){
-			this.verify.visible('@editUserBtn', 'Verified Edit User button is visible and clikable');				
-		},			
-		getUsersName: function(client){
-			this.waitForElementVisible('@usernameSearch',5000, 'Verified Firms name search field visible');
-			this.api.pause(1000);	
-		},
-		getFirstRow: function(dateString){
-			this.Click('@usernameSearch')
-			this.setValue('@usernameSearch',dateString);		
-			this.waitForElementVisible('@firstRow',5000);
-			this.click('@firstRow')
-			.click('@editAdminBtn');
-			this.api.pause(1000);
-			
-		}
+		} 
 };
 
 module.exports = {
@@ -338,7 +284,12 @@ module.exports = {
 			},
 			
 			firstRow: {
-				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',  //first Row  
+				locateStrategy: 'xpath'
+			},
+			
+			secondRow: {
+				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[2]',    //Second Row  
 				locateStrategy: 'xpath'
 			},
 			

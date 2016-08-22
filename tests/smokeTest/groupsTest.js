@@ -16,6 +16,7 @@ module.exports ={
 			
 			
 			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
+			usersPage.click('@editAdminBtn');
 			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
@@ -35,7 +36,7 @@ module.exports ={
 			groupsPage
 				.click('@editGroupBtn')
 				.waitForElementVisible('@editGroupHomePage',1000, 'Verified Edit Group home page - Edit Group')
-				.waitForElementVisible('@editGroupSave',1000, 'Verified Edit Group Save button enable and clickable')
+				.waitForElementVisible('@editGroupSave',1000, 'Verified Edit Group Save button is enable')
 				.click('@editGroupSave')
 			groupsPage.api.pause(2000);
 			
@@ -45,7 +46,7 @@ module.exports ={
 			groupsPage
 				.click('@editGroupUserBtn')
 				.waitForElementVisible('@editGroupUserHomePage',1000, 'Verified selected group name on the group home page header')
-				.waitForElementVisible('@doneBtn',1000, 'Verified Done button enable and clickable')
+				.waitForElementVisible('@doneBtn',1000, 'Verified Done button is enable')
 				.click('@doneBtn')
 			groupsPage.api.pause(2000);
 			
@@ -54,7 +55,7 @@ module.exports ={
 			groupsPage
 				.click('@detailsBtn')
 				.waitForElementVisible('@groupDescription',5000, 'Verified Details expand with all information - Description')
-				.verify.visible('@detailsBtn','Verified Details button is visible and clikable')
+				.verify.visible('@detailsBtn','Verified Details button is visible')
 				.click('@detailsBtn')
 				.waitForElementVisible('@detailsFirmName',2000, 'Verified Details collapse and go back to the normal page - Group Name')
 			groupsPage.api.pause(1500);

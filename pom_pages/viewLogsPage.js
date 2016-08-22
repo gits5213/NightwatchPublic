@@ -1,6 +1,6 @@
 var viewLogsPageCommands = {
 		portalViewLogsTab: function(client){
-			this.verify.visible('@viewLogTab', 'Verified View Logs tab button is visible and clikable');
+			this.verify.visible('@viewLogTab', 'Verified View Logs tab button is visible');
 		
 		}		
 };

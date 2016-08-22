@@ -2,7 +2,7 @@ var loginCommand = {
 		adminLogin: function(client){
 			this.waitForElementVisible('@usernameField',3000, 'Verified Username Field is visible')
 			.waitForElementVisible('@passwordField',3000, 'Verified PassWord Field is enabled')
-			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable and clickable')
+			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable')
 			.setValue('@usernameField',client.globals.adminUsername)
 			.setValue('@passwordField', client.globals.adminPassword)
 			.click('@submitButton')
@@ -17,7 +17,7 @@ var loginCommand = {
 		userLogin: function(client){
 			this.waitForElementVisible('@usernameField',2000, 'Verified Username Field is visible')
 			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
-			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clickable')
+			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable')
 			.setValue('@usernameField',client.globals.nonAdminUser)
 			.setValue('@passwordField',client.globals.nonAdminPass)
 			.click('@submitButton')
@@ -38,11 +38,7 @@ var loginCommand = {
 			this.setValue('@passwordField',password, function(){
 				console.log('Password is : ',password);
 			})
-			//this.api.pause(1000)
 			this.click('@submitButton')
-			//.waitForElementVisible('@alert',2000)
-			//.assert.containsText('div.modal-header', '**WARNING**')
-			//.click('@okButton');
 			this.api.pause(1500);
 		},
 

@@ -1,13 +1,13 @@
 
-var recordingsPageCommand = {
+var recordingsPageCommands = {
 		portalRecordingsTab: function(client){
-			this.verify.visible('@recordingsTab', 'Verified Recordings tab button is visible and clikable');					
+			this.verify.visible('@recordingsTab', 'Verified Recordings tab button is visible');					
 		}
 
 };
 
 module.exports = {
-		commands :[recordingsPageCommand],
+		commands :[recordingsPageCommands],
 		elements: {
 			backBtn:{
 				selector: '//*[@id="demo"]/div[4]/ul/li[1]/i',

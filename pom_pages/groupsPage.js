@@ -18,8 +18,6 @@ var groupsPageCommands = {
 			.setValue('@grpNameField', 'Firm '+dateString+' Grp 1')
 			.click('@communityBar')
 			.click('@energyOption');
-			//this.api.keys(client.Keys.DOWN_ARROW);
-			//this.api.keys(client.Keys.ENTER);
 			this.setValue('@contactFname','Howard')
 			.setValue('@contactLname','Hughes')
 			.setValue('@contactEmail',client.globals.email1)
@@ -96,7 +94,6 @@ var groupsPageCommands = {
 			this.clearValue('@groupNameSearch');
 			this.waitForElementVisible('@detailsBtn',1000,'Verified Details button is visible and clikable');
 		},
-		//
 		getGroupByName: function(client){
 			this.waitForElementVisible('@groupNameSearch',5000, 'Verified Firms name search field enable');
 			this.api.pause(1000);

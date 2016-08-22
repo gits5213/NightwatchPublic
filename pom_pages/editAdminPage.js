@@ -30,17 +30,18 @@ var userAdminCommands = {
 			this.api.pause(1000)
 		},
 		setToAdmin2:function(client){
-			this.click('@adminPriv')
-			this.api.pause(500)
+			this.api.pause(1000)
+			this.click('@adminPriv');
+			this.api.pause(500);
 			this.setValue('@adminPriv','Firm Administrator 2');
-			this.api.pause(500)
+			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(500)
+			this.api.pause(500);
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
-			this.click('@saveBtn')
-			this.api.pause(1000)
+			this.click('@saveBtn');
+			this.api.pause(1000);
 		},
 		setToAdmin1:function(client){
 			this.click('@adminPriv')
