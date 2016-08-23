@@ -83,6 +83,7 @@ var userAdminCommands = {
 			this.api.pause(1000)
 		},
 		setToSales:function(client){
+			client.pause(1000);
 			this.click('@adminPriv')
 			this.api.pause(500)
 			this.setValue('@adminPriv','Cloud9 Sales');

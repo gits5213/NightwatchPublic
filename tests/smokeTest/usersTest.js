@@ -37,13 +37,13 @@ module.exports ={
 				 usersPage.api.keys(client.Keys.ENTER);
 				 client.pause(1000);
 			 usersPage
-				.click('@secondRow')   //firstRow
+				.click('@firstRow')   //firstRow		
 				 client.pause(2000);
 			 usersPage
 				.click('@editUserBtn')
 				usersPage.waitForElementVisible('@editUserHomePage',1000, 'Verified Edit Group home page - Edit User')
 				usersPage.expect.element('@editUserHomePage').text.to.contain('Edit User')
-				usersPage.waitForElementVisible('@street2',1000, 'Verified Stree 2 input field visible')
+				usersPage.waitForElementVisible('@street2',1000, 'Verified address stree2 input field visible')
 				usersPage.clearValue('@street2')
 				 client.pause(1000);
 			 usersPage
@@ -62,7 +62,7 @@ module.exports ={
 			 	 usersPage.api.keys(client.Keys.ENTER);
 				 client.pause(1000);
 			usersPage
-				.click('@secondRow')  //firstRow
+				.click('@firstRow')  //firstRow
 				 client.pause(2000);
 			
 			usersPage

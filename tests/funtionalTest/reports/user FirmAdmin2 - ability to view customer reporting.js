@@ -18,6 +18,8 @@ module.exports ={
 			
 			
 			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
+			usersPage.click('@editAdminBtn');
+			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
 			navigation.logout();

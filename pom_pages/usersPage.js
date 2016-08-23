@@ -49,15 +49,7 @@ var userPageCommands = {
 			.setValue('@zip', 77777)
 			.click('@voiceYes');
 			this.api.pause(1000);
-			
-			this.click('@addUserSubmitBtn');
-			this.api.pause(2000);
-			this.waitForElementVisible('@newUserModal',5000);
-			this.click('@addUserConfirmBtn');
-			this.api.pause(15000);
-			this.waitForElementNotPresent('@newUserModal',30000);
-			
-			return dateString;
+			this.click('@addUserSubmitBtn');		
 			this.waitForElementVisible('@newUserModal',2000)
 			.click('@addUserConfirmBtn')
 			.waitForElementNotPresent('@newUserModal',30000);
@@ -131,8 +123,7 @@ var userPageCommands = {
 			this.click('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 			this.api.pause(1000);
-			this.click('@firstRow');
-			//.click('@editAdminBtn');
+			this.click('@secondRow');  //firstRow
 			this.api.pause(1000);		
 		},
 		addUserWithPassToFirm : function(firm, client){
@@ -284,7 +275,7 @@ module.exports = {
 			},
 			
 			firstRow: {
-				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',  //first Row  
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',  //first Row   
 				locateStrategy: 'xpath'
 			},
 			

@@ -1,7 +1,8 @@
 var reportTabPageCommands = {
 		c9reports: function(client){
-			this.waitForElementVisible('@reportTab',2000, false);
-			this.click('@reportTab');
+			this.waitForElementVisible('@reportLink',2000, false);
+			this.click('@reportLink');
+			this.api.pause(2000);
 		},			
 		selectFirm: function(client){
 			this.waitForElementVisible('@selectFirm',2000, false);
@@ -78,6 +79,7 @@ var reportTabPageCommands = {
 			this.waitForElementVisible('@weekButton',2000, false);
 			this.expect.element('@weekButton').text.to.contain('Week').before(500);
 			this.click('@weekButton');
+			this.api.pause(1000);
 			
 			this.waitForElementVisible('@modalHeader_WeekCalender',2000, false);
 			this.expect.element('@modalHeader_WeekCalender').text.to.contain('Select Week').before(500);
@@ -94,6 +96,7 @@ var reportTabPageCommands = {
 			this.waitForElementVisible('@monthButton',2000, false);
 			this.expect.element('@monthButton').text.to.contain('Month').before(500);
 			this.click('@monthButton');
+			this.api.pause(1000);
 			
 			this.waitForElementVisible('@modalHeader_MonthCalender',500, false);
 			this.expect.element('@modalHeader_MonthCalender').text.to.contain('Select Month').before(500);
@@ -110,18 +113,13 @@ var reportTabPageCommands = {
 				console.log("Text cointains: " + getText.value);	
 			});
 			this.api.pause(3000);
-		},
-		//
-		portalReportsTab: function(client){
-			this.verify.visible('@reportsTab', 'Verified Reports tab button is visible and clikable');	
-		}
-			
+		}		
 	};
 
 module.exports = {
 		commands :[reportTabPageCommands],
 		elements: {
-			reportTab:{
+			reportLink:{
 				selector: '//span[contains(.,"Reports")]',	
 				locateStrategy: 'xpath'
 			},
@@ -245,17 +243,7 @@ module.exports = {
 			Week_Month_ExportGraphData :{
 				selector : '//*[@id="graphExport"]/span',
 				locateStrategy: 'xpath'
-			},
-			//
-			reportsTab:{
-				selector: '//*[@id="reportsNav"]/h4/span',
-				locateStrategy: 'xpath'
-			},
-			reportsHomePage:{
-				selector: '//*[@id="defaultUsage"]',
-				locateStrategy: 'xpath'
 			}
-			//
 			
 		}
 }

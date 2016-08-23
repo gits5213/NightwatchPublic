@@ -83,31 +83,7 @@ var groupsPageCommands = {
 			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
 			this.click('@firstRowGroupsData');
 			this.api.pause(2000);		
-		},	
-		getEditGroup: function(){
-			this.verify.visible('@editGroupBtn', 'Verified Edit Group button is visible and clikable');				
-		},
-		getEditGroupUsers: function(){
-			this.verify.visible('@editGroupUserBtn', 'Verified Edit Group User button is visible and clikable');				
-		},
-		groupDetailsBtn: function(){
-			this.clearValue('@groupNameSearch');
-			this.waitForElementVisible('@detailsBtn',1000,'Verified Details button is visible and clikable');
-		},
-		getGroupByName: function(client){
-			this.waitForElementVisible('@groupNameSearch',5000, 'Verified Firms name search field enable');
-			this.api.pause(1000);
-			this.clearValue('@groupNameSearch');
-			this.click('@groupNameSearch');
-			this.setValue('@groupNameSearch',' ');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
-			this.api.pause(1000);
-			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
-			this.click('@firstRowGroupsData');
-			this.api.pause(2000);		
 		}
-		
 };
 
 module.exports = {

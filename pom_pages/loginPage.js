@@ -114,10 +114,7 @@ var loginCommand = {
 			.click('@forgotPassBtn');
 			this.api.pause(1000)
 
-			},
-
-		}
-		
+			}
 };
 
 module.exports = {

@@ -29,10 +29,12 @@ module.exports ={
 			//Groups Tab ............................
 			var groupsPage = client.page.groupsPage();
 			groupsPage.go(client);
+			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
+				client.verify.notEqual(result.value.length, 25, 'There should be less than 25 groups on this page');
+			});
 			
 			//Edit Group
 			groupsPage.getGroupByName(client);
-			groupsPage.getEditGroup();
 			groupsPage
 				.click('@editGroupBtn')
 				.waitForElementVisible('@editGroupHomePage',1000, 'Verified Edit Group home page - Edit Group')
@@ -42,7 +44,6 @@ module.exports ={
 			
 			//Edit Group Users
 			groupsPage.getGroupByName(client);
-			groupsPage.getEditGroupUsers();
 			groupsPage
 				.click('@editGroupUserBtn')
 				.waitForElementVisible('@editGroupUserHomePage',1000, 'Verified selected group name on the group home page header')
@@ -51,7 +52,6 @@ module.exports ={
 			groupsPage.api.pause(2000);
 			
 			//Group Details
-			groupsPage.groupDetailsBtn();
 			groupsPage
 				.click('@detailsBtn')
 				.waitForElementVisible('@groupDescription',5000, 'Verified Details expand with all information - Description')
