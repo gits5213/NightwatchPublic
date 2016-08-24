@@ -32,7 +32,8 @@ module.exports ={
 		userGroupsPage
 			.verify.urlContains('#/editUserGroups')
 			.addGrp2User();
-		client.assert.urlContains('firmId=')
+			client.assert.urlContains('firmId=')
+
 		usersPage.editFirstRecord();
 		
 		client.verify.urlContains('#/editUser');
@@ -69,8 +70,9 @@ module.exports ={
 				.done(client);
 			
 			client.assert.urlContains('firmId=');
+			usersPage.click('@firstRow')
+
 			usersPage.editFirstRecord();
-			usersPage.api.pause(5000);
 
 			client.verify.urlContains('#/editUser');
 			
@@ -105,7 +107,11 @@ module.exports ={
 			conncetionsPage.groupUserSelect();
 	
 			usersPage.go();
-			usersPage.firstRecordEditButtons();
+			usersPage.click('@firstRow');
+			client.pause(1000);
+			usersPage.click('@editBtn');
+			usersPage.verify.urlContains('#/buttons?');
+			client.pause(1000);
 			
 		client.end();
 

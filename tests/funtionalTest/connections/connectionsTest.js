@@ -39,8 +39,7 @@ module.exports ={
 			
 			connectionsPage
 			.verify.value('@firmNameField','Test Firm '+dateString)
-			.verify.value('@commNameField', 'Equities')
-			//.verify.valueContains('@grpNameField','Firm '+dateString+' Grp 1')
+			.verify.value('@commNameField', 'Energy')
 			.verify.value('@btnLabelField',dateString+'IntraFirmShout')
 			.verify.valueContains('@connIdField','sPK-')
 			.verify.value('@description', 'Connection within Test Firm '+dateString)

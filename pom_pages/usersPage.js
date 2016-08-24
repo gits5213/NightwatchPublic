@@ -112,6 +112,14 @@ var userPageCommands = {
 			
 			this.api.pause(1000)
 		},
+		
+		editSalesInfo: function(){
+			this.api.pause(1000);
+			this.click('@firstRow')
+			.click('@editSalesUserBtn');
+			this.api.pause(1000);
+		},
+		
 		editAdminInfo: function(user,client,callback){
 			this.api.pause(1000);
 			this.waitForElementPresent('@selectFirmBar2',3000)
@@ -182,9 +190,15 @@ var userPageCommands = {
 			if(callback){
 				callback();
 			}
+		},
+		editFirstRecord: function(){
+			this.waitForElementVisible('@firstRow',5000);
+			this.click('@firstRow')
+			.click('@editUserBtn');
+			this.api.pause(1000);
 			
-		} 
-};
+		}
+ };
 
 module.exports = {
 		commands :[userPageCommands],

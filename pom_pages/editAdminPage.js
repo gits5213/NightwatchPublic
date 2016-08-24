@@ -9,6 +9,7 @@ var userAdminCommands = {
 			.click('@saveBtn')
 		},
 		setToNone:function(client){
+			client.pause(1000);
 			this.click('@adminPriv')
 			.click('@noneValue')
 			this.api.keys(client.Keys.ENTER);
@@ -17,6 +18,7 @@ var userAdminCommands = {
 			this.api.pause(1000)
 		},
 		setToAdmin:function(client){
+			client.pause(1000);
 			this.click('@adminPriv')
 			this.api.pause(500)
 			this.setValue('@adminPriv','Firm Administrator 2');
@@ -44,6 +46,7 @@ var userAdminCommands = {
 			this.api.pause(1000);
 		},
 		setToAdmin1:function(client){
+			client.pause(1000);
 			this.click('@adminPriv')
 			this.api.pause(500);
 			this.setValue('@adminPriv','Firm Administrator 1');
@@ -57,6 +60,7 @@ var userAdminCommands = {
 			this.api.pause(1000)
 		},
 		setToCompliance:function(client){
+			client.pause(1000);
 			this.click('@adminPriv')
 			this.api.pause(500);
 			this.setValue('@adminPriv','Compliance recording access only');
@@ -70,6 +74,7 @@ var userAdminCommands = {
 			this.api.pause(1000)
 		},
 		setToUser3:function(client){
+			client.pause(1000);
 			this.click('@adminPriv')
 			this.api.pause(500)
 			this.setValue('@adminPriv','User Level 3');

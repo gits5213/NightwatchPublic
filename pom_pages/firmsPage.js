@@ -55,7 +55,7 @@ var firmsPageCommands = {
 			
 		},
 		
-		getFirmByName : function(string){
+		getFirmByName : function(string, client){
 			this.click('@firmsLink')
 			.clearValue('@firmNameSearch');
 			this.api.pause(1000);
