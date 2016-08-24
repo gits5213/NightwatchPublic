@@ -4,7 +4,7 @@ module.exports ={
 			client.url(client.launch_url+'/networktest.html',function(){
 				console.log('loading ',client.launch_url+'/networktest.html')
 			});
-			client.pause(4000);
+			client.pause(2000);
 			
 			var networkPage = client.page.networkTestPage();
 			client.windowHandle(function(hand){
@@ -28,7 +28,7 @@ module.exports ={
 			networkPage
 			.verify.visible('@results','No results should exist on the page now')
 			.verify.visible('@success','The Success status should not be visible now')
-			.verify.hidden('@fail', 'The Fail statu should not be visible - assuming operation succeeded')
+			.verify.hidden('@fail', 'The Fail status should not be visible - assuming operation succeeded')
 			
 			client.end();
 			
