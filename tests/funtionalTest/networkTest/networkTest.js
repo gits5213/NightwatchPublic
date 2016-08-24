@@ -30,7 +30,7 @@ module.exports ={
 			.verify.visible('@success','The Success status should not be visible now')
 			.verify.hidden('@fail', 'The Fail statu should not be visible - assuming operation succeeded')
 			
-			//client.end();
+			client.end();
 			
 		}
 }
