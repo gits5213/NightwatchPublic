@@ -41,6 +41,7 @@ module.exports ={
 			usersPage.editAdminInfo(user1,client,function(){
 				console.log('User - johndoe'+user1+' is being created');
 			});
+			usersPage.click('@editAdminBtn');
 			
 			var adminPage=client.page.editAdminPage();
 			
@@ -60,7 +61,7 @@ module.exports ={
 				
 			});
 			
-			
+			client.pause(2000);
 			var loginPage2 = new client.page.loginPage();
 			loginPage2.getText('@changePassText', function(result){
 				this.verify.equal(result.value, "Your password has been reset.\nPlease enter a new password.")
