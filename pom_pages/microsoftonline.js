@@ -9,7 +9,7 @@ var microsoftonline = {
 		
 		var oauth2 = require('simple-oauth2')(client.globals.msft_credentials);
 		var returnVal = oauth2.authCode.authorizeURL({
-			redirect_uri : client.launch_url,
+			redirect_uri : client.globals.redirect_uri,
 			scope : client.globals.scopes.join(' ')
 		});
 		client.globals.oauth2 = oauth2;
@@ -38,7 +38,7 @@ var microsoftonline = {
 			oauth2.authCode.getToken(
 					{
 						code : code,
-						redirect_uri : client.launch_url,
+						redirect_uri : client.globals.redirect_uri,
 						scope : client.globals.scopes.join(' ')
 					},
 					function(error, result) {
