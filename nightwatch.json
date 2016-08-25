@@ -62,11 +62,12 @@
       "prod":{  
           "launch_url":"https://qa2-c9portal.xhoot.com/c9portal",
           "globals":{  
-             "prodAdmin2Username":"ptestuser",
-             "prodAdmin2Password":"Shahnewaz1@",
-             "email1":"md.zaman@c9tec.com",
-             "nonAdminUser":"",
-             "nonAdminPass":""
+              "adminUsername":"ucheonwudiwe",
+              "adminPassword":"Password1234",
+              "email1":"test.user@c9tec.com",
+              "nonAdminUser":"johnakpan",
+              "nonAdminPass":"Password123"
+              "selectFirmName":"c9 technologies"
           }
        },
        

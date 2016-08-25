@@ -32,7 +32,7 @@ module.exports ={
 			usersPage
 				.clearValue('@usernameSearch')
 				.click('@usernameSearch')
-				.setValue('@usernameSearch','johnakpan')
+				.setValue('@usernameSearch',client.globals.nonAdminUser)
 				 usersPage.api.keys(client.Keys.DOWN_ARROW);
 				 usersPage.api.keys(client.Keys.ENTER);
 				 client.pause(1000);
@@ -57,7 +57,7 @@ module.exports ={
 			 usersPage
 				.clearValue('@usernameSearch')
 				.click('@usernameSearch')
-				.setValue('@usernameSearch','johnakpan')
+				.setValue('@usernameSearch',client.globals.nonAdminUser)
 				 usersPage.api.keys(client.Keys.DOWN_ARROW);
 			 	 usersPage.api.keys(client.Keys.ENTER);
 				 client.pause(1000);

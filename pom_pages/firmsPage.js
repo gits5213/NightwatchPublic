@@ -70,7 +70,7 @@ var firmsPageCommands = {
 			this.api.pause(1000);
 			this.clearValue('@firmNameSearch');
 			this.click('@firmNameSearch');
-			this.setValue('@firmNameSearch','000 Firm A');  //Production - c9 Technologies
+			this.setValue('@firmNameSearch',client.globals.selectFirmName);  //qa2 - 000 Firm A
 			this.api.pause(1000);
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
