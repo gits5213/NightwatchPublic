@@ -131,8 +131,8 @@ var userPageCommands = {
 			this.click('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 			this.api.pause(1000);
-			//this.click('@secondRow');  //firstRow
-			this.click('@firstRow'); //for new_user_login
+			this.click('@secondRow');  //All other test
+			//this.click('@firstRow'); //for new_user_login
 			this.api.pause(1000);		
 		},
 		addUserWithPassToFirm : function(firm, client){
