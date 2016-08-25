@@ -8,21 +8,7 @@ module.exports ={
 				client.windowSize(handle,1700,800);
 			});
 			client.url(client.launch_url);
-			
-			loginPage.adminLogin(client);
-			
-			
-			usersPage.go();
-			
-			
-			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-			usersPage.click('@editAdminBtn');
-			
-			var adminPage=client.page.editAdminPage();
-			adminPage.setToAdmin2(client)
-			navigation.logout();
-			
-			
+						
 			
 			loginPage.userLogin(client);
 			

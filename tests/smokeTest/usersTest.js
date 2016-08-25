@@ -8,16 +8,7 @@ module.exports ={
 				client.windowSize(handle,1700,800);
 			});
 			client.url(client.launch_url);
-			loginPage.adminLogin(client);
-					
-			usersPage.go();
-			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-			usersPage.click('@editAdminBtn');
-			
-			var adminPage=client.page.editAdminPage();
-			adminPage.setToAdmin2(client)
-			navigation.logout();
-					
+							
 			loginPage.userLogin(client);
 			
 		//User Tab 
@@ -25,7 +16,7 @@ module.exports ={
 		usersPage.go(client);
 			client.pause(2000);
 			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
-			client.verify.notEqual(result.value.length, 25, 'There should be less than 25 groups on this page');
+			client.verify.notEqual(result.value.length, 25, 'There should be more than 25 groups on this page');
 				});
 			client.pause(1000);
 

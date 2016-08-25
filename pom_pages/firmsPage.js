@@ -56,28 +56,18 @@ var firmsPageCommands = {
 		},
 		
 		getFirmByName : function(string, client){
-			this.click('@firmsLink')
-			.clearValue('@firmNameSearch');
+			this.api.pause(1000);
+			this.click('@firmsLink');
+			this.clearValue('@firmNameSearch');
 			this.api.pause(1000);
 			this.setValue('@firmNameSearch',string);
 			this.api.pause(1000);
+			this.clearValue('@firmNameSearch');
 			this.waitForElementVisible('@firstRowFirmsData',2000)
 			.click('@firstRowFirmsData')
 			this.api.pause(1000);
-		},	
-				
-		getFirm_ByName: function(client){
-			this.api.pause(1000);
-			this.clearValue('@firmNameSearch');
-			this.click('@firmNameSearch');
-			this.setValue('@firmNameSearch',client.globals.selectFirmName);  //qa2 - 000 Firm A
-			this.api.pause(1000);
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
-			this.api.pause(100);
-			this.click('@firstRowFirmsData');
-			this.api.pause(2000);	
-		},		
+		}	
+	
 };
 
 module.exports = {
@@ -196,10 +186,6 @@ module.exports = {
 				selector: '//*[@id="billState"]',
 				locateStrategy: 'xpath'
 			},		
-			showingResult:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',
-				locateStrategy: 'xpath'
-			},
 			detailsFirmID:{
 				selector: '//span[contains(.,"Firm ID")]',
 				locateStrategy: 'xpath'

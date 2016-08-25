@@ -8,21 +8,13 @@ module.exports ={
 			client.windowSize(handle,1700,800);
 		});
 		client.url(client.launch_url);
-			
-		loginPage.adminLogin(client);
-		usersPage.go();
-		usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-		usersPage.click('@editAdminBtn');
-			
-		var adminPage=client.page.editAdminPage();
-		adminPage.setToAdmin2(client)
-		navigation.logout();
+		
 		loginPage.userLogin(client);
 
 		//Firm Tab.................................
 	var firmsPage = client.page.firmsPage();
 		firmsPage.go();
-		firmsPage.getFirm_ByName(client);
+		firmsPage.getFirmByName('c9 technologies', client);
 		client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
 			client.verify.notEqual(result.value.length, 25, 'There should be less than 25 groups on this page');
 		});
@@ -45,7 +37,7 @@ module.exports ={
 			
 		//Edit Firm Button Verification
 		firmsPage.go();	
-		firmsPage.getFirm_ByName(client);
+		firmsPage.getFirmByName('c9 technologies', client);
 		firmsPage
 			.click('@editFirmBtn')
 			.verify.valueContains('@street2','17th floor')
@@ -55,7 +47,7 @@ module.exports ={
 			
 		//Manage Group Button
 		firmsPage.go();
-		firmsPage.getFirm_ByName(client);
+		firmsPage.getFirmByName('c9 technologies', client);
 		firmsPage
 			.verify.visible('@manageGrpBtn','Verified Manage Group button is visible')
 			firmsPage.api.pause(2000);
@@ -64,7 +56,7 @@ module.exports ={
 			
 		//Manage Connections Button
 		firmsPage.go();
-		firmsPage.getFirm_ByName(client);
+		firmsPage.getFirmByName('c9 technologies', client);
 		firmsPage 
 			.verify.visible('@manageConnBtn','Verified Manage Connections button is visible')
 			.click('@manageConnBtn')
@@ -72,7 +64,7 @@ module.exports ={
 				
 		//Manage Users
 		firmsPage.go();
-		firmsPage.getFirm_ByName(client);
+		firmsPage.getFirmByName('c9 technologies', client);
 		firmsPage
 			.verify.visible('@manageUsersBtn','Verified Manage Users button is visible')
 			.click('@manageUsersBtn');

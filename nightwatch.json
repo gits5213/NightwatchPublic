@@ -60,14 +60,13 @@
       },
       
       "prod":{  
-          "launch_url":"https://qa2-c9portal.xhoot.com/c9portal",
+          "launch_url":"https://c9portal.xhoot.com/c9portal",
           "globals":{  
-              "adminUsername":"ucheonwudiwe",
-              "adminPassword":"Password1234",
-              "email1":"test.user@c9tec.com",
-              "nonAdminUser":"johnakpan",
-              "nonAdminPass":"Password123"
-              "selectFirmName":"c9 technologies"
+             "prodAdmin2Username":"",
+             "prodAdmin2Password":"",
+             "email1":"md.zaman@c9tec.com",
+             "nonAdminUser":"qasmokeadmin",
+             "nonAdminPass":"Ax5e6xzT"
           }
        },
        
