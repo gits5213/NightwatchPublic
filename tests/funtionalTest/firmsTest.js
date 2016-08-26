@@ -12,13 +12,17 @@ module.exports ={
 			var firmsPage = client.page.firmsPage();
 			firmsPage.go();
 			
+			client.pause(2000);
 			client.assert.containsText('body','Manage your Cloud9 Firms');
 			var dateString = firmsPage.addNewFirm(client);
 			client.assert.urlContains('#/addGroup');
 			console.log('Successfully created: Test Firm '+dateString);
 			
 			firmsPage.getFirmByName('Test Firm '+dateString);
+			firmsPage.click('@editFirmBtn');
+			client.pause(1000);
 			client.assert.urlContains('#/editFirm');
+			client.pause(1000);
 			
 			firmsPage
 			.verify.valueContains('@firmNameForAdd','Test Firm '+dateString)
@@ -45,7 +49,7 @@ module.exports ={
 			.verify.valueContains('@billEmail',client.globals.email1)
 			.verify.valueContains('@billWork', 123456789)
 			.verify.valueContains('@billMobile',234567890)
-			
+			 client.pause(2000);
 			client.end();
 		}
 }

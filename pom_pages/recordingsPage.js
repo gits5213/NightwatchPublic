@@ -1,26 +1,13 @@
-/*
-var loginCommand = {
-		adminLogin: function(client){
-			this.waitForElementVisible('@usernameField',2000)
-			.waitForElementVisible('@passwordField',2000)
-			.waitForElementVisible('@submitButton',2000)
-			.setValue('@usernameField',client.globals.adminUsername)
-			.setValue('@passwordField', client.globals.adminPassword)
-			.click('@submitButton')
-			.waitForElementVisible('@alert',2000)
-			.assert.containsText('div.modal-header', '**WARNING**')
-			.click('@okButton');
-			this.api.pause(1500);
-			
-		},
-		logout:function(){
-			this.click('//*[@id="navbar"]/ul[2]/li[3]/a/h4/i');
-			this.api.pause(1000);
+
+var recordingsPageCommands = {
+		portalRecordingsTab: function(client){
+			this.verify.visible('@recordingsTab', 'Verified Recordings tab button is visible');					
 		}
+
 };
-*/
+
 module.exports = {
-		//commands :[loginCommand],
+		commands :[recordingsPageCommands],
 		elements: {
 			backBtn:{
 				selector: '//*[@id="demo"]/div[4]/ul/li[1]/i',
@@ -64,6 +51,11 @@ module.exports = {
 			},
 			show:{
 				selector: '//*[@id="ng-view"]/div[2]/div[3]/div[2]/button',
+				locateStrategy: 'xpath'
+			},
+			//
+			recordingsTab:{
+				selector: '//*[@id="recordingsNav"]/h4/span',
 				locateStrategy: 'xpath'
 			}
 		}

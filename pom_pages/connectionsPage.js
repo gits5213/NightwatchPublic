@@ -1,9 +1,10 @@
 var connPageCommands = {
 		go: function(){
-			this.api.pause(1000);
+			this.api.pause(2000);
 			this.click('@connLink');
 			this.api.pause(1000);
 		},
+				
 		addIntConnForFirm: function(dateString,client){
 			this.click('@addConnBtn');
 			this.api.pause(1000);
@@ -28,7 +29,8 @@ var connPageCommands = {
 			this.click('@submitBtn');
 			this.api.pause(1000);
 			
-		},
+			},
+		
 		addExtConnForFirm: function(dateString,client){
 			
 		},
@@ -38,7 +40,36 @@ var connPageCommands = {
 			.click('@editConnBtn');
 			this.api.pause(1000);
 			
+		},
+		
+		portalConnectionsTab: function(client){
+			this.verify.visible('@connLink', 'Verified Connection tab button is visible');	
+		},
+		
+		connection: function(){
+			this.waitForElementVisible('@connectionfirstRow',5000, 'Verified Connection First Row is visible');
+			this.click('@connectionfirstRow');
+			this.api.pause(1000);
+			this.click('@connectionSecondtRow');
+			this.api.pause(1000);
+			this.waitForElementVisible('@addConnToBroupBtn',1500, 'Verified add connections to group tab is visible');
+			this.click('@addConnToBroupBtn');
+			this.verify.urlContains('#/addGroupConnections?')
+			this.api.pause(1000);
+			
+		},
+		groupUserSelect: function(){
+			this.waitForElementVisible('@groupUser1',1000, 'Verified group user 1st row visible');
+			this.click('@groupUser1');
+			this.waitForElementVisible('@groupUser2',1000, 'Verified group user 2nd row visible');
+			this.click('@groupUser2');
+			this.waitForElementVisible('@addConnectionsToUsersSubmitButton',1000, 'Verified add connections to users button visible');
+			this.api.pause(1000);
+			this.click('@addConnectionsToUsersSubmitButton');
+			this.api.pause(1000);
+		
 		}
+				
 };
 
 module.exports = {
@@ -57,6 +88,9 @@ module.exports = {
 				selector: '//*[@id="editConnection"]/i',
 				locateStrategy: 'xpath'
 			},
+			addConnToBroupBtn:{
+				selector: '//*[@id="addGroupConnection"]/i',locateStrategy: 'xpath'
+			},
 			delConnBtn:{
 				selector: '//*[@id="deleteConnection"]/i',
 				locateStrategy: 'xpath'
@@ -67,6 +101,15 @@ module.exports = {
 			},
 			exportBtn:{
 				selector: '//*[@id="editConnection"]/i',
+				locateStrategy: 'xpath'
+			},
+			
+			selectFirm:{
+			selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/a/span',
+			locateStrategy: 'xpath'
+			},
+			selectFirmSearch: {
+				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/div/div/input',
 				locateStrategy: 'xpath'
 			},
 			
@@ -119,11 +162,33 @@ module.exports = {
 				selector : '//*[@id="scrollable-area"]/table/tbody/tr[2]/td[1]',
 				locateStrategy: 'xpath'
 			},
-			
+			connectionfirstRow: {
+				selector : '//tbody/tr[2]/td/input[@id="addMultiple"]',locateStrategy: 'xpath'	
+			},
+			connectionSecondtRow: {
+				selector : '//tbody/tr[3]/td/input[@id="addMultiple"]',locateStrategy: 'xpath'	
+			},
+
 			firmNameField : '#firmName',
 			commNameField: '#communityName',
 			grpNameField: {
 				selector: '//*[@id="groupName"]',
+				locateStrategy: 'xpath'
+			},
+			connectionsHomePage:{
+				selector: '//*[@id="ng-view"]/div[1]/div/h2',
+				locateStrategy: 'xpath'
+			},
+			groupUser1:{
+				selector: "//tbody/tr/td/input[@id='addConnection']",
+				locateStrategy: 'xpath'
+			},
+			groupUser2:{
+				selector: "//tbody/tr[2]/td/input[@id='addConnection']",
+				locateStrategy: 'xpath'
+			},
+			addConnectionsToUsersSubmitButton:{
+				selector: "//*[@id='submitGroupConnections']",
 				locateStrategy: 'xpath'
 			},
 			btnLabelField: '#buttonLabel',
@@ -132,5 +197,8 @@ module.exports = {
 			description: '#description',
 			createdByField: '#createdBy',
 			createdOnField: '#createdOn'
+		
 		}
+
+
 }

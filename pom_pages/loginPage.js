@@ -1,15 +1,17 @@
 var loginCommand = {
 		adminLogin: function(client){
-			this.waitForElementVisible('@usernameField',2000)
-			.waitForElementVisible('@passwordField',2000)
-			.waitForElementVisible('@submitButton',2000)
+			this.waitForElementVisible('@usernameField',3000, 'Verified Username Field is visible')
+			.waitForElementVisible('@passwordField',3000, 'Verified PassWord Field is enabled')
+			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable')
 			.setValue('@usernameField',client.globals.adminUsername)
 			.setValue('@passwordField', client.globals.adminPassword)
 			.click('@submitButton')
-			.waitForElementVisible('@alert',2000)
+			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
 			this.api.pause(1500);
+			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
+			this.api.pause(2000);
 			
 		},
 		loginWithCreds: function(username,password){
@@ -26,16 +28,19 @@ var loginCommand = {
 		},
 		
 		userLogin: function(client){
-			this.waitForElementVisible('@usernameField',2000)
-			.waitForElementPresent('@passwordField',2000)
-			.waitForElementPresent('@submitButton',2000)
+			this.waitForElementVisible('@usernameField',2000, 'Verified Username Field is visible')
+			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
+			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable')
 			.setValue('@usernameField',client.globals.nonAdminUser)
 			.setValue('@passwordField',client.globals.nonAdminPass)
 			.click('@submitButton')
-			.waitForElementVisible('@alert',2000)
+			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
-			this.api.pause(1500);
+			this.api.pause(2000);
+			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
+			this.api.pause(2000);
+			
 		},
 		newUserLogin: function(username, password){
 			this.waitForElementVisible('@usernameField',2000)
@@ -46,26 +51,37 @@ var loginCommand = {
 			this.setValue('@passwordField',password, function(){
 				console.log('Password is : ',password);
 			})
-			//this.api.pause(1000)
 			this.click('@submitButton')
-			//.waitForElementVisible('@alert',2000)
-			//.assert.containsText('div.modal-header', '**WARNING**')
-			//.click('@okButton');
 			this.api.pause(1500);
 		},
+
 		userLoginFail: function(username,password){
 			this.api.pause(1000,function(){
 				console.log('Logging in - username:'+username+' password:'+password)
 			})
-			this.waitForElementVisible('@usernameField',2000)
-			.waitForElementPresent('@passwordField',2000)
-			.waitForElementPresent('@submitButton',2000)
+			this.waitForElementVisible('@usernameField',2000, 'Verified Username Field is visible')
+			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
+			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clickable')
 			.setValue('@usernameField',username)
 			.setValue('@passwordField', password)
 			.click('@submitButton',function(){
 				console.log('username:'+username+' password:'+password)
 			})
-			.waitForElementNotVisible('@alert',2000)
+			this.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
+			this.api.pause(1500);		
+		},
+		
+		prodAdmin2Login: function(client){
+			this.waitForElementVisible('@usernameField',3000, 'Verified Username Field is visible')
+			.waitForElementVisible('@passwordField',3000, 'Verified PassWord Field is enabled')
+			.waitForElementVisible('@submitButton',3000, 'Verified Sign in button is enable and clickable')
+			.setValue('@usernameField',client.globals.prodAdmin2Username)
+			.setValue('@passwordField', client.globals.prodAdmin2Password)
+			.click('@submitButton')
+			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
+			.assert.containsText('div.modal-header', '**WARNING**')
+			.click('@okButton');
+			this.waitForElementNotVisible('@alert',2000);
 			this.api.pause(1500);
 			this.click('@resetPassword','Click "Forgot Password?" link')
 			this.getText('@changePassText', function(result){
@@ -83,6 +99,8 @@ var loginCommand = {
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton2');
 			this.api.pause(1500);
+			this.verify.visible('@portalHomePage', 'Verified Portal Home Page - Welcome to the Cloud9 Portal');	
+			this.api.pause(2000);
 		},
 		
 		resetPassword : function(client, username){
@@ -90,20 +108,13 @@ var loginCommand = {
 			this.click('@forgotPassLink', function(){
 				console.log('Clicking Forgot Password Link')
 			})
-			/*
-			this.api.pause(1000)
-			this.getText('@changePassText', function(result){
-				this.verify.equal(result.value, "Enter your Username and Email and\nclick Submit to reset your password.")
-			})
-			*/
 			this
 			.setValue('@userName',username)
 			.setValue('@email',client.globals.msft_email)
 			.click('@forgotPassBtn');
 			this.api.pause(1000)
-			
-		}
-		
+
+			}
 };
 
 module.exports = {
@@ -134,6 +145,14 @@ module.exports = {
 			loginFail1:{
 				selector: '//*[@id="changefailed"]',
 				locateStrategy:'xpath'
+			},
+			portalHomePage:{
+				selector: '//*[@id="ng-view"]/div/div[1]/div/div/div/div/h1',
+				locateStrategy: 'xpath'
+			},
+			signInButton: {
+				selector: '//*[@id="signin"]',
+				locateStrategy: 'xpath'
 			},
 			newPassword1:{
 				selector: '//*[@id="newPassword1"]',

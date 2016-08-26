@@ -1,6 +1,7 @@
 var groupsPageCommands = {
-		go: function(){
+		go: function(client){
 			this.api.pause(1000);
+			this.verify.visible('@groupsLink', 'Verified Groups tab button is visible');
 			this.click('@groupsLink');
 			this.api.pause(1000);
 		},
@@ -17,8 +18,6 @@ var groupsPageCommands = {
 			.setValue('@grpNameField', 'Firm '+dateString+' Grp 1')
 			.click('@communityBar')
 			.click('@energyOption');
-			//this.api.keys(client.Keys.DOWN_ARROW);
-			//this.api.keys(client.Keys.ENTER);
 			this.setValue('@contactFname','Howard')
 			.setValue('@contactLname','Hughes')
 			.setValue('@contactEmail',client.globals.email1)
@@ -70,6 +69,20 @@ var groupsPageCommands = {
 			.click('@editGrpBtn');
 			this.api.pause(1000);
 			
+		},
+			
+		getGroupByName: function(client){
+			this.waitForElementVisible('@groupNameSearch',5000, 'Verified Firms name search field enable');
+			this.api.pause(1000);
+			this.clearValue('@groupNameSearch');
+			this.click('@groupNameSearch');
+			this.setValue('@groupNameSearch',' ');
+			this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRowGroupsData',5000, 'Verifed the searching result narrowing!');
+			this.click('@firstRowGroupsData');
+			this.api.pause(2000);		
 		}
 };
 
@@ -184,9 +197,41 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
 				locateStrategy: 'xpath'
 			},
+			
+			groupNameSearch:{
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',locateStrategy: 'xpath'
+			},
+			firstRowGroupsData:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',locateStrategy: 'xpath'
+			},
+			editGroupBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/span',locateStrategy: 'xpath'				      
+			},
+			editGroupHomePage:{
+				selector: '//*[@id="ng-view"]/div/h5',locateStrategy: 'xpath'				      
+			},
+			editGroupSave:{
+				selector: '//*[@id="firmData"]/div[2]/button[2]',locateStrategy: 'xpath'				      
+			},
+			editGroupUserBtn:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[3]/span',locateStrategy: 'xpath'				      
+			},
+			editGroupUserHomePage:{
+				selector: '//*[@id="ng-view"]/div/h5/span',locateStrategy: 'xpath'				      
+			},
+			doneBtn:{
+				selector: '//*[@id="ng-view"]/div/form/button',locateStrategy: 'xpath'				      
+			},		
+			groupDescription:{
+				selector: '//span[contains(.,"Description")]',locateStrategy: 'xpath'				      
+			},
+			detailsFirmName:{
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
+			},
 			energyOption: {
 				selector: '//*[@id="communityId"]/option[4]',
 				locateStrategy: 'xpath'
 			}
+			
 		}
 }

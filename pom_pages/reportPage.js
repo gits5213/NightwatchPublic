@@ -1,153 +1,249 @@
-var reportPageCommands = {
-		go: function(client){
+var reportTabPageCommands = {
+		c9reports: function(client){
+			this.waitForElementVisible('@reportLink',2000, false);
+			this.click('@reportLink');
+			this.api.pause(2000);
+		},			
+		selectFirm: function(client){
+			this.waitForElementVisible('@selectFirm',2000, false);
+			this.api.pause(2000);
+			this.click('@selectFirm');	
 			this.api.pause(1000);
-			this.click('@reportTab');
-			this.api.pause(3000);
-			
-			this.click('@selectFirm');		
 			this.click('@SelectFirmSearch');		
 			this.clearValue('@SelectFirmSearch');
-			this.api.pause(500);
-			this.setValue('@SelectFirmSearch','000 Firm B');
+			this.api.pause(1000);
+			this.setValue('@SelectFirmSearch',' ');  
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
-			
-			
-			
-			
-			
-			
-			
-			
+			this.api.pause(500);				
 		},
-	/*	addIntConnForFirm: function(dateString,client){
-			this.click('@addConnBtn');
+			
+		cloud9Usage: function(client){
+			this.waitForElementVisible('@cloud9Usage',2000, 'Verified cloud9Usage button is visible ');
+			this.expect.element('@cloud9Usage').text.to.contain('Cloud9 Usage').before(500);			
 			this.api.pause(1000);
-			this.assert.containsText('body','Add Connection');
-			this.click('@selectFirmBar');
-			this.api.pause(500);
-			this.setValue('@selectFirmBarSearch',dateString);
-			this.api.pause(500);
-			this.api.keys(client.Keys.ENTER);
-			this.waitForElementPresent('@internalYes',1000)
-			.click('@internalYes');
-			this.api.pause(500);
-			this.waitForElementPresent('@fromFieldBar',1000)
-			.click('@fromFieldBar');
-			this.api.pause(500);
-			this.setValue('@fromFieldInput', 'Grp 1');
+			this.expect.element('@cloud9Usage_dropDown').to.be.visible;
+			this.setValue('@cloud9Usage_dropDown','');
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
-			this.verify.valueContains('@connType','sPK');
-			this.setValue('@myFirmBtnLabel',dateString+'IntraFirmShout');
-			this.api.pause(500);
-			this.click('@submitBtn');
+			this.api.pause(1000);
+		},	
+		
+		userButtonRport: function(client){
+			this.waitForElementVisible('@userButtonReport_Button_Validation',2000, 'Verified user button Report visible ');
+			this.expect.element('@userButtonReport_Button_Validation').text.to.contain('Button #').before(500);
+			this.expect.element('@userButtonReport_Counterparty_Validation').to.be.visible;
+			this.expect.element('@userButtonReport_Counterparty_Validation').text.to.contain('Counterparty').before(500);
+			this.expect.element('@userButtonReport_Traders_Validation').to.be.visible;
+			this.expect.element('@userButtonReport_Traders_Validation').text.to.contain('Trader(s)').before(500);
+			this.expect.element('@userButtonReport_City_Validation').to.be.visible;
+			this.expect.element('@userButtonReport_City_Validation').text.to.contain('City').before(500);
+			this.expect.element('@userButtonReport_State_Validation').to.be.visible;
+			this.expect.element('@userButtonReport_State_Validation').text.to.contain('State').before(500);
+			this.getText('@userButtonReport_State_Validation', function(getText){
+				console.log("Text cointains: " + getText.value);	
+			});
+		},
+		
+		firmButtonReport: function(client){
+			this.waitForElementVisible('@firmButtonReport',2000, false);
+			this.click('@firmButtonReport');
+			
+			//Firm Button Report Export Table Header
+			this.waitForElementVisible('@firmButtonReport_validation',3000, false);
+			this.expect.element('@firmButtonReport_validation').to.be.visible;
+			this.expect.element('@firmButtonReport_validation').text.to.contain('Firm Button Report').before(500);
+			this.expect.element('@tableHeader_FirmName_Validation').to.be.visible;
+			this.expect.element('@tableHeader_FirmName_Validation').text.to.contain('Firm Name').before(500);
+			this.expect.element('@tableHeader_Username_Validation').to.be.visible;
+			this.expect.element('@tableHeader_Username_Validation').text.to.contain('Username').before(500);
+			this.expect.element('@tableHeader_ButtonName_Validation').to.be.visible;
+			this.expect.element('@tableHeader_ButtonName_Validation').text.to.contain('Button Name').before(500);
+			this.expect.element('@tableHeader_FarEndFirm_Validation').to.be.visible;
+			this.expect.element('@tableHeader_FarEndFirm_Validation').text.to.contain('Far End Firm').before(500);
+			this.expect.element('@tableHeader_FarEndUsers_Validation').to.be.visible;
+			this.expect.element('@tableHeader_FarEndUsers_Validation').text.to.contain('Far End Users').before(500);
+			this.assert.containsText('@tableHeader_FarEndUsers_Validation', 'Far End Users');
+			this.getText('@tableHeader_FarEndUsers_Validation', function(getText){
+				console.log("Text cointains: " + getText.value);	
+			});
+			
+			//Firm Button Report Export Table Data
+			this.waitForElementVisible('@firmButtonReport_ExportTableData',2000, false);
+			this.expect.element('@firmButtonReport_ExportTableData').text.to.contain('Export Table Data').before(500);
+			//this.click('@firmButtonReport_ExportTableData');
+		},	
+		
+		weekButton: function(){
+			//Week 
+			this.waitForElementVisible('@weekButton',2000, false);
+			this.expect.element('@weekButton').text.to.contain('Week').before(500);
+			this.click('@weekButton');
 			this.api.pause(1000);
 			
+			this.waitForElementVisible('@modalHeader_WeekCalender',2000, false);
+			this.expect.element('@modalHeader_WeekCalender').text.to.contain('Select Week').before(500);
+		
+			this.waitForElementVisible('@modalOk_WeekCalender',2000, false);
+			this.expect.element('@modalOk_WeekCalender').text.to.contain('OK').before(500);
+			this.click('@modalOk_WeekCalender');
+			this.api.pause(3000);
 		},
-		addExtConnForFirm: function(dateString,client){
-			
-		},
-		editFirstRecord: function(){
-			this.waitForElementVisible('@firstRow',2000);
-			this.click('@firstRow')
-			.click('@editConnBtn');
+		
+		monthButton: function(){
+		
+			//Month
+			this.waitForElementVisible('@monthButton',2000, false);
+			this.expect.element('@monthButton').text.to.contain('Month').before(500);
+			this.click('@monthButton');
 			this.api.pause(1000);
 			
-		}*/
-};
+			this.waitForElementVisible('@modalHeader_MonthCalender',500, false);
+			this.expect.element('@modalHeader_MonthCalender').text.to.contain('Select Month').before(500);
+		
+			this.waitForElementVisible('@modalOk_MonthCalender',500, false);
+			this.expect.element('@modalOk_MonthCalender').text.to.contain('OK').before(500);
+			this.click('@modalOk_MonthCalender');
+			
+			//Export Graph Data
+			this.waitForElementVisible('@Week_Month_ExportGraphData',5000, false);
+			this.expect.element('@Week_Month_ExportGraphData').text.to.contain('Export Graph Data').before(500);
+			//this.click('@Week_Month_ExportGraphData');
+			this.getText('@Week_Month_ExportGraphData', function(getText){
+				console.log("Text cointains: " + getText.value);	
+			});
+			this.api.pause(3000);
+		}		
+	};
 
 module.exports = {
-		commands :[reportPageCommands],
+		commands :[reportTabPageCommands],
 		elements: {
-			reportTab:{
+			reportLink:{
 				selector: '//span[contains(.,"Reports")]',	
 				locateStrategy: 'xpath'
-			},			
-			selectFirm:{
-				selector: '//span[contains(.,"Select a Firm")]',    
+			},
+			
+			pTT_GraphHeader_Validation:{
+				selector: '//*[@id="highcharts-0"]/svg/text[1]/tspan', 
 				locateStrategy: 'xpath'
-			},			
+			},
+			
+			selectFirm:{
+				selector: '//*[@id="reportFirmContainer"]/div/div/div/a/span',    
+				locateStrategy: 'xpath'
+			},	
+			
 			SelectFirmSearch:{
 				selector: '//input[contains(@autocomplete,"off")]',
 				locateStrategy: 'xpath'
 			},
-			/*
-			delConnBtn:{
-				selector: '//*[@id="deleteConnection"]/i',
+		
+			cloud9Usage:{
+				selector: '//span[contains(.,"Cloud9 Usage")]',
 				locateStrategy: 'xpath'
 			},
-			detailsBtn:{
-				selector: '//*[@id="editConnection"]/i',
-				locateStrategy: 'xpath'
-			},
-			exportBtn:{
-				selector: '//*[@id="editConnection"]/i',
+						
+			cloud9Usage_dropDown:{
+				selector: '//select[contains(@id,"grArchive")]',
 				locateStrategy: 'xpath'
 			},
 			
-			selectFirmBar: {
-				selector: '//*[@id="ng-view"]/div/h5/div/div/div/a/span',
+			userButtonReport_Button_Validation:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[1]',
 				locateStrategy: 'xpath'
 			},
-			selectFirmBarSearch: {
-				selector: '//*[@id="ng-view"]/div/h5/div/div/div/div/div/input',
+			userButtonReport_Counterparty_Validation:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[2]',
 				locateStrategy: 'xpath'
 			},
-			internalYes : {
-				selector: '//*[@id="internalYes"]',
+			userButtonReport_Traders_Validation:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[3]',
 				locateStrategy: 'xpath'
 			},
-			externalYes : {
-				selector: '//*[@id="internalNo"]',
+			userButtonReport_City_Validation:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[4]',
 				locateStrategy: 'xpath'
 			},
-			fromFieldBar : {
-				selector: '//*[@id="connFromDropdown_chosen"]/a/span',
+			userButtonReport_State_Validation:{
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[5]',
 				locateStrategy: 'xpath'
 			},
-			toField : {
-				selector: '//*[@id="connToDropdown_chosen"]/a/span',
+					
+			firmButtonReport:{
+				selector: '//li[contains(.,"Firm Button Report")]',
 				locateStrategy: 'xpath'
 			},
-			fromFieldInput :{
-				selector : '//*[@id="connFromDropdown_chosen"]/div/div/input',
+					
+			firmButtonReport_validation: {
+				selector: '//h2[contains(.,"Firm Button Report")]',
 				locateStrategy: 'xpath'
 			},
-			connType :{
-				selector : '//*[@id="vcType"]',
+						
+			tableHeader_FirmName_Validation: {
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[1]',
 				locateStrategy: 'xpath'
 			},
-			myFirmBtnLabel :{
-				selector: '//*[@id="fromButtonLabel"]',
-				locateStrategy: 'xpath'
-			},
-			remoteFirmBtnLabel :{
-				selector: '//*[@id="toButtonLabel"]',
-				locateStrategy: 'xpath'
-			},
-			submitBtn: {
-				selector: '//*[@id="connectionData"]/div[2]/button[2]',
+				
+			tableHeader_Username_Validation : {
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[2]',
 				locateStrategy: 'xpath'
 			},
 			
-			firstRow: {
-				selector : '//*[@id="scrollable-area"]/table/tbody/tr[2]/td[1]',
+			tableHeader_ButtonName_Validation : {
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[3]',
+				locateStrategy: 'xpath'
+			},
+		
+			tableHeader_FarEndFirm_Validation : {
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[4]',
 				locateStrategy: 'xpath'
 			},
 			
-			firmNameField : '#firmName',
-			commNameField: '#communityName',
-			grpNameField: {
-				selector: '//*[@id="groupName"]',
+			tableHeader_FarEndUsers_Validation : {
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[5]',
 				locateStrategy: 'xpath'
 			},
-			btnLabelField: '#buttonLabel',
-			vcinstField: '#vcInstID',
-			connIdField: '#c9RefNum',
-			description: '#description',
-			createdByField: '#createdBy',
-			createdOnField: '#createdOn'
-		}*/
+				
+			firmButtonReport_ExportTableData : {
+				selector: '//*[@id="firmButtonReport"]/div[1]/li/span',
+				locateStrategy: 'xpath'
+			},
+
+			weekButton :{
+				selector : '//*[@id="week"]/span',
+				locateStrategy: 'xpath'
+			},
+			
+			modalHeader_WeekCalender :{
+				selector : '//*[@id="selectWeekModal"]/div[2]/div/div[1]/h3',
+				locateStrategy: 'xpath'
+			},
+			
+			modalOk_WeekCalender :{
+				selector : '//*[@id="selectWeekModal"]/div[2]/div/div[3]/button[2]',
+				locateStrategy: 'xpath'
+			},
+
+			monthButton :{
+				selector : '//*[@id="month"]/span',
+				locateStrategy: 'xpath'
+			},
+			
+			modalHeader_MonthCalender :{
+				selector : '//*[@id="selectMonthModal"]/div[2]/div/div[1]/h3',
+				locateStrategy: 'xpath'
+			},
+			
+			modalOk_MonthCalender :{
+				selector : '//*[@id="selectMonthModal"]/div[2]/div/div[3]/button[2]',
+				locateStrategy: 'xpath'
+			},
+			
+			Week_Month_ExportGraphData :{
+				selector : '//*[@id="graphExport"]/span',
+				locateStrategy: 'xpath'
+			}
+			
 		}
 }

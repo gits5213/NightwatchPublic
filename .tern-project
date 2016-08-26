@@ -6,5 +6,6 @@
     "outline": {
       
     }
-  }
+  },
+  "ecmaVersion": 5
 }

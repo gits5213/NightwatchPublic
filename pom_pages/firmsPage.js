@@ -1,9 +1,10 @@
 var firmsPageCommands = {
 		go: function(){
 			this.api.pause(1000);
-			this.click('@firmsLink')
+			this.verify.visible('@firmsLink', 'Verified Firms tab button is visible');
+			this.click('@firmsLink');
 		},
-		addNewFirm: function(client){
+		addNewFirm : function(client){
 			this.api.pause(1000);
 			this.click('@addFirmBtn')
 			.assert.containsText('body','Add Firm')
@@ -17,7 +18,7 @@ var firmsPageCommands = {
 			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
 			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
 			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
-			//now.getMilliseconds().toString();
+	
 			
 			this.setValue('@firmNameForAdd','Test Firm '+dateString)
 			.setValue('@street1', '123 Main Street')
@@ -30,19 +31,14 @@ var firmsPageCommands = {
 			.setValue('@pwork', 123456789)
 			.setValue('@pmobile',234567890)
 			.click('@firmType')
-			.click('@firmVisible')
-			this.api.pause(1000);
-			//this.api.keys(client.Keys.DOWN_ARROW);
-			//this.api.keys(client.Keys.ENTER);
+			.click('@firmVisible');
 			
-			this.click('@countryDropdown')
-			//.click('@countryUSA')
-			//this.click('@countrySearch');
+			this.api.pause(1000);
+			this.click('@countryDropdown');
 			this.api.pause(1000);
 			this.setValue('@countrySearch','United States');
-			this.api.pause(500);
+			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
-			
 			this.api.pause(1000);
 			
 			this.click('@stateDropdown');
@@ -50,30 +46,28 @@ var firmsPageCommands = {
 			this.api.pause(500);
 			this.setValue('@stateSearch','New York');
 			this.api.pause(500);
-			this.api.keys(client.Keys.ENTER);
-			
-			
+			this.api.keys(client.Keys.ENTER);	
 			this.click('@copyFrmBtn');
-			this.api.pause(1000);
-			
-			
-			
+			this.api.pause(1000);	
 			this.click('@submitFrmBtn');
 			this.api.pause(1000);
-		
 			return dateString.trim();
+			
 		},
-		getFirmByName : function(string){
-			this.click('@firmsLink')
-			.clearValue('@firmNameSearch');
+		
+		getFirmByName : function(string, client){
+			this.api.pause(1000);
+			this.click('@firmsLink');
+			this.clearValue('@firmNameSearch');
 			this.api.pause(1000);
 			this.setValue('@firmNameSearch',string);
 			this.api.pause(1000);
+			this.clearValue('@firmNameSearch');
 			this.waitForElementVisible('@firstRowFirmsData',2000)
 			.click('@firstRowFirmsData')
-			.click('@editFirmBtn');
 			this.api.pause(1000);
-		}
+		}	
+	
 };
 
 module.exports = {
@@ -155,7 +149,6 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			
-
 			okButton:{
 				selector: "(//button[@type='button'])[4]",
 				locateStrategy: 'xpath'
@@ -192,6 +185,14 @@ module.exports = {
 			billState: {
 				selector: '//*[@id="billState"]',
 				locateStrategy: 'xpath'
+			},		
+			detailsFirmID:{
+				selector: '//span[contains(.,"Firm ID")]',
+				locateStrategy: 'xpath'
+			},
+			detailsFirmName:{
+				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',
+				locateStrategy: 'xpath'
 			},
 			firmVisible: {
 				selector: '//*[@id="firmType"]/option[2]',
@@ -201,5 +202,7 @@ module.exports = {
 				selector: '//*[@id="mailingCountry_chosen"]/div/ul/li[231]',
 				locateStrategy:'xpath'
 			}
+		
+		
 		}
 }

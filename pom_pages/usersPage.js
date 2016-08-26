@@ -1,12 +1,10 @@
 var userPageCommands = {
 		go: function(){
-			this.api.pause(1000);
+			this.verify.visible('@usersLink', 'Verified User tab button is visible and clikable')
 			this.click('@usersLink');
-			this.api.pause(5000);
-			//this.waitForElementNotVisible('@spinner',4000)
+			this.api.pause(2000);
 		},
-		addUserToFirm : function(firm, client){
-			
+		addUserToFirm : function(firm, client, dateString){    			
 			this.click('@addUserBtn');
 			this.api.pause(1000);
 			this.click('@selectFirmBar')
@@ -26,10 +24,7 @@ var userPageCommands = {
 			.setValue('@fnameField', 'John')
 			.setValue('@lnameField','Doe'+dateString)
 			.setValue('@emailField',client.globals.email1)
-			//.click('@genPassBtn');
-			
 			this.api.pause(1000);
-			
 			this.click('@countryDropdown');
 			this.click('@countrySearch');
 			this.api.pause(500);
@@ -54,25 +49,11 @@ var userPageCommands = {
 			.setValue('@zip', 77777)
 			.click('@voiceYes');
 			this.api.pause(1000);
-			
-			this.click('@addUserSubmitBtn');
+			this.click('@addUserSubmitBtn');		
 			this.waitForElementVisible('@newUserModal',2000)
 			.click('@addUserConfirmBtn')
 			.waitForElementNotPresent('@newUserModal',30000);
-
 			return dateString.trim();
-			
-		},
-		editFirstRecord: function(){
-			this.waitForElementVisible('@firstRow',5000);
-			this.click('@firstRow')
-			.click('@editUserBtn');
-			this.api.pause(1000);
-			
-		},
-		editRecord: function(){
-			this.click('@editUserBtn');
-			this.api.pause(1000);
 			
 		},
 		updateFirstRecord: function(dateString){
@@ -80,7 +61,6 @@ var userPageCommands = {
 			this.clearValue('@usernameSearch')
 			.waitForElementNotVisible('@spinner',3000)
 			.setValue('@usernameSearch','johndoe'+dateString);
-			//this.api.pause(1000);
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow')
 			.click('@editUserBtn');
@@ -107,7 +87,6 @@ var userPageCommands = {
 		deleteUser: function(dateString,client){
 			this.go();
 			this.clearValue('@usernameSearch')
-			//.waitForElementNotVisible('@spinner',5000)
 			.setValue('@usernameSearch','johndoe'+dateString);
 			this.api.pause(1000);
 			this.waitForElementVisible('@firstRow',2000);
@@ -133,36 +112,94 @@ var userPageCommands = {
 			
 			this.api.pause(1000)
 		},
+		
 		editSalesInfo: function(){
 			this.api.pause(1000);
 			this.click('@firstRow')
 			.click('@editSalesUserBtn');
 			this.api.pause(1000);
 		},
+		
 		editAdminInfo: function(user,client,callback){
 			this.api.pause(1000);
 			this.waitForElementPresent('@selectFirmBar2',3000)
 			this.click('@selectFirmBar2')
-			.setValue('@selectFirmBarSearch2','Select a');
-			this.api.pause(3000);
+			this.setValue('@selectFirmBarSearch2','Select a');
+			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
-			
-			//this.waitForElementVisible('@spinner',2000)
-			//.waitForElementNotVisible('@spinner',30000);
 			this.waitForElementPresent('@usernameSearch',3000);
-			this.click('@usernameSearch')
+			this.click('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 			this.api.pause(1000);
+			this.click('@secondRow');  //All other test
+			//this.click('@firstRow'); //for new_user_login
+			this.api.pause(1000);		
+		},
+		addUserWithPassToFirm : function(firm, client){
+			this.click('@addUserBtn');
+			this.api.pause(1000);
+			this.click('@selectFirmBar')
+			.setValue('@selectFirmBarSearch',firm);
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			this.waitForElementVisible('@addUserSubmitBtn',2000);
 			
-			this.click('@firstRow')
-			.click('@editAdminBtn');
+			var now = new Date();
+			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
+			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
+			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
+			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+			
+			this.waitForElementVisible('@fnameField',1000)
+			.waitForElementVisible('@lnameField',1000)
+			.setValue('@fnameField', 'John')
+			.setValue('@lnameField','Doe'+dateString)
+			.setValue('@emailField',client.globals.email1)
+			.click('@genPassBtn');
+			
+			this.api.pause(1000);
+			var description='';
+			var username='';
+			var password='';
+			var creds=[];
+			
+			this.getValue('@descField',function(result){
+				description= result.value;
+				var usernameIndex=description.substring(description.indexOf('Username='));
+				var passwordIndex=description.substring(description.indexOf('Password='));
+				
+				username =usernameIndex.substring(9,usernameIndex.indexOf(' Password='));
+				password =passwordIndex.substring(9,18);
+				console.log("New user created.\nusername: " + username +' and password: '+password);
+			});
+						
+			this.api.pause(1000);
+			this.setValue('@workField',123456789)
+			.setValue('@mobileField',234567890)
+			.click('@voiceYes');
+			this.api.pause(1000);
+			
+			this.click('@addUserSubmitBtn');
+			this.waitForElementVisible('@newUserModal',2000)
+			.click('@addUserConfirmBtn');
+			this.api.pause(1000,function(){
+				console.log("New user created.\nusername: " + username +' and password: '+password+' datestring: '+dateString);
+			});
+
+			return [dateString, username, password];
 			this.api.pause(1000);
 			if(callback){
 				callback();
 			}
+		},
+		editFirstRecord: function(){
+			this.waitForElementVisible('@firstRow',5000);
+			this.click('@firstRow')
+			.click('@editUserBtn');
+			this.api.pause(1000);
 			
 		}
-};
+ };
 
 module.exports = {
 		commands :[userPageCommands],
@@ -171,7 +208,10 @@ module.exports = {
 				selector: '//*[@id="navbar"]/ul[1]/li[3]/a/h4/i',
 				locateStrategy: 'xpath'
 			},
-			
+			editSalesUserBtn: {
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/i',
+				locateStrategy: 'xpath'
+			},
 			editUserBtn: {
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[2]/i',
 				locateStrategy: 'xpath'
@@ -179,10 +219,6 @@ module.exports = {
 			addUserBtn:{
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[1]/i',
 				locateStrategy:'xpath'
-			},
-			editSalesUserBtn :{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[3]/i',
-				locateStrategy: 'xpath'
 			},
 			editAdminBtn:{
 				selector: '//*[@id="editadminlevel"]/i',
@@ -219,15 +255,12 @@ module.exports = {
 			editNeighBtn:{
 				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[6]/i',
 				locateStrategy:'xpath'
-			},
-			
-			
+			},	
 			selectFirmBar: {
 				selector: '//*[@id="ng-view"]/div/div/div/div/a/span',
 				locateStrategy: 'xpath'
 			},
 			selectFirmBar2: {
-				//selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/a/span',
 				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div',
 				locateStrategy: 'xpath'
 			},
@@ -255,10 +288,17 @@ module.exports = {
 				selector: '//*[@id="adduserConfirmedButton"]',
 				locateStrategy: 'xpath'
 			},
+			
 			firstRow: {
-				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',
+				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',  //first Row   
 				locateStrategy: 'xpath'
 			},
+			
+			secondRow: {
+				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[2]',    //Second Row  
+				locateStrategy: 'xpath'
+			},
+			
 			firmName: '#firmName',
 			emailField: '#email',
 			username: '#username',
@@ -287,7 +327,6 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			newUserModal:{
-				//selector: '//*[@id="userConfirmModal"]/div[2]/div',
 				selector: '//*[@id="userConfirmModal"]/div[2]',
 				locateStrategy: 'xpath'
 			},
@@ -356,8 +395,19 @@ module.exports = {
 			state: {
 				selector: '//*[@id="state"]',
 				locateStrategy: 'xpath'
+			},
+			userTabShowingResult:{
+				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',locateStrategy: 'xpath'
+			},	
+			editUserHomePage:{
+				selector: '//*[@id="ng-view"]/div/h5',locateStrategy: 'xpath'
+			},
+			editUserSave:{
+				selector: '//*[@id="userdata"]/div[3]/button[2]',locateStrategy: 'xpath'
+			},
+			street2:{
+				selector: '//*[@id="street2"]',locateStrategy: 'xpath'
 			}
-			
 			
 		}
 }
