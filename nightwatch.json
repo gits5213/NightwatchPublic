@@ -58,7 +58,16 @@
             "nonAdminPass":"Password123"
          }
       },
-      
+      "dev":{  
+          "launch_url":"https://dev-c9portal.xhoot.com/c9portal",
+          "globals":{  
+             "adminUsername":"ucheonwudiwe",
+             "adminPassword":"Password1234",
+             "email1":"test.user@c9tec.com",
+             "nonAdminUser":"johnakpan",
+             "nonAdminPass":"Password123"
+          }
+       },
       "prod":{  
           "launch_url":"https://c9portal.xhoot.com/c9portal",
           "globals":{  
