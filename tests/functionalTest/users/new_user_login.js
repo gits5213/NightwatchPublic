@@ -37,8 +37,8 @@ module.exports ={
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			
-			
-			usersPage.editAdminInfo(user1,client,function(){
+			//------------editAdminInfo
+			usersPage.edit_AdminInfo(user1,client,function(){
 				console.log('User - johndoe'+user1+' is being created');
 			});
 			usersPage.click('@editAdminBtn');

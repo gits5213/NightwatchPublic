@@ -98,7 +98,7 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			detailsBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[6]/i',
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[7]/i',
 				locateStrategy: 'xpath'
 			},
 			exportBtn: {

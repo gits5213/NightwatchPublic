@@ -18,7 +18,6 @@ module.exports ={
 			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
 				client.verify.notEqual(result.value.length, 25, 'There should be more than 25 groups on this page');
 			});
-				});
 			client.pause(1000);
 
 			usersPage
