@@ -3,6 +3,7 @@ var firmsPageCommands = {
 			this.api.pause(1000);
 			this.verify.visible('@firmsLink', 'Verified Firms tab button is visible');
 			this.click('@firmsLink');
+			this.api.pause(1000);
 		},
 		addNewFirm : function(client){
 			this.api.pause(1000);
@@ -62,12 +63,12 @@ var firmsPageCommands = {
 			this.api.pause(1000);
 			this.setValue('@firmNameSearch',string);
 			this.api.pause(1000);
-			this.clearValue('@firmNameSearch');
-			this.waitForElementVisible('@firstRowFirmsData',2000)
-			.click('@firstRowFirmsData')
-			this.api.pause(1000);
+			//this.clearValue('@firmNameSearch');
+			this.waitForElementVisible('@firstRowFirmsData',2000);
+			this.click('@firstRowFirmsData');
+			
 		}	
-	
+		
 };
 
 module.exports = {
@@ -98,7 +99,7 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			detailsBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[7]/i',
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[6]/i',
 				locateStrategy: 'xpath'
 			},
 			exportBtn: {
