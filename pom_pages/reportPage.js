@@ -4,7 +4,7 @@ var reportTabPageCommands = {
 			this.click('@reportLink');
 			this.api.pause(2000);
 		},			
-		selectFirm: function(client){
+		selectFirm: function(client, string){
 			this.waitForElementVisible('@selectFirm',2000, false);
 			this.api.pause(2000);
 			this.click('@selectFirm');	
@@ -12,7 +12,7 @@ var reportTabPageCommands = {
 			this.click('@SelectFirmSearch');		
 			this.clearValue('@SelectFirmSearch');
 			this.api.pause(1000);
-			this.setValue('@SelectFirmSearch',' ');  
+			this.setValue('@SelectFirmSearch', string);  
 			this.api.keys(client.Keys.DOWN_ARROW);
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500);				
@@ -23,9 +23,8 @@ var reportTabPageCommands = {
 			this.expect.element('@cloud9Usage').text.to.contain('Cloud9 Usage').before(500);			
 			this.api.pause(1000);
 			this.expect.element('@cloud9Usage_dropDown').to.be.visible;
-			this.setValue('@cloud9Usage_dropDown','');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
+			this.click('@cloud9Usage_dropDown')
+			.click('@secondDropDown');
 			this.api.pause(1000);
 		},	
 		
@@ -148,7 +147,10 @@ module.exports = {
 				selector: '//select[contains(@id,"grArchive")]',
 				locateStrategy: 'xpath'
 			},
-			
+			secondDropDown:{
+				selector: '//*[@id="grArchive"]/option[2]',
+				locateStrategy: 'xpath'
+			},
 			userButtonReport_Button_Validation:{
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/th[1]',
 				locateStrategy: 'xpath'

@@ -35,14 +35,13 @@ module.exports ={
 			
 			var reportPage = client.page.reportPage();
 			reportPage.c9reports(client);
-			reportPage.selectFirm(client);
+			reportPage.selectFirm(client, 'C9 Technologies');
 			reportPage.cloud9Usage(client);
 			reportPage.userButtonRport(client);
 			reportPage.firmButtonReport(client);
 			reportPage.weekButton();
 			reportPage.monthButton();
 						
-			console.log('Test cases Countinuing')
 			client.closeWindow();
 			client.end();
 		},

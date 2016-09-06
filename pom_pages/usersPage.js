@@ -1,6 +1,3 @@
-
-
-
 var userPageCommands = {
 		go: function(){
 			this.verify.visible('@usersLink', 'Verified User tab button is visible and clikable')
@@ -34,16 +31,13 @@ var userPageCommands = {
 			this.setValue('@countrySearch','United States');
 			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
-			
 			this.api.pause(1000);
-			
 			this.click('@stateDropdown');
 			this.click('@stateSearch');
 			this.api.pause(500);
 			this.setValue('@stateSearch','New York');
 			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
-			
 			this.setValue('@workField',123456789)
 			.setValue('@mobileField',234567890)
 			.setValue('@street1','1 So Amazing Ct')
@@ -60,6 +54,7 @@ var userPageCommands = {
 			this.waitForElementNotPresent('@newUserModal',10000);
 			client.pause(5000);
 			return dateString.trim();
+			client.pause(5000);
 		},
 		updateFirstRecord: function(dateString){
 			this.go();
@@ -141,30 +136,12 @@ var userPageCommands = {
 			this.clearValue('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 			this.api.pause(1000);
-			this.click('@secondRow');  //All other test
-			//this.click('@firstRow'); //for new_user_login
+			//this.click('@secondRow');  //All other test
+			this.click('@firstRow'); //for new_user_login
 			this.api.pause(1000);		
 		},
-		
-		
 		//---------------------------------------
-		edit_AdminInfo: function(user,client,callback){
-			this.api.pause(1000);
-			this.waitForElementPresent('@selectFirmBar2',3000);
-			this.click('@selectFirmBar2');
-			this.setValue('@selectFirmBarSearch2','Select a');
-			this.api.pause(1000);
-			this.api.keys(client.Keys.ENTER);
-			this.waitForElementPresent('@usernameSearch',3000);
-			this.click('@usernameSearch');
-			this.clearValue('@usernameSearch');
-			this.setValue('@usernameSearch',user);
-			this.api.pause(1000);
-			this.click('@secondRow');  //All other test
-			//this.click('@firstRow'); //for new_user_login
-			this.api.pause(1000);
-		},
-		//---------------------------------------
+		
 		
 		
 		

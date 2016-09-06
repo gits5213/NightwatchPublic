@@ -36,7 +36,6 @@ module.exports ={
 			reportPage.weekButton();
 			reportPage.monthButton();
 			
-			console.log('Test cases Countinuing')
 			client.closeWindow();
 			client.end();
 			
