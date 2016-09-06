@@ -54,13 +54,12 @@ var userPageCommands = {
 			this.api.pause(1000);
 			this.click('@addUserSubmitBtn');
 			client.pause(3000);
-			this.waitForElementVisible('@newUserModal',2000)
+			this.waitForElementVisible('@newUserModal',5000)
 			.click('@addUserConfirmBtn');
 			client.pause(5000);
 			this.waitForElementNotPresent('@newUserModal',10000);
 			client.pause(5000);
 			return dateString.trim();
-			
 		},
 		updateFirstRecord: function(dateString){
 			this.go();

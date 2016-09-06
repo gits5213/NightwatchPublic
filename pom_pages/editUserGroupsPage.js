@@ -7,20 +7,24 @@ var userGroupsPageCommands = {
 		addGrp2User: function(){
 			this.waitForElementVisible('@doneBtn',2000)
 			.click('@firstRowFirmGroups');
-			this.api.pause(500);
-			this.click('@addGrp2UserBtn')
-			.click('@doneBtn');
-			this.api.pause(1000);
+			this.api.pause(2000);
+			this.click('@addGrp2UserBtn');
+			this.api.pause(2000);
+			this.click('@doneBtn');
+			this.api.pause(5000);
 		},
 		done: function(client){
 			this.waitForElementVisible('@secondRowFirmGroups',2000);
 			this.click('@secondRowFirmGroups');
+			this.api.pause(2000);
 			this.waitForElementVisible('@addGrp2UserBtn',2000);
 			this.click('@addGrp2UserBtn')
 			this.api.pause(5000);
 			this.click('@secondRowFirmGroups');
+			this.api.pause(2000);
 			this.waitForElementVisible('@addGrp2UserBtn',5000);
 			this.click('@addGrp2UserBtn')
+			this.api.pause(2000);
 			this.waitForElementVisible('@doneBtn',5000);
 			this.click('@doneBtn');
 			this.api.pause(5000);
