@@ -29,6 +29,7 @@ module.exports ={
 		usersPage.go();
 	var user1 = usersPage.addUserToFirm(dateString,client);
 	var userGroupsPage= client.page.editUserGroupsPage();
+	
 		userGroupsPage
 			.verify.urlContains('#/editUserGroups')
 			.addGrp2User();

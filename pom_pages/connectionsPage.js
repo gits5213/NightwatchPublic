@@ -2,12 +2,12 @@ var connPageCommands = {
 		go: function(){
 			this.api.pause(2000);
 			this.click('@connLink');
-			this.api.pause(1000);
+			this.api.pause(2000);
 		},
 				
 		addIntConnForFirm: function(dateString,client){
 			this.click('@addConnBtn');
-			this.api.pause(1000);
+			this.api.pause(2000);
 			this.assert.containsText('body','Add Connection');
 			this.click('@selectFirmBar');
 			this.api.pause(500);
