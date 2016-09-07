@@ -1,6 +1,6 @@
 var userPageCommands = {
 		go: function(){
-			this.verify.visible('@usersLink', 'Verified User tab button is visible and clikable')
+			this.verify.visible('@usersLink', 'Verified User tab button is visible')
 			this.click('@usersLink');
 			this.api.pause(2000);
 		},
@@ -90,7 +90,7 @@ var userPageCommands = {
 			.setValue('@usernameSearch','johndoe'+dateString);
 			this.api.pause(1000);
 			this.waitForElementVisible('@firstRow',2000);
-			this.click('@firstRow')
+			this.click('@firstRow');
 			this.api.pause(2000);
 			this.click('@deleteUserBtn');
 			client.pause(3000);
@@ -209,7 +209,55 @@ var userPageCommands = {
 			.click('@editUserBtn');
 			this.api.pause(1000);
 			
+		},
+		
+		editUser: function(dateString,client){
+			this.go();
+			this.clearValue('@usernameSearch')
+			.setValue('@usernameSearch','johndoe'+dateString);
+			this.api.pause(1000);
+			this.waitForElementVisible('@firstRow',2000);
+			this.click('@firstRow');
+			this.api.pause(2000);
+			this.click('@editUserBtn');
+			this.api.pause(2000);
+			this.waitForElementVisible('@fnameField',1000)
+			.waitForElementVisible('@lnameField',1000)
+			.clearValue('@fnameField')
+			.setValue('@fnameField', 'Jane')
+			.clearValue('@lnameField')
+			.setValue('@lnameField','Poe'+dateString)
+			.clearValue('@emailField')
+			.setValue('@emailField','updateduser@c9tec.com')
+			this.api.pause(1000);
+			this.clearValue('@workField')
+			.setValue('@workField','011-234-5294')
+			.clearValue('@mobileField')
+			.setValue('@mobileField','011-234-5555')
+			.click('@voiceNo');			
+			this.api.pause(2000);
+
+		},
+		editCountry: function(client, string){
+			this.click('@countryDropdown');
+			client.pause(1000);
+			this.setValue('@countrySearch', string);
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+		},
+		
+		editState: function(client, string){
+			this.click('@stateDropdown');
+			client.pause(1000);
+			this.setValue('@stateSearch', string);
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.click('@editUserConfirmBtn');
+			
 		}
+	
  };
 
 module.exports = {
@@ -418,6 +466,10 @@ module.exports = {
 			},
 			street2:{
 				selector: '//*[@id="street2"]',locateStrategy: 'xpath'
+			},
+			UpdateSuccessfull:{
+				selector: '//div[@class="toast-message"]',locateStrategy: 'xpath'
+					
 			}
 			
 		}
