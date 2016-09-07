@@ -39,7 +39,7 @@ module.exports ={
 			
 			connectionsPage
 			.verify.value('@firmNameField','Test Firm '+dateString)
-			.verify.value('@commNameField', 'Energy')
+			.verify.value('@commNameField', 'Financial')  //Energy
 			.verify.value('@btnLabelField',dateString+'IntraFirmShout')
 			.verify.valueContains('@connIdField','sPK-')
 			.verify.value('@description', 'Connection within Test Firm '+dateString)

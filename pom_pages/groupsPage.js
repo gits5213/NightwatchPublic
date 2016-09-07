@@ -17,7 +17,7 @@ var groupsPageCommands = {
 			this.waitForElementPresent('@grpNameField',2000)
 			.setValue('@grpNameField', 'Firm '+dateString+' Grp 1')
 			.click('@communityBar')
-			.click('@energyOption');
+			.click('@financialOption');
 			this.setValue('@contactFname','Howard')
 			.setValue('@contactLname','Hughes')
 			.setValue('@contactEmail',client.globals.email1)
@@ -31,7 +31,7 @@ var groupsPageCommands = {
 			.setValue('@website','http://c9tec.com')
 			.setValue('@description','New Group for Testing')
 			.click('@submitBtn');
-			this.api.pause(1000);
+			this.api.pause(5000);
 			
 		},
 		addAnotherGrpForFirm: function(dateString,client){
@@ -39,15 +39,16 @@ var groupsPageCommands = {
 			this.api.pause(1000);
 			this.assert.containsText('body','Add New Group');
 			this.click('@selectFirmBar');
-			this.api.pause(500);
+			this.api.pause(1000);
 			this.setValue('@selectFirmBarSearch',dateString);
-			this.api.pause(500);
+			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
 			this.waitForElementPresent('@grpNameField',2000)
 			.setValue('@grpNameField', 'Firm '+dateString+' Grp 2')
-			.click('@communityBar');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
+			.click('@communityBar')
+			.click('@financialOption');
+			/*this.api.keys(client.Keys.DOWN_ARROW);
+			this.api.keys(client.Keys.ENTER);*/
 			this.setValue('@contactFname','Jonathan')
 			.setValue('@contactLname','Jengo')
 			.setValue('@contactEmail',client.globals.email1)
@@ -60,7 +61,7 @@ var groupsPageCommands = {
 			.setValue('@website','http://c9tec.com')
 			.setValue('@description','Another new Group for Testing')
 			.click('@submitBtn');
-			this.api.pause(1000);
+			this.api.pause(5000);
 			
 		},
 		editFirstRecord: function(){
@@ -84,6 +85,7 @@ var groupsPageCommands = {
 			this.click('@firstRowGroupsData');
 			this.api.pause(2000);		
 		}
+		
 };
 
 module.exports = {
@@ -205,7 +207,7 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',locateStrategy: 'xpath'
 			},
 			editGroupBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/span',locateStrategy: 'xpath'				      
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/span',locateStrategy: 'xpath'	
 			},
 			editGroupHomePage:{
 				selector: '//*[@id="ng-view"]/div/h5',locateStrategy: 'xpath'				      
@@ -228,10 +230,36 @@ module.exports = {
 			detailsFirmName:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',locateStrategy: 'xpath'
 			},
-			energyOption: {
+			financialOption: {
 				selector: '//*[@id="communityId"]/option[4]',
 				locateStrategy: 'xpath'
+			},
+			addGroupNameInputField: {
+				selector: '//*[@id="firmGroups"]/thead/tr[2]/th[1]/div/input',
+				locateStrategy: 'xpath'
+			},
+			addGroupToUser: {
+				selector: '//*[@id="adduser"]/span',
+				locateStrategy: 'xpath'
+			},
+			removeGroupNameInputField: {
+				selector: '//*[@id="userGroups"]/thead/tr[2]/th[1]/div/input',
+				locateStrategy: 'xpath'
+			},
+			removeGroupFromUser: {
+				selector: '//*[@id="remuser"]/span',
+				locateStrategy: 'xpath'
+			},
+			addFirstRowGroupsToUser:{
+				selector: '//*[@id="firmGroups"]/tbody/tr/td[1]',locateStrategy: 'xpath'
+			},
+			removeFirstGroupFromUser: {
+				selector: '//*[@id="userGroups"]/tbody/tr/td[1]',
+				locateStrategy: 'xpath'
 			}
+			
+			
+			
 			
 		}
 }

@@ -19,10 +19,11 @@ module.exports ={
 			console.log('Successfully created: Test Firm '+dateString);
 			
 			firmsPage.getFirmByName('Test Firm '+dateString);
+			
 			firmsPage.click('@editFirmBtn');
-			client.pause(1000);
+			client.pause(2000);
 			client.assert.urlContains('#/editFirm');
-			client.pause(1000);
+			client.pause(2000);
 			
 			firmsPage
 			.verify.valueContains('@firmNameForAdd','Test Firm '+dateString)
