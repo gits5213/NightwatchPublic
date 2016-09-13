@@ -16,7 +16,7 @@ module.exports = {
 		code : '',
 		token : '',
 		scopes: ['openid','https://outlook.office.com/mail.read'],
-		msft_email: 'test.user@c9tec.com',
+		msft_email: 'qatest.user@c9tec.com',
 		msft_email_pass: 'Welcome2C9',
 		queryParams : {
 		        '$select': 'Subject,ReceivedDateTime,From,Body',
