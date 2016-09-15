@@ -66,7 +66,7 @@ module.exports ={
 			.verify.visible('@detailsBtn')
 			.verify.visible('@exportBtn')
 			.verify.visible('@downloadBtn')
-			.verify.visible('@callType')
+			.verify.visible('@callTypeBtn')
 			.verify.visible('@show')
 			
 			navigation.click('@cog');

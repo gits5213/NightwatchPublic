@@ -42,7 +42,8 @@
          "globals":{  
             "adminUsername":"mdzaman",
             "adminPassword":"Shahnewaz1@",
-            "email1":"test.user@c9tec.com",
+            "email1":"user.test@c9tec.com",
+            "domainName": "c9tec.onsip.com",
             "nonAdminUser":"johnakpan",
             "nonAdminPass":"Password123"
              	

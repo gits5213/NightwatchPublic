@@ -31,7 +31,9 @@ module.exports ={
 			.addGrp2User();
 			client.assert.urlContains('firmId=');
 			
-			usersPage.editFirstRecord();
+			//usersPage.editFirstRecord();
+			usersPage.firstRow();
+			usersPage.editUserButton();
 			
 			client.verify.urlContains('#/editUser');
 			

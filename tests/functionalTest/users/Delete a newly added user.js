@@ -32,7 +32,9 @@ module.exports ={
 			client.assert.urlContains('firmId=')
 			usersPage.deleteUser(user1,client);
 			
-			usersPage.editFirstRecord();
+			//usersPage.editFirstRecord();
+			usersPage.firstRow();
+			usersPage.editUserButton();
 			
 			usersPage
 			.verify.valueContains('@firmName', 'Limbo Accounts')

@@ -69,7 +69,7 @@ module.exports ={
 			navigation.api.pause(2000);
 			
 			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
-				client.verify.notEqual(result.value.length, 25, 'There should be less than 25 groups on this page');
+				client.verify.equal(result.value.length, 25, 'There should be less than 25 groups on this page');  //notEqual
 			});
 			
 			var usersPage=client.page.usersPage();
@@ -109,9 +109,9 @@ module.exports ={
 			.verify.visible('@slider')
 			.verify.visible('@viewQosBtn')
 			.verify.visible('@detailsBtn')
-			.verify.visible('@exportBtn')
+			.verify.visible('@callTypeBtn')
 			.verify.visible('@downloadBtn')
-			.verify.visible('@callType')
+			.verify.visible('')
 			.verify.visible('@show')
 			
 			navigation.click('@cog');

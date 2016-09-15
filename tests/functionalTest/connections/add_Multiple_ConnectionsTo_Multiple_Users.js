@@ -35,7 +35,9 @@ module.exports ={
 			.addGrp2User();
 			client.assert.urlContains('firmId=')
 
-		usersPage.editFirstRecord();
+		//usersPage.editFirstRecord();
+		usersPage.firstRow();
+		usersPage.editUserButton();
 		
 		client.verify.urlContains('#/editUser');
 		
@@ -73,7 +75,9 @@ module.exports ={
 			client.assert.urlContains('firmId=');
 			usersPage.click('@firstRow')
 
-			usersPage.editFirstRecord();
+			//usersPage.editFirstRecord();
+			usersPage.firstRow();
+			usersPage.editUserButton();
 
 			client.verify.urlContains('#/editUser');
 			

@@ -56,6 +56,62 @@ var firmsPageCommands = {
 			
 		},
 		
+		//---------------------------------
+		addFirmButton : function(client){
+			this.api.pause(1000);
+			this.click('@addFirmBtn')
+			.assert.containsText('body','Add Firm')
+			.waitForElementVisible('@firmNameForAdd',2000);
+		},	
+			
+		createFirm : function(client,dateString){
+			var now = new Date();
+			var dateString=now.getFullYear().toString()+
+			(now.getMonth()+1<10 ? '0'+(now.getMonth()+1).toString() : (now.getMonth()+1).toString())+''+
+			(now.getDate()<10 ? '0'+now.getDate().toString() : now.getDate().toString())+''+
+			(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
+			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
+			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
+			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+	
+			this.waitForElementVisible('@firmNameForAdd',2000);
+			this.setValue('@firmNameForAdd','Test Firm '+dateString)
+			.setValue('@street1', '123 Main Street')
+			.setValue('@street2', '17th Flr')
+			.setValue('@city', 'Any City')
+			.setValue('@zip', 12345)
+			.setValue('@pfname','Erique')
+			.setValue('@plname','Martinez')
+			.setValue('@pemail',client.globals.email1)
+			.setValue('@pwork', 123456789)
+			.setValue('@pmobile',234567890)
+			.click('@firmType')
+			.click('@firmVisible');
+			this.api.pause(1000);
+			this.click('@countryDropdown');
+			this.api.pause(1000);
+			this.setValue('@countrySearch','United States');
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.click('@stateDropdown');
+			this.click('@stateSearch');
+			this.api.pause(500);
+			this.setValue('@stateSearch','New York');
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);	
+			this.click('@copyFrmBtn');
+			this.api.pause(1000);	
+			return dateString.trim();
+		},
+		
+		addFirmSubmit : function (){
+			this.click('@submitFrmBtn');
+			this.api.pause(1000);
+		},
+		
+		//------------------------------------------------------------
+		
 		getFirmByName : function(string, client){
 			this.api.pause(1000);
 			this.click('@firmsLink');
