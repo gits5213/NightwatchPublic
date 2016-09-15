@@ -42,8 +42,8 @@
          "globals":{  
             "adminUsername":"mdzaman",
             "adminPassword":"Shahnewaz1@",
-            "email1":"user.test@c9tec.com",
             "domainName": "c9tec.onsip.com",
+            "email1":"qatest.user@c9tec.com",
             "nonAdminUser":"johnakpan",
             "nonAdminPass":"Password123"
              	
@@ -54,7 +54,7 @@
          "globals":{  
             "adminUsername":"ucheonwudiwe",
             "adminPassword":"Password1234",
-            "email1":"test.user@c9tec.com",
+            "email1":"qatest.user@c9tec.com",
             "nonAdminUser":"johnakpan",
             "nonAdminPass":"Password123"
          }
@@ -64,7 +64,7 @@
           "globals":{  
              "adminUsername":"ucheonwudiwe",
              "adminPassword":"Password1234",
-             "email1":"test.user@c9tec.com",
+             "email1":"qatest.user@c9tec.com",
              "nonAdminUser":"johnakpan",
              "nonAdminPass":"Password123"
           }
