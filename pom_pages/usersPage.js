@@ -266,10 +266,7 @@ var userPageCommands = {
 			this.click('@firstRow'); //for new_user_login
 			this.api.pause(1000);		
 		},
-		//---------------------------------------
-		
 	
-		
 		addUserWithPassToFirm : function(firm, client){
 			this.click('@addUserBtn');
 			this.api.pause(1000);
