@@ -3,7 +3,11 @@ var userAdminCommands = {
 		disable2fa:function(client){
 			this.api.pause(1000);
 			this.click('@tfa_No')
-			.setValue('@allowedIp',client.globals.ip)
+			.click('@saveBtn')
+			this.api.pause(1500);
+			this.verify.urlContains('#/editAdminLevel','Disabled 2fa requires IP address')
+			this.api.pause(500);
+			this.setValue('@allowedIp',client.globals.ip)
 			this.click('@adminPriv')
 			.click('@user3Value')
 			.click('@saveBtn')
