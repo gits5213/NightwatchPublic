@@ -42,8 +42,9 @@
          "globals":{  
             "adminUsername":"mdzaman",
             "adminPassword":"Shahnewaz1@",
+            "domainName": "c9tec.onsip.com",
             "email1":"qatest.user@c9tec.com",
-            "nonAdminUser":"johnakpan",
+            "nonAdminUser":"testadmin2",
             "nonAdminPass":"Password123"
              	
          }
@@ -54,7 +55,7 @@
             "adminUsername":"ucheonwudiwe",
             "adminPassword":"Password1234",
             "email1":"qatest.user@c9tec.com",
-            "nonAdminUser":"leopoldakpan",
+            "nonAdminUser":"johnakpan",
             "nonAdminPass":"Password123"
          }
       },
@@ -70,16 +71,6 @@
        },
       "prod":{  
           "launch_url":"https://c9portal.xhoot.com/c9portal",
-          "globals":{  
-             "prodAdmin2Username":"",
-             "prodAdmin2Password":"",
-             "email1":"md.zaman@c9tec.com",
-             "nonAdminUser":"qasmokeadmin",
-             "nonAdminPass":"Ax5e6xzT"
-          }
-       },
-      "prod3":{  
-          "launch_url":"https://use-portal3.xhoot.com/c9portal",
           "globals":{  
              "prodAdmin2Username":"",
              "prodAdmin2Password":"",
