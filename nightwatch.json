@@ -78,6 +78,16 @@
              "nonAdminPass":"Ax5e6xzT"
           }
        },
+      "prod3":{  
+          "launch_url":"https://use-portal3.xhoot.com/c9portal",
+          "globals":{  
+             "prodAdmin2Username":"",
+             "prodAdmin2Password":"",
+             "email1":"md.zaman@c9tec.com",
+             "nonAdminUser":"qasmokeadmin",
+             "nonAdminPass":"Ax5e6xzT"
+          }
+       },
        
       "jenkins":{  
          "launch_url":"http://localhost",
