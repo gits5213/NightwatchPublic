@@ -68,6 +68,12 @@ var userPageCommands = {
 			this.api.keys(client.Keys.ENTER);
 			
 		},
+		addUserTab : function(client){    		//firm	
+			this.click('@addUserBtn');
+			this.api.pause(1000);
+			
+		},
+		
 		createUser : function(client, dateString){
 			var now = new Date();
 			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
@@ -144,6 +150,15 @@ var userPageCommands = {
 			this.setValue('@usernameSearch','EricT'+dateString);
 			
 		},
+		
+		c2cNameSearch: function (user, client){
+			this.clearValue('@usernameSearch');
+			this.setValue('@usernameSearch',user);
+		},
+		
+		
+		
+		
 		firstRow: function(){
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow');
@@ -264,9 +279,29 @@ var userPageCommands = {
 			this.api.pause(1000);
 			//this.click('@secondRow');  //All other test
 			this.click('@firstRow'); //for new_user_login
+			//this.click('@thirdRow');
 			this.api.pause(1000);		
 		},
-	
+		//---------------------------------------
+		
+		edit_AdminInfo: function(user,client,callback){
+			this.api.pause(1000);
+			this.waitForElementPresent('@selectFirmBar2',3000);
+			this.click('@selectFirmBar2');
+			this.setValue('@selectFirmBarSearch2','Select a');
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			this.waitForElementPresent('@usernameSearch',3000);
+			this.click('@usernameSearch');
+			this.clearValue('@usernameSearch');
+			this.setValue('@usernameSearch',user);
+			this.api.pause(1000);
+			//this.click('@secondRow');  //All other test
+			this.click('@firstRow'); //for new_user_login   
+			
+			this.api.pause(1000);
+		},
+		
 		addUserWithPassToFirm : function(firm, client){
 			this.click('@addUserBtn');
 			this.api.pause(1000);
@@ -563,6 +598,12 @@ module.exports = {
 				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[2]',    //Second Row  
 				locateStrategy: 'xpath'
 			},
+			thirdRow: {
+				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[3]',    //third Row  
+				locateStrategy: 'xpath'
+			},
+			
+			
 			
 			firmName: '#firmName',
 			emailField: '#email',

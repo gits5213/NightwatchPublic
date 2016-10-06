@@ -66,7 +66,7 @@ module.exports ={
 			
 			var clickToCallPage = client.page.clickToCallPage(client);
 			clickToCallPage.selectProvider('Cisco Call Manager 10.x',client);
-			clickToCallPage.getDomain1(client, dateString);
+			clickToCallPage.getDomain1(client, client.globals.domainName);
 			clickToCallPage.createsSIPSettings(client, dateString);
 			clickToCallPage.ciscoCallExtSett(client, dateString);
 			
@@ -100,9 +100,7 @@ module.exports ={
 			.verify.valueContains('@userName','Eric'+user1[0])
 			.verify.valueContains('@authId','Tonder'+user1[0])
 			.verify.valueContains('@authPaswd','AbC@'+user1[0])
-			.verify.valueContains('@userNameExet','EricTo'+user1[0]);
-				
-			
+	
 			clickToCallPage.createFavorites(dateString);
 			clickToCallPage.selectDefault('Mobile',client);
 			
@@ -110,15 +108,7 @@ module.exports ={
 			client.pause(2000);
 			clickToCallPage.click('@favoritesMinis');
 			
-			/*clickToCallPage.createFavoritesPlus1(dateString);
-			clickToCallPage.selectDefault('Business',client);
-			
-			clickToCallPage.click('@favoritesPlus1');
-			client.pause(3000);
-			clickToCallPage.createFavoritesPlus2(dateString);
-			clickToCallPage.selectDefault('Home',client);*/
-			
-			
+		
 			clickToCallPage.saveFavorites();
 			client.pause(2000);
 		
@@ -136,25 +126,30 @@ module.exports ={
 			.verify.valueContains('@mobileBtn','19175616552')
 			.verify.valueContains('@homeBtn','19175616552')
 			.verify.valueContains('@homeBtn','19175616552')
-			
-			/*.verify.valueContains('@businessPlus1','19175616551')
-			.verify.valueContains('@mobilePlus1','19175616552')
-			.verify.valueContains('@mobilePlus1','19175616552')
-			.verify.valueContains('@homePlus1','19175616552')
-			
-			.verify.valueContains('@businessPlus2','19175616551')
-			.verify.valueContains('@mobilePlus2','19175616552')
-			.verify.valueContains('@mobilePlus2','19175616552')
-			.verify.valueContains('@homePlus2','19175616552');
 			client.pause(1000);
 			
-			clickToCallPage.click('@favoritesMinis1');
+			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
-			clickToCallPage.click('@favoritesMinis');
-			client.pause(2000);
-			clickToCallPage.saveFavorites();
-			client.pause(2000);
-			*/
+		
+			var recordingsPage = client.page.recordingsPage();
+			recordingsPage
+				.verify.urlContains('#/users')
+				.go(client);
+			recordingsPage.verify.urlContains('#/recordings');
+			recordingsPage.callType(client)
+			recordingsPage.getVerifyC2C(client);
+			recordingsPage.expect.element('@usernameBtn').text.to.equal('Username');
+			recordingsPage.expect.element('@firmIDBtn').text.to.equal('Firm ID');
+			recordingsPage.expect.element('@firmNameBtn').text.to.equal('Firm Name');
+			recordingsPage.expect.element('@extNumBtn').text.to.equal('Extension Number');
+			recordingsPage.expect.element('@farEndUserNameBtn').text.to.equal('Far End Username');
+			recordingsPage.expect.element('@durationBtn').text.to.equal('Duration');
+			recordingsPage.expect.element('@startTimeBtn').text.to.equal('Start Time');
+			recordingsPage.expect.element('@stopTimeBtn').text.to.equal('Stop Time');
+			recordingsPage.expect.element('@startActionBtn').text.to.equal('Start Action');
+			recordingsPage.expect.element('@stopReBtn').text.to.equal('Stop Reason');
+			recordingsPage.expect.element('@recordingFiBtn').text.to.equal('Recording Filename');
+			recordingsPage.expect.element('@dialTelBtn').text.to.equal('Dialing Tel #');
 			
 		client.end();	
 			

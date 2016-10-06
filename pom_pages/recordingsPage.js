@@ -10,6 +10,10 @@ var recordingsPageCommands = {
 			this.waitForElementVisible('@callTypeBtn',2000);
 			this.click('@callTypeBtn');
 			this.api.pause(1000);
+			
+		},
+		
+		getVerifyC2C: function(client){
 			this.expect.element('@clickToCallDM').text.to.equal('Click to Call');
 			this.click('@clickToCallDM');
 			this.api.pause(1000);
