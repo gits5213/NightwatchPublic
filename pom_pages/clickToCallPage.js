@@ -19,7 +19,7 @@ var clickToCallPageCommands = {
 				this.clearValue('@authId');
 				this.setValue('@authId','Tonder'+dateString);
 				this.clearValue('@authPaswd');
-				this.setValue('@authPaswd','AbC@'+dateString);
+				this.setValue('@authPaswd','AbCa_12@'+dateString);
 				
 				this.clearValue('@dialingPrefix');
 				this.setValue('@dialingPrefix','1');
@@ -45,9 +45,9 @@ var clickToCallPageCommands = {
 			this.api.pause(2000);
 		},
 
-		getDomain: function(client, dateString){
+		getDomain: function(client, user){
 			this.clearValue('@domain');
-			this.setValue('@domain',client.globals.domainName);
+			this.setValue('@domain', user);
 			this.api.pause(3000);
 		},
 		getDomain1: function(client, user){
@@ -116,9 +116,44 @@ var clickToCallPageCommands = {
 			this.click('@saveFavoritesBtn');
 			this.api.pause(4000);
 					
-		}
+		},
+		
+		domainNull:function(client){
+			//this.clearValue('@domain');
+			this.verify.urlContains('#/clickToCall','domain is not valid');		
+		},
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 	};
+
+
+
+
+
+
+
+
+
+
+
+
+
 	module.exports = {
 		commands :[clickToCallPageCommands],
 		elements: {
@@ -318,7 +353,12 @@ var clickToCallPageCommands = {
 			homePlus2:{
 				selector: '//*[@id="favoritesContainer"]/div/div[5]/input',
 				locateStrategy: 'xpath'
+			},
+			ErrorMes:{
+				selector: '//div[@class="toast-message"]',
+				locateStrategy: 'xpath'
 			}
+			
 			
 			
 		}

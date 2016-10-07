@@ -37,8 +37,7 @@ module.exports ={
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			
-			//------------editAdminInfo
-			usersPage.edit_AdminInfo(user1,client,function(){
+			usersPage.editAdminInfo(user1,client,function(){
 				console.log('User - johndoe'+user1+' is being created');
 			});
 			usersPage.click('@editAdminBtn');
@@ -54,7 +53,6 @@ module.exports ={
 			client.url(client.launch_url);
 			client.pause(2000);
 			
-			// Pause needed here to enable proper update of client object used in login below
 			client.pause(5000,function(){
 				client.globals.newUser = 'johndoe'+user1;
 				loginPage.newUserLogin('johndoe'+user1,client.globals.newPassword);

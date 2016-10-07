@@ -47,8 +47,8 @@ var userPageCommands = {
 			.click('@voiceYes');
 			this.api.pause(1000);
 			this.click('@addUserSubmitBtn');
-			client.pause(3000);
-			this.waitForElementVisible('@newUserModal',5000)
+			client.pause(10000);
+			this.waitForElementVisible('@newUserModal',10000)
 			.click('@addUserConfirmBtn');
 			client.pause(10000);
 			this.waitForElementNotPresent('@newUserModal',10000);
@@ -139,8 +139,7 @@ var userPageCommands = {
 			client.pause(2000);
 			
 		},
-		
-		
+			
 		//----------------------------------------------------------------------------------------------------------
 		//updateFirstRecord segregation as a multiple function based on the UI Actions
 		
@@ -155,9 +154,6 @@ var userPageCommands = {
 			this.clearValue('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 		},
-		
-		
-		
 		
 		firstRow: function(){
 			this.waitForElementVisible('@firstRow',2000);
@@ -277,30 +273,10 @@ var userPageCommands = {
 			this.clearValue('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 			this.api.pause(1000);
-			//this.click('@secondRow');  //All other test
-			this.click('@firstRow'); //for new_user_login
-			//this.click('@thirdRow');
+			this.click('@firstRow'); 
 			this.api.pause(1000);		
 		},
 		//---------------------------------------
-		
-		edit_AdminInfo: function(user,client,callback){
-			this.api.pause(1000);
-			this.waitForElementPresent('@selectFirmBar2',3000);
-			this.click('@selectFirmBar2');
-			this.setValue('@selectFirmBarSearch2','Select a');
-			this.api.pause(1000);
-			this.api.keys(client.Keys.ENTER);
-			this.waitForElementPresent('@usernameSearch',3000);
-			this.click('@usernameSearch');
-			this.clearValue('@usernameSearch');
-			this.setValue('@usernameSearch',user);
-			this.api.pause(1000);
-			//this.click('@secondRow');  //All other test
-			this.click('@firstRow'); //for new_user_login   
-			
-			this.api.pause(1000);
-		},
 		
 		addUserWithPassToFirm : function(firm, client){
 			this.click('@addUserBtn');
@@ -359,13 +335,6 @@ var userPageCommands = {
 				callback();
 			}
 		},
-		/*editFirstRecord: function(){
-			this.waitForElementVisible('@firstRow',5000);
-			this.click('@firstRow')
-			.click('@editUserBtn');
-			this.api.pause(1000);
-			
-		},*/
 				
 		editUser: function(dateString,client){
 			this.go();
@@ -416,10 +385,6 @@ var userPageCommands = {
 		addNewUser : function(firm, client, dateString){    			
 			this.click('@addUserBtn');
 			this.api.pause(1000);
-			//this.click('@selectFirmBar')
-			//.setValue('@selectFirmBarSearch',firm);
-			//this.api.pause(1000);
-			//this.api.keys(client.Keys.ENTER);
 			this.waitForElementVisible('@addUserSubmitBtn',2000);
 			
 			var now = new Date();
@@ -488,13 +453,6 @@ var userPageCommands = {
 			this.waitForElementNotPresent('@firstRow',5000);
 			client.pause(2000);
 			this.clearValue('@usernameSearch');
-			//this.click('@selectFirmBar2');
-			//this.api.pause(2000);
-			//this.setValue('@selectFirmBarSearch2','Select a');
-			//this.api.keys(client.Keys.ENTER);
-			//this.api.pause(2000);
-			//this.setValue('@usernameSearch','johndoe'+dateString);
-			
 			this.api.pause(2000)
 		}
 		
@@ -593,17 +551,6 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',  //first Row   
 				locateStrategy: 'xpath'
 			},
-			
-			secondRow: {
-				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[2]',    //Second Row  
-				locateStrategy: 'xpath'
-			},
-			thirdRow: {
-				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[3]',    //third Row  
-				locateStrategy: 'xpath'
-			},
-			
-			
 			
 			firmName: '#firmName',
 			emailField: '#email',

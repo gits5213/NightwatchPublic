@@ -1,5 +1,5 @@
 module.exports ={
-		'Cisco Call Manager - Ability to Add and Edit User with SIP_Ext_Favorites Settings For Click To Call Feature': function(client){
+		'C9Admin- Ability to Edit or Modify OnSIP Config For C2C Feature': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
 			client.windowHandle(function(hand){
@@ -8,14 +8,15 @@ module.exports ={
 			});
 					
 			loginPage.adminLogin(client);
-			
 			client.pause(2000);
+			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
+			client.pause(2000);
+			
+			usersPage.selectFirm('000 Firm A', client);  
 			
 			client.pause(2000);
-			var dateString = usersPage.selectFirm('000 Firm A', client);  //dateString
-			
 			var user1 = usersPage.createUser(client);
 			usersPage.voiceRecYes();
 			usersPage.selectC2C();
@@ -35,6 +36,7 @@ module.exports ={
 			usersPage.editUserRecord(user1);
 			usersPage.voiceRecNo();
 			usersPage.editUserSubmit();
+			client.pause(3000);
 			
 			usersPage.firstRow();
 			usersPage.editUserButton();
@@ -64,73 +66,34 @@ module.exports ={
 			usersPage.firstRow();
 			usersPage.clickToCall_Button(client);
 			
-			var clickToCallPage = client.page.clickToCallPage(client);
-			clickToCallPage.selectProvider('Cisco Call Manager 10.x',client);
-			clickToCallPage.getDomain1(client, client.globals.domainName);
-			clickToCallPage.createsSIPSettings(client, dateString);
-			clickToCallPage.ciscoCallExtSett(client, dateString);
+			var clickToCallPage = client.page.clickToCallPage();
+			clickToCallPage.selectProvider('OnSip.com',client)
+			clickToCallPage.getDomain(client, dateString);
 			
-			clickToCallPage.domainPlus(client);
-			clickToCallPage.extenSetPlus(dateString);
+			var dateString = clickToCallPage.createsSIPSettings(client, dateString);  //dateString
+			clickToCallPage.onSIPextSett(client, dateString);
 			
 			clickToCallPage.click('@saveSettingsBtn');
+			client.pause(2000);
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(3000);
 			
 			usersPage.firstRow();
 			usersPage.clickToCall_Button(client);
-			
-			
-			clickToCallPage.click('@domainNameMinus');
-			client.pause(3000);
-			clickToCallPage.click('@extSettMinis');
-			client.pause(3000);
-			clickToCallPage.click('@saveSettingsBtn');
-			client.pause(3000);
-			clickToCallPage.click('@goBackBtnSS');
-			client.pause(3000);
-			
-			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			client.pause(2000);
 			
 			clickToCallPage
-			.verify.valueContains('@selectProvider', 'CiscoCallManager')
-			.verify.valueContains('@domainName1','c9tec.onsip.com')
+			.verify.valueContains('@selectProvider', 'OnSip')
+			.verify.valueContains('@domain','c9tec.onsip.com')
 			.verify.valueContains('@portNumber','5060')
 			.verify.valueContains('@userName','Eric'+user1[0])
 			.verify.valueContains('@authId','Tonder'+user1[0])
-			.verify.valueContains('@authPaswd','AbC@'+user1[0])
-	
-			clickToCallPage.createFavorites(dateString);
-			clickToCallPage.selectDefault('Mobile',client);
+			.verify.valueContains('@authPaswd','AbCa_12@'+user1[0]);
 			
-			clickToCallPage.click('@favoritesPlus');
-			client.pause(2000);
-			clickToCallPage.click('@favoritesMinis');
-			
-		
-			clickToCallPage.saveFavorites();
-			client.pause(2000);
-		
-			clickToCallPage.click('@goBackBtnF');
-			client.pause(3000);
-			
-			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
-			
-			clickToCallPage.click('@favoritesBtn');
-			client.pause(2000);
-			
-			clickToCallPage
-			.verify.valueContains('@businessBtn','19175616551')
-			.verify.valueContains('@mobileBtn','19175616552')
-			.verify.valueContains('@homeBtn','19175616552')
-			.verify.valueContains('@homeBtn','19175616552')
 			client.pause(1000);
-			
-			clickToCallPage.click('@goBackBtnSS');
+			clickToCallPage.click('@goBackBtnSS');	
 			client.pause(2000);
-		
+			
 			var recordingsPage = client.page.recordingsPage();
 			recordingsPage
 				.verify.urlContains('#/users')
@@ -151,6 +114,8 @@ module.exports ={
 			recordingsPage.expect.element('@recordingFiBtn').text.to.equal('Recording Filename');
 			recordingsPage.expect.element('@dialTelBtn').text.to.equal('Dialing Tel #');
 			
+			
+
 		client.end();	
 			
 			
