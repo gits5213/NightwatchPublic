@@ -38,7 +38,7 @@ module.exports ={
 			usersPage.go();
 			
 			usersPage.editAdminInfo(user1,client,function(){
-				console.log('User - johndoe'+user1+' is being created');
+				console.log('User - johndoe'+user1+' is having 2fa disabled');
 			});
 			usersPage.click('@editAdminBtn');
 			

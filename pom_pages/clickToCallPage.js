@@ -19,8 +19,7 @@ var clickToCallPageCommands = {
 				this.clearValue('@authId');
 				this.setValue('@authId','Tonder'+dateString);
 				this.clearValue('@authPaswd');
-				this.setValue('@authPaswd','AbCa_12@'+dateString);
-				
+				this.setValue('@authPaswd','AbCa_12@'+dateString);	
 				this.clearValue('@dialingPrefix');
 				this.setValue('@dialingPrefix','1');
 				this.api.pause(2000);
@@ -105,54 +104,19 @@ var clickToCallPageCommands = {
 		
 		},
 		
-	selectDefault: function(string,client){
-		    this.clearValue('@defaultBtn');
-			this.setValue('@defaultBtn',string);
-			this.api.pause(2000);
-			this.api.keys(client.Keys.ENTER);
+			selectDefault: function(string,client){
+		    	this.clearValue('@defaultBtn');
+		    	this.setValue('@defaultBtn',string);
+		    	this.api.pause(2000);
+		    	this.api.keys(client.Keys.ENTER);
 					
 		},
-	saveFavorites: function(){
-			this.click('@saveFavoritesBtn');
-			this.api.pause(4000);
+			saveFavorites: function(){
+				this.click('@saveFavoritesBtn');
+				this.api.pause(4000);
 					
-		},
-		
-		domainNull:function(client){
-			//this.clearValue('@domain');
-			this.verify.urlContains('#/clickToCall','domain is not valid');		
-		},
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}	
 	};
-
-
-
-
-
-
-
-
-
-
-
-
 
 	module.exports = {
 		commands :[clickToCallPageCommands],
@@ -358,7 +322,7 @@ var clickToCallPageCommands = {
 				selector: '//div[@class="toast-message"]',
 				locateStrategy: 'xpath'
 			}
-			
+
 			
 			
 		}
