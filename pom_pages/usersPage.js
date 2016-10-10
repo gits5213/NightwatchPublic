@@ -44,16 +44,105 @@ var userPageCommands = {
 			.setValue('@street2','Penthouse')
 			.setValue('@city','Real Town')
 			.setValue('@zip', 77777)
-			.click('@voiceYes');
+			.click('@voiceYes');userNameSearch
 			this.api.pause(1000);
 			this.click('@addUserSubmitBtn');
-			client.pause(3000);
-			this.waitForElementVisible('@newUserModal',5000)
+			client.pause(10000);
+			this.waitForElementVisible('@newUserModal',10000)
 			.click('@addUserConfirmBtn');
 			client.pause(10000);
 			this.waitForElementNotPresent('@newUserModal',10000);
 			return dateString.trim();
 
+		},
+		//----------------------------------------------------------------------
+		//addUserToFirm segregation as a multiple function based on the UI Actions
+		selectFirm : function(firm, client, dateString){    		//firm	
+			this.click('@addUserBtn');
+			this.api.pause(1000);
+			this.click('@selectFirmBar')
+			.setValue('@selectFirmBarSearch',firm);
+			this.api.pause(1000);
+			this.api.keys(client.Keys.ENTER);
+			
+		},
+		addUserTab : function(client){    		//firm	
+			this.click('@addUserBtn');
+			this.api.pause(1000);
+		},
+		
+		createUser : function(client, dateString){
+			var now = new Date();
+			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
+			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
+			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
+			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+
+			this.waitForElementVisible('@addUserSubmitBtn',2000);
+			this.waitForElementVisible('@fnameField',1000)
+			.waitForElementVisible('@lnameField',1000)
+			.setValue('@fnameField', 'Eric')
+			.setValue('@lnameField','T'+dateString)
+			.setValue('@emailField',client.globals.email1);
+			this.api.pause(1000);
+			this.click('@countryDropdown');
+			this.click('@countrySearch');
+			this.api.pause(500);
+			this.setValue('@countrySearch','United States');
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(1000);
+			this.click('@stateDropdown');
+			this.click('@stateSearch');
+			this.api.pause(500);
+			this.setValue('@stateSearch','New York');
+			this.api.pause(500);
+			this.api.keys(client.Keys.ENTER);
+			this.setValue('@workField',123456789)
+			.setValue('@mobileField',234567890)
+			.setValue('@street1','1 So Amazing Ct')
+			.setValue('@street2','Penthouse')
+			.setValue('@city','Real Town')
+			.setValue('@zip', 77777);
+			this.api.pause(1000);
+			return dateString.trim();
+		},
+		
+		voiceRecYes : function(){ 
+			this.click('@voiceYes');
+			this.api.pause(1000);
+			
+		},
+		selectC2C : function(){ 
+			this.click('@clicToCall');
+			this.api.pause(1000);
+			
+		},
+		userSubmit : function(client){	
+			this.click('@addUserSubmitBtn');
+			client.pause(3000);
+			
+		},
+		addUserSubmit : function(client){
+			this.waitForElementVisible('@newUserModal',5000)
+			.click('@addUserConfirmBtn');
+			client.pause(10000);
+			this.waitForElementNotPresent('@newUserModal',10000);
+		},
+			
+		//----------------------------------------------------------------------------------------------------------
+		//updateFirstRecord segregation as a multiple function based on the UI Actions
+		
+		userNameSearch: function(dateString){
+			this.clearValue('@usernameSearch');
+			this.waitForElementNotVisible('@spinner',3000);
+			this.setValue('@usernameSearch','EricT'+dateString);
+			
+		},
+		
+		c2cNameSearch: function (user, client){
+			this.clearValue('@usernameSearch');
+			this.setValue('@usernameSearch',user);
 		},
 		
 		//----------------------------------------------------------------------
@@ -135,7 +224,7 @@ var userPageCommands = {
 
 		},
 		clickToCall_Button : function(client){	
-			this.click('@clicToCallButton');
+			this.click('@clickToCallButton');
 			client.pause(2000);
 			
 		},
@@ -155,10 +244,7 @@ var userPageCommands = {
 			this.clearValue('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 		},
-		
-		
-		
-		
+			
 		firstRow: function(){
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow');
@@ -193,9 +279,6 @@ var userPageCommands = {
 			this.api.pause(1000);
 			
 		},
-		
-		
-	
 	//-----------------------------------------------------	
 		updateFirstRecord: function(dateString){
 			this.go();
@@ -277,31 +360,10 @@ var userPageCommands = {
 			this.clearValue('@usernameSearch');
 			this.setValue('@usernameSearch',user);
 			this.api.pause(1000);
-			//this.click('@secondRow');  //All other test
-			this.click('@firstRow'); //for new_user_login
-			//this.click('@thirdRow');
+			this.click('@firstRow'); 
 			this.api.pause(1000);		
 		},
-		//---------------------------------------
-		
-		edit_AdminInfo: function(user,client,callback){
-			this.api.pause(1000);
-			this.waitForElementPresent('@selectFirmBar2',3000);
-			this.click('@selectFirmBar2');
-			this.setValue('@selectFirmBarSearch2','Select a');
-			this.api.pause(1000);
-			this.api.keys(client.Keys.ENTER);
-			this.waitForElementPresent('@usernameSearch',3000);
-			this.click('@usernameSearch');
-			this.clearValue('@usernameSearch');
-			this.setValue('@usernameSearch',user);
-			this.api.pause(1000);
-			//this.click('@secondRow');  //All other test
-			this.click('@firstRow'); //for new_user_login   
-			
-			this.api.pause(1000);
-		},
-		
+		//---------------------------------------		
 		addUserWithPassToFirm : function(firm, client){
 			this.click('@addUserBtn');
 			this.api.pause(1000);
@@ -359,13 +421,6 @@ var userPageCommands = {
 				callback();
 			}
 		},
-		/*editFirstRecord: function(){
-			this.waitForElementVisible('@firstRow',5000);
-			this.click('@firstRow')
-			.click('@editUserBtn');
-			this.api.pause(1000);
-			
-		},*/
 				
 		editUser: function(dateString,client){
 			this.go();
@@ -416,10 +471,6 @@ var userPageCommands = {
 		addNewUser : function(firm, client, dateString){    			
 			this.click('@addUserBtn');
 			this.api.pause(1000);
-			//this.click('@selectFirmBar')
-			//.setValue('@selectFirmBarSearch',firm);
-			//this.api.pause(1000);
-			//this.api.keys(client.Keys.ENTER);
 			this.waitForElementVisible('@addUserSubmitBtn',2000);
 			
 			var now = new Date();
@@ -488,14 +539,6 @@ var userPageCommands = {
 			this.waitForElementNotPresent('@firstRow',5000);
 			client.pause(2000);
 			this.clearValue('@usernameSearch');
-			//this.click('@selectFirmBar2');
-			//this.api.pause(2000);
-			//this.setValue('@selectFirmBarSearch2','Select a');
-			//this.api.keys(client.Keys.ENTER);
-			//this.api.pause(2000);
-			//this.setValue('@usernameSearch','johndoe'+dateString);
-			
-			this.api.pause(2000)
 		}
 		
 	
@@ -593,17 +636,6 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',  //first Row   
 				locateStrategy: 'xpath'
 			},
-			
-			secondRow: {
-				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[2]',    //Second Row  
-				locateStrategy: 'xpath'
-			},
-			thirdRow: {
-				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[3]',    //third Row  
-				locateStrategy: 'xpath'
-			},
-			
-			
 			
 			firmName: '#firmName',
 			emailField: '#email',
@@ -703,25 +735,36 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			userTabShowingResult:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',locateStrategy: 'xpath'
+				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',
+				locateStrategy: 'xpath'
 			},	
 			editUserHomePage:{
-				selector: '//*[@id="ng-view"]/div/h5',locateStrategy: 'xpath'
+				selector: '//*[@id="ng-view"]/div/h5',
+				locateStrategy: 'xpath'
 			},
 			editUserSave:{
-				selector: '//*[@id="userdata"]/div[3]/button[2]',locateStrategy: 'xpath'
+				selector: '//*[@id="userdata"]/div[3]/button[2]',
+				locateStrategy: 'xpath'
 			},
 			street2:{
-				selector: '//*[@id="street2"]',locateStrategy: 'xpath'
+				selector: '//*[@id="street2"]',
+				locateStrategy: 'xpath'
 			},
 			UpdateSuccessfull:{
-				selector: '//div[@class="toast-message"]',locateStrategy: 'xpath'		
+				selector: '//div[@class="toast-message"]',
+				locateStrategy: 'xpath'		
 			},
 			clicToCall:{
-				selector: '//*[@id="monitoring"]',locateStrategy: 'xpath'
+				selector: '//*[@id="monitoring"]',
+				locateStrategy: 'xpath'
 			},
-			clicToCallButton:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[6]/i',locateStrategy: 'xpath'
+			clickToCallButton:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[6]/i',
+				locateStrategy: 'xpath'
+			},
+			ErrorMes:{
+				selector: '//div[@class="toast-message"]',
+				locateStrategy: 'xpath'
 			}
 				
 		}

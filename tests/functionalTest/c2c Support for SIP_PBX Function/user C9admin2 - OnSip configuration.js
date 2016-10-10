@@ -1,6 +1,6 @@
 module.exports ={
-		'User (c9admin and admin2) - Ability to Verify all Negative Scenarios': function(client){
-		
+		'Admin2- Ability to Edit or Modify OnSIP Config For C2C Feature': function(client){
+			
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
@@ -18,31 +18,6 @@ module.exports ={
 			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			navigation.logout();
 			
 			
@@ -54,6 +29,28 @@ module.exports ={
 			client.pause(2000);
 			usersPage.c2cNameSearch(client.globals.nonAdminUser,client);
 			
+			usersPage.firstRow();
+			usersPage.editUserButton();
+			usersPage.expect.element('@clicToCall').text.to.not.equal('Click to Call');
+			usersPage
+			.verify.valueContains('@firmName', 'C9 Technologies')
+			.verify.valueContains('@username','testadmin2')
+			.verify.valueContains('@fnameField','Tonder')
+			.verify.valueContains('@lnameField','Ericundefined')
+			.verify.valueContains('@emailField','updateduser@c9tec.com')
+			.verify.valueContains('@street2','')
+			.verify.value('@country','string:United States')
+			.verify.value('@state','string:New York')
+			.verify.valueContains('@city','NY')
+			.verify.valueContains('@zip', '10037')
+			.verify.valueContains('@workField','011-234-5294')
+			.verify.valueContains('@mobileField','011-234-5294')
+			.verify.valueContains('@voiceNo',0)
+			.verify.urlContains('#/editUser');
+			
+			usersPage.editUserSubmit();
+			
+			client.pause(2000);
 			usersPage.firstRow();
 			usersPage.clickToCall_Button(client);
 			
@@ -80,7 +77,7 @@ module.exports ={
 			.verify.valueContains('@portNumber','5060')
 			.verify.valueContains('@userName','Eric')
 			.verify.valueContains('@authId','Tonder')
-			.verify.valueContains('@authPaswd','AbC@')
+			.verify.valueContains('@authPaswd','AbCa_12@'+dateString)
 	
 			clickToCallPage.createFavorites(client, dateString); //, dateString
 			clickToCallPage.selectDefault('Mobile',client);
@@ -112,24 +109,13 @@ module.exports ={
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+			var recordingsPage = client.page.recordingsPage();
+			recordingsPage
+				.verify.urlContains('#/clickToCall')
+				.go(client);
+			recordingsPage.verify.urlContains('#/recordings');
+			recordingsPage.callType(client);
+			recordingsPage.expect.element('@clickToCallDM').text.to.not.equal('Click to Call');
 			
 			
 		client.end();	

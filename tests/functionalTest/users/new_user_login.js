@@ -37,7 +37,6 @@ module.exports ={
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			
-			//------------editAdminInfo
 			usersPage.editAdminInfo(user1,client,function(){
 				console.log('User - johndoe'+user1+' is having 2fa disabled');
 			});
@@ -54,7 +53,6 @@ module.exports ={
 			client.url(client.launch_url);
 			client.pause(2000);
 			
-			// Pause needed here to enable proper update of client object used in login below
 			client.pause(5000,function(){
 				client.globals.newUser = 'johndoe'+user1;
 				loginPage.newUserLogin('johndoe'+user1,client.globals.newPassword);
