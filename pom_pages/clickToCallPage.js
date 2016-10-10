@@ -1,29 +1,22 @@
 var clickToCallPageCommands = {
 				
 		createsSIPSettings: function(client, dateString){
-			    this.clearValue('@portNumber');
-				this.setValue('@portNumber','5060');
-				var now = new Date();
-				var dateString =
-				(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
-				(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
-				(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
-				(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+			this.clearValue('@portNumber');
+			this.setValue('@portNumber','5060');
+			this.waitForElementVisible('@saveSettingsBtn',2000);
+			this.waitForElementVisible('@userName',1000);
+			this.waitForElementVisible('@authId',1000);
+			this.waitForElementVisible('@authPaswd',1000);
+			this.clearValue('@userName');
+			this.setValue('@userName', 'EricT'+dateString);
+			this.clearValue('@authId');
+			this.setValue('@authId','Tonder'+dateString);
+			this.clearValue('@authPaswd');
+			this.setValue('@authPaswd','AbCa_12@'+dateString);	
+			this.clearValue('@dialingPrefix');
+			this.setValue('@dialingPrefix','1');
+			this.api.pause(2000);
 
-				this.waitForElementVisible('@saveSettingsBtn',2000);
-				this.waitForElementVisible('@userName',1000);
-				this.waitForElementVisible('@authId',1000);
-				this.waitForElementVisible('@authPaswd',1000);
-				this.clearValue('@userName');
-				this.setValue('@userName', 'Eric'+dateString);
-				this.clearValue('@authId');
-				this.setValue('@authId','Tonder'+dateString);
-				this.clearValue('@authPaswd');
-				this.setValue('@authPaswd','AbCa_12@'+dateString);	
-				this.clearValue('@dialingPrefix');
-				this.setValue('@dialingPrefix','1');
-				this.api.pause(2000);
-				return dateString.trim();
 												
 		},
 		ciscoCallExtSett: function(client, dateString){
@@ -81,39 +74,39 @@ var clickToCallPageCommands = {
 		},
 		
 		createFavorites: function(client, dateString){
-				this.api.pause(3000);
-				this.click('@favoritesBtn');
-				this.waitForElementVisible('@saveFavoritesBtn',2000);
-				this.waitForElementVisible('@firstNameBtn',1000)
-				.waitForElementVisible('@lastNameBtn',1000)
-				.waitForElementVisible('@businessBtn',1000)
-				.waitForElementVisible('@mobileBtn',1000)
-				.waitForElementVisible('@homeBtn',1000)
-				.waitForElementVisible('@defaultBtn',1000);
-				this.clearValue('@firstNameBtn');
-				this.setValue('@firstNameBtn', 'Eric'+dateString);
-				this.clearValue('@lastNameBtn');
-				this.setValue('@lastNameBtn','Tonder'+dateString);
-				this.clearValue('@businessBtn');
-				this.setValue('@businessBtn','19175616551');
-				this.clearValue('@mobileBtn');
-				this.setValue('@mobileBtn','19175616552');
-				this.clearValue('@homeBtn');
-				this.setValue('@homeBtn','19175616552');
-				this.api.pause(2000);
+			this.api.pause(3000);
+			this.click('@favoritesBtn');
+			this.waitForElementVisible('@saveFavoritesBtn',2000);
+			this.waitForElementVisible('@firstNameBtn',1000)
+			.waitForElementVisible('@lastNameBtn',1000)
+			.waitForElementVisible('@businessBtn',1000)
+			.waitForElementVisible('@mobileBtn',1000)
+			.waitForElementVisible('@homeBtn',1000)
+			.waitForElementVisible('@defaultBtn',1000);
+			this.clearValue('@firstNameBtn');
+			this.setValue('@firstNameBtn', 'Eric'+dateString);
+			this.clearValue('@lastNameBtn');
+			this.setValue('@lastNameBtn','Tonder'+dateString);
+			this.clearValue('@businessBtn');
+			this.setValue('@businessBtn','19175616551');
+			this.clearValue('@mobileBtn');
+			this.setValue('@mobileBtn','19175616552');
+			this.clearValue('@homeBtn');
+			this.setValue('@homeBtn','19175616552');
+			this.api.pause(2000);
 		
 		},
 		
-			selectDefault: function(string,client){
-		    	this.clearValue('@defaultBtn');
-		    	this.setValue('@defaultBtn',string);
-		    	this.api.pause(2000);
-		    	this.api.keys(client.Keys.ENTER);
+		selectDefault: function(string,client){
+		    this.clearValue('@defaultBtn');
+		    this.setValue('@defaultBtn',string);
+		    this.api.pause(2000);
+		    this.api.keys(client.Keys.ENTER);
 					
 		},
-			saveFavorites: function(){
-				this.click('@saveFavoritesBtn');
-				this.api.pause(4000);
+		saveFavorites: function(){
+			this.click('@saveFavoritesBtn');
+			this.api.pause(4000);
 					
 		}	
 	};

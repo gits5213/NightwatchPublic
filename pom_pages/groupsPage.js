@@ -320,8 +320,9 @@ module.exports = {
 				selector:'//*[@id="confirmModal"]/div[2]/div/div[3]/button[2]',
 				locateStrategy: 'xpath'
 			},
-			
-			
-			
+			ErrorMes:{
+			selector:'//div[@class="toast-message"]',
+			locateStrategy: 'xpath'
+			}
 		}
-}
+	}

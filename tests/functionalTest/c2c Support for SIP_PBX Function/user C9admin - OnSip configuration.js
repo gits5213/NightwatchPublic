@@ -8,22 +8,32 @@ module.exports ={
 			});
 					
 			loginPage.adminLogin(client);
-			client.pause(2000);
 			
+			var firmsPage = client.page.firmsPage();
+			firmsPage.go();
+			
+			var dateString = firmsPage.addNewFirm(client);
+			console.log('About to create: Test Firm '+dateString);  
+			
+			var groupsPage = client.page.groupsPage();
+			groupsPage.go(client);
+			client.assert.urlContains('#/groups');
+			groupsPage.addGrpForFirm(dateString,client);
+			client.assert.urlContains('firmId=');
+			
+			client.pause(1000);
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			client.pause(2000);
 			
-			usersPage.selectFirm('000 Firm A', client);  
-			
-			client.pause(2000);
+			usersPage.selectFirm(dateString,client);
 			var user1 = usersPage.createUser(client);
 			usersPage.voiceRecYes();
 			usersPage.selectC2C();
 			usersPage.userSubmit(client);
 			usersPage.addUserSubmit(client);
 			
-			
+			client.pause(3000);
 			var userGroupsPage= client.page.editUserGroupsPage();
 			userGroupsPage.verify.urlContains('#/editUserGroups');
 			userGroupsPage.addGrp2User();
@@ -42,7 +52,7 @@ module.exports ={
 			usersPage.editUserButton();
 			
 			usersPage
-			.verify.valueContains('@firmName', '000 Firm A')
+			.verify.valueContains('@firmName', 'Test Firm '+dateString)
 			.verify.valueContains('@username','erict'+user1)
 			.verify.valueContains('@fnameField','Tonder')
 			.verify.valueContains('@lnameField','Eric'+user1[0])
@@ -61,19 +71,22 @@ module.exports ={
 			.verify.urlContains('#/editUser')
 			usersPage.editUserSubmit();
 			
-			
-			
 			usersPage.firstRow();
 			usersPage.clickToCall_Button(client);
 			
 			var clickToCallPage = client.page.clickToCallPage();
 			clickToCallPage.selectProvider('OnSip.com',client)
-			clickToCallPage.getDomain(client, dateString);
+			clickToCallPage.getDomain(client, client.globals.domainName);
 			
-			var dateString = clickToCallPage.createsSIPSettings(client, dateString);  //dateString
-			clickToCallPage.onSIPextSett(client, dateString);
-			
+			clickToCallPage.createsSIPSettings(client, user1);  //dateString
+			clickToCallPage.onSIPextSett(client, user1);
 			clickToCallPage.click('@saveSettingsBtn');
+			
+			client.pause(500);	
+			clickToCallPage.getText('@ErrorMes',function(errorMes){
+				clickToCallPage.verify.equal(errorMes.value,'SIP PBX Settings saved successfully')
+				});
+			
 			client.pause(2000);
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(3000);
@@ -86,7 +99,7 @@ module.exports ={
 			.verify.valueContains('@selectProvider', 'OnSip')
 			.verify.valueContains('@domain','c9tec.onsip.com')
 			.verify.valueContains('@portNumber','5060')
-			.verify.valueContains('@userName','Eric'+user1[0])
+			.verify.valueContains('@userName','EricT'+user1[0])
 			.verify.valueContains('@authId','Tonder'+user1[0])
 			.verify.valueContains('@authPaswd','AbCa_12@'+user1[0]);
 			

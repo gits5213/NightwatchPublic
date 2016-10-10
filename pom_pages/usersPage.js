@@ -44,7 +44,7 @@ var userPageCommands = {
 			.setValue('@street2','Penthouse')
 			.setValue('@city','Real Town')
 			.setValue('@zip', 77777)
-			.click('@voiceYes');
+			.click('@voiceYes');userNameSearch
 			this.api.pause(1000);
 			this.click('@addUserSubmitBtn');
 			client.pause(10000);
@@ -57,11 +57,11 @@ var userPageCommands = {
 		},
 		//----------------------------------------------------------------------
 		//addUserToFirm segregation as a multiple function based on the UI Actions
-		selectFirm : function(string, client){    		//firm	
+		selectFirm : function(firm, client, dateString){    		//firm	
 			this.click('@addUserBtn');
 			this.api.pause(1000);
 			this.click('@selectFirmBar')
-			.setValue('@selectFirmBarSearch',string);
+			.setValue('@selectFirmBarSearch',firm);
 			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
 			
@@ -128,12 +128,6 @@ var userPageCommands = {
 			.click('@addUserConfirmBtn');
 			client.pause(10000);
 			this.waitForElementNotPresent('@newUserModal',10000);
-		},
-
-		clickToCall_Button : function(client){	
-			this.click('@clicToCallButton');
-			client.pause(2000);
-			
 		},
 			
 		//----------------------------------------------------------------------------------------------------------
@@ -230,7 +224,7 @@ var userPageCommands = {
 
 		},
 		clickToCall_Button : function(client){	
-			this.click('@clicToCallButton');
+			this.click('@clickToCallButton');
 			client.pause(2000);
 			
 		},
@@ -642,12 +636,6 @@ module.exports = {
 				selector: '//*[@id="scrollable-area"]/table/tbody/tr/td[1]',  //first Row   
 				locateStrategy: 'xpath'
 			},
-			thirdRow: {
-				selector:  '//*[@id="scrollable-area"]/table/tbody/tr[3]',    //third Row  
-				locateStrategy: 'xpath'
-			},
-			
-			
 			
 			firmName: '#firmName',
 			emailField: '#email',
@@ -747,25 +735,36 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			userTabShowingResult:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',locateStrategy: 'xpath'
+				selector: '//*[@id="ng-view"]/div[2]/div[3]/div/ul/label',
+				locateStrategy: 'xpath'
 			},	
 			editUserHomePage:{
-				selector: '//*[@id="ng-view"]/div/h5',locateStrategy: 'xpath'
+				selector: '//*[@id="ng-view"]/div/h5',
+				locateStrategy: 'xpath'
 			},
 			editUserSave:{
-				selector: '//*[@id="userdata"]/div[3]/button[2]',locateStrategy: 'xpath'
+				selector: '//*[@id="userdata"]/div[3]/button[2]',
+				locateStrategy: 'xpath'
 			},
 			street2:{
-				selector: '//*[@id="street2"]',locateStrategy: 'xpath'
+				selector: '//*[@id="street2"]',
+				locateStrategy: 'xpath'
 			},
 			UpdateSuccessfull:{
-				selector: '//div[@class="toast-message"]',locateStrategy: 'xpath'		
+				selector: '//div[@class="toast-message"]',
+				locateStrategy: 'xpath'		
 			},
 			clicToCall:{
-				selector: '//*[@id="monitoring"]',locateStrategy: 'xpath'
+				selector: '//*[@id="monitoring"]',
+				locateStrategy: 'xpath'
 			},
-			clicToCallButton:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[6]/i',locateStrategy: 'xpath'
+			clickToCallButton:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/li[6]/i',
+				locateStrategy: 'xpath'
+			},
+			ErrorMes:{
+				selector: '//div[@class="toast-message"]',
+				locateStrategy: 'xpath'
 			}
 				
 		}

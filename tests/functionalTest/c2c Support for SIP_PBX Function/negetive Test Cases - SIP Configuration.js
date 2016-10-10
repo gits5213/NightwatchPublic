@@ -1,5 +1,5 @@
 module.exports ={
-		'User (c9admin and admin2) - Ability to Verify all Negative Scenarios': function(client){
+		'OnSIP Configuration - Required Input Field Validation': function(client){
 		
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
@@ -9,16 +9,17 @@ module.exports ={
 			});
 					
 			loginPage.adminLogin(client);
-			client.pause(2000);
+			client.pause(1000);
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			
-			client.pause(2000);
+			client.pause(1000);
 			usersPage.c2cNameSearch(client.globals.nonAdminUser,client);
 			
 			
 			//Domain is not valid
 			usersPage.firstRow();
+			client.pause(1000);
 			usersPage.clickToCall_Button(client);
 
 			var clickToCallPage = client.page.clickToCallPage(client);

@@ -77,7 +77,7 @@ module.exports ={
 			.verify.valueContains('@portNumber','5060')
 			.verify.valueContains('@userName','Eric')
 			.verify.valueContains('@authId','Tonder')
-			.verify.valueContains('@authPaswd','AbC@')
+			.verify.valueContains('@authPaswd','AbCa_12@'+dateString)
 	
 			clickToCallPage.createFavorites(client, dateString); //, dateString
 			clickToCallPage.selectDefault('Mobile',client);
