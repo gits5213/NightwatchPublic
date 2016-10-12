@@ -10,7 +10,8 @@ module.exports = {
 			  tokenPath: '/oauth2/v2.0/token'
 			},
 			
-		redirect_uri: 'https://qa1-c9portal.xhoot.com/c9portal',	
+		redirect_uri: 'https://qa1-c9portal.xhoot.com/c9portal',
+			
 		oauth2 : [],
 		code : '',
 		token : '',
@@ -25,18 +26,6 @@ module.exports = {
 		
 		newUser:'',
 		newPassword:''
-			
 		
 
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 }

@@ -32,10 +32,12 @@ module.exports ={
 			.verify.urlContains('#/editUserGroups')
 			.addGrp2User();
 			client.assert.urlContains('firmId=')
+			//usersPage.editFirstRecord();
 			usersPage.updateFirstRecord(user1[0]);
-	
-			usersPage.firstRow();
-			usersPage.editUserButton();
+			
+			//client.verify.urlContains('#/editUser');
+			
+			usersPage.editFirstRecord();
 			
 			usersPage
 			.verify.valueContains('@firmName', 'Test Firm '+dateString)

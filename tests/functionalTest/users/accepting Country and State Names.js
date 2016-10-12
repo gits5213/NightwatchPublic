@@ -29,7 +29,7 @@ module.exports ={
 				.verify.urlContains('#/editUserGroups')
 				.addGrp2User();
 				client.assert.urlContains('firmId=')
-				usersPage.editUser(user1[0],client);
+				usersPage.editUser(user1,client);
 				
 				usersPage.verify.value('@country','string:United States')
 						 .verify.value('@state','string:New York');
@@ -43,7 +43,7 @@ module.exports ={
 				usersPage.verify.urlContains('#/users');
 				
 				usersPage.go();
-				usersPage.editUser(user1[0],client);
+				usersPage.editUser(user1,client);
 				
 				usersPage.verify.value('@country','string:Virgin Islands (British)')
 				 		 .verify.value('@state','string:Anegada');
@@ -57,7 +57,7 @@ module.exports ={
 				usersPage.verify.urlContains('#/users');
 				
 				usersPage.go();
-				usersPage.editUser(user1[0],client);
+				usersPage.editUser(user1,client);
 				
 				usersPage.verify.value('@country','string:Vatican City State (Holy See)')
 						 .verify.value('@state','string:Vatican City State (Holy See)');
@@ -71,7 +71,7 @@ module.exports ={
 				usersPage.verify.urlContains('#/users');
 				
 				usersPage.go();
-				usersPage.editUser(user1[0],client);
+				usersPage.editUser(user1,client);
 				
 				usersPage.verify.value('@country','string:Man (Isle of)')
 						 .verify.value('@state','string:Castletown');
@@ -85,7 +85,7 @@ module.exports ={
 				usersPage.verify.urlContains('#/users');
 				
 				usersPage.go();
-				usersPage.editUser(user1[0],client);
+				usersPage.editUser(user1,client);
 				
 				usersPage.verify.value('@country','string:Croatia (Hrvatska)')
 				 		 .verify.value('@state','string:Bjelovar-Bilogora');
@@ -99,7 +99,7 @@ module.exports ={
 				usersPage.verify.urlContains('#/users');
 				
 				usersPage.go();
-				usersPage.editUser(user1[0],client);
+				usersPage.editUser(user1,client);
 				
 				usersPage.verify.value('@country',"string:Cote D'Ivoire (Ivory Coast)")
 				 		 .verify.value('@state','string:Abidjan');
@@ -113,7 +113,7 @@ module.exports ={
 				usersPage.verify.urlContains('#/users');
 				
 				usersPage.go();
-				usersPage.editUser(user1[0],client);
+				usersPage.editUser(user1,client);
 				
 				usersPage.verify.value('@country','string:Cocos (Keeling) Islands')
 		 		 		 .verify.value('@state','string:Cocos (Keeling) Islands');
