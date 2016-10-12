@@ -21,29 +21,18 @@ var firmsPageCommands = {
 			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
 	
 			
-			this.setValue('@firmNameForAdd','Test Firm '+dateString);
-			client.pause(500);
-			this.setValue('@street1', '123 Main Street');
-			client.pause(500);
-			this.setValue('@street2', '17th Flr');
-			client.pause(500);
-			this.setValue('@city', 'Any City');
-			client.pause(500);
-			this.setValue('@zip', 12345);
-			client.pause(500);
-			this.setValue('@pfname','Erique');
-			client.pause(500);
-			this.setValue('@plname','Martinez');
-			client.pause(500);
-			this.setValue('@pemail',client.globals.email1);
-			client.pause(500);
-			this.setValue('@pwork', 123456789);
-			client.pause(500);
-			this.setValue('@pmobile',234567890);
-			client.pause(500);
-			this.click('@firmType');
-			client.pause(500);
-			this.click('@firmVisible');
+			this.setValue('@firmNameForAdd','Test Firm '+dateString)
+			.setValue('@street1', '123 Main Street')
+			.setValue('@street2', '17th Flr')
+			.setValue('@city', 'Any City')
+			.setValue('@zip', 12345)
+			.setValue('@pfname','Erique')
+			.setValue('@plname','Martinez')
+			.setValue('@pemail',client.globals.email1)
+			.setValue('@pwork', 123456789)
+			.setValue('@pmobile',234567890)
+			.click('@firmType')
+			.click('@firmVisible');
 			
 			this.api.pause(1000);
 			this.click('@countryDropdown');
@@ -62,7 +51,7 @@ var firmsPageCommands = {
 			this.click('@copyFrmBtn');
 			this.api.pause(1000);	
 			this.click('@submitFrmBtn');
-			this.api.pause(3000);
+			this.api.pause(1000);
 			return dateString.trim();
 			
 		},
@@ -269,12 +258,8 @@ module.exports = {
 			countryUSA: {
 				selector: '//*[@id="mailingCountry_chosen"]/div/ul/li[231]',
 				locateStrategy:'xpath'
-			},
-			ErrorMes:{
-				selector: '//div[@class="toast-message"]',
-				locateStrategy: 'xpath'
 			}
-			
+		
 		
 		}
 }

@@ -3,11 +3,7 @@ var userAdminCommands = {
 		disable2fa:function(client){
 			this.api.pause(1000);
 			this.click('@tfa_No')
-			.click('@saveBtn')
-			this.api.pause(1500);
-			this.verify.urlContains('#/editAdminLevel','Disabled 2fa requires IP address')
-			this.api.pause(500);
-			this.setValue('@allowedIp',client.globals.ip)
+			.setValue('@allowedIp',client.globals.ip)
 			this.click('@adminPriv')
 			.click('@user3Value')
 			.click('@saveBtn')
@@ -35,7 +31,7 @@ var userAdminCommands = {
 			this.click('@saveBtn')
 			this.api.pause(1000)
 		},
-		setToAdmin2:function(client, user){
+		setToAdmin2:function(client){
 			this.api.pause(1000)
 			this.click('@adminPriv');
 			this.api.pause(500);
@@ -45,7 +41,7 @@ var userAdminCommands = {
 			this.api.pause(500);
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp', client.globals.ip)
+			.setValue('@allowedIp',client.globals.ip)
 			this.click('@saveBtn');
 			this.api.pause(1000);
 		},
@@ -174,12 +170,7 @@ module.exports = {
 			salesValue:{
 				selector:'//*[@id="privilege"]/option[6]',
 				locateStrategy:'xpath'
-			},
-			ErrorMes:{
-				selector:'//div[@class="toast-message"]',
-				locateStrategy:'xpath'
-			},
-			
+			}
 			
 		}
 }

@@ -72,10 +72,7 @@ module.exports = {
 				selector: '//*[@id="firmGroups"]/thead/tr[2]/th[1]/div/input',
 				locateStrategy: 'xpath'
 			},
-			ErrorMes:{
-				selector: '//div[@class="toast-message"]',
-				locateStrategy: 'xpath'
-			}
+			
 			
 			
 		}

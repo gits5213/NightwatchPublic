@@ -16,7 +16,7 @@ module.exports ={
 		usersPage.go(client);
 			client.pause(2000);
 			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
-				client.verify.notEqual(result.value.length, 20, 'There should be more than 20 groups on this page');
+				client.verify.equal(result.value.length, 25, 'There should be more than 25 groups on this page');
 			});
 			client.pause(1000);
 
@@ -53,7 +53,7 @@ module.exports ={
 			 	 usersPage.api.keys(client.Keys.ENTER);
 				 client.pause(1000);
 			usersPage
-				.click('@firstRow')  
+				.click('@firstRow')  //firstRow
 				 client.pause(2000);
 			
 			usersPage

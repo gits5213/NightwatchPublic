@@ -8,6 +8,7 @@ module.exports ={
 				var handle = hand.value;
 				client.windowSize(handle,1700,800);
 			});
+			
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();

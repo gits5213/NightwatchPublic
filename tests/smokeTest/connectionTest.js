@@ -19,7 +19,7 @@ module.exports ={
 			connectionsPage.go();
 			connectionsPage.verify.visible('@connectionsHomePage', 'Verified Connections Home Page - Manage your Cloud9 Connections');	
 			connectionsPage.api.pause(2000);
-			console.log('Test cases Countinuing');
+			console.log('Test cases Countinuing')
 			client.closeWindow();
 			client.end();
 

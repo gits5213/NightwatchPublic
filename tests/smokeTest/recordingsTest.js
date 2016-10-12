@@ -14,9 +14,10 @@ module.exports ={
 			
 			//Recordings Tab
 			var recordingsPage = client.page.recordingsPage();
-			recordingsPage.go(client);
+			recordingsPage.portalRecordingsTab(client);
+			recordingsPage.click('@recordingsTab');
 			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
-				client.verify.notEqual(result.value.length, 20, 'There should be more than 20 groups on this page');
+				client.verify.notEqual(result.value.length, 25, 'There should be less than 25 groups on this page');
 			});
 			client.assert.urlContains('#/recordings');
 			recordingsPage.api.pause(2000);
