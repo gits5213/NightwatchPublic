@@ -51,7 +51,8 @@ var firmsPageCommands = {
 			this.click('@copyFrmBtn');
 			this.api.pause(1000);	
 			this.click('@submitFrmBtn');
-			this.api.pause(1000);
+			this.waitForElementVisible('@toastSuccess',6000,'Firm was successfully created');
+			this.waitForElementNotPresent('@toastSuccess',10000,'Confirmation modal gone');
 			return dateString.trim();
 			
 		},
@@ -201,6 +202,10 @@ module.exports = {
 			},
 			countryUSA: {
 				selector: '//*[@id="mailingCountry_chosen"]/div/ul/li[231]',
+				locateStrategy:'xpath'
+			},
+			toastSuccess: {
+				selector: '//*[@id="toast-container"]/div/div',
 				locateStrategy:'xpath'
 			}
 		

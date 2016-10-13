@@ -23,7 +23,6 @@ module.exports ={
 			navigation.logout();
 			
 			loginPage.userLoginFail(client.globals.nonAdminUser,client.globals.nonAdminPass)
-			
 			loginPage.getText('@loginFail1',function(result){
 				loginPage.verify.equal(result.value,'Login failed, check your username and password and try again.')
 			})

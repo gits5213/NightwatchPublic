@@ -12,6 +12,12 @@ var userAdminCommands = {
 			.click('@user3Value')
 			.click('@saveBtn')
 		},
+		saveConfirm: function(client){
+			this.waitForElementVisible('@successToast',10000, "User privilege settings successfully saved");
+			this.waitForElementNotPresent('@successToast',10000, 'Confirmation modal hidden');
+			this.assert.urlContains('#/users');
+		},
+		
 		setToNone:function(client){
 			client.pause(1000);
 			this.click('@adminPriv')
@@ -19,7 +25,7 @@ var userAdminCommands = {
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500)
 			this.click('@saveBtn')
-			this.api.pause(1000)
+			this.saveConfirm(client);
 		},
 		setToAdmin:function(client){
 			client.pause(1000);
@@ -33,7 +39,7 @@ var userAdminCommands = {
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
 			this.click('@saveBtn')
-			this.api.pause(1000)
+			this.saveConfirm(client);
 		},
 		setToAdmin2:function(client){
 			this.api.pause(1000)
@@ -47,7 +53,7 @@ var userAdminCommands = {
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
 			this.click('@saveBtn');
-			this.api.pause(1000);
+			this.saveConfirm(client);
 		},
 		setToAdmin1:function(client){
 			client.pause(1000);
@@ -61,7 +67,7 @@ var userAdminCommands = {
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
 			this.click('@saveBtn')
-			this.api.pause(1000)
+			this.saveConfirm(client);
 		},
 		setToCompliance:function(client){
 			client.pause(1000);
@@ -75,7 +81,7 @@ var userAdminCommands = {
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
 			this.click('@saveBtn')
-			this.api.pause(1000)
+			this.saveConfirm(client);			
 		},
 		setToUser3:function(client){
 			client.pause(1000);
@@ -89,7 +95,7 @@ var userAdminCommands = {
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
 			this.click('@saveBtn')
-			this.api.pause(1000)
+			this.saveConfirm(client);
 		},
 		setToSales:function(client){
 			client.pause(1000);
@@ -103,7 +109,7 @@ var userAdminCommands = {
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
 			this.click('@saveBtn')
-			this.api.pause(1000)
+			this.saveConfirm(client);
 		}
 };
 
@@ -173,6 +179,10 @@ module.exports = {
 			},
 			salesValue:{
 				selector:'//*[@id="privilege"]/option[6]',
+				locateStrategy:'xpath'
+			},
+			successToast:{
+				selector: './/*[@id="toast-container"]/div/div/div/div',
 				locateStrategy:'xpath'
 			}
 			

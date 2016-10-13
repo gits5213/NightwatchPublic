@@ -51,6 +51,6 @@ module.exports ={
 			.verify.valueContains('@billWork', 123456789)
 			.verify.valueContains('@billMobile',234567890)
 			 client.pause(2000);
-			client.end();
+			//client.end();
 		}
 }

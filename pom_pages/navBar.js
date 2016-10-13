@@ -1,10 +1,8 @@
 var navigationCommands = {
 		logout:function(){
 			this.click('@logoff');
-			this.api.pause(1000, function(){
-				console.log('... logging off')
-			});
-			this.assert.urlContains('#/login')
+			this.waitForElementNotPresent('@logoff',10000,'Logoff successful');
+			
 		}
 };
 

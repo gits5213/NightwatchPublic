@@ -22,6 +22,8 @@ module.exports ={
 			adminPage.setToCompliance(client)
 			navigation.logout();
 			
+			//this.waitForElementNotVisible('@logoff',5000,'User logoff was successful');
+			
 			loginPage.userLogin(client)
 			
 			client.verify.containsText('body', 'Welcome to the Cloud9 Portal')

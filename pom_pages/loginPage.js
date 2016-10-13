@@ -60,14 +60,14 @@ var loginCommand = {
 				console.log('Logging in - username:'+username+' password:'+password)
 			})
 			this.waitForElementVisible('@usernameField',2000, 'Verified Username Field is visible')
-			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
-			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable and clickable')
+			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is visible')
+			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is visible')
 			.setValue('@usernameField',username)
 			.setValue('@passwordField', password)
 			.click('@submitButton',function(){
 				console.log('username:'+username+' password:'+password)
 			})
-			this.waitForElementNotVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
+			this.waitForElementNotVisible('@alert',2000, 'Login modal should not show up')
 			this.api.pause(1500);		
 		},
 		
