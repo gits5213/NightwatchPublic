@@ -17,7 +17,7 @@ module.exports ={
 				
 				var groupsPage = client.page.groupsPage();
 				groupsPage.go();
-				client.assert.urlContains('#/groups');
+				client.assert.urlContains('#/addGroup');
 				groupsPage.addGrpForFirm(dateString,client);
 				client.assert.urlContains('firmId=');
 				

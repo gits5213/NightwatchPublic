@@ -11,7 +11,7 @@ var userPageCommands = {
 			.setValue('@selectFirmBarSearch',firm);
 			this.api.pause(1000);
 			this.api.keys(client.Keys.ENTER);
-			this.waitForElementVisible('@addUserSubmitBtn',2000);
+			this.waitForElementVisible('@addUserSubmitBtn',5000);
 			
 			var now = new Date();
 			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
