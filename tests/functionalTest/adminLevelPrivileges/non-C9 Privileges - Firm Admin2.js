@@ -25,7 +25,7 @@ module.exports ={
 			navigation.logout();
 			
 			loginPage.userLogin(client)
-			
+			client.pause(1000);
 			client.verify.containsText('body', 'Welcome to the Cloud9 Portal')
 			
 			var navigation = client.page.navBar();

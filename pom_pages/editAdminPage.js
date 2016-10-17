@@ -182,7 +182,7 @@ module.exports = {
 				locateStrategy:'xpath'
 			},
 			successToast:{
-				selector: './/*[@id="toast-container"]/div/div/div/div',
+				selector: '//div[@class="toast-message"]',
 				locateStrategy:'xpath'
 			}
 			

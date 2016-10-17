@@ -55,7 +55,7 @@ module.exports ={
 			clickToCallPage.click('@saveSettingsBtn');
 			
 			client.pause(1500);	
-			clickToCallPage.getText('@ErrorMes',function(errorMes){
+			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'domain is not valid')
 			});
 			client.pause(7000);
@@ -80,7 +80,7 @@ module.exports ={
 			clickToCallPage.click('@saveSettingsBtn');
 			client.pause(500);
 			
-			clickToCallPage.getText('@ErrorMes',function(errorMes){
+			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'port is not valid')
 			});
 			client.pause(7000);
@@ -105,7 +105,7 @@ module.exports ={
 			clickToCallPage.click('@saveSettingsBtn');
 			client.pause(500);
 			
-			clickToCallPage.getText('@ErrorMes',function(errorMes){
+			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'authUsername is not valid')
 			});
 			client.pause(7000);
@@ -130,7 +130,7 @@ module.exports ={
 			clickToCallPage.click('@saveSettingsBtn');
 			client.pause(500);
 			
-			clickToCallPage.getText('@ErrorMes',function(errorMes){
+			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'authId is not valid')
 			});
 			
@@ -156,10 +156,15 @@ module.exports ={
 			clickToCallPage.click('@saveSettingsBtn');
 			client.pause(500);
 			
-			clickToCallPage.getText('@ErrorMes',function(errorMes){
+			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'authPassword is not valid')
 			});
 			client.pause(7000);
+			
+			clickToCallPage.verifyTextLevel(client);
+			
+			
+			
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 			usersPage.firstRow();
@@ -181,7 +186,7 @@ module.exports ={
 			clickToCallPage.saveFavorites();
 			client.pause(500);
 			
-			clickToCallPage.getText('@ErrorMes',function(errorMes){
+			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'Please correct errors')
 			});
 			
@@ -206,7 +211,7 @@ module.exports ={
 			clickToCallPage.saveFavorites();
 			client.pause(500);
 			
-			clickToCallPage.getText('@ErrorMes',function(errorMes){
+			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'Please correct errors')
 			});
 			

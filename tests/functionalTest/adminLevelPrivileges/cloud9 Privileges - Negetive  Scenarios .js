@@ -29,7 +29,7 @@ module.exports ={
 			adminPage.clearValue('@allowedIp')
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Allowed IP required if Two Factor Login is disabled')
 			});
 			client.pause(2000);
@@ -39,7 +39,7 @@ module.exports ={
 			client.pause(1000);
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Mobile number required for two factor authentication')
 			});
 			
@@ -56,7 +56,7 @@ module.exports ={
 			adminPage.clearValue('@allowedIp')
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Allowed IP required if Two Factor Login is disabled')
 			});
 			client.pause(2000);
@@ -66,7 +66,7 @@ module.exports ={
 			client.pause(1000);
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Mobile number required for two factor authentication')
 			});
 			
@@ -84,7 +84,7 @@ module.exports ={
 			adminPage.clearValue('@allowedIp')
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Allowed IP required if Two Factor Login is disabled')
 			});
 			client.pause(2000);
@@ -94,7 +94,7 @@ module.exports ={
 			client.pause(1000);
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Mobile number required for two factor authentication')
 			});
 			
@@ -111,7 +111,7 @@ module.exports ={
 			adminPage.clearValue('@allowedIp')
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Allowed IP required if Two Factor Login is disabled')
 			});
 			client.pause(2000);
@@ -121,7 +121,7 @@ module.exports ={
 			client.pause(1000);
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Mobile number required for two factor authentication')
 			});
 			
@@ -138,7 +138,7 @@ module.exports ={
 			adminPage.clearValue('@allowedIp')
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Allowed IP required if Two Factor Login is disabled')
 			});
 			client.pause(2000);
@@ -148,7 +148,7 @@ module.exports ={
 			client.pause(1000);
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Mobile number required for two factor authentication')
 			});
 			
@@ -165,7 +165,7 @@ module.exports ={
 			adminPage.clearValue('@allowedIp')
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Allowed IP required if Two Factor Login is disabled')
 			});
 			client.pause(2000);
@@ -175,7 +175,7 @@ module.exports ={
 			client.pause(1000);
 			adminPage.click('@saveBtn');
 			client.pause(500);	
-			adminPage.getText('@ErrorMes',function(errorMes){
+			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Mobile number required for two factor authentication')
 			});
 			client.pause(7000);

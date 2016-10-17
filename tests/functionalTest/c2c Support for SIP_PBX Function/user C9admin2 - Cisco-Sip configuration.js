@@ -12,7 +12,7 @@ module.exports ={
 			
 			loginPage.adminLogin(client);
 			usersPage.go();
-			
+
 			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
 			usersPage.click('@editAdminBtn');
 			
@@ -26,7 +26,7 @@ module.exports ={
 			client.pause(1000);
 			var usersPage = client.page.usersPage();
 			usersPage.go();
-			
+
 			client.pause(2000);
 			usersPage.c2cNameSearch(client.globals.nonAdminUser,client);
 			

@@ -38,38 +38,6 @@ module.exports ={
 			userGroupsPage.verify.urlContains('#/editUserGroups');
 			userGroupsPage.addGrp2User();
 			client.assert.urlContains('firmId=')
-
-			/*usersPage.go();
-			usersPage.userNameSearch(user1);
-			usersPage.firstRow();
-			usersPage.editUserButton();
-			usersPage.editUserRecord(user1);
-			usersPage.voiceRecNo();
-			usersPage.editUserSubmit();
-			client.pause(3000);
-			
-			usersPage.firstRow();
-			usersPage.editUserButton();
-			
-			usersPage
-			.verify.valueContains('@firmName', 'Test Firm '+dateString)
-			.verify.valueContains('@username','erict'+user1)
-			.verify.valueContains('@fnameField','Tonder')
-			.verify.valueContains('@lnameField','Eric'+user1[0])
-			.verify.valueContains('@emailField','updateduser@c9tec.com')
-			
-			.verify.valueContains('@street1','1 So Amazing Ct')
-			.verify.valueContains('@street2','Penthouse')
-			.verify.value('@country','string:United States')
-			.verify.value('@state','string:New York')
-			.verify.valueContains('@city','Real Town')
-			.verify.valueContains('@zip',77777)
-			
-			.verify.valueContains('@workField','011-234-5294')
-			.verify.valueContains('@mobileField','011-234-5555')
-			.verify.valueContains('@voiceNo',0)
-			.verify.urlContains('#/editUser')
-			usersPage.editUserSubmit();*/
 			
 			usersPage.firstRow();
 			usersPage.clickToCall_Button(client);
