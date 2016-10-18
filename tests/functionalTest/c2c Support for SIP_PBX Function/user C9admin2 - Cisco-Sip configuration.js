@@ -57,7 +57,7 @@ module.exports ={
 			
 			var clickToCallPage = client.page.clickToCallPage(client);
 			clickToCallPage.selectProvider('Cisco Call Manager 10.x',client);
-			clickToCallPage.getDomain1(client, client.globals.domainName);
+			clickToCallPage.getDomain1(client);
 			
 			var dateString = clickToCallPage.createsSIPSettings(client, dateString); 
 			clickToCallPage.ciscoCallExtSett(client, dateString);  
@@ -85,7 +85,7 @@ module.exports ={
 			
 			clickToCallPage
 			.verify.valueContains('@selectProvider', 'CiscoCallManager')
-			.verify.valueContains('@domainName1','c9tec.onsip.com')
+			.verify.valueContains('@domainName1','173.226.129.163')
 			.verify.valueContains('@portNumber','5060')
 			.verify.valueContains('@userName','Eric')
 			.verify.valueContains('@authId','Tonder')

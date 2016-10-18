@@ -6,8 +6,8 @@ var groupsPageCommands = {
 			this.api.pause(1000);
 		},
 		addGrpForFirm: function(dateString,client){
-			this.click('@addGroupBtn');
-			this.api.pause(1000);
+			//this.click('@addGroupBtn');
+			//this.api.pause(1000);
 			this.verify.containsText('body','Add New Group');
 			this.click('@selectFirmBar');
 			this.api.pause(500);

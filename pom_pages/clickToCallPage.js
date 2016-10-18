@@ -37,31 +37,29 @@ var clickToCallPageCommands = {
 			this.api.pause(2000);
 		},
 
-		getDomain: function(client, user){
+		getDomain: function(client){
 			this.clearValue('@domain');
-			this.setValue('@domain', user);
+			this.setValue('@domain', client.globals.OnSipDomainName);
 			this.api.pause(3000);
 		},
-		getDomain1: function(client, user){
+		getDomain1: function(client){
 			this.clearValue('@domainName1');
-			this.setValue('@domainName1',user);
+			this.setValue('@domainName1',client.globals.CiscoDomainName1);
 			this.api.pause(3000);
 		},
-		
+		domainPlus: function(client){
+			this.click('@domainNamePlus');
+			this.api.pause(3000);
+			this.clearValue('@domainName2');
+			this.setValue('@domainName2',client.globals.CiscoDomainName2);
+			this.api.pause(2000);
+		},
 		selectProvider: function(string,client){
 			this.clearValue('@selectProvider');
 			this.setValue('@selectProvider',string);
 			this.api.pause(3000);
 		},
-		
-		domainPlus: function(client){
-			this.click('@domainNamePlus');
-			this.api.pause(3000);
-			this.clearValue('@domainName2');
-			this.setValue('@domainName2',client.globals.domainName);
-			this.api.pause(2000);
-		},
-		
+				
 		extenSetPlus: function(client, dateString){
 			this.click('@extSettPlus');
 			this.api.pause(3000);
@@ -114,9 +112,6 @@ var clickToCallPageCommands = {
 			this.getText('@providerLevel',function(providerText){
 				this.verify.equal(providerText.value,'Provider*')
 			});
-			this.getText('@domainLevel',function(domainText){
-				this.verify.equal(domainText.value,'Domain*')
-			});
 			this.getText('@usernameLevel',function(usernameText){
 				this.verify.equal(usernameText.value,'Username*')
 			});
@@ -127,9 +122,34 @@ var clickToCallPageCommands = {
 				this.verify.equal(authPasswordText.value,'AuthPassword*')
 			});
 			
+		},
+		verifyTextLevelFav:function(client){
+			this.getText('@firstNameLevel',function(firstNaText){
+				this.verify.equal(firstNaText.value,'First Name*')
+			});
+			this.getText('@lastNameLevel',function(lastNaText){
+				this.verify.equal(lastNaText.value,'Last Name*')
+			});
+			this.getText('@defaultLevel',function(defaultText){
+				this.verify.equal(defaultText.value,'Default*')
+			});
+			this.verify.visible('@favorites0Minis');
+			
+		},
+		verifyCiscoDomainLevel:function(client){
+			this.getText('@firstNameLevel',function(domain1Text){
+				this.verify.equal(domain1Text.value,'Domain* 1')
+			});
+			this.verify.visible('@domainName0Minus');
+				
+		},
+		verifyOnSipDomainLevel:function(client){
+			this.getText('@domainLevel',function(domainText){
+				this.verify.equal(domainText.value,'Domain*')
+			});
+				
 		}
 		
-	
 		
 		
 	};
@@ -164,6 +184,10 @@ var clickToCallPageCommands = {
 			},
 			domainNameMinus:{
 				selector: '//*[@id="usersettings"]/div/div[1]/div[1]/div[2]/div[2]/div[2]/i[1]',
+				locateStrategy: 'xpath'
+			},
+			domainName0Minus:{
+				selector: '//*[@id="usersettings"]/div/div[1]/div[1]/div[2]/div/div[2]/i[1]',
 				locateStrategy: 'xpath'
 			},
 			portNumber:{
@@ -279,6 +303,10 @@ var clickToCallPageCommands = {
 				selector: '//*[@id="favoritesContainer"]/div/div[6]/div[2]/i[1]',
 				locateStrategy: 'xpath'
 			},
+			favorites0Minis:{
+				selector: '//*[@id="favoritesContainer"]/div/div[6]/div[2]/i[1]',
+				locateStrategy: 'xpath'
+			},
 			goBackBtnF:{
 				selector: '//*[@id="usersettings"]/div/div[2]/div[2]/button[1]',
 				locateStrategy: 'xpath'
@@ -360,6 +388,22 @@ var clickToCallPageCommands = {
 			},
 			AuthPasswordLevel:{
 				selector: '//*[@id="usersettings"]/div/div[1]/div[1]/div[4]/div[3]/label',
+				locateStrategy:'xpath'
+			},
+			firstNameLevel:{
+				selector:'//*[@id="favoritesContainer"]/div/div[1]/label',
+				locateStrategy:'xpath'
+			},
+			lastNameLevel:{
+				selector:'//*[@id="favoritesContainer"]/div/div[2]/label',
+				locateStrategy:'xpath'
+			},
+			defaultLevel:{
+				selector:'//*[@id="favoritesContainer"]/div/div[6]/div[1]/label',
+				locateStrategy:'xpath'
+			},
+			domain1Level:{
+				selector:'//*[@id="usersettings"]/div/div[1]/div[1]/div[2]/div/div[1]/label',
 				locateStrategy:'xpath'
 			}
 		}

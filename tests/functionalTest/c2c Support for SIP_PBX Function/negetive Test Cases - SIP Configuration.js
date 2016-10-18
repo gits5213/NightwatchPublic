@@ -17,8 +17,6 @@ module.exports ={
 			console.log('About to create: Test Firm '+dateString);  
 			
 			var groupsPage = client.page.groupsPage();
-			//groupsPage.go(client);
-			//client.assert.urlContains('/#/addGroups');
 			groupsPage.addGrpForFirm(dateString,client);
 			client.assert.urlContains('firmId=');
 			
@@ -45,6 +43,9 @@ module.exports ={
 			usersPage.clickToCall_Button(client);
 			
 			var clickToCallPage = client.page.clickToCallPage(client);
+			client.pause(1000);
+			clickToCallPage.verifyTextLevel(client);
+			clickToCallPage.verifyOnSipDomainLevel(client);
 			clickToCallPage.selectProvider('OnSip.com',client);
 
 			clickToCallPage.createsSIPSettings(client, user1); 
@@ -66,7 +67,7 @@ module.exports ={
 			usersPage.clickToCall_Button(client);
 			
 			clickToCallPage.selectProvider('OnSip.com',client);
-			clickToCallPage.getDomain(client, client.globals.domainName);
+			clickToCallPage.getDomain(client);
 			clickToCallPage.clearValue('@portNumber');
 			//this.setValue('@portNumber','5060');
 			var dateString;
@@ -91,7 +92,7 @@ module.exports ={
 			usersPage.clickToCall_Button(client);
 			
 			clickToCallPage.selectProvider('OnSip.com',client);
-			clickToCallPage.getDomain(client, client.globals.domainName);
+			clickToCallPage.getDomain(client);
 			clickToCallPage.clearValue('@portNumber');
 			clickToCallPage.setValue('@portNumber','5060');
 			var dateString;
@@ -116,7 +117,7 @@ module.exports ={
 			usersPage.clickToCall_Button(client);
 			
 			clickToCallPage.selectProvider('OnSip.com',client);
-			clickToCallPage.getDomain(client, client.globals.domainName);
+			clickToCallPage.getDomain(client);
 			clickToCallPage.clearValue('@portNumber');
 			clickToCallPage.setValue('@portNumber','5060');
 			var dateString;
@@ -141,7 +142,7 @@ module.exports ={
 			usersPage.clickToCall_Button(client);
 			
 			clickToCallPage.selectProvider('OnSip.com',client);
-			clickToCallPage.getDomain(client, client.globals.domainName);
+			clickToCallPage.getDomain(client);
 			clickToCallPage.clearValue('@portNumber');
 			clickToCallPage.setValue('@portNumber','5060');
 			
@@ -160,19 +161,25 @@ module.exports ={
 				clickToCallPage.verify.equal(errorMes.value,'authPassword is not valid')
 			});
 			client.pause(7000);
+			clickToCallPage.click('@goBackBtnSS');
+			client.pause(2000);
+			usersPage.firstRow();
+			usersPage.clickToCall_Button(client);
+			client.pause(1000);
 			
+			clickToCallPage.selectProvider('Cisco Call Manager 10.x',client);
+			clickToCallPage.verifyCiscoDomainLevel(client);
 			clickToCallPage.verifyTextLevel(client);
-			
-			
 			
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 			usersPage.firstRow();
 			usersPage.clickToCall_Button(client);
 			client.pause(2000);
-			clickToCallPage.click('@favoritesBtn');
-			client.pause(2000);
 			
+			clickToCallPage.click('@favoritesBtn');
+			clickToCallPage.verifyTextLevelFav(client);
+			client.pause(1000);
 			//Favorites FirstName is not valid
 			clickToCallPage.clearValue('@firstNameBtn');
 			//clickToCallPage.setValue('@firstNameBtn', 'Eric'+dateString);

@@ -47,7 +47,7 @@ module.exports ={
 			
 			var clickToCallPage = client.page.clickToCallPage(client);
 			clickToCallPage.selectProvider('Cisco Call Manager 10.x',client);
-			clickToCallPage.getDomain1(client, client.globals.domainName);
+			clickToCallPage.getDomain1(client, client.globals.CiscoDomainName1);
 			
 			//var dateString
 			clickToCallPage.createsSIPSettings(client, user1);  //dateString

@@ -44,7 +44,10 @@
             "adminPassword":"Shahnewaz1@",
             "email1":"qatest.user@c9tec.com",
             "nonAdminUser":"testadmin2",
-            "nonAdminPass":"Password123"
+            "nonAdminPass":"Password123",
+            "OnSipDomainName":"c9tec.OnSip.com",
+            "CiscoDomainName1":"173.226.129.163",
+            "CiscoDomainName2":"173.226.129.164"
              	
          }
       },
