@@ -88,6 +88,8 @@ module.exports ={
 			
 			var loginPage2 = new client.page.loginPage();
 			client.pause(4000)
+			
+			loginPage2.waitForElementVisible('@passResetSuccess',10000, "Password confirmation message is now visible");
 			loginPage2.getText('@passResetSuccess', function(result){
 				this.verify.equal(result.value, 'Your password has been reset. Please check your email for a temporary password to sign-in.')
 			});

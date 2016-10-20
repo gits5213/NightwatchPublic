@@ -32,9 +32,10 @@ var loginCommand = {
 			.waitForElementPresent('@passwordField',2000, 'Verified PassWord Field is enabled')
 			.waitForElementPresent('@submitButton',2000, 'Verified Sign in button is enable')
 			.setValue('@usernameField',client.globals.nonAdminUser)
-			.setValue('@passwordField',client.globals.nonAdminPass)
-			.click('@submitButton')
-			.waitForElementVisible('@alert',2000, 'Verified Modal dialog popup appears with WARNING header')
+			.setValue('@passwordField',client.globals.nonAdminPass);
+			this.api.pause(1500);
+			this.click('@submitButton')
+			.waitForElementVisible('@alert',15000, 'Verified Modal dialog popup appears with WARNING header')
 			.assert.containsText('div.modal-header', '**WARNING**')
 			.click('@okButton');
 			this.api.pause(2000);

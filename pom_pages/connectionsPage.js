@@ -66,7 +66,8 @@ var connPageCommands = {
 			this.waitForElementVisible('@addConnectionsToUsersSubmitButton',1000, 'Verified add connections to users button visible');
 			this.api.pause(1000);
 			this.click('@addConnectionsToUsersSubmitButton');
-			this.api.pause(1000);
+			this.waitForElementVisible('@toastSuccess',15000,'Connection was successfully created');
+			this.waitForElementNotPresent('@toastSuccess',15000,'Confirmation modal gone');
 		
 		}
 				
@@ -196,7 +197,11 @@ module.exports = {
 			connIdField: '#c9RefNum',
 			description: '#description',
 			createdByField: '#createdBy',
-			createdOnField: '#createdOn'
+			createdOnField: '#createdOn',
+			toastSuccess:{
+				selector: './/*[@id="toast-container"]/div/div',
+				locateStrategy: 'xpath'
+			}
 		
 		}
 

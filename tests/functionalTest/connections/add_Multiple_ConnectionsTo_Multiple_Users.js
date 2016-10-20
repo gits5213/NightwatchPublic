@@ -58,7 +58,7 @@ module.exports ={
 			
 			//2nd
 			groupsPage.go();
-		client.assert.urlContains('#/addGroup');
+		client.assert.urlContains('#/groups');
 		groupsPage.addAnotherGrpForFirm(dateString,client);
 		client.assert.urlContains('firmId=');
 			
@@ -106,11 +106,12 @@ module.exports ={
 			conncetionsPage.addIntConnForFirm(dateString,client)
 			conncetionsPage.connection()
 			conncetionsPage.groupUserSelect();
-	
+
 			usersPage.go();
 			usersPage.click('@firstRow');
 			client.pause(1000);
 			usersPage.click('@editBtn');
+			client.pause(1000);
 			usersPage.verify.urlContains('#/buttons?');
 			client.pause(1000);
 			

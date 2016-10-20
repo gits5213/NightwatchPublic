@@ -31,7 +31,8 @@ var groupsPageCommands = {
 			.setValue('@website','http://c9tec.com')
 			.setValue('@description','New Group for Testing')
 			.click('@submitBtn');
-			this.api.pause(5000);
+			this.waitForElementVisible('@toastSuccess',15000,'Group was successfully created');
+			this.waitForElementNotPresent('@toastSuccess',15000,'Confirmation modal gone');
 			
 		},
 		addAnotherGrpForFirm: function(dateString,client){
@@ -61,7 +62,8 @@ var groupsPageCommands = {
 			.setValue('@website','http://c9tec.com')
 			.setValue('@description','Another new Group for Testing')
 			.click('@submitBtn');
-			this.api.pause(5000);
+			this.waitForElementVisible('@toastSuccess',15000,'Group was successfully created');
+			this.waitForElementNotPresent('@toastSuccess',15000,'Confirmation modal gone');
 			
 		},
 		editFirstRecord: function(){
@@ -255,6 +257,10 @@ module.exports = {
 			},
 			removeFirstGroupFromUser: {
 				selector: '//*[@id="userGroups"]/tbody/tr/td[1]',
+				locateStrategy: 'xpath'
+			},
+			toastSuccess:{
+				selector: './/*[@id="toast-container"]/div/div',
 				locateStrategy: 'xpath'
 			}
 			

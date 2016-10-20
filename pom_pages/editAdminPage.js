@@ -1,5 +1,12 @@
 var userAdminCommands = {
 
+
+		saveConfirm: function(client){
+			this.waitForElementVisible('@successToast',10000, "User privilege settings successfully saved");
+			this.waitForElementNotPresent('@successToast',10000, 'Confirmation modal hidden');
+			this.assert.urlContains('#/users');
+		},
+		
 		disable2fa:function(client){
 			this.api.pause(1000);
 			this.click('@tfa_No')
@@ -11,11 +18,7 @@ var userAdminCommands = {
 			this.click('@adminPriv')
 			.click('@user3Value')
 			.click('@saveBtn')
-		},
-		saveConfirm: function(client){
-			this.waitForElementVisible('@successToast',10000, "User privilege settings successfully saved");
-			this.waitForElementNotPresent('@successToast',10000, 'Confirmation modal hidden');
-			this.assert.urlContains('#/users');
+			this.saveConfirm(client);
 		},
 		
 		setToNone:function(client){
@@ -65,8 +68,8 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip)
-			this.click('@saveBtn')
+			.setValue('@allowedIp',client.globals.ip);
+			this.click('@saveBtn');
 			this.saveConfirm(client);
 		},
 		setToCompliance:function(client){
@@ -79,8 +82,8 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip)
-			this.click('@saveBtn')
+			.setValue('@allowedIp',client.globals.ip);
+			this.click('@saveBtn');
 			this.saveConfirm(client);			
 		},
 		setToUser3:function(client){
@@ -93,8 +96,8 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip)
-			this.click('@saveBtn')
+			.setValue('@allowedIp',client.globals.ip);
+			this.click('@saveBtn');
 			this.saveConfirm(client);
 		},
 		setToSales:function(client){
@@ -107,8 +110,8 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip)
-			this.click('@saveBtn')
+			.setValue('@allowedIp',client.globals.ip);
+			this.click('@saveBtn');
 			this.saveConfirm(client);
 		}
 };
