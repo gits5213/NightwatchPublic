@@ -3,11 +3,7 @@ module.exports ={
 		'Add a new Internal Connection to a new Firm': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
-			
-			client.windowHandle(function(hand){
-				var handle = hand.value;
-				client.windowSize(handle,1700,800);
-			});
+			client.maximizeWindow();
 			
 			loginPage.adminLogin(client);
 			
@@ -18,9 +14,6 @@ module.exports ={
 			console.log('About to create: Test Firm '+dateString);
 			
 			var groupsPage = client.page.groupsPage();
-			groupsPage.go();
-			client.pause(2000);
-			client.assert.urlContains('#/groups');
 			groupsPage.addGrpForFirm(dateString,client);
 			client.assert.urlContains('groups?firmId=');
 			//groupsPage.addAnotherGrpForFirm(dateString,client);
@@ -31,7 +24,6 @@ module.exports ={
 			var connectionsPage = client.page.connectionsPage();
 			connectionsPage.go();
 			connectionsPage.addIntConnForFirm(dateString,client);
-			
 			client.assert.urlContains('#/connections');
 			
 			connectionsPage.editFirstRecord();

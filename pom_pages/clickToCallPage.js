@@ -1,6 +1,13 @@
 var clickToCallPageCommands = {
 		createsSIPSettings:function(client, dateString){
 			this.waitForElementVisible('@saveSettingsBtn',2000);
+			
+			var now = new Date();
+			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
+			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
+			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
+			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+
 			this.click('@portNumber');
 		    this.clearValue('@portNumber');
 			this.setValue('@portNumber','5060');
@@ -16,10 +23,18 @@ var clickToCallPageCommands = {
 			this.clearValue('@dialingPrefix');
 			this.setValue('@dialingPrefix','1');
 			this.api.pause(2000);
-			return dateString.trim();
+
 									
 		},
 		ciscoCallExtSett: function(client, dateString){
+			
+			var now = new Date();
+			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
+			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
+			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
+			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+	
+			
 			this.clearValue('@userNameExet');
 			this.setValue('@userNameExet','EricTo'+ dateString);
 			this.clearValue('@displayName');
@@ -29,6 +44,14 @@ var clickToCallPageCommands = {
 		},
 		
 		onSIPextSett: function(client, dateString){
+			
+			var now = new Date();
+			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
+			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
+			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
+			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+				
+			
 			this.clearValue('@userNameExetOnSip');
 			this.setValue('@userNameExetOnSip','EricTo'+ dateString);
 			this.clearValue('@displayNameOnSip');
@@ -73,6 +96,14 @@ var clickToCallPageCommands = {
 		
 		createFavorites: function(client, dateString){
 			this.api.pause(3000);
+			
+			var now = new Date();
+			var dateString=(now.getHours()<10 ? '0'+now.getHours().toString() : now.getHours().toString())+''+
+			(now.getMinutes()<10 ? '0'+now.getMinutes().toString() : now.getMinutes().toString())+''+
+			(now.getSeconds()<10 ? '0'+now.getSeconds().toString() : now.getSeconds().toString())+''+
+			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
+	
+			
 			this.click('@favoritesBtn');
 			this.waitForElementVisible('@saveFavoritesBtn',2000);
 			this.waitForElementVisible('@firstNameBtn',1000)
@@ -152,6 +183,8 @@ var clickToCallPageCommands = {
 		
 		
 		
+		
+		
 	};
 
 	module.exports = {
@@ -175,7 +208,7 @@ var clickToCallPageCommands = {
 				locateStrategy: 'xpath'
 			},
 			domainNamePlus:{
-				selector: '//*[@id="usersettings"]/div/div[1]/div[1]/div[2]/div/div[2]/i[2]',
+				selector: '//*[@id="add_domain_0"]',
 				locateStrategy: 'xpath'
 			},
 			domainName2:{
@@ -183,11 +216,11 @@ var clickToCallPageCommands = {
 				locateStrategy: 'xpath'
 			},
 			domainNameMinus:{
-				selector: '//*[@id="usersettings"]/div/div[1]/div[1]/div[2]/div[2]/div[2]/i[1]',
+				selector: '//*[@id="remove_domain_1"]',
 				locateStrategy: 'xpath'
 			},
 			domainName0Minus:{
-				selector: '//*[@id="usersettings"]/div/div[1]/div[1]/div[2]/div/div[2]/i[1]',
+				selector: '//*[@id="remove_domain_0"]',
 				locateStrategy: 'xpath'
 			},
 			portNumber:{
@@ -238,7 +271,7 @@ var clickToCallPageCommands = {
 				locateStrategy: 'xpath'
 			},
 			extSettPlus:{
-				selector: '//*[@id="usersettings"]/div/div[1]/div[1]/div[5]/div/div[3]/div[2]/i[2]',
+				selector: '//*[@id="add_extension_0"]',
 				locateStrategy: 'xpath'
 			},
 			userNExPlus:{
@@ -250,7 +283,7 @@ var clickToCallPageCommands = {
 				locateStrategy: 'xpath'
 			},
 			extSettMinis:{
-				selector: '//*[@id="usersettings"]/div/div[1]/div[1]/div[6]/div/div[3]/div[2]/i[1]',
+				selector: '//*[@id="remove_extension_1"]',
 				locateStrategy: 'xpath'
 			},
 			//-------------------------------
@@ -296,15 +329,15 @@ var clickToCallPageCommands = {
 				locateStrategy: 'xpath'
 			},
 			favoritesPlus:{
-				selector: '//*[@id="favoritesContainer"]/div/div[6]/div[2]/i[2]',
+				selector: '//*[@id="add_favorite_0"]',
 				locateStrategy: 'xpath'
 			},
 			favoritesMinis:{
-				selector: '//*[@id="favoritesContainer"]/div/div[6]/div[2]/i[1]',
+				selector: '//*[@id="remove_favorite_1"]',
 				locateStrategy: 'xpath'
 			},
 			favorites0Minis:{
-				selector: '//*[@id="favoritesContainer"]/div/div[6]/div[2]/i[1]',
+				selector: '//*[@id="remove_favorite_0"]',
 				locateStrategy: 'xpath'
 			},
 			goBackBtnF:{
@@ -333,11 +366,11 @@ var clickToCallPageCommands = {
 				locateStrategy: 'xpath'
 			},
 			favoritesPlus1:{
-				selector: '//*[@id="favoritesContainer"]/div/div[6]/div[2]/i[2]',
+				selector: '//*[@id="add_favorite_1"]',
 				locateStrategy: 'xpath'
 			},
 			favoritesMinis1:{
-				selector: '//*[@id="favoritesContainer"]/div/div[6]/div[2]/i[1]',
+				selector: '//*[@id="remove_favorite_2"]',
 				locateStrategy: 'xpath'
 			},
 			

@@ -7,10 +7,7 @@ module.exports ={
 			client.pause(2000);
 			
 			var networkPage = client.page.networkTestPage();
-			client.windowHandle(function(hand){
-				var handle = hand.value;
-				client.windowSize(handle,1700,800);
-			});
+			client.maximizeWindow();
 			
 			
 			networkPage

@@ -27,13 +27,10 @@ var connPageCommands = {
 			this.setValue('@myFirmBtnLabel',dateString+'IntraFirmShout');
 			this.api.pause(500);
 			this.click('@submitBtn');
-			this.api.pause(1000);
+			this.waitForElementVisible('@toastMess',7000,'Internal Connection for Firm was successfully created');
+			this.waitForElementNotPresent('@toastMess',10000,'Confirmation modal gone');
 			
 			},
-		
-		addExtConnForFirm: function(dateString,client){
-			
-		},
 		editFirstRecord: function(){
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow')
@@ -55,7 +52,8 @@ var connPageCommands = {
 			this.waitForElementVisible('@addConnToBroupBtn',1500, 'Verified add connections to group tab is visible');
 			this.click('@addConnToBroupBtn');
 			this.verify.urlContains('#/addGroupConnections?')
-			this.api.pause(1000);
+			/*this.waitForElementVisible('@toastMess',6000,' Connections successfully created');
+			this.waitForElementNotPresent('@toastMess',10000,'Confirmation modal gone');*/
 			
 		},
 		groupUserSelect: function(){
@@ -66,7 +64,8 @@ var connPageCommands = {
 			this.waitForElementVisible('@addConnectionsToUsersSubmitButton',1000, 'Verified add connections to users button visible');
 			this.api.pause(1000);
 			this.click('@addConnectionsToUsersSubmitButton');
-			this.api.pause(1000);
+			this.waitForElementVisible('@toastMess',6000,'Connection for Group was successfully created');
+			this.waitForElementNotPresent('@toastMess',10000,'Confirmation modal gone');
 		
 		}
 				
@@ -191,6 +190,10 @@ module.exports = {
 				selector: "//*[@id='submitGroupConnections']",
 				locateStrategy: 'xpath'
 			},
+			toastMess:{
+				selector: '//div[@class="toast-message"]',
+				locateStrategy:'xpath'
+			},
 			btnLabelField: '#buttonLabel',
 			vcinstField: '#vcInstID',
 			connIdField: '#c9RefNum',
@@ -198,7 +201,8 @@ module.exports = {
 			createdByField: '#createdBy',
 			createdOnField: '#createdOn'
 		
-		}
+			}
+			
 
 
 }

@@ -8,7 +8,7 @@
    "page_objects_path":"pom_pages",
    "globals_path":"./data/globals.js",
    "selenium":{  
-      "start_process":true,
+      "start_process":false,
       "server_path":"lib/selenium-server-standalone-2.53.1.jar",
       "log_path":"selenium_logs",
       "host":"localhost",

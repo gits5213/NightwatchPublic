@@ -4,10 +4,7 @@ module.exports ={
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
-			client.windowHandle(function(hand){
-				var handle = hand.value;
-				client.windowSize(handle,1700,800);
-			});
+			client.maximizeWindow();
 			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
@@ -32,7 +29,11 @@ module.exports ={
 			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Allowed IP required if Two Factor Login is disabled')
 			});
-			client.pause(2000);
+			client.pause(1000);
+			
+			/*usersPage.editAdminInfo(client.globals.nonAdminUser,client);
+			usersPage.click('@editAdminBtn');*/
+		
 			adminPage.click('@tfa_Yes');
 			client.pause(1000);
 			adminPage.clearValue('@mobile')
@@ -42,7 +43,7 @@ module.exports ={
 			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Mobile number required for two factor authentication')
 			});
-			
+			client.pause(1000);
 			//Firm Administrator 2
 			adminPage.verify.valueContains('@adminPriv', 'string:none');
 			client.pause(1000);
@@ -59,7 +60,7 @@ module.exports ={
 			adminPage.getText('@toastMess',function(errorMes){
 				adminPage.verify.equal(errorMes.value,'Allowed IP required if Two Factor Login is disabled')
 			});
-			client.pause(2000);
+			client.pause(7000);
 			adminPage.click('@tfa_Yes');
 			client.pause(1000);
 			adminPage.clearValue('@mobile')

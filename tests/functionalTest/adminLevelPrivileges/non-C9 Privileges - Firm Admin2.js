@@ -5,10 +5,7 @@ module.exports ={
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
-			client.windowHandle(function(hand){
-				var handle = hand.value;
-				client.windowSize(handle,1700,800);
-			});
+			client.maximizeWindow();
 			client.url(client.launch_url);
 			
 			loginPage.adminLogin(client);
@@ -111,7 +108,7 @@ module.exports ={
 			.verify.visible('@detailsBtn')
 			.verify.visible('@exportBtn')
 			.verify.visible('@downloadBtn')
-			.verify.visible('@callType')
+			.verify.visible('@callTypeTab')
 			.verify.visible('@show')
 			
 			navigation.click('@cog');

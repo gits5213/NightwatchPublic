@@ -13,17 +13,19 @@ var userAdminCommands = {
 			.click('@saveBtn')
 		},
 		saveConfirm: function(client){
-			this.waitForElementVisible('@successToast',10000, "User privilege settings successfully saved");
-			this.waitForElementNotPresent('@successToast',10000, 'Confirmation modal hidden');
+			this.waitForElementVisible('@toastMess',10000, "User privilege settings successfully saved");
+			this.waitForElementNotPresent('@toastMess',10000, 'Confirmation modal hidden');
 			this.assert.urlContains('#/users');
+			
 		},
 		
 		setToNone:function(client){
 			client.pause(1000);
 			this.click('@adminPriv')
-			.click('@noneValue')
+			this.setValue('@adminPriv','none');
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(500)
+			this.click('@tfa_No')
 			this.click('@saveBtn')
 			this.saveConfirm(client);
 		},
@@ -181,7 +183,7 @@ module.exports = {
 				selector:'//*[@id="privilege"]/option[6]',
 				locateStrategy:'xpath'
 			},
-			successToast:{
+			toastMess:{
 				selector: '//div[@class="toast-message"]',
 				locateStrategy:'xpath'
 			}

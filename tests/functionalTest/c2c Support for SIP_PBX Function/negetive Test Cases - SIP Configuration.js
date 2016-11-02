@@ -3,10 +3,7 @@ module.exports ={
 		
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
-			client.windowHandle(function(hand){
-				var handle = hand.value;
-				client.windowSize(handle,1700,800);
-			});
+			client.maximizeWindow();
 					
 			loginPage.adminLogin(client);
 			
@@ -23,7 +20,6 @@ module.exports ={
 			client.pause(1000);
 			var usersPage = client.page.usersPage();
 			usersPage.go();
-			client.pause(2000);
 			
 			usersPage.selectFirm(dateString,client);
 			var user1 = usersPage.createUser(client);
@@ -40,7 +36,7 @@ module.exports ={
 			
 			//Domain is not valid
 			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			usersPage.clickToCallTab(client);
 			
 			var clickToCallPage = client.page.clickToCallPage(client);
 			client.pause(1000);
@@ -64,7 +60,7 @@ module.exports ={
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			usersPage.clickToCallTab(client);
 			
 			clickToCallPage.selectProvider('OnSip.com',client);
 			clickToCallPage.getDomain(client);
@@ -89,7 +85,7 @@ module.exports ={
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			usersPage.clickToCallTab(client);
 			
 			clickToCallPage.selectProvider('OnSip.com',client);
 			clickToCallPage.getDomain(client);
@@ -114,7 +110,7 @@ module.exports ={
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			usersPage.clickToCallTab(client);
 			
 			clickToCallPage.selectProvider('OnSip.com',client);
 			clickToCallPage.getDomain(client);
@@ -139,7 +135,7 @@ module.exports ={
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			usersPage.clickToCallTab(client);
 			
 			clickToCallPage.selectProvider('OnSip.com',client);
 			clickToCallPage.getDomain(client);
@@ -158,13 +154,13 @@ module.exports ={
 			client.pause(500);
 			
 			clickToCallPage.getText('@toastMess',function(errorMes){
-				clickToCallPage.verify.equal(errorMes.value,'authPassword is not valid')
+				clickToCallPage.verify.equal(errorMes.value,'SIP PBX Settings saved successfully')
 			});
 			client.pause(7000);
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			usersPage.clickToCallTab(client);
 			client.pause(1000);
 			
 			clickToCallPage.selectProvider('Cisco Call Manager 10.x',client);
@@ -174,7 +170,7 @@ module.exports ={
 			clickToCallPage.click('@goBackBtnSS');
 			client.pause(2000);
 			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			usersPage.clickToCallTab(client);
 			client.pause(2000);
 			
 			clickToCallPage.click('@favoritesBtn');
@@ -201,7 +197,7 @@ module.exports ={
 			clickToCallPage.click('@goBackBtnF');
 			client.pause(2000);
 			usersPage.firstRow();
-			usersPage.clickToCall_Button(client);
+			usersPage.clickToCallTab(client);
 			
 			client.pause(2000);
 			clickToCallPage.click('@favoritesBtn');
