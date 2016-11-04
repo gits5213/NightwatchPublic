@@ -15,18 +15,22 @@ var userAdminCommands = {
 			this.verify.urlContains('#/editAdminLevel','Disabled 2fa requires IP address')
 			this.api.pause(500);
 			this.setValue('@allowedIp',client.globals.ip)
-			this.click('@adminPriv')
-			.click('@user3Value')
+			.setValue('@adminPriv','User Level 3')
+//			this.click('@adminPriv')
+//			.click('@user3Value')
 			.click('@saveBtn')
 			this.saveConfirm(client);
 		},
 		
 		setToNone:function(client){
 			client.pause(1000);
-			this.click('@adminPriv')
-			.click('@noneValue')
-			this.api.keys(client.Keys.ENTER);
+			//this.click('@adminPriv')
+			this.setValue('@adminPriv','None')
+			.clearValue('@allowedIp')
+			.clearValue('@mobile')
 			this.api.pause(500)
+			this.setValue('@mobile','12365')
+			this.click('@tfa_Yes')
 			this.click('@saveBtn')
 			this.saveConfirm(client);
 		},
