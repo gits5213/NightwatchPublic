@@ -62,7 +62,7 @@ var reportTabPageCommands = {
 			this.expect.element('@tableHeader_FarEndFirm_Validation').text.to.contain('Counterparty Firm').before(500);
 			this.expect.element('@tableHeader_FarEndUsers_Validation').to.be.visible;
 			this.expect.element('@tableHeader_FarEndUsers_Validation').text.to.contain('Counterparty Firm Traders').before(500);
-			this.assert.containsText('@tableHeader_FarEndUsers_Validation', 'Far End Users');
+			this.assert.containsText('@tableHeader_FarEndUsers_Validation', 'Counterparty Firm Traders');
 			this.getText('@tableHeader_FarEndUsers_Validation', function(getText){
 				console.log("Text cointains: " + getText.value);	
 			});
