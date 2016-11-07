@@ -32,7 +32,7 @@
             "path":"./screenshots"
          },
          "desiredCapabilities":{  
-             "browserName":"internet explorer",
+             "browserName":"chrome",
              "javascriptEnabled":true,
              "acceptSslCerts":true,
              "marionette":true

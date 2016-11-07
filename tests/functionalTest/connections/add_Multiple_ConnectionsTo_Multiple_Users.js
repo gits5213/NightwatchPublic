@@ -105,6 +105,7 @@ module.exports ={
 			conncetionsPage.verify.urlContains('#/connections')
 			conncetionsPage.addIntConnForFirm(dateString,client)
 			conncetionsPage.connection()
+			
 			conncetionsPage.groupUserSelect();
 
 			usersPage.go();
@@ -116,6 +117,7 @@ module.exports ={
 			client.pause(1000);
 			
 		client.end();
+		
 
 		}
 			

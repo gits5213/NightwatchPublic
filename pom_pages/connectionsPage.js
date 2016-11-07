@@ -47,14 +47,15 @@ var connPageCommands = {
 		},
 		
 		connection: function(){
-			this.waitForElementVisible('@connectionfirstRow',5000, 'Verified Connection First Row is visible');
-			this.click('@connectionfirstRow');
 			this.api.pause(1000);
-			this.click('@connectionSecondtRow');
-			this.api.pause(1000);
-			this.waitForElementVisible('@addConnToBroupBtn',1500, 'Verified add connections to group tab is visible');
+			this.waitForElementVisible('@connectionfirstRow',5000, 'First Connection is visible');
+			this.click('@firstRow');
+			this.api.pause(500);
+//			this.click('@connectionSecondRow');
+//			this.api.pause(1000);
+//			this.waitForElementVisible('@addConnToBroupBtn',1500, 'Verified add connections to group tab is visible');
 			this.click('@addConnToBroupBtn');
-			this.verify.urlContains('#/addGroupConnections?')
+			this.verify.urlContains('#/addGroupConnections')
 			this.api.pause(1000);
 			
 		},
@@ -160,13 +161,13 @@ module.exports = {
 			},
 			
 			firstRow: {
-				selector : '//*[@id="scrollable-area"]/table/tbody/tr[2]/td[1]',
+				selector : '//*[@id="scrollable-area"]/table/tbody/tr[2]',
 				locateStrategy: 'xpath'
 			},
 			connectionfirstRow: {
 				selector : '//tbody/tr[2]/td/input[@id="addMultiple"]',locateStrategy: 'xpath'	
 			},
-			connectionSecondtRow: {
+			connectionSecondRow: {
 				selector : '//tbody/tr[3]/td/input[@id="addMultiple"]',locateStrategy: 'xpath'	
 			},
 
@@ -202,6 +203,7 @@ module.exports = {
 				selector: './/*[@id="toast-container"]/div/div',
 				locateStrategy: 'xpath'
 			}
+			
 		
 		}
 
