@@ -126,7 +126,7 @@ var userPageCommands = {
 		
 		editAdminInfo: function(user,client,callback){
 			this.api.pause(1000);
-			this.waitForElementPresent('@selectFirmBar2',3000);
+			this.waitForElementPresent('@selectFirmBar2',10000);
 			this.click('@selectFirmBar2');
 			this.setValue('@selectFirmBarSearch2','Select a');
 			this.api.pause(1000);

@@ -41,11 +41,23 @@ module.exports ={
 			usersPage.editAdminInfo(user1,client,function(){
 				console.log('User - johndoe'+user1+' is having 2fa disabled');
 			});
+			
 			usersPage.click('@editAdminBtn');
 			
 			var adminPage=client.page.editAdminPage();
 			
 			adminPage.disable2fa(client);
+			
+			usersPage.go();
+			
+			usersPage.editAdminInfo(user1,client,function(){
+				console.log('User - johndoe'+user1+' is being set to User 3');
+			});
+			
+			usersPage.click('@editAdminBtn');
+			
+			adminPage.setToUser3(client);
+			
 			navigation.logout();
 			
 			var msftPage = client.page.microsoftonline();

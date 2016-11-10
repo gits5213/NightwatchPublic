@@ -120,6 +120,8 @@ module.exports ={
 				navigation.verify.equal(result.value, "Privilege : firmAdmin2");
 			})
 			
+			var navigation = client.page.navBar()
+			navigation.logout();
 			client.end();
 			
 		},

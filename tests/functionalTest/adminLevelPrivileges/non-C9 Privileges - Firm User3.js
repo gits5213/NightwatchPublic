@@ -75,6 +75,8 @@ module.exports ={
 				navigation.verify.equal(result.value, "Privilege : user3");
 			})
 			
+			var navigation = client.page.navBar()
+			navigation.logout();
 			client.end();
 			
 		}

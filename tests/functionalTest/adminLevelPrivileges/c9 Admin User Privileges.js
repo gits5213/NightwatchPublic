@@ -105,6 +105,9 @@ module.exports ={
 				navigation.verify.equal(result.value, "Privilege : cloud9");
 			})
 			
+			var navigation = client.page.navBar()
+			navigation.logout();
+			
 			client.end();
 		}
 		

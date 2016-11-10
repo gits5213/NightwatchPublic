@@ -4,33 +4,30 @@ var userAdminCommands = {
 		saveConfirm: function(client){
 			this.waitForElementVisible('@successToast',10000, "User privilege settings successfully saved");
 			this.waitForElementNotPresent('@successToast',10000, 'Confirmation modal hidden');
-			this.assert.urlContains('#/users');
+			this.verify.urlContains('#/users');
 		},
 		
 		disable2fa:function(client){
 			this.api.pause(1000);
 			this.click('@tfa_No')
-			.click('@saveBtn')
+//			.click('@saveBtn')
 			this.api.pause(1500);
 			this.verify.urlContains('#/editAdminLevel','Disabled 2fa requires IP address')
 			this.api.pause(500);
-			this.setValue('@allowedIp',client.globals.ip)
-			.setValue('@adminPriv','User Level 3')
-//			this.click('@adminPriv')
-//			.click('@user3Value')
-			.click('@saveBtn')
-			this.saveConfirm(client);
+//			this.setValue('@allowedIp',client.globals.ip)
+//			.setValue('@adminPriv','User Level 3')
+//			.click('@saveBtn')
+//			this.saveConfirm(client);
 		},
 		
 		setToNone:function(client){
 			client.pause(1000);
 			//this.click('@adminPriv')
 			this.setValue('@adminPriv','None')
-			.clearValue('@allowedIp')
-			.clearValue('@mobile')
+//			.clearValue('@allowedIp')
+//			.clearValue('@mobile')
 			this.api.pause(500)
-			this.setValue('@mobile','12365')
-			this.click('@tfa_Yes')
+//			this.click('@tfa_No')
 			this.click('@saveBtn')
 			this.saveConfirm(client);
 		},

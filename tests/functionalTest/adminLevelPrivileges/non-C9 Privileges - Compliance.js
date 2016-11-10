@@ -61,6 +61,9 @@ module.exports ={
 				navigation.verify.equal(result.value, "Privilege : compliance");
 			})
 			
+			var navigation = client.page.navBar()
+			navigation.logout();
+			
 			client.end();
 			
 		}
