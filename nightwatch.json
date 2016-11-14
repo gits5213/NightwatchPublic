@@ -9,7 +9,7 @@
    "globals_path":"./data/globals.js",
    "selenium":{  
       "start_process":false,
-      "server_path":"lib/selenium-server-standalone-2.53.1.jar",
+      "server_path":"lib/selenium-server-standalone-3.0.1",
       "log_path":"selenium_logs",
       "host":"localhost",
       "port":4444,
@@ -42,9 +42,9 @@
          "globals":{  
             "adminUsername":"mdzaman",
             "adminPassword":"Shahnewaz1@",
-            "email1":"qatest.user@c9tec.com",
             "nonAdminUser":"testadmin2",
             "nonAdminPass":"Password123",
+            "email1":"qatest.user@c9tec.com",
             "OnSipDomainName":"c9tec.OnSip.com",
             "CiscoDomainName1":"173.226.129.163",
             "CiscoDomainName2":"173.226.129.164"

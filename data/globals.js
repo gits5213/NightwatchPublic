@@ -2,6 +2,11 @@ module.exports = {
 		
 		
 		ip: '209.66.96.50,10.0.0.40',
+		"email1":"qatest.user@c9tec.com",
+        "OnSipDomainName":"c9tec.OnSip.com",
+        "CiscoDomainName1":"173.226.129.163",
+        "CiscoDomainName2":"173.226.129.164",
+		
 		msft_credentials : {
 			  clientID: '44303342-65df-4a5d-a4b9-5c08a17002d2',
 			  clientSecret: 'TXDKeT1049qLTjfafVZnAqE',
