@@ -58,46 +58,46 @@ module.exports ={
 						
 			var usersPage=client.page.usersPage();
 			usersPage
-			.verify.visible('@editUserBtn')
-			.verify.visible('@addUserBtn')
-			.verify.visible('@editSalesUserBtn')
-			.verify.visible('@editAdminBtn')
-			.verify.visible('@editBtn')
-			.verify.visible('@editGrpsBtn')
-			.verify.visible('@resetPassBtn')
-			.verify.visible('@deleteUserBtn')
-			.verify.visible('@salesRptBtn')
-			.verify.visible('@detailsBtn')
-			.verify.visible('@exportBtn')
-			.verify.visible('@editNeighBtn')
+			.verify.visible('@editUserBtn', 'Edit User button is visible')
+			.verify.visible('@addUserBtn', 'Add User button is visible')
+			.verify.visible('@editSalesUserBtn', 'Edit sales user button is visible')
+			.verify.visible('@editAdminBtn', 'Edit Admin Priv button is visible')
+			.verify.visible('@editBtn', 'Edit User button is visible')
+			.verify.visible('@editGrpsBtn', 'Edit Group button is visible')
+			.verify.visible('@resetPassBtn', 'Password Reset button is visible')
+			.verify.visible('@deleteUserBtn', 'Delete User button is visible')
+			.verify.visible('@salesRptBtn', 'Sales Report button is visible')
+			.verify.visible('@detailsBtn', 'Details button button is visible')
+			.verify.visible('@exportBtn', 'Export button is visible')
+			.verify.visible('@editNeighBtn', 'Edit Neighbors button is visible')
 			
 			navigation.click('@connections');
 			navigation.api.pause(1000);
 			
 			var connPage=client.page.connectionsPage();
 			connPage
-			.verify.visible('@addConnBtn')
-			.verify.visible('@editConnBtn')
-			.verify.visible('@delConnBtn')
-			.verify.visible('@detailsBtn')
-			.verify.visible('@exportBtn')
+			.verify.visible('@addConnBtn', 'Add Connection button is visible')
+			.verify.visible('@editConnBtn','Edit Connection button is visible')
+			.verify.visible('@delConnBtn', 'Delete Connection button is visible')
+			.verify.visible('@detailsBtn','Details button is visible')
+			.verify.visible('@exportBtn','Export button is visible')
 			
 			navigation.click('@recordings');
 			navigation.api.pause(1000);
 			
 			var recPage=client.page.recordingsPage();
 			recPage
-			.verify.visible('@backBtn')
-			.verify.visible('@playBtn')
-			.verify.visible('@forwardBtn')
-			.verify.visible('@speedBtn')
-			.verify.visible('@slider')
-			.verify.visible('@viewQosBtn')
-			.verify.visible('@detailsBtn')
-			.verify.visible('@exportBtn')
-			.verify.visible('@downloadBtn')
-			.verify.visible('@callType')
-			.verify.visible('@show')
+			.verify.visible('@backBtn',"Backward button is visible")
+			.verify.visible('@playBtn', 'Play button is visible')
+			.verify.visible('@forwardBtn', 'Forward button is visible')
+			.verify.visible('@speedBtn', 'Speed button is visible')
+			.verify.visible('@slider', 'Slider is visible')
+			.verify.visible('@viewQosBtn','Qos button is visible')
+			.verify.visible('@detailsBtn', 'Details button is visible')
+			.verify.visible('@exportBtn','Export button is visible')
+			.verify.visible('@downloadBtn','Download button is visible')
+			.verify.visible('@callType','Calltype dropdown is visible')
+			.verify.visible('@show','Show button is visible')
 			
 			navigation.click('@cog');
 			navigation.api.pause(1000);

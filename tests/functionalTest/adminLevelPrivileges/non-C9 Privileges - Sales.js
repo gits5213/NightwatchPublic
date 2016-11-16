@@ -97,17 +97,17 @@ module.exports ={
 			
 			var recPage=client.page.recordingsPage();
 			recPage
-			.verify.visible('@backBtn')
-			.verify.visible('@playBtn')
-			.verify.visible('@forwardBtn')
-			.verify.visible('@speedBtn')
-			.verify.visible('@slider')
-			.verify.visible('@viewQosBtn')
-			.verify.visible('@detailsBtn')
-			.verify.visible('@exportBtn')
-			.verify.visible('@downloadBtn')
-			.verify.visible('@callType')
-			.verify.visible('@show')
+			.verify.visible('@backBtn','Back button is visible')
+			.verify.visible('@playBtn', 'Play button is visible')
+			.verify.visible('@forwardBtn', 'Forward button is visible')
+			.verify.visible('@speedBtn', 'Speed button is visible')
+			.verify.visible('@slider','Slider is visible')
+			.verify.visible('@viewQosBtn','Qos button is visible')
+			.verify.visible('@detailsBtn','Details button is visible')
+			.verify.visible('@exportBtn', 'Export button is visible')
+			.verify.visible('@downloadBtn', 'Download button is visible')
+			.verify.visible('@callType', 'Calltype dropdown is visible')
+			.verify.visible('@show', 'Show dropdown is visible')
 			
 			navigation.click('@cog');
 			navigation.api.pause(1000);

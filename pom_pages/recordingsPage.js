@@ -10,23 +10,23 @@ module.exports = {
 		commands :[recordingsPageCommands],
 		elements: {
 			backBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[1]/i',
+				selector: '//*[@id="demo"]/div[4]/ul/li[1]/i',
 				locateStrategy: 'xpath'
 			},
 			playBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[2]/i',
+				selector: '//*[@id="demo"]/div[4]/ul/li[2]/i',
 				locateStrategy: 'xpath'
 			},
 			forwardBtn: {
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[3]/i',
+				selector: '//*[@id="demo"]/div[4]/ul/li[3]/i',
 				locateStrategy: 'xpath'
 			},
 			speedBtn: {
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[4]/i',
+				selector: '//*[@id="demo"]/div[4]/ul/li[4]/i',
 				locateStrategy: 'xpath'
 			},
 			slider:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[5]/rzslider',
+				selector: '//*[@id="demo"]/div[4]/ul/li[5]/rzslider',
 				locateStrategy: 'xpath'
 			},
 			viewQosBtn:{
