@@ -12,9 +12,9 @@ module.exports ={
 			client.assert.containsText('body','Manage your Cloud9 Firms');
 			var dateString = firmsPage.addNewFirm(client);
 			client.assert.urlContains('#/addGroup');
-			console.log('Successfully created: Test Firm '+dateString);
+			console.log('About to create - Test Firm '+dateString);
 			
-			firmsPage.getFirmByName('Test Firm '+dateString);
+			firmsPage.getFirmByName('Test Firm '+dateString, client);
 			
 			firmsPage.click('@editFirmBtn');
 			client.pause(2000);
@@ -47,6 +47,8 @@ module.exports ={
 			.verify.valueContains('@billWork', 123456789)
 			.verify.valueContains('@billMobile',234567890)
 			 client.pause(2000);
+			 
 			client.end();
+			
 		}
 }

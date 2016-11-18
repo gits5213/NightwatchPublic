@@ -15,7 +15,8 @@
       "port":4444,
       "cli_args":{  
          "webdriver.chrome.driver":"lib/chromedriver.exe",
-         "webdriver.gecko.driver":"lib/geckodriver.exe"
+         "webdriver.gecko.driver":"lib/geckodriver.exe",
+         "webdriver.ie.driver":"lib/IEDriverServer.exe"
       }
    },
    "test_settings":{  
@@ -34,7 +35,7 @@
              "browserName":"chrome",
              "javascriptEnabled":true,
              "acceptSslCerts":true,
-             "marionette":false
+             "marionette":true
           }
       },
       "qa2":{  
@@ -114,6 +115,13 @@
             "acceptSslCerts":true
          }
       },
+      "internet explorer":{  
+          "desiredCapabilities":{  
+             "browserName":"internet explorer",
+             "javascriptEnabled":true,
+             "acceptSslCerts":true
+          }
+       },
       "phantom":{  
          "desiredCapabilities":{  
             "browserName":"phantomjs",
