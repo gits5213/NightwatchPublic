@@ -69,23 +69,23 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			backBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[1]/i',  
+				selector: '//*[@id="playbackControls"]/div/ul/li[1]/i',  
 				locateStrategy: 'xpath'
 			},
 			playBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[2]/i',	
+				selector: '//*[@id="playbackControls"]/div/ul/li[2]/i',	
 				locateStrategy: 'xpath'
 			},
 			forwardBtn: {
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[3]/i',    
+				selector: '//*[@id="playbackControls"]/div/ul/li[3]/i',    
 				locateStrategy: 'xpath'
 			},
 			speedBtn: {
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[4]/i',     
+				selector: '//*[@id="playbackControls"]/div/ul/li[4]/i',     
 				locateStrategy: 'xpath'
 			},
 			slider:{
-				selector: '//*[@id="ng-view"]/div[2]/div[3]/ul/li[5]/rzslider', 
+				selector: '//*[@id="playbackControls"]/div/ul/li[5]/rzslider', 
 				locateStrategy: 'xpath'
 			},
 			viewQosBtn:{
@@ -101,25 +101,22 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			downloadBtn:{
-				selector: '//*[@id="ng-view"]/div[3]/ul/li[4]/i',         
+				selector: '//*[@id="ng-view"]/div[4]/ul/li[4]/i',         
 				locateStrategy: 'xpath'
 			},
 			callTypeTab:{
-				selector: '//*[@id="ng-view"]/div[4]/div[1]/button',       
+				selector: '//*[@id="ng-view"]/div[5]/div[1]/button',       
 				locateStrategy: 'xpath'
 			},
 			callTypeC2C:{
-				selector: '//*[@id="ng-view"]/div[4]/div[1]/ul/li[3]',
+				selector: '//*[@id="ng-view"]/div[5]/div[1]/ul/li[3]',
 				locateStrategy: 'xpath'
 			},
 			show:{
-				selector: '//*[@id="ng-view"]/div[4]/div[2]/button',      
+				selector: '//*[@id="ng-view"]/div[5]/div[2]/button',      
 				locateStrategy: 'xpath'
 			},
-			recordingsTab:{
-				selector: '//*[@id="recordingsNav"]/h4/span',
-				locateStrategy: 'xpath'
-			},
+			
 			checkBox:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/input',
 				locateStrategy: 'xpath'
