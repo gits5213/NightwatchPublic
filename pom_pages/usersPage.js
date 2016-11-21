@@ -71,13 +71,14 @@ var userPageCommands = {
 			this.clearValue('@usernameSearch');
 			this.waitForElementNotVisible('@spinner',3000);
 			this.setValue('@usernameSearch', dateString);
+			this.api.pause(2000);
 			
 		},
 		
 		selectFirstRow: function(){
 			this.waitForElementVisible('@firstRow',2000);
 			this.click('@firstRow');
-			this.api.pause(1000);
+			this.api.pause(2000);
 		},
 		
 		c2cNameSearch: function (user, client){

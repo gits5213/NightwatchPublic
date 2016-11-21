@@ -44,10 +44,11 @@ module.exports ={
 			.verify.visible('@detailsBtn', 'Details button is visible')
 			.verify.visible('@exportBtn', 'Export button is visible')
 			.verify.elementPresent('@selectFirmBarsearch2','Firm selection bar is visible for C9 Admin user');
-			
+						
 			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
-				client.verify.equal(result.value.length, 25, 'There should be less than 25 groups on this page');
+			client.verify.notEqual(result.value.length, 20, 'There should be less than 25 groups on this page');
 			});
+			
 			
 			
 			navigation.click('@users')
