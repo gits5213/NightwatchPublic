@@ -1,35 +1,22 @@
 var userAdminCommands = {
-
-
 		saveConfirm: function(client){
-			this.waitForElementVisible('@successToast',10000, "User privilege settings successfully saved");
-			this.waitForElementNotPresent('@successToast',10000, 'Confirmation modal hidden');
-			this.verify.urlContains('#/users');
-		},
-		
-		disable2fa:function(client){
-			this.api.pause(1000);
-			this.click('@tfa_No')
-//			.click('@saveBtn')
-			this.api.pause(1500);
-			this.verify.urlContains('#/editAdminLevel','Disabled 2fa requires IP address')
-			this.api.pause(500);
-//			this.setValue('@allowedIp',client.globals.ip)
-//			.setValue('@adminPriv','User Level 3')
-//			.click('@saveBtn')
-//			this.saveConfirm(client);
+			this.click('@saveBtn');
+			client.pause(1500);
+			this.getText('@toastMess',function(errorMes){
+				this.verify.equal(errorMes.value,'Admin level changed successfully.')
+			});
+			client.pause(7000);
+			this.assert.urlContains('#/users');
 		},
 		
 		setToNone:function(client){
 			client.pause(1000);
-			//this.click('@adminPriv')
-			this.setValue('@adminPriv','None')
-//			.clearValue('@allowedIp')
-//			.clearValue('@mobile')
-			this.api.pause(500)
-//			this.click('@tfa_No')
-			this.click('@saveBtn')
-			this.saveConfirm(client);
+			this.click('@adminPriv')
+			this.setValue('@adminPriv','none');
+			this.api.keys(client.Keys.ENTER);
+			this.api.pause(500);
+			this.clearValue('@allowedIp');
+			this.clearValue('@mobile');
 		},
 		setToAdmin:function(client){
 			client.pause(1000);
@@ -42,7 +29,6 @@ var userAdminCommands = {
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
-			this.click('@saveBtn')
 			this.saveConfirm(client);
 		},
 		setToAdmin2:function(client){
@@ -56,7 +42,6 @@ var userAdminCommands = {
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
-			this.click('@saveBtn');
 			this.saveConfirm(client);
 		},
 		setToAdmin1:function(client){
@@ -69,8 +54,7 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip);
-			this.click('@saveBtn');
+			.setValue('@allowedIp',client.globals.ip)
 			this.saveConfirm(client);
 		},
 		setToCompliance:function(client){
@@ -83,8 +67,7 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip);
-			this.click('@saveBtn');
+			.setValue('@allowedIp',client.globals.ip)
 			this.saveConfirm(client);			
 		},
 		setToUser3:function(client){
@@ -97,8 +80,7 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip);
-			this.click('@saveBtn');
+			.setValue('@allowedIp',client.globals.ip)
 			this.saveConfirm(client);
 		},
 		setToSales:function(client){
@@ -111,8 +93,7 @@ var userAdminCommands = {
 			this.api.pause(500)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip);
-			this.click('@saveBtn');
+			.setValue('@allowedIp',client.globals.ip)
 			this.saveConfirm(client);
 		}
 };
@@ -185,8 +166,8 @@ module.exports = {
 				selector:'//*[@id="privilege"]/option[6]',
 				locateStrategy:'xpath'
 			},
-			successToast:{
-				selector: './/*[@id="toast-container"]/div/div/div/div',
+			toastMess:{
+				selector: '//div[@class="toast-message"]',
 				locateStrategy:'xpath'
 			}
 			

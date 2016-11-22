@@ -1,7 +1,7 @@
 var microsoftonline = {
 		getPassFromEmail : function(client) {
 		var url = require('url');
-		var outlook = require('node-outlook');
+		var outlook = require('node-outlook');  // Required - nmp install
 		// Set the API endpoint to use the v2.0 endpoint
 		outlook.base.setApiEndpoint('https://outlook.office.com/api/v2.0');
 		// Set the anchor mailbox to the user's SMTP address

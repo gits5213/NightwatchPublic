@@ -1,6 +1,6 @@
 var connPageCommands = {
 		go: function(){
-			this.api.pause(2000);
+			this.verify.visible('@connLink', 'Verified Connection tab button is visible');
 			this.click('@connLink');
 			this.api.pause(2000);
 		},
@@ -27,37 +27,33 @@ var connPageCommands = {
 			this.setValue('@myFirmBtnLabel',dateString+'IntraFirmShout');
 			this.api.pause(500);
 			this.click('@submitBtn');
-			this.api.pause(1000);
+			this.waitForElementVisible('@toastMess',7000,'Internal Connection for Firm was successfully created');
+			this.waitForElementNotPresent('@toastMess',10000,'Confirmation modal gone');
 			
 			},
-		
-		addExtConnForFirm: function(dateString,client){
 			
-		},
-		editFirstRecord: function(){
-			this.waitForElementVisible('@firstRow',2000);
+		selectFirstRow: function(){
+			this.waitForElementVisible('@firstRow',1000);
 			this.click('@firstRow')
-			.click('@editConnBtn');
-			this.api.pause(1000);
-			
-		},
-		
-		portalConnectionsTab: function(client){
-			this.verify.visible('@connLink', 'Verified Connection tab button is visible');	
-		},
-		
-		connection: function(){
-			this.api.pause(1000);
-			this.waitForElementVisible('@connectionfirstRow',5000, 'First Connection is visible');
-			this.click('@firstRow');
 			this.api.pause(500);
-//			this.click('@connectionSecondRow');
-//			this.api.pause(1000);
-//			this.waitForElementVisible('@addConnToBroupBtn',1500, 'Verified add connections to group tab is visible');
-			this.click('@addConnToBroupBtn');
-			this.verify.urlContains('#/addGroupConnections')
-			this.api.pause(1000);
+		},
+		
+		editConTab: function(){
+			this.waitForElementVisible('@editConnBtn',1000);
+			this.click('@editConnBtn');
+			this.api.pause(500);
+		},
 			
+		connection: function(){
+			this.waitForElementVisible('@connectionfirstRow',5000, 'Verified Connection First Row is visible');
+			this.click('@connectionfirstRow');
+			this.api.pause(1000);
+			this.click('@connectionSecondtRow');
+			this.api.pause(1000);
+			this.waitForElementVisible('@addConnToBroupBtn',1500, 'Verified add connections to group tab is visible');
+			this.click('@addConnToBroupBtn');
+			this.verify.urlContains('#/addGroupConnections?')
+					
 		},
 		groupUserSelect: function(){
 			this.waitForElementVisible('@groupUser1',1000, 'Verified group user 1st row visible');
@@ -67,8 +63,8 @@ var connPageCommands = {
 			this.waitForElementVisible('@addConnectionsToUsersSubmitButton',1000, 'Verified add connections to users button visible');
 			this.api.pause(1000);
 			this.click('@addConnectionsToUsersSubmitButton');
-			this.waitForElementVisible('@toastSuccess',15000,'Connection was successfully created');
-			this.waitForElementNotPresent('@toastSuccess',15000,'Confirmation modal gone');
+			this.waitForElementVisible('@toastMess',6000,'Connection for Group was successfully created');
+			this.waitForElementNotPresent('@toastMess',10000,'Confirmation modal gone');
 		
 		}
 				
@@ -161,13 +157,13 @@ module.exports = {
 			},
 			
 			firstRow: {
-				selector : '//*[@id="scrollable-area"]/table/tbody/tr[2]',
+				selector : '//*[@id="scrollable-area"]/table/tbody/tr[2]/td[1]',
 				locateStrategy: 'xpath'
 			},
 			connectionfirstRow: {
 				selector : '//tbody/tr[2]/td/input[@id="addMultiple"]',locateStrategy: 'xpath'	
 			},
-			connectionSecondRow: {
+			connectionSecondtRow: {
 				selector : '//tbody/tr[3]/td/input[@id="addMultiple"]',locateStrategy: 'xpath'	
 			},
 
@@ -193,19 +189,19 @@ module.exports = {
 				selector: "//*[@id='submitGroupConnections']",
 				locateStrategy: 'xpath'
 			},
+			toastMess:{
+				selector: '//div[@class="toast-message"]',
+				locateStrategy:'xpath'
+			},
 			btnLabelField: '#buttonLabel',
 			vcinstField: '#vcInstID',
 			connIdField: '#c9RefNum',
 			description: '#description',
 			createdByField: '#createdBy',
-			createdOnField: '#createdOn',
-			toastSuccess:{
-				selector: './/*[@id="toast-container"]/div/div',
-				locateStrategy: 'xpath'
+			createdOnField: '#createdOn'
+		
 			}
 			
-		
-		}
 
 
 }

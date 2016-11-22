@@ -60,14 +60,14 @@ var firmsPageCommands = {
 		getFirmByName : function(string, client){
 			this.api.pause(1000);
 			this.click('@firmsLink');
-			this.waitForElementVisible('@firmNameSearch',6000,'Firms page has loaded');
 			this.clearValue('@firmNameSearch');
-			this.api.pause(2000);
-			this.setValue('@firmNameSearch',string);
-			this.api.pause(2000);
-			this.api.keys(client.Keys.ENTER);
-			this.click('@firstRowFirmsData');
 			this.api.pause(1000);
+			this.setValue('@firmNameSearch',string);
+			this.api.pause(1000);
+			//this.clearValue('@firmNameSearch');
+			this.waitForElementVisible('@firstRowFirmsData',2000);
+			this.click('@firstRowFirmsData');
+			
 		}	
 		
 };
@@ -84,7 +84,7 @@ module.exports = {
 				locateStrategy: 'xpath'
 			},
 			editFirmBtn:{
-				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/i', 
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul/li[2]/i',
 				locateStrategy: 'xpath'
 			},
 			manageGrpBtn:{
