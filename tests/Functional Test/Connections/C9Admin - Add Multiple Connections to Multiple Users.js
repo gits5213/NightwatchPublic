@@ -1,44 +1,56 @@
 module.exports ={
 	'User Cloud9Admin - add multiple connections to multiple users': function(client){
-		
 		var loginPage = client.page.loginPage();
 		client.url(client.launch_url);
 		client.maximizeWindow();
-		
 		loginPage.adminLogin(client);
 		
 		var firmsPage = client.page.firmsPage();
+		var addEditFirmsPage = client.page.addEditFirmsPage();
 		firmsPage.go();
+		firmsPage.addFirmTab();
 		
-		var dateString = firmsPage.addNewFirm(client);
+		var dateString = addEditFirmsPage.addNewFirm(client);
+		addEditFirmsPage.addEditSubmitBtn();
+		addEditFirmsPage.addEditSubToastMess();
 		console.log('About to create: Test Firm '+dateString);
 		
 		var groupsPage = client.page.groupsPage();
-		groupsPage.selectFirm(dateString, client);
-		groupsPage.addGrpForFirm(client,dateString);
+		client.assert.urlContains('#/addGroup');
+		groupsPage.selectFirm(client, dateString);
+		
+		var addEditGroupsPage = client.page.addEditGroupsPage();
+		addEditGroupsPage.addGrpForFirm(client,dateString);
+		addEditGroupsPage.addEditGroupSubmitBtn();
+		addEditGroupsPage.addEditGSbmitTosatMess();
 		client.assert.urlContains('firmId=');
 	
 		var usersPage = client.page.usersPage();
 		usersPage.go();
 		usersPage.addUserTab(client);
-		usersPage.selectFirm(dateString,client);
-		var user1 = usersPage.createUser(client);
-		console.log('Successfully created: New User1 '+user1);
-		usersPage.voiceRecYes();
-		usersPage.selectC2C();
-		usersPage.userSubmit(client);
-		usersPage.addUserSubmit(client);
 		
-		var userGroupsPage= client.page.editUserGroupsPage();
-		userGroupsPage.verify.urlContains('#/editUserGroups');
-		userGroupsPage.addGrp2User();
-		client.assert.urlContains('firmId=');
+		var addEditUsersPage = client.page.addEditUsersPage();
+		addEditUsersPage.selectFirm(dateString,client);
+		
+		var user1 = addEditUsersPage.createUser(client);
+		console.log('Successfully created: New User '+user1);
+		addEditUsersPage.voiceRecYes();
+		addEditUsersPage.selectC2C();
+		addEditUsersPage.userSubmit(client);
+		addEditUsersPage.addUserSubmit(client);
+		addEditUsersPage.getAddUToMess();
+		
+		var userGroupsPage= client.page.addEditGroupsPage();
+		userGroupsPage.verify.urlContains('#/editUserGroups')
+		addEditGroupsPage.selectFirstGroup();
+		addEditGroupsPage.addG2UBtn();
+		addEditGroupsPage.doneButton();
+		client.assert.urlContains('firmId=')
 
 		usersPage.selectFirstRow();
 		usersPage.editUserTab();		
 		client.verify.urlContains('#/editUser');
-		
-		usersPage
+		addEditUsersPage
 			.verify.valueContains('@firmName', 'Test Firm '+dateString)
 			.verify.valueContains('@username','johndoe'+user1)
 			.verify.valueContains('@fnameField','John')
@@ -58,28 +70,35 @@ module.exports ={
 		groupsPage.go();
 		client.assert.urlContains('#/groups');
 		groupsPage.addGroupTab(client);
-		groupsPage.selectFirm(dateString, client);
-		groupsPage.addAnotherGrpForFirm(client,dateString);
+	
+		addEditUsersPage.selectFirm(dateString,client);
+		addEditGroupsPage.addAnotherGrpForFirm(client,dateString);
+		addEditGroupsPage.addEditGroupSubmitBtn();
+		addEditGroupsPage.addEditGSbmitTosatMess();
+		client.assert.urlContains('firmId=');
 		
 		usersPage.go();
 		usersPage.addUserTab(client);
-		usersPage.selectFirm(dateString,client);
-		var user2 = usersPage.createUser(client);
-		console.log('Successfully created: New User2 '+user2);
-		usersPage.voiceRecYes();
-		usersPage.selectC2C();
-		usersPage.userSubmit(client);
-		usersPage.addUserSubmit(client);
+		addEditUsersPage.selectFirm(dateString,client);
 		
-		var userGroupsPage= client.page.editUserGroupsPage();
-		userGroupsPage.verify.urlContains('#/editUserGroups');
-		userGroupsPage.done(client);
-			
+		var user2 = addEditUsersPage.createUser(client);
+		console.log('Successfully created: New User2 '+user2);
+		addEditUsersPage.voiceRecYes();
+		addEditUsersPage.selectC2C();
+		addEditUsersPage.userSubmit(client);
+		addEditUsersPage.addUserSubmit(client);
+		addEditUsersPage.getAddUToMess();
+		addEditUsersPage.verify.urlContains('#/editUserGroups');
+		
+		addEditGroupsPage.selectSecondtGroup();
+		addEditGroupsPage.addG2UBtn();
+		addEditGroupsPage.doneButton();
+	
 		client.assert.urlContains('firmId=');
 		usersPage.selectFirstRow();
 		usersPage.editUserTab();
 		client.verify.urlContains('#/editUser');
-		usersPage
+		addEditUsersPage
 			.verify.valueContains('@firmName', 'Test Firm '+dateString)
 			.verify.valueContains('@username','johndoe'+user2)
 			.verify.valueContains('@fnameField','John')
@@ -99,11 +118,40 @@ module.exports ={
 		var conncetionsPage = client.page.connectionsPage();
 		conncetionsPage.go()
 		conncetionsPage.verify.urlContains('#/connections')
-		conncetionsPage.addIntConnForFirm(dateString,client)
-		conncetionsPage.verify.urlContains('#/connections')
-		conncetionsPage.addIntConnForFirm(dateString,client)
-		conncetionsPage.connection()
-		conncetionsPage.groupUserSelect();
+		
+		conncetionsPage.addConTab();
+		client.assert.containsText('body','Add Connection');
+		var addEditConnectionsPage = client.page.addEditConnectionsPage(); 
+		//conncetionsPage.addIntConnForFirm(dateString,client)
+		addEditConnectionsPage.selectFirm(client, dateString);
+		addEditConnectionsPage.internalRadioYes();
+		addEditConnectionsPage.createConFrom(client);
+		addEditConnectionsPage.myFirmBtnLevel(client, dateString);
+		addEditConnectionsPage.addConSubmit();
+		addEditConnectionsPage.getAddConMess();
+		client.assert.urlContains('#/connections');
+		
+		conncetionsPage.addConTab();
+		client.assert.containsText('body','Add Connection');
+		var addEditConnectionsPage = client.page.addEditConnectionsPage(); 
+		//conncetionsPage.addIntConnForFirm(dateString,client)
+		addEditConnectionsPage.selectFirm(client, dateString);
+		addEditConnectionsPage.internalRadioYes();
+		addEditConnectionsPage.createConFrom(client);
+		addEditConnectionsPage.myFirmBtnLevel(client, dateString);
+		addEditConnectionsPage.addConSubmit();
+		addEditConnectionsPage.getAddConMess();
+		client.assert.urlContains('#/connections');
+	
+		//conncetionsPage.addIntConnForFirm(dateString,client)
+		//conncetionsPage.connection()
+		conncetionsPage.selectConRow();
+		conncetionsPage.addConToGroupTab();
+		client.verify.urlContains('#/addGroupConnections?')
+		
+		addEditConnectionsPage.groupUserSelect();
+		addEditConnectionsPage.addConToUSubmit();
+		addEditConnectionsPage.getaddConUSubmitToMess();
 		
 		usersPage.go();
 		usersPage.selectFirstRow();

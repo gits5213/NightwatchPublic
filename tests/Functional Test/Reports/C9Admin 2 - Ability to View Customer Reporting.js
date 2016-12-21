@@ -5,18 +5,21 @@ module.exports ={
 			var usersPage = client.page.usersPage();
 			client.maximizeWindow();
 			client.url(client.launch_url);
-			
 			loginPage.adminLogin(client);
 			usersPage.go();
 			
-			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-			usersPage.click('@editAdminBtn');
-			
+			usersPage.selectFirmAll(client, client.globals.adminFirm);
+			usersPage.userNameSearchAll(client.globals.nonAdminUser,client);
+			usersPage.selectFirstRow();
+			usersPage.editAdminLevelTab();
+						
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
+			adminPage.saveConfirm(client);
+			adminPage.adminLevelToastMess();
 			navigation.logout();
-			
 			loginPage.userLogin(client);	
+			
 			var reportPage = client.page.reportPage();
 			reportPage.c9reports(client);
 			reportPage.cloud9Usage(client);

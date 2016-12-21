@@ -5,20 +5,18 @@ module.exports ={
 			var usersPage = client.page.usersPage();
 			client.maximizeWindow();
 			client.url(client.launch_url);
-			
 			loginPage.userLogin(client);
 			
 			var viewLogsPage = client.page.viewLogsPage();
 			viewLogsPage.portalViewLogsTab(client);
-				viewLogsPage.click('@viewLogTab');
-				client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
-					client.verify.notEqual(result.value.length, 25, 'There should be more than 25 audit logs on this page');
-				});
-				client.assert.urlContains('#/auditlogs');	
-				client.pause(2000);
+			viewLogsPage.click('@viewLogTab');
+			viewLogsPage.getText('@viewLogsPageResult' ,function(result){
+				viewLogsPage.verify.notEqual(result.value.length, 20, 'There should be more than 25 audit logs on this page');
+			});
+			client.assert.urlContains('#/auditlogs');	
 			
-			client.closeWindow();
 			client.end();
+			
 			
 		}
 }

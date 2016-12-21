@@ -1,22 +1,26 @@
 var userAdminCommands = {
 		saveConfirm: function(client){
+			this.verify.visible('@saveBtn', 'Verified Save button is visible');
 			this.click('@saveBtn');
-			client.pause(1500);
+			this.api.pause(500);
+		},
+		adminLevelToastMess:function(){
+			this.api.pause(1500);
 			this.getText('@toastMess',function(errorMes){
 				this.verify.equal(errorMes.value,'Admin level changed successfully.')
 			});
-			client.pause(7000);
+			this.api.pause(7000);
 			this.assert.urlContains('#/users');
 		},
-		
 		setToNone:function(client){
 			client.pause(1000);
 			this.click('@adminPriv')
 			this.setValue('@adminPriv','none');
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(500);
+			this.api.pause(1000);
 			this.clearValue('@allowedIp');
 			this.clearValue('@mobile');
+			this.api.pause(2000);
 		},
 		setToAdmin:function(client){
 			client.pause(1000);
@@ -25,11 +29,11 @@ var userAdminCommands = {
 			this.setValue('@adminPriv','Firm Administrator 2');
 			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(500)
+			this.api.pause(1000)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
-			this.saveConfirm(client);
+			this.api.pause(2000);
 		},
 		setToAdmin2:function(client){
 			this.api.pause(1000)
@@ -38,11 +42,11 @@ var userAdminCommands = {
 			this.setValue('@adminPriv','Firm Administrator 2');
 			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(500);
+			this.api.pause(1000);
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
-			.setValue('@allowedIp',client.globals.ip)
-			this.saveConfirm(client);
+			.setValue('@allowedIp',client.globals.ip);
+			this.api.pause(2000);
 		},
 		setToAdmin1:function(client){
 			client.pause(1000);
@@ -51,11 +55,11 @@ var userAdminCommands = {
 			this.setValue('@adminPriv','Firm Administrator 1');
 			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(500)
+			this.api.pause(1000)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
-			this.saveConfirm(client);
+			this.api.pause(2000);
 		},
 		setToCompliance:function(client){
 			client.pause(1000);
@@ -64,11 +68,11 @@ var userAdminCommands = {
 			this.setValue('@adminPriv','Compliance recording access only');
 			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(500)
+			this.api.pause(1000)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
-			this.saveConfirm(client);			
+		    this.api.pause(2000);			
 		},
 		setToUser3:function(client){
 			client.pause(1000);
@@ -77,11 +81,11 @@ var userAdminCommands = {
 			this.setValue('@adminPriv','User Level 3');
 			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(500)
+			this.api.pause(1000)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
-			this.saveConfirm(client);
+			this.api.pause(2000);
 		},
 		setToSales:function(client){
 			client.pause(1000);
@@ -90,11 +94,11 @@ var userAdminCommands = {
 			this.setValue('@adminPriv','Cloud9 Sales');
 			this.api.pause(500)
 			this.api.keys(client.Keys.ENTER);
-			this.api.pause(500)
+			this.api.pause(1000)
 			this.click('@tfa_No')
 			.clearValue('@allowedIp')
 			.setValue('@allowedIp',client.globals.ip)
-			this.saveConfirm(client);
+			this.api.pause(2000);
 		}
 };
 

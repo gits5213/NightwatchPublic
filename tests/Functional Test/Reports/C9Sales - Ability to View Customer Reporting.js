@@ -6,16 +6,20 @@ module.exports ={
 			client.maximizeWindow();
 			client.url(client.launch_url);
 			loginPage.adminLogin(client);
-			
 			usersPage.go();
-			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-			usersPage.click('@editAdminBtn');
+			
+			usersPage.selectFirmAll(client, client.globals.adminFirm);
+			usersPage.userNameSearchAll(client.globals.nonAdminUser,client);
+			usersPage.selectFirstRow();
+			usersPage.editAdminLevelTab();
 			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToSales(client)
+			adminPage.saveConfirm(client);
+			adminPage.adminLevelToastMess();
 			navigation.logout();
+			loginPage.userLogin(client);
 			
-			loginPage.userLogin(client);			
 			var reportPage = client.page.reportPage();
 			reportPage.c9reports(client);
 			reportPage.selectFirm(client, 'C9 Technologies');

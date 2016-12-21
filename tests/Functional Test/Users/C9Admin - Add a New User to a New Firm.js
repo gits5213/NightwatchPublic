@@ -7,37 +7,51 @@ module.exports ={
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
+			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
+			firmsPage.addFirmTab();
 	
-			var dateString = firmsPage.addNewFirm(client);
+			var dateString = addEditFirmsPage.addNewFirm(client);
+			addEditFirmsPage.addEditSubmitBtn();
+			addEditFirmsPage.addEditSubToastMess();
 			console.log('About to create: Test Firm '+dateString);
 		
 			var groupsPage = client.page.groupsPage();
 			client.assert.urlContains('#/addGroup');
-			groupsPage.selectFirm(dateString, client);
-			groupsPage.addGrpForFirm(client,dateString);
+			groupsPage.selectFirm(client, dateString);
+			
+			var addEditGroupsPage = client.page.addEditGroupsPage();
+			addEditGroupsPage.addGrpForFirm(client,dateString);
+			addEditGroupsPage.addEditGroupSubmitBtn();
+			addEditGroupsPage.addEditGSbmitTosatMess();
 			client.assert.urlContains('firmId=');
 			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			usersPage.addUserTab(client);
-			usersPage.selectFirm(dateString,client);
-			var user1 = usersPage.createUser(client);
+			
+			var addEditUsersPage = client.page.addEditUsersPage();
+			addEditUsersPage.selectFirm(dateString,client);
+			
+			var user1 = addEditUsersPage.createUser(client);
 			console.log('Successfully created: New User '+user1);
-			usersPage.voiceRecYes();
-			usersPage.selectC2C();
-			usersPage.userSubmit(client);
-			usersPage.addUserSubmit(client);
+			addEditUsersPage.voiceRecYes();
+			addEditUsersPage.selectC2C();
+			addEditUsersPage.userSubmit(client);
+			addEditUsersPage.addUserSubmit(client);
+			addEditUsersPage.getAddUToMess();
 						
-			var userGroupsPage= client.page.editUserGroupsPage();
-			userGroupsPage.verify.urlContains('#/editUserGroups');
-			userGroupsPage.addGrp2User();
+			var addEditGroupsPage= client.page.addEditGroupsPage();
+			addEditGroupsPage.verify.urlContains('#/editUserGroups');
+			addEditGroupsPage.selectFirstGroup();
+			addEditGroupsPage.addG2UBtn();
+			addEditGroupsPage.doneButton();
 			client.assert.urlContains('firmId=');
 			
 			usersPage.selectFirstRow();
 			usersPage.editUserTab();
 			client.verify.urlContains('#/editUser');
-			usersPage
+			addEditUsersPage
 			.verify.valueContains('@firmName', 'Test Firm '+dateString)
 			.verify.valueContains('@username','johndoe'+user1[0])
 			.verify.valueContains('@fnameField','John')

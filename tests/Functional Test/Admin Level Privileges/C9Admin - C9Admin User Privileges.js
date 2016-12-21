@@ -6,10 +6,14 @@ module.exports ={
 			client.maximizeWindow();
 			client.url(client.launch_url);
 			loginPage.adminLogin(client);
-			client.assert.containsText('body', 'Welcome to the Cloud9 Portal')
 			
 			var navigation = client.page.navBar();
-			//check that entire navigation options are available to admin
+			navigation.selectSettingGear();
+			navigation.getText('@privilege',function(result){
+				navigation.verify.equal(result.value, "Privilege : cloud9");
+			});
+			
+			var navigation = client.page.navBar();
 			navigation
 			.verify.visible('@firms')
 			.verify.visible('@groups')
@@ -48,8 +52,6 @@ module.exports ={
 			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
 			client.verify.notEqual(result.value.length, 20, 'There should be less than 25 groups on this page');
 			});
-			
-			
 			
 			navigation.click('@users')
 			navigation.api.pause(1000);
@@ -95,13 +97,7 @@ module.exports ={
 			.verify.visible('@exportBtn')
 			.verify.visible('@downloadBtn')
 			.verify.visible('@callTypeTab')
-			.verify.visible('@show')
-			
-			navigation.click('@cog');
-			navigation.api.pause(1000);
-			navigation.getText('@privilege',function(result){
-				navigation.verify.equal(result.value, "Privilege : cloud9");
-			})
+			.verify.visible('@show');
 			
 			client.end();
 		}

@@ -5,27 +5,25 @@ module.exports ={
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
 			client.maximizeWindow();
-			
 			client.url(client.launch_url);
 			loginPage.adminLogin(client);
 			usersPage.go();
 			
-			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-			usersPage.click('@editAdminBtn');
+			usersPage.selectFirmAll(client, client.globals.adminFirm);
+			usersPage.userNameSearchAll(client.globals.nonAdminUser,client);
+			usersPage.selectFirstRow();
+			usersPage.editAdminLevelTab();
 			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
-			client.pause(7000);
+			adminPage.saveConfirm(client);
+			adminPage.adminLevelToastMess();
 			navigation.logout();
-			
-			
 			loginPage.userLogin(client);
-			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 
-			usersPage.c2cNameSearch(client.globals.nonAdminUser,client);
-						
+			usersPage.userNameSearchAll(client.globals.nonAdminUser,client);		
 			usersPage.selectFirstRow();
 			usersPage.clickToCallTab(client);
 			
@@ -40,7 +38,7 @@ module.exports ={
 			clickToCallPage.expect.element('@extSettPlus').to.not.be.present;
 			clickToCallPage.click('@outBoundChaOnSip');	
 			clickToCallPage.click('@saveSettingsBtn');
-			client.pause(500);	
+			client.pause(1500);	
 			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'SIP PBX Settings saved successfully')
 				});
@@ -58,14 +56,13 @@ module.exports ={
 			.verify.valueContains('@userName','EricT')
 			.verify.valueContains('@authId','Tonder')
 
-			
 			clickToCallPage.createFavorites(client, dateString); 
 			clickToCallPage.SelectDefaultOption(client, 'Mobile');
 			clickToCallPage.click('@favoritesPlus');
 			client.pause(2000);
 			clickToCallPage.click('@favoritesMinis');
 			clickToCallPage.saveFavorites();
-			client.pause(500);
+			client.pause(1500);
 			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'Favorites saved successfully')
 				});
@@ -87,8 +84,8 @@ module.exports ={
 			recordingsPage.verify.urlContains('#/clickToCall')
 			recordingsPage.go(client);
 			recordingsPage.verify.urlContains('#/recordings');
-			recordingsPage.verify.visible('@callTypeTab');
-			recordingsPage.expect.element('@callTypeTab').text.to.not.contain('Click to Call').before(1000);
+			recordingsPage.callType(client)
+			recordingsPage.click('@detailsBtn');
 			
 			
 		client.end();	

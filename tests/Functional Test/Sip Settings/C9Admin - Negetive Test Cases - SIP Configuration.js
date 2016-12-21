@@ -1,38 +1,50 @@
 module.exports ={
 		'OnSIP Configuration - Required Input Field Validation': function(client){
-		
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
-			client.maximizeWindow();
-					
+			client.maximizeWindow();	
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
+			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
+			firmsPage.addFirmTab();
 			
-			var dateString = firmsPage.addNewFirm(client);
-			console.log('About to create: Test Firm '+dateString);  
+			var dateString = addEditFirmsPage.addNewFirm(client);
+			addEditFirmsPage.addEditSubmitBtn();
+			addEditFirmsPage.addEditSubToastMess();
+			console.log('About to create: Test Firm '+dateString); 
 			
 			var groupsPage = client.page.groupsPage();
 			client.assert.urlContains('#/addGroup');
-			groupsPage.selectFirm(dateString, client);
-			groupsPage.addGrpForFirm(client,dateString);
+			groupsPage.selectFirm(client, dateString);
+			
+			var addEditGroupsPage = client.page.addEditGroupsPage();
+			addEditGroupsPage.addGrpForFirm(client,dateString);
+			addEditGroupsPage.addEditGroupSubmitBtn();
+			addEditGroupsPage.addEditGSbmitTosatMess();
 			client.assert.urlContains('firmId=');
 			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			usersPage.addUserTab(client);
-			usersPage.selectFirm(dateString,client);
-			var user1 = usersPage.createUser(client);
-			console.log('Successfully created: New User '+user1);
-			usersPage.voiceRecYes();
-			usersPage.selectC2C();
-			usersPage.userSubmit(client);
-			usersPage.addUserSubmit(client);
 			
-			var userGroupsPage= client.page.editUserGroupsPage();
-			userGroupsPage.verify.urlContains('#/editUserGroups');
-			userGroupsPage.addGrp2User();
+			var addEditUsersPage = client.page.addEditUsersPage();
+			addEditUsersPage.selectFirm(dateString,client);
+			
+			var user1 = addEditUsersPage.createUser(client);
+			console.log('Successfully created: New User '+user1);
+			addEditUsersPage.voiceRecYes();
+			addEditUsersPage.selectC2C();
+			addEditUsersPage.userSubmit(client);
+			addEditUsersPage.addUserSubmit(client);
+			addEditUsersPage.getAddUToMess();
+			
+			var userGroupsPage= client.page.addEditGroupsPage();
+			userGroupsPage.verify.urlContains('#/editUserGroups')
+			addEditGroupsPage.selectFirstGroup();
+			addEditGroupsPage.addG2UBtn();
+			addEditGroupsPage.doneButton();
 			client.assert.urlContains('firmId=')
 			
 			//Domain is not valid
@@ -51,15 +63,14 @@ module.exports ={
 			clickToCallPage.expect.element('@extSettPlus').to.not.be.present;
 			clickToCallPage.click('@outBoundChaOnSip');
 			clickToCallPage.click('@saveSettingsBtn');
-			
 			client.pause(1500);	
 			clickToCallPage.getText('@toastMess',function(errorMes){
-				clickToCallPage.verify.equal(errorMes.value,'domain is not valid')
+				clickToCallPage.verify.equal(errorMes.value,'domains is not valid')  //should be domain
 			});
 			client.pause(7000);
 			//Port is not valid
 			clickToCallPage.click('@goBackBtnSS');
-			client.pause(2000);
+			client.pause(1000);
 			usersPage.selectFirstRow();
 			usersPage.clickToCallTab(client);
 			
@@ -76,7 +87,7 @@ module.exports ={
 			clickToCallPage.setValue('@authPaswd','AbCa_12@'+user1);
 			clickToCallPage.click('@outBoundChaOnSip');
 			clickToCallPage.click('@saveSettingsBtn');
-			client.pause(500);
+			client.pause(1500);
 			
 			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'port is not valid')
@@ -84,7 +95,7 @@ module.exports ={
 			client.pause(7000);
 			//AuthUsername is not valid
 			clickToCallPage.click('@goBackBtnSS');
-			client.pause(2000);
+			client.pause(1000);
 			usersPage.selectFirstRow();
 			usersPage.clickToCallTab(client);
 			
@@ -101,15 +112,14 @@ module.exports ={
 			clickToCallPage.setValue('@authPaswd','AbCa_12@'+user1);
 			clickToCallPage.click('@outBoundChaOnSip');
 			clickToCallPage.click('@saveSettingsBtn');
-			client.pause(500);
-			
+			client.pause(1500);
 			clickToCallPage.getText('@toastMess',function(errorMes){
-				clickToCallPage.verify.equal(errorMes.value,'Username is not valid')
+				clickToCallPage.verify.equal(errorMes.value,'authUsername is not valid')
 			});
 			client.pause(7000);
 			//AuthId is not valid
 			clickToCallPage.click('@goBackBtnSS');
-			client.pause(2000);
+			client.pause(1000);
 			usersPage.selectFirstRow();
 			usersPage.clickToCallTab(client);
 			
@@ -126,15 +136,14 @@ module.exports ={
 			clickToCallPage.setValue('@authPaswd','AbCa_12@'+user1);
 			clickToCallPage.click('@outBoundChaOnSip');
 			clickToCallPage.click('@saveSettingsBtn');
-			client.pause(500);
-			
+			client.pause(1500);
 			clickToCallPage.getText('@toastMess',function(errorMes){
-				clickToCallPage.verify.equal(errorMes.value,'authId is not valid')
+				clickToCallPage.verify.equal(errorMes.value,'AuthId required')
 			});
-			
+			client.pause(7000);
 			//AuthPassword is not valid
 			clickToCallPage.click('@goBackBtnSS');
-			client.pause(2000);
+			client.pause(1000);
 			usersPage.selectFirstRow();
 			usersPage.clickToCallTab(client);
 			
@@ -152,14 +161,13 @@ module.exports ={
 			//clickToCallPage.setValue('@authPaswd','AbCa_12@'+dateString);
 			clickToCallPage.click('@outBoundChaOnSip');
 			clickToCallPage.click('@saveSettingsBtn');
-			client.pause(500);
-			
+			client.pause(1500);
 			clickToCallPage.getText('@toastMess',function(errorMes){
-				clickToCallPage.verify.equal(errorMes.value,'authPassword is not valid')
+				clickToCallPage.verify.equal(errorMes.value,'AuthPassword required')
 			});
 			client.pause(7000);
 			clickToCallPage.click('@goBackBtnSS');
-			client.pause(2000);
+			client.pause(1000);
 			usersPage.selectFirstRow();
 			usersPage.clickToCallTab(client);
 			client.pause(1000);
@@ -187,15 +195,13 @@ module.exports ={
 			
 			//clickToCallPage.click('@defaultBtn');
 			clickToCallPage.saveFavorites();
-			client.pause(500);
-			
+			client.pause(1500);
 			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'Please correct errors')
 			});
-			
 			client.pause(7000);
 			clickToCallPage.click('@goBackBtnF');
-			client.pause(2000);
+			client.pause(1000);
 			usersPage.selectFirstRow();
 			usersPage.clickToCallTab(client);
 			
@@ -212,12 +218,10 @@ module.exports ={
 			clickToCallPage.SelectDefaultOption(client, 'Mobile');
 			//clickToCallPage.setValue('@lastNameBtn','Tonder'+dateString);
 			clickToCallPage.saveFavorites();
-			client.pause(500);
-			
+			client.pause(1500);
 			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'Please correct errors')
 			});
-			
 			client.pause(7000);
 			clickToCallPage.click('@goBackBtnF');
 			

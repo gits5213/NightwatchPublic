@@ -18,7 +18,6 @@ module.exports ={
 			client.assert.urlContains('#/recordings');
 			client.pause(2000);
 
-			client.closeWindow();
 			client.end();
 			
 		}

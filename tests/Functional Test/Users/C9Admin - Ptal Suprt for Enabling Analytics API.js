@@ -1,11 +1,10 @@
 module.exports ={
-		'@tags':['user'],
 		'Edit a newly added user': function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
 			client.maximizeWindow();
 			loginPage.adminLogin(client);
-			
+
 			var firmsPage = client.page.firmsPage();
 			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
@@ -40,42 +39,65 @@ module.exports ={
 			addEditUsersPage.userSubmit(client);
 			addEditUsersPage.addUserSubmit(client);
 			addEditUsersPage.getAddUToMess();
-						
-			var userGroupsPage= client.page.addEditGroupsPage();
-			userGroupsPage.verify.urlContains('#/editUserGroups')
+									
+			var addEditGroupsPage= client.page.addEditGroupsPage();
+			addEditGroupsPage.verify.urlContains('#/editUserGroups');
 			addEditGroupsPage.selectFirstGroup();
 			addEditGroupsPage.addG2UBtn();
 			addEditGroupsPage.doneButton();
-			client.assert.urlContains('firmId=')
+			client.assert.urlContains('firmId=');
 			
 			usersPage.userNameSearch(client, user1);
 			usersPage.selectFirstRow();
 			usersPage.editUserTab();
-			
-			addEditUsersPage.updateUserRecord(client, user1);
-			addEditUsersPage.voiceRecNo();
+			addEditUsersPage.verify.urlContains('#/editUser');
+			addEditUsersPage.verifyEditUserTxtLevel(client);
+			addEditUsersPage.verifyUserStngTxtLevel(client);
+
+			addEditUsersPage.voiceRecYes();
 			addEditUsersPage.editUserSubmit();
 			addEditUsersPage.getEditUToMess();
-
+			
+			/*//----------------------------------------
+			
+			var usersPage = client.page.usersPage();
+			var addEditUsersPage = client.page.addEditUsersPage();
+			usersPage.go();
+			//---------------------------------------
+*/			
+			usersPage.userNameSearchAll(user1,client);
 			usersPage.selectFirstRow();    
 			usersPage.editUserTab();
 			
-			addEditUsersPage
-			.verify.valueContains('@firmName', 'Test Firm '+dateString)
-			.verify.valueContains('@username','johndoe'+user1[0])
-			.verify.valueContains('@fnameField','Jane')
-			.verify.valueContains('@lnameField','Poe'+user1[0])
-			.verify.valueContains('@emailField','updateduser@c9tec.com')
-			.verify.valueContains('@street1','1 So Amazing Ct')
-			.verify.valueContains('@street2','Penthouse')
-			.verify.value('@country','string:United States')
-			.verify.value('@state','string:New York')
-			.verify.valueContains('@city','Real Town')
-			.verify.valueContains('@zip',77777)
-			.verify.valueContains('@workField','011-234-5294')
-			.verify.valueContains('@mobileField','011-234-5555')
-			.verify.valueContains('@voiceNo',0)
-			.verify.urlContains('#/editUser')
+			addEditUsersPage.clearValue('@uri');
+			addEditUsersPage.voiceRecYes();
+			addEditUsersPage.editUserSubmit();
+			addEditUsersPage.getEditUToMess(client);
+			
+			usersPage.userNameSearchAll(user1,client);
+			usersPage.selectFirstRow();    
+			usersPage.editUserTab();
+			
+			addEditUsersPage.voiceRecYes();
+			addEditUsersPage.selectLocalRecod(client);
+			addEditUsersPage.editUserSubmit();
+			addEditUsersPage.getUriToastMess(client);
+			addEditUsersPage.inputURI(client, client.globals.URI);
+			addEditUsersPage.globalRelayDisable(client);
+			addEditUsersPage.editUserSubmit();
+			addEditUsersPage.getEditUToMess(client);
+			
+			usersPage.userNameSearchAll(user1,client);
+			usersPage.selectFirstRow();    
+			usersPage.editUserTab();
+			
+			addEditUsersPage.selectLocalRecod(client);
+			addEditUsersPage.clearValue('@uri');
+			addEditUsersPage.voiceRecNo();
+			addEditUsersPage.LocalRecodDisable();
+			addEditUsersPage.inputURIDisable();
+			addEditUsersPage.editUserSubmit();
+			addEditUsersPage.getEditUToMess(client);
 			
 			client.end();
 		}

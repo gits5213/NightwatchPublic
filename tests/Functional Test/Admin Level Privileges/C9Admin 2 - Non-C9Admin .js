@@ -1,26 +1,29 @@
 module.exports ={
-		
 		'Non-C9 Privileges - Firm Admin2': function(client){
-			
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
 			client.maximizeWindow();
 			client.url(client.launch_url);
-			
 			loginPage.adminLogin(client);
-			
 			usersPage.go();
-			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-			usersPage.click('@editAdminBtn');
+			
+			usersPage.selectFirmAll(client, client.globals.adminFirm);
+			usersPage.userNameSearchAll(client.globals.nonAdminUser,client);
+			usersPage.selectFirstRow();
+			usersPage.editAdminLevelTab();
 			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToAdmin2(client)
+			adminPage.saveConfirm(client);
+			adminPage.adminLevelToastMess();
 			navigation.logout();
 			
 			loginPage.userLogin(client)
-			client.pause(1000);
-			client.verify.containsText('body', 'Welcome to the Cloud9 Portal')
+			navigation.selectSettingGear();
+			navigation.getText('@privilege',function(result){
+				navigation.verify.equal(result.value, "Privilege : firmAdmin2");
+			});
 			
 			var navigation = client.page.navBar();
 			navigation
@@ -63,7 +66,7 @@ module.exports ={
 			navigation.api.pause(2000);
 			
 			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
-				client.verify.notEqual(result.value.length, 25, 'There should be less than 25 groups on this page');
+				client.verify.notEqual(result.value.length, 20, 'There should be less than 25 groups on this page');
 			});
 			
 			var usersPage=client.page.usersPage();
@@ -79,9 +82,7 @@ module.exports ={
 			.verify.visible('@exportBtn')
 			.verify.visible('@editNeighBtn')
 			usersPage.expect.element('@editSalesUserBtn').to.not.be.visible
-			
 			navigation.click('@connections');
-			navigation.api.pause(1000);
 			
 			var connPage=client.page.connectionsPage();
 			connPage
@@ -106,13 +107,7 @@ module.exports ={
 			.verify.visible('@exportBtn')
 			.verify.visible('@downloadBtn')
 			.verify.visible('@callTypeTab')
-			.verify.visible('@show')
-			
-			navigation.click('@cog');
-			navigation.api.pause(1000);
-			navigation.getText('@privilege',function(result){
-				navigation.verify.equal(result.value, "Privilege : firmAdmin2");
-			})
+			.verify.visible('@show');
 			
 			client.end();
 			
