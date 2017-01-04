@@ -62,7 +62,7 @@ module.exports ={
 			usersPage.editUserTab();
 			addEditUsersPage
 			.verify.valueContains('@firmName', 'Limbo Accounts')
-			.verify.valueContains('@username','johndoe'+user1+'deleted2016')
+			.verify.valueContains('@username','johndoe'+user1)
 			.verify.valueContains('@fnameField','John')
 			.verify.valueContains('@lnameField','Doe'+user1)
 			.verify.valueContains('@emailField',client.globals.email1)
