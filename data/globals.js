@@ -6,6 +6,11 @@ module.exports = {
         "OnSipDomainName":"c9tec.OnSip.com",
         "CiscoDomainName1":"173.226.129.163",
         "CiscoDomainName2":"173.226.129.164",
+        "adminFirm":"Select a",
+        "URI":"http://www.c9tec.com",
+        "CorrectUserName":"testadmin2",
+        "WrongPassword":"abcde1254@",
+        "CorrectPassword":"Password123",
 		
 		msft_credentials : {
 			  clientID: '44303342-65df-4a5d-a4b9-5c08a17002d2',

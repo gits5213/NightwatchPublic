@@ -2,71 +2,65 @@ var connPageCommands = {
 		go: function(){
 			this.verify.visible('@connLink', 'Verified Connection tab button is visible');
 			this.click('@connLink');
-			this.api.pause(2000);
-		},
-				
-		addIntConnForFirm: function(dateString,client){
+			this.verify.visible('@connectionsHomePage', 'Verified Connections Home Page - Manage your Cloud9 Connections');	
+			this.api.pause(1000);
+		},			
+		addConTab:function(){
+			this.verify.visible('@addConnBtn', 'Verified Add Conncetion Tab is visible');
 			this.click('@addConnBtn');
-			this.api.pause(2000);
-			this.assert.containsText('body','Add Connection');
-			this.click('@selectFirmBar');
-			this.api.pause(500);
-			this.setValue('@selectFirmBarSearch',dateString);
-			this.api.pause(500);
-			this.api.keys(client.Keys.ENTER);
-			this.waitForElementPresent('@internalYes',1000)
-			.click('@internalYes');
-			this.api.pause(500);
-			this.waitForElementPresent('@fromFieldBar',1000)
-			.click('@fromFieldBar');
-			this.api.pause(500);
-			this.setValue('@fromFieldInput', 'Grp 1');
-			this.api.keys(client.Keys.DOWN_ARROW);
-			this.api.keys(client.Keys.ENTER);
-			this.verify.valueContains('@connType','sPK');
-			this.setValue('@myFirmBtnLabel',dateString+'IntraFirmShout');
-			this.api.pause(500);
-			this.click('@submitBtn');
-			this.waitForElementVisible('@toastMess',7000,'Internal Connection for Firm was successfully created');
-			this.waitForElementNotPresent('@toastMess',10000,'Confirmation modal gone');
-			
-			},
-			
-		selectFirstRow: function(){
-			this.waitForElementVisible('@firstRow',1000);
-			this.click('@firstRow')
-			this.api.pause(500);
+			this.api.pause(1000);
 		},
-		
 		editConTab: function(){
 			this.waitForElementVisible('@editConnBtn',1000);
 			this.click('@editConnBtn');
+			this.api.pause(1000);
+		},
+		addConToGroupTab:function(){
+			this.verify.visible('@addConnToBroupBtn','Verified Add Connections to Group Tab is visible');
+			this.click('@addConnToBroupBtn');
+			this.api.pause(1000);
+		},
+		deleteConTab:function(){
+			this.verfy.visible('@delConnBtn', 'Verifed Delete Conncetion Tab is visible');
+			this.click('@delConnBtn');
+			this.api.pause(1000);
+		},
+		detailTab:function(){
+			this.verfy.visible('@detailsBtn', 'Verifed Details Tab is visible');
+			this.click('@detailsBtn');
+			this.api.pause(1000);
+		},
+		exportTab:function(){
+			this.verfy.visible('@exportBtn', 'Verifed Export Tab is visible');
+			this.click('@exportBtn');
+			this.api.pause(1000);
+		},
+		searchInputField:function(){
+			this.verfy.visible('@searchInput', 'Verifed Search Input Field is visible');
+			this.api.pause(1000);
+		},		
+		selectFirstRow: function(){
+			this.waitForElementVisible('@connectionfirstRow',1000);
+			this.click('@connectionfirstRow')
 			this.api.pause(500);
 		},
-			
-		connection: function(){
+		selectConRow: function(){
 			this.waitForElementVisible('@connectionfirstRow',5000, 'Verified Connection First Row is visible');
 			this.click('@connectionfirstRow');
 			this.api.pause(1000);
+			this.waitForElementVisible('@connectionSecondtRow',5000, 'Verified Connection Second Row is visible');
 			this.click('@connectionSecondtRow');
-			this.api.pause(1000);
-			this.waitForElementVisible('@addConnToBroupBtn',1500, 'Verified add connections to group tab is visible');
-			this.click('@addConnToBroupBtn');
-			this.verify.urlContains('#/addGroupConnections?')
-					
-		},
-		groupUserSelect: function(){
-			this.waitForElementVisible('@groupUser1',1000, 'Verified group user 1st row visible');
-			this.click('@groupUser1');
-			this.waitForElementVisible('@groupUser2',1000, 'Verified group user 2nd row visible');
-			this.click('@groupUser2');
-			this.waitForElementVisible('@addConnectionsToUsersSubmitButton',1000, 'Verified add connections to users button visible');
-			this.api.pause(1000);
-			this.click('@addConnectionsToUsersSubmitButton');
-			this.waitForElementVisible('@toastMess',6000,'Connection for Group was successfully created');
-			this.waitForElementNotPresent('@toastMess',10000,'Confirmation modal gone');
-		
-		}
+			this.api.pause(1000);				
+		},	
+		verifyConBtnLevel:function(){
+			this.verify.visible('@addConnBtn','Verified Add Connection button is visible');
+			this.verify.visible('@editConnBtn','Verified Edit Connection button is visible');
+			this.verify.visible('@addConnToBroupBtn','Verified Add Connections to Group button is visible');
+			this.verify.visible('@delConnBtn','Verified Delete Connection button is visible');
+			this.verify.visible('@detailsBtn','Verified Details button is visible');
+			this.verify.visible('@exportBtn','Verified Export button is visible');
+			this.verify.visible('@searchInput','Verified Input Search Field is visible');			
+			}
 				
 };
 
@@ -101,7 +95,14 @@ module.exports = {
 				selector: '//*[@id="editConnection"]/i',
 				locateStrategy: 'xpath'
 			},
-			
+			searchInput:{
+				selector: '//*[@id="grdSearch"]',
+				locateStrategy: 'xpath'
+			},
+			searchIcon:{
+				selector: '//*[@id="ng-view"]/div[2]/div[1]/ul[1]/i',
+				locateStrategy: 'xpath'
+			},
 			selectFirm:{
 			selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/a/span',
 			locateStrategy: 'xpath'

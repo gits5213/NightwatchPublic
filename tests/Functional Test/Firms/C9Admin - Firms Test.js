@@ -6,23 +6,26 @@ module.exports ={
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
+			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
-			
-			client.pause(2000);
 			client.assert.containsText('body','Manage your Cloud9 Firms');
-			var dateString = firmsPage.addNewFirm(client);
+			firmsPage.addFirmTab();
+			
+			var NewFirm = addEditFirmsPage.addNewFirm(client);
+			console.log('About to create: Test Firm '+ NewFirm);
+			addEditFirmsPage.addEditSubmitBtn();
+			addEditFirmsPage.addEditSubToastMess();
 			client.assert.urlContains('#/addGroup');
-			console.log('About to create - Test Firm '+dateString);
 			
-			firmsPage.getFirmByName('Test Firm '+dateString, client);
-			
-			firmsPage.click('@editFirmBtn');
-			client.pause(2000);
+			//firmsPage.getFirmByName('Test Firm '+dateString, client);
+			firmsPage.go();
+			firmsPage.firmNameSrch('Test Firm '+ NewFirm, client);
+			firmsPage.selectFirstRow();
+			firmsPage.editFirmTab();
 			client.assert.urlContains('#/editFirm');
-			client.pause(2000);
 			
-			firmsPage
-			.verify.valueContains('@firmNameForAdd','Test Firm '+dateString)
+			addEditFirmsPage
+			.verify.valueContains('@firmNameForAdd','Test Firm '+ NewFirm)
 			.verify.valueContains('@street1', '123 Main Street')
 			.verify.valueContains('@street2', '17th Flr')
 			.verify.valueContains('@city', 'Any City')

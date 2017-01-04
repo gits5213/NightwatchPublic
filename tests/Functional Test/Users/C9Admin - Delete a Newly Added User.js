@@ -4,37 +4,50 @@ module.exports ={
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
 			client.maximizeWindow();
-			
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
+			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
-			var dateString = firmsPage.addNewFirm(client);
+			firmsPage.addFirmTab();
+			
+			var dateString = addEditFirmsPage.addNewFirm(client);
+			addEditFirmsPage.addEditSubmitBtn();
+			addEditFirmsPage.addEditSubToastMess();
 			console.log('About to create: Test Firm '+dateString);
 						
 			var groupsPage = client.page.groupsPage();
 			client.assert.urlContains('#/addGroup');
-			groupsPage.selectFirm(dateString, client);
-			groupsPage.addGrpForFirm(client,dateString);
+			groupsPage.selectFirm(client, dateString);
+			
+			var addEditGroupsPage = client.page.addEditGroupsPage();
+			addEditGroupsPage.addGrpForFirm(client,dateString);
+			addEditGroupsPage.addEditGroupSubmitBtn();
+			addEditGroupsPage.addEditGSbmitTosatMess();
 			client.assert.urlContains('firmId=');
 			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			usersPage.addUserTab(client);
-			usersPage.selectFirm(dateString,client);
-			var user1 = usersPage.createUser(client);
-			console.log('Successfully created: New User '+user1);
-			usersPage.voiceRecYes();
-			usersPage.selectC2C();
-			usersPage.userSubmit(client);
-			usersPage.addUserSubmit(client);
-						
-			var userGroupsPage= client.page.editUserGroupsPage();
-			userGroupsPage.verify.urlContains('#/editUserGroups');
-			userGroupsPage.addGrp2User();
-			client.assert.urlContains('firmId=');
 			
-			usersPage.go();
+			var addEditUsersPage = client.page.addEditUsersPage();
+			addEditUsersPage.selectFirm(dateString,client);
+			
+			var user1 = addEditUsersPage.createUser(client);
+			console.log('Successfully created: New User '+user1);
+			addEditUsersPage.voiceRecYes();
+			addEditUsersPage.selectC2C();
+			addEditUsersPage.userSubmit(client);
+			addEditUsersPage.addUserSubmit(client);
+			addEditUsersPage.getAddUToMess();
+						
+			var userGroupsPage= client.page.addEditGroupsPage();
+			userGroupsPage.verify.urlContains('#/editUserGroups');
+			addEditGroupsPage.selectFirstGroup();
+			addEditGroupsPage.addG2UBtn();
+			addEditGroupsPage.doneButton();
+			client.assert.urlContains('firmId=')
+			
 			usersPage.userNameSearch(client, user1);
 			usersPage.selectFirstRow();
 			usersPage.deleteUserTab(client);
@@ -47,9 +60,9 @@ module.exports ={
 			
 			usersPage.selectFirstRow();
 			usersPage.editUserTab();
-			usersPage
+			addEditUsersPage
 			.verify.valueContains('@firmName', 'Limbo Accounts')
-			.verify.valueContains('@username','johndoe'+user1+'deleted2016')
+			.verify.valueContains('@username','johndoe'+user1)
 			.verify.valueContains('@fnameField','John')
 			.verify.valueContains('@lnameField','Doe'+user1)
 			.verify.valueContains('@emailField',client.globals.email1)

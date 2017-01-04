@@ -1,25 +1,29 @@
 module.exports ={
-		
 		'Non-C9 Privileges - Sales': function(client){
-			
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
 			client.maximizeWindow();
 			client.url(client.launch_url);
-			
 			loginPage.adminLogin(client);
-			
 			usersPage.go();
-			usersPage.editAdminInfo(client.globals.nonAdminUser,client);
-			usersPage.click('@editAdminBtn');
+			
+			usersPage.selectFirmAll(client, client.globals.adminFirm);
+			usersPage.userNameSearchAll(client.globals.nonAdminUser,client);
+			usersPage.selectFirstRow();
+			usersPage.editAdminLevelTab();
 			
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToSales(client)
+			adminPage.saveConfirm(client);
+			adminPage.adminLevelToastMess();
 			navigation.logout();
 			
 			loginPage.userLogin(client)
-			client.verify.containsText('body', 'Welcome to the Cloud9 Portal')
+			navigation.selectSettingGear();
+			navigation.getText('@privilege',function(result){
+				navigation.verify.equal(result.value, "Privilege : cloud9Sales");
+			});
 			
 			var navigation = client.page.navBar();
 			navigation
@@ -98,14 +102,8 @@ module.exports ={
 			.verify.visible('@exportBtn')
 			.verify.visible('@downloadBtn')
 			.verify.visible('@callTypeTab')
-			.verify.visible('@show')
-			
-			navigation.click('@cog');
-			navigation.api.pause(1000);
-			navigation.getText('@privilege',function(result){
-				navigation.verify.equal(result.value, "Privilege : cloud9Sales");
-			})
-			
+			.verify.visible('@show');
+				
 			client.end();
 			
 		}

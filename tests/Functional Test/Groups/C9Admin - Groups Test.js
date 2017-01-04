@@ -6,25 +6,35 @@ module.exports ={
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
+			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
+			firmsPage.addFirmTab();
 			
-			var dateString = firmsPage.addNewFirm(client);
-			console.log('Successfully created: Test Firm '+dateString);
+			var dateString = addEditFirmsPage.addNewFirm(client);
+			addEditFirmsPage.addEditSubmitBtn();
+			addEditFirmsPage.addEditSubToastMess();
+			console.log('About to create: Test Firm '+dateString);
 			
 			var groupsPage = client.page.groupsPage();
 			client.assert.urlContains('#/addGroup');
-			groupsPage.selectFirm(dateString, client);
-			groupsPage.addGrpForFirm(client,dateString);
+			groupsPage.selectFirm(client, dateString);
+			
+			var addEditGroupsPage = client.page.addEditGroupsPage();
+			
+			addEditGroupsPage.addGrpForFirm(client,dateString);
+			addEditGroupsPage.addEditGroupSubmitBtn();
+			addEditGroupsPage.addEditGSbmitTosatMess();
 			client.assert.urlContains('firmId=');
-			
-			
 			groupsPage.addGroupTab(client);
-			groupsPage.selectFirm(dateString, client);
-			groupsPage.addAnotherGrpForFirm(client,dateString);
+			
+			addEditGroupsPage.selectFirm(dateString, client);
+			addEditGroupsPage.addAnotherGrpForFirm(client,dateString);
+			addEditGroupsPage.addEditGroupSubmitBtn();
+			addEditGroupsPage.addEditGSbmitTosatMess();
+			
 			groupsPage.selectFirstRow();
 			groupsPage.editGroupTab(groupsPage);
-			
-			groupsPage
+			addEditGroupsPage
 			.verify.valueContains('@grpNameField','Firm '+dateString+' Grp 1')
 			.verify.valueContains('@contactFname', 'Howard')
 			.verify.valueContains('@contactLname', 'Hughes')

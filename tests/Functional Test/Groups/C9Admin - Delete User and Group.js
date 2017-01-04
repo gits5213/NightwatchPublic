@@ -7,39 +7,55 @@ module.exports ={
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
+			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
+			firmsPage.addFirmTab();
 			
-			var dateString = firmsPage.addNewFirm(client);
-			console.log('Successfully created: Test Firm '+dateString);
+			var dateString = addEditFirmsPage.addNewFirm(client);
+			addEditFirmsPage.addEditSubmitBtn();
+			addEditFirmsPage.addEditSubToastMess();
+			console.log('About to create: Test Firm '+dateString);
 			
 			var groupsPage = client.page.groupsPage();
 			client.assert.urlContains('#/addGroup');
-			groupsPage.selectFirm(dateString, client);
-			groupsPage.addGrpForFirm(client,dateString);
+			groupsPage.selectFirm(client,dateString);
+			
+			var addEditGroupsPage = client.page.addEditGroupsPage();
+			addEditGroupsPage.addGrpForFirm(client,dateString);
+			addEditGroupsPage.addEditGroupSubmitBtn();
+			addEditGroupsPage.addEditGSbmitTosatMess();
 			client.assert.urlContains('firmId=');
 			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			usersPage.addUserTab(client);
-			usersPage.selectFirm(dateString,client);
-			var user = usersPage.createUser(client);
-			console.log('Successfully created: New Group '+user);
-			usersPage.voiceRecYes();
-			usersPage.selectC2C();
-			usersPage.userSubmit(client);
-			usersPage.addUserSubmit(client);
 			
-			var userGroupsPage= client.page.editUserGroupsPage();
-			userGroupsPage.verify.urlContains('#/editUserGroups');		
-			userGroupsPage.addGrp2User();
+			var addEditUsersPage = client.page.addEditUsersPage();
+			addEditUsersPage.selectFirm(dateString,client);
+			
+			var user = addEditUsersPage.createUser(client);
+			console.log('Successfully created: New User '+user);
+			addEditUsersPage.voiceRecYes();
+			addEditUsersPage.selectC2C();
+			addEditUsersPage.userSubmit(client);
+			addEditUsersPage.addUserSubmit(client);
+			addEditUsersPage.getAddUToMess();
+			
+			var userGroupsPage= client.page.addEditGroupsPage();
+			userGroupsPage.verify.urlContains('#/editUserGroups')
+			addEditGroupsPage.selectFirstGroup();
+			addEditGroupsPage.addG2UBtn();
+			addEditGroupsPage.doneButton();
 			client.assert.urlContains('firmId=')
 			
 			usersPage.userNameSearch(client, user);
 			usersPage.selectFirstRow();
 			usersPage.editUserTab();
-			usersPage.updateUserRecord(client, user);
-			usersPage.voiceRecNo();
-			usersPage.editUserSubmit();
+			
+			addEditUsersPage.updateUserRecord(client, user);
+			addEditUsersPage.voiceRecNo();
+			addEditUsersPage.editUserSubmit();
+			addEditUsersPage.getEditUToMess();
 			
 			usersPage.go();
 			usersPage.userNameSearch(client, user);
@@ -51,9 +67,13 @@ module.exports ={
 			
 			groupsPage.go(client);
 			groupsPage.selectFirstRow(client);
-			groupsPage.deleteNewGroup(client);
+			groupsPage.deleteGroupTab();
+			groupsPage.deleteCancelBtn();
+			groupsPage.deleteGroupTab();
+			groupsPage.deleteOklBtn();
+			groupsPage.deleteGroupToastMess();
+
 			client.end();
-			
-			client.end();
+
 		}
 }

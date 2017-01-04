@@ -3,6 +3,7 @@ module.exports ={
 			var navigation = client.page.navBar();
 			var loginPage = client.page.loginPage();
 			var usersPage = client.page.usersPage();
+			var addEditUsersPage = client.page.addEditUsersPage(); 
 			client.maximizeWindow();
 			client.url(client.launch_url);
 							
@@ -10,32 +11,29 @@ module.exports ={
 			
 			var usersPage = client.page.usersPage();
 			usersPage.go(client);
-			client.pause(2000);
-			client.elements('xpath','//*[@id="scrollable-area"]/table/tbody/tr',function(result){
-				client.verify.notEqual(result.value.length, 20, 'There should be more than 25 groups on this page');
+			usersPage.getText('@userPageResult',function(result){
+				usersPage.verify.notEqual(result.value.length, 20, 'There should be more than 25 groups on this page');
 			});
-			client.pause(1000);
 
 			usersPage.userNameSearch(client, client.globals.nonAdminUser);
 			usersPage.selectFirstRow();
 			usersPage.editUserTab();
 			
-			usersPage.waitForElementVisible('@editUserHomePage',1000, 'Verified Edit Group home page - Edit User');
-			usersPage.expect.element('@editUserHomePage').text.to.contain('Edit User');
-			usersPage.waitForElementVisible('@street2',1000, 'Verified address stree2 input field visible');
-			usersPage.clearValue('@street2');
-			usersPage.setValue('@street2','17th floor');
-			usersPage.voiceRecNo();
-			usersPage.editUserSubmit();
+			addEditUsersPage.waitForElementVisible('@editUserHomePage',1000, 'Verified Edit Group home page - Edit User');
+			addEditUsersPage.expect.element('@editUserHomePage').text.to.contain('Edit User');
+			addEditUsersPage.waitForElementVisible('@street2',1000, 'Verified address stree2 input field visible');
+			addEditUsersPage.clearValue('@street2');
+			addEditUsersPage.setValue('@street2','17th floor');
+			addEditUsersPage.voiceRecNo();
+			addEditUsersPage.editUserSubmit();
 			
 			usersPage.userNameSearch(client, client.globals.nonAdminUser);
 			usersPage.selectFirstRow();
 			usersPage.editUserTab();
 			
-			usersPage.verify.valueContains('@street2','17th floor');
-			usersPage.editUserSubmit();
+			addEditUsersPage.verify.valueContains('@street2','17th floor');
+			addEditUsersPage.editUserSubmit();
 				 
-			client.closeWindow();
 			client.end();			
 		}
 		

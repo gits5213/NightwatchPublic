@@ -8,44 +8,59 @@ module.exports ={
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
+			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
+			firmsPage.addFirmTab();
 			
-			var dateString = firmsPage.addNewFirm(client);
+			var dateString = addEditFirmsPage.addNewFirm(client);
+			addEditFirmsPage.addEditSubmitBtn();
+			addEditFirmsPage.addEditSubToastMess();
 			console.log('About to create: Test Firm '+dateString);
 			
 			var groupsPage = client.page.groupsPage();
 			client.assert.urlContains('#/addGroup');
-			groupsPage.selectFirm(dateString, client);
-			groupsPage.addGrpForFirm(client,dateString);
+			groupsPage.selectFirm(client, dateString);
+			
+			var addEditGroupsPage = client.page.addEditGroupsPage();
+			addEditGroupsPage.addGrpForFirm(client,dateString);
+			addEditGroupsPage.addEditGroupSubmitBtn();
+			addEditGroupsPage.addEditGSbmitTosatMess();
 			client.assert.urlContains('firmId=');
 			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			usersPage.addUserTab(client);
-			usersPage.selectFirm(dateString,client);
-			var user1 = usersPage.createUser(client);
-			console.log('Successfully created: New User '+user1);
-			usersPage.voiceRecYes();
-			usersPage.selectC2C();
-			usersPage.userSubmit(client);
-			usersPage.addUserSubmit(client);
 			
-			var userGroupsPage= client.page.editUserGroupsPage();
-			userGroupsPage.verify.urlContains('#/editUserGroups');
-			userGroupsPage.addGrp2User();
+			var addEditUsersPage = client.page.addEditUsersPage();
+			addEditUsersPage.selectFirm(dateString,client);
+	
+			var user1 = addEditUsersPage.createUser(client);
+			console.log('Successfully created: New User '+user1);
+			addEditUsersPage.voiceRecYes();
+			addEditUsersPage.selectC2C();
+			addEditUsersPage.userSubmit(client);
+			addEditUsersPage.addUserSubmit(client);
+			addEditUsersPage.getAddUToMess();
+			
+			var userGroupsPage= client.page.addEditGroupsPage();
+			userGroupsPage.verify.urlContains('#/editUserGroups')
+			addEditGroupsPage.selectFirstGroup();
+			addEditGroupsPage.addG2UBtn();
+			addEditGroupsPage.doneButton();
 			client.assert.urlContains('firmId=')
 			
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			
-			//------------editAdminInfo
-			usersPage.editAdminInfo(user1,client,function(){
-				console.log('User - johndoe'+user1+' is having 2fa disabled');
-			});
-			usersPage.click('@editAdminBtn');
-			
+		//------------editAdminInfo
+			usersPage.userNameSearchAll(user1,client);
+			usersPage.selectFirstRow();
+			usersPage.editAdminLevelTab();
+
 			var adminPage=client.page.editAdminPage();
 			adminPage.setToUser3(client);
+			adminPage.saveConfirm(client);
+			adminPage.adminLevelToastMess();
 			navigation.logout();
 			
 			var msftPage = client.page.microsoftonline();
@@ -78,9 +93,6 @@ module.exports ={
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
 			client.maximizeWindow();
-
-			
-			client.pause(1000);
 			loginPage.resetPassword(client,client.globals.newUser)
 			
 			var loginPage2 = new client.page.loginPage();
@@ -93,15 +105,12 @@ module.exports ={
 			// in order to avoid doing this
 			
 			client.end()
-			
 		},
 		
 		'Forgot Password - retrieval' : function(client){
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
 			client.maximizeWindow();
-			
-
 			var msftPage = client.page.microsoftonline();
 			msftPage.getPassFromEmail(client);
 			
@@ -122,7 +131,6 @@ module.exports ={
 			client.pause(1000);
 			client.end();
 			
-
 		}
 		
 }

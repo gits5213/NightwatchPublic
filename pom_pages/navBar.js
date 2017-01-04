@@ -2,8 +2,13 @@ var navigationCommands = {
 		logout:function(){
 			this.click('@logoff');
 			this.waitForElementNotPresent('@logoff',10000,'Logoff successful');
-			
-		}
+		},
+		selectSettingGear:function(){
+			this.verify.visible('@cog', 'Verified Setteing Gear is visible');
+			this.click('@cog');
+			this.api.pause(1000);
+		},
+		
 };
 
 module.exports = {

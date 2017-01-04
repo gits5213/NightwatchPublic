@@ -15,6 +15,10 @@ module.exports = {
 			viewLogsHomePage:{
 				selector: '//*[@id="ng-view"]/div[1]/div/h2',
 				locateStrategy: 'xpath'
+			},
+			viewLogsPageResult:{
+				selector: '//*[@id="ng-view"]/div[2]/div[5]/ul/label',
+				locateStrategy: 'xpath'
 			}
 	
 		}

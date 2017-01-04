@@ -3,36 +3,49 @@ module.exports ={
 			var loginPage = client.page.loginPage();
 			client.url(client.launch_url);
 			client.maximizeWindow();
-					
 			loginPage.adminLogin(client);
 			
 			var firmsPage = client.page.firmsPage();
+			var addEditFirmsPage = client.page.addEditFirmsPage();
 			firmsPage.go();
+			firmsPage.addFirmTab();
 			
-			var dateString = firmsPage.addNewFirm(client);
+			var dateString = addEditFirmsPage.addNewFirm(client);
+			addEditFirmsPage.addEditSubmitBtn();
+			addEditFirmsPage.addEditSubToastMess();
 			console.log('About to create: Test Firm '+dateString);  
 			
 			var groupsPage = client.page.groupsPage();
-			groupsPage.selectFirm(dateString, client);
-			groupsPage.addGrpForFirm(client,dateString);
-			client.assert.urlContains('firmId=');
+			client.assert.urlContains('#/addGroup');
+			groupsPage.selectFirm(client, dateString);
 			
-			client.pause(1000);
+			var addEditGroupsPage = client.page.addEditGroupsPage();
+			addEditGroupsPage.addGrpForFirm(client,dateString);
+			addEditGroupsPage.addEditGroupSubmitBtn();
+			addEditGroupsPage.addEditGSbmitTosatMess();
+			client.assert.urlContains('firmId=');
+
 			var usersPage = client.page.usersPage();
 			usersPage.go();
 			usersPage.addUserTab(client);
-			usersPage.selectFirm(dateString,client);
-			var user1 = usersPage.createUser(client);
-			console.log('Successfully created: New User '+user1);
-			usersPage.voiceRecYes();
-			usersPage.selectC2C();
-			usersPage.userSubmit(client);
-			usersPage.addUserSubmit(client);
 			
-			var userGroupsPage= client.page.editUserGroupsPage();
-			userGroupsPage.verify.urlContains('#/editUserGroups');
-			userGroupsPage.addGrp2User();
-			client.assert.urlContains('firmId=')
+			var addEditUsersPage = client.page.addEditUsersPage();
+			addEditUsersPage.selectFirm(dateString,client);
+			
+			var user1 = addEditUsersPage.createUser(client);
+			console.log('Successfully created: New User '+user1);
+			addEditUsersPage.voiceRecYes();
+			addEditUsersPage.selectC2C();
+			addEditUsersPage.userSubmit(client);
+			addEditUsersPage.addUserSubmit(client);
+			addEditUsersPage.getAddUToMess();
+			
+			var userGroupsPage= client.page.addEditGroupsPage();
+			userGroupsPage.verify.urlContains('#/editUserGroups')
+			addEditGroupsPage.selectFirstGroup();
+			addEditGroupsPage.addG2UBtn();
+			addEditGroupsPage.doneButton();
+			client.assert.urlContains('firmId=');
 			
 			usersPage.selectFirstRow();
 			usersPage.clickToCallTab(client);
@@ -45,11 +58,10 @@ module.exports ={
 			clickToCallPage.onSIPextSett(client, user1);
 			clickToCallPage.click('@saveSettingsBtn');
 			
-			client.pause(500);	
+			client.pause(1500);	
 			clickToCallPage.getText('@toastMess',function(errorMes){
 				clickToCallPage.verify.equal(errorMes.value,'SIP PBX Settings saved successfully')
 				});
-			
 			client.pause(7000);
 			clickToCallPage.click('@goBackBtnSS');
 			
@@ -63,7 +75,6 @@ module.exports ={
 			.verify.valueContains('@userName','EricT'+user1[0])
 			.verify.valueContains('@authId','Tonder'+user1[0])
 			.verify.valueContains('@authPaswd','AbCa_12@'+user1[0]);
-			
 			client.pause(1000);
 			clickToCallPage.click('@goBackBtnSS');	
 			
@@ -74,7 +85,7 @@ module.exports ={
 			
 			recordingsPage.callType(client)
 			recordingsPage.click('@detailsBtn');
-			recordingsPage.textVerify(client);
+			//recordingsPage.textVerify(client);
 
 		client.end();	
 			
