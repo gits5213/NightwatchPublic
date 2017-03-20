@@ -9,7 +9,7 @@
    "globals_path":"./data/globals.js",
    "selenium":{  
       "start_process":false,
-      "server_path":"lib/selenium-server-standalone-3.0.1",
+      "server_path":"lib/selenium-server-standalone-3.1.2",
       "log_path":"selenium_logs",
       "host":"localhost",
       "port":4444,
@@ -41,52 +41,22 @@
       "qa2":{  
          "launch_url":"https://qa2-c9portal.xhoot.com/c9portal",
          "globals":{  
-            "adminUsername":"mdzaman",
-            "adminPassword":"Shahnewaz1@",
-            "nonAdminUser":"testadmin2",
-            "nonAdminPass":"Password123"  	
+            "adminUsername":"RemoteITUniversity",
+            "adminPassword":"Shahsssssgggg",
+            "nonAdminUser":"testRemote",
+            "nonAdminPass":"Password"  	
          }
       },
       "qa1":{  
-         "launch_url":"https://qa1-c9portal.xhoot.com/c9portal",
+         "launch_url":"https://qa1-RemoteIT.xhoot.com/Home",
          "globals":{  
-            "adminUsername":"ucheonwudiwe",
-            "adminPassword":"Password1234",
-            "email1":"qatest.user@c9tec.com",
-            "nonAdminUser":"leopoldakpan",
-            "nonAdminPass":"Password123"
+            "adminUsername":"RemoteIT",
+            "adminPassword":"Password1",
+            "email1":"qatest.user1@gmail.com",
+            "nonAdminUser":"RemoteITUni",
+            "nonAdminPass":"Password1234"
          }
       },
-      "dev":{  
-          "launch_url":"https://dev-c9portal.xhoot.com/c9portal",
-          "globals":{  
-             "adminUsername":"ucheonwudiwe",
-             "adminPassword":"Password1234",
-             "email1":"qatest.user@c9tec.com",
-             "nonAdminUser":"johnakpan",
-             "nonAdminPass":"Password123"
-          }
-       },
-      "prod":{  
-          "launch_url":"https://c9portal.xhoot.com/c9portal",
-          "globals":{  
-             "prodAdmin2Username":"",
-             "prodAdmin2Password":"",
-             "email1":"md.zaman@c9tec.com",
-             "nonAdminUser":"qasmokeadmin",
-             "nonAdminPass":"Ax5e6xzT"
-          }
-       },
-      "prod3":{  
-          "launch_url":"https://use-portal3.xhoot.com/c9portal",
-          "globals":{  
-             "prodAdmin2Username":"",
-             "prodAdmin2Password":"",
-             "email1":"md.zaman@c9tec.com",
-             "nonAdminUser":"qasmokeadmin",
-             "nonAdminPass":"Ax5e6xzT"
-          }
-       },
        
       "jenkins":{  
          "launch_url":"http://localhost",

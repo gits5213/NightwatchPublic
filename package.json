@@ -1,5 +1,5 @@
 {
-  "name": "c9portaluitests",
+  "name": "nightwatchUIFramework",
   "version": "0.0.1",
   "description": "Browser based tests for C9 Portal",
   "main": "nightwatch.json",
@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@bitbucket.org/leopapadopoulos/c9portaluitests.git"
+    "url": "git+ssh://git@bitbucket.org/mdzaman/nightwatchUIFramework.git"
   },
   "keywords": [
     "ui",
-    "portal",
-    "c9portal"
+    "remotITUniversity",
+    "remoteITHome"
   ],
   "dependencies": {
     "grunt": "latest",
@@ -29,9 +29,9 @@
     "selenium-webdriver": "^2.53.3",
     "simple-oauth2": "^0.8.0"
   },
-  "author": "Uche Onwudiwe",
+  "author": "Md Zaman",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/leopapadopoulos/c9portaluitests#readme",
+  "homepage": "https://bitbucket.org/mdzaman/nightwatchUIFramework#readme",
   "devDependencies": {
     "grunt": "^1.0.1"
   }
