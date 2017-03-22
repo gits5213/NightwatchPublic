@@ -39,7 +39,7 @@
           }
       },
       "qa2":{  
-         "launch_url":"https://qa2-c9portal.xhoot.com/c9portal",
+         "launch_url":"https://qa-google.xhoot.com/Home",
          "globals":{  
             "adminUsername":"RemoteITUniversity",
             "adminPassword":"Shahsssssgggg",

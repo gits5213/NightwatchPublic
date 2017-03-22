@@ -15,7 +15,7 @@ var queryParams = {
 };
 
 var userInfo= {
-		email: 'uche.onwudiwe@c9tec.com'
+		email: 'md.zaman@gmail.com'
 };
 
 outlook.mail.getMessages({token: token, folderId: 'Inbox', odataParams: queryParams, user: userInfo},function (error, result){
