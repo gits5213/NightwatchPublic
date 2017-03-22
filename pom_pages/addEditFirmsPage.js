@@ -1,13 +1,13 @@
 var firmsPageCommands = {
 		go: function(){
 			this.api.pause(1000);
-			this.verify.visible('@firmsLink', 'Verified Firms tab button is visible');
-			this.click('@firmsLink');
+			this.verify.visible('@HomeLink', 'Verified Firms tab button is visible');
+			this.click('@HomeLink');
 			this.api.pause(1000);
 		},
 		addNewFirm : function(client){
 			this.assert.containsText('body','Add Firm');
-			this.waitForElementVisible('@firmNameForAdd',2000);
+			this.waitForElementVisible('@RemoteNameForAdd',2000);
 			
 			var now = new Date();
 			var dateString=now.getFullYear().toString()+
@@ -19,7 +19,7 @@ var firmsPageCommands = {
 			(now.getMilliseconds()<10?'00'+now.getMilliseconds().toString():(now.getMilliseconds()<100?'0'+now.getMilliseconds().toString():now.getMilliseconds().toString()));
 	
 			
-			this.setValue('@firmNameForAdd','Test Firm '+dateString)
+			this.setValue('@RemoteNameForAdd','Test Firm '+dateString)
 			.setValue('@street1', '123 Main Street')
 			.setValue('@street2', '17th Flr')
 			.setValue('@city', 'Any City')
@@ -82,11 +82,11 @@ var firmsPageCommands = {
 module.exports = {
 		commands :[firmsPageCommands],
 		elements: {	
-			firmNameSearch:{
+			RemoteNameSearch:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[2]/th[1]/div/input',
 				locateStrategy: 'xpath'
 			},
-			firmNameForAdd: {
+			RemoteNameForAdd: {
 				selector: '//*[@id="name"]',
 				locateStrategy: 'xpath'
 			},
@@ -164,7 +164,7 @@ module.exports = {
 				selector: '//span[contains(.,"Firm ID")]',
 				locateStrategy: 'xpath'
 			},
-			detailsFirmName:{
+			detailsRemoteName:{
 				selector: '//*[@id="scrollable-area"]/table/thead[1]/tr[1]/th[1]/div/span',
 				locateStrategy: 'xpath'
 			},

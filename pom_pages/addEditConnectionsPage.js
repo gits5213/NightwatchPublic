@@ -1,8 +1,8 @@
 var connPageCommands = {
 		selectFirm:function(client, dateString){
-			this.verify.visible('@selectFirmBar', 'Verified Select Firm Bar is visible');
-			this.click('@selectFirmBar');
-			this.setValue('@selectFirmBarSearch', dateString)
+			this.verify.visible('@dropDownBar', 'Verified Select Firm Bar is visible');
+			this.click('@dropDownBar');
+			this.setValue('@dropDownBarSearch', dateString)
 			this.api.pause(500);
 			this.api.keys(client.Keys.ENTER);
 			this.api.pause(1000);
@@ -72,11 +72,11 @@ module.exports = {
 				selector: '//*[@id="ng-view"]/div[1]/div/div/div/div/div/div/input',
 				locateStrategy: 'xpath'
 			},
-			selectFirmBar: {
+			dropDownBar: {
 				selector: '//*[@id="ng-view"]/div/h5/div/div/div/a/span',
 				locateStrategy: 'xpath'
 			},
-			selectFirmBarSearch: {
+			dropDownBarSearch: {
 				selector: '//*[@id="ng-view"]/div/h5/div/div/div/div/div/input',
 				locateStrategy: 'xpath'
 			},
